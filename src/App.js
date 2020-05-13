@@ -17,7 +17,6 @@ function App() {
          <Route exact path ="/servicios"/>
          <Route exact path ="/contacto"/>
          <Route exact path ="/equipo"/>
-
        </Switch>
      </Router>
     </div>
