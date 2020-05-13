@@ -7,15 +7,15 @@ const NavBar = () => {
     
         <Navbar bg="light" variant="light">
         <Nav className="mr-auto">
-        <Nav.Link href="#home">Inicio</Nav.Link>
-        <Nav.Link href="#features">Turnos</Nav.Link>
-        <Nav.Link href="#pricing">Productos</Nav.Link>
-        <Nav.Link href="#pricing">Nuestro Equipo</Nav.Link>
-        <Nav.Link href="#pricing">Contacto</Nav.Link>
+        <Nav.Link href="/">Inicio</Nav.Link>
+        <Nav.Link href="/tienda">Turnos</Nav.Link>
+        <Nav.Link href="/servicios">Productos</Nav.Link>
+        <Nav.Link href="/equipo">Nuestro Equipo</Nav.Link>
+        <Nav.Link href="/contacto">Contacto</Nav.Link>
         </Nav>
         <Nav className="ml-auto">
-            <Nav.Link href="#!">carrito</Nav.Link>
-            <Nav.Link href="#!">Ingresar</Nav.Link>
+            <Nav.Link href="/compras">carrito</Nav.Link>
+            <Nav.Link href="/login">Ingresar</Nav.Link>
         </Nav>
     </Navbar>
     
