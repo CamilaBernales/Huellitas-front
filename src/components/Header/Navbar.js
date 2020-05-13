@@ -13,10 +13,6 @@ const NavBar = () => {
         <Nav.Link href="#pricing">Nuestro Equipo</Nav.Link>
         <Nav.Link href="#pricing">Contacto</Nav.Link>
         </Nav>
-        <Nav className="ml-auto">
-            <Nav.Link href="#!">carrito</Nav.Link>
-            <Nav.Link href="#!">Ingresar</Nav.Link>
-        </Nav>
     </Navbar>
     
     )
