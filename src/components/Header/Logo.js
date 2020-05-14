@@ -1,15 +1,21 @@
 import React from "react";
 import imagen from "../../imagen.png";
+import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-    <div>
+      <div>
       <div className="d-flex justify-content-end">
         <div className="p-4">
-          <i class="fas fa-cart-plus fa-3x"></i>
+              <Link to="/carrito">
+          <i class="fas fa-cart-plus fa-3x">
+          </i>
+              </Link>
         </div>
       <div className="p-4">
+          <Link to="/">
         <i class="fas fa-users fa-3x"></i>
+          </Link>
       </div>
       </div>
       <div className="mb-3">
