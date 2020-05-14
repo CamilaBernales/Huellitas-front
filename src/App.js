@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './components/Header/Navbar'
-import Logo from './components/Header/Logo'
+import Navbar from './components/Header/Navbar';
+import Logo from './components/Header/Logo';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Carrito from './components/Carrito'
+import Carrito from './components/Carrito';
+import Tienda from './components/Tienda';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
      <Navbar/>
        <Switch>
          <Route exact path ="/"/>
-         <Route exact path ="/tienda"/>
+         <Route exact path ="/tienda" component={Tienda}/>
          <Route exact path ="/servicios"/>
          <Route exact path ="/contacto"/>
          <Route exact path ="/equipo"/>
