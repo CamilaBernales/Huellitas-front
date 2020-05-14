@@ -6,9 +6,13 @@ const Producto = ({producto}) => {
 
 
     const [productoAgregado, setProductoAgregado] = useState([])
-    
     const guardarProducto = producto => {
-        setProductoAgregado(producto);
+        setProductoAgregado(
+            [
+                ...productoAgregado,
+                producto
+            ]
+        );
         const compra = JSON.parse(localStorage.getItem('compras')) || [];
         compra.push((producto))
         localStorage.setItem('compras', JSON.stringify(compra));
