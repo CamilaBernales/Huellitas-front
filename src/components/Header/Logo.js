@@ -8,12 +8,12 @@ const Logo = () => {
       <div className="d-flex justify-content-end m-0">
         <div className="p-3">
           <Link to="/carrito">
-            <i class="fas fa-cart-plus fa-2x"></i>
+            <i className="fas fa-cart-plus fa-2x"></i>
           </Link>
         </div>
         <div className="p-3">
           <Link to="/">
-            <i class="fas fa-users fa-2x"></i>
+            <i className="fas fa-users fa-2x"></i>
           </Link>
         </div>
       </div>

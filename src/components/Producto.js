@@ -1,11 +1,20 @@
   
-import React from 'react';
+import React,{useState} from 'react';
 import { Col, Card, Button } from "react-bootstrap";
 
 const Producto = ({producto}) => {
 
-    // extraer las variables
-    const {nombre, descripcion, precio } = producto;
+
+    const [productoAgregado, setProductoAgregado] = useState([])
+    
+    const guardarProducto = producto => {
+        setProductoAgregado(producto);
+        const compra = JSON.parse(localStorage.getItem('compras')) || [];
+        compra.push((producto))
+        localStorage.setItem('compras', JSON.stringify(compra));
+    }
+
+    const {id, nombre, descripcion, precio } = producto;
 
     return ( 
         <Col sm={12} md={4} className="d-flex justify-content-center p-3">
@@ -18,7 +27,7 @@ const Producto = ({producto}) => {
                    <br/>
                     ${precio}
                 </Card.Text>
-                <Button className="w-100 mt-2 ">Comprar</Button>
+                <Button onClick={() => guardarProducto(producto)}className="w-100 mt-2 ">Comprar</Button>
             </Card.Body>
         </Card>
     </Col >

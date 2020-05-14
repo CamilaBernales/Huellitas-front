@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row} from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import Producto from '../components/Producto'
 const Tienda = () => {
   let productos = [
@@ -23,21 +23,21 @@ const Tienda = () => {
     },
     {
       id: "4",
-      nombre: "Alimento Perro Cachorro",
+      nombre: "Alimento Conejo Cachorro",
       precio: "2000",
-      descripcion: "alimento para perros de entre 0 y 12 meses",
+      descripcion: "alimento para conejo de entre 0 y 12 meses",
     },
     {
       id: "5",
-      nombre: "Alimento Gato Cachorro",
+      nombre: "Alimento Conejo Adulto",
       precio: "2300",
-      descripcion: "alimento para gatos de entre 0 y 12 meses",
+      descripcion: "alimento para conejo de entre 0 y 12 meses",
     },
     {
       id: "6",
-      nombre: "Alimento Perro Cachorro",
+      nombre: "Alimento Tortuga ",
       precio: "2100",
-      descripcion: "alimento para perros de entre 0 y 12 meses",
+      descripcion: "alimento para tortuga",
     },
     {
       id: "7",
@@ -55,14 +55,14 @@ const Tienda = () => {
       id: "9",
       nombre: "Alimento Gato adulto",
       precio: "2300",
-      descripcion: "alimento para perros de 12 o mas años",
+      descripcion: "alimento para gato adulto de 12 o mas años",
     },
   ];
 
   return (
     <div>
       <Container>
-       <Row className="m-auto">
+       <Row className=" col-12 m-auto">
             {productos.map(producto => (
                 <Producto 
                     key={producto.id}
