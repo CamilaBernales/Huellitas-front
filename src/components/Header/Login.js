@@ -22,11 +22,11 @@ export default function Login() {
                 <Form.Label className="d-flex justify-content-start">Contraseña:</Form.Label>
                 <Form.Control type="password" placeholder="Ingrese su contraseña" />
               </Form.Group>
-              <div className="d-flex justify-content-end">
+              <Row className="d-flex justify-content-end">
                 <Button variant="primary" type="submit">
                   Ingresar
                 </Button>
-              </div>
+              </Row>
             </Form>
           </Col>
         </Row>
