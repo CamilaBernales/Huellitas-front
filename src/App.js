@@ -5,6 +5,8 @@ import Logo from './components/Header/Logo';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Carrito from './components/Carrito';
 import Tienda from './components/Tienda';
+import Home from './components/Home';
+
 
 function App() {
   return (
@@ -13,7 +15,7 @@ function App() {
       <Logo/>
      <Navbar/>
        <Switch>
-         <Route exact path ="/"/>
+         <Route exact path ="/" component={Home}/>
          <Route exact path ="/tienda" component={Tienda}/>
          <Route exact path ="/servicios"/>
          <Route exact path ="/contacto"/>
