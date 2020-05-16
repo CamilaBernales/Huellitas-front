@@ -3,7 +3,7 @@ import {Container, Carousel} from 'react-bootstrap'
 
 export default function Slider() {
     return (
-        <Container>
+        <Container className="mt-3 mb-5">
             <Carousel>
                 <Carousel.Item>
                     <img

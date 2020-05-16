@@ -8,6 +8,7 @@ export default function Promociones() {
         {
           id: "1",
           nombre: "Alimento Perro Cachorro",
+          img: 'http://lorempixel.com/286/180/animals/7/',
           precio: "2500",
           descripcion: "alimento para perros de entre 0 y 12 meses",
           esPromo: true,
@@ -15,6 +16,7 @@ export default function Promociones() {
         {
           id: "2",
           nombre: "Alimento Gato Cachorro",
+          img: 'http://lorempixel.com/286/180/animals/8/',
           precio: "2500",
           descripcion: "alimento para gatos de entre 0 y 12 meses",
           esPromo: false,
@@ -22,6 +24,7 @@ export default function Promociones() {
         {
           id: "3",
           nombre: "Alimento Perro Adulto",
+          img: 'http://lorempixel.com/286/180/animals/9/',
           precio: "3000",
           descripcion: "alimento para perros de entre 12 o mas años",
           esPromo: false,
@@ -29,13 +32,15 @@ export default function Promociones() {
         {
           id: "4",
           nombre: "Alimento Conejo Cachorro",
+          img: 'http://lorempixel.com/286/180/animals/1/',
           precio: "2000",
           descripcion: "alimento para conejo de entre 0 y 12 meses",
-          esPromo: false,
+          esPromo: true,
         },
         {
           id: "5",
           nombre: "Alimento Conejo Adulto",
+          img: 'http://lorempixel.com/286/180/animals/2/',
           precio: "2300",
           descripcion: "alimento para conejo de entre 0 y 12 meses",
           esPromo: true,
@@ -43,6 +48,7 @@ export default function Promociones() {
         {
           id: "6",
           nombre: "Alimento Tortuga ",
+          img: 'http://lorempixel.com/286/180/animals/3/',
           precio: "2100",
           descripcion: "alimento para tortuga",
           esPromo: false,
@@ -50,6 +56,7 @@ export default function Promociones() {
         {
           id: "7",
           nombre: "Alimento Hamster Cachorro",
+          img: 'http://lorempixel.com/286/180/animals/4/',
           precio: "3500",
           descripcion: "alimento para hamsters de entre 0 y 12 meses",
           esPromo: false,
@@ -57,6 +64,7 @@ export default function Promociones() {
         {
           id: "8",
           nombre: "Alimento Hamsters Adulto",
+          img: 'http://lorempixel.com/286/180/animals/5/',
           precio: "2010",
           descripcion: "alimento para hamsters de entre 12 o mas años",
           esPromo: false,
@@ -64,6 +72,7 @@ export default function Promociones() {
         {
           id: "9",
           nombre: "Alimento Gato adulto",
+          img: 'http://lorempixel.com/286/180/animals/6/',
           precio: "2300",
           descripcion: "alimento para gato adulto de 12 o mas años",
           esPromo: false,
@@ -71,13 +80,13 @@ export default function Promociones() {
       ];
 
     return (
-        <Container>
+        <Container className="mt-3">
+            <h1 className="text-center">Aprovecha estas promociones unicas</h1>
             <Row>
             {productos.map(producto => (
                 producto.esPromo ? <Producto 
                     key={producto.id}
                     producto={producto}
-
                 /> : null
             ))} 
             </Row>
