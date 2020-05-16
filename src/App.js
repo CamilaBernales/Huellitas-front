@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Header/Navbar'
 import Logo from './components/Header/Logo'
+import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
            <Logo/>
          </Route>
        </Switch>
+       <Footer/>
      </Router>
     </div>
   );
