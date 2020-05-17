@@ -16,7 +16,7 @@ function Footer () {
                     </Col>
                     <Col>
                         <h4 className="mx-auto mt-4">Información</h4>
-                            <Col bg="warning">
+                            <Col>
                                 <Link to='/contacto'>
                                     Contacto
                                 </Link>
