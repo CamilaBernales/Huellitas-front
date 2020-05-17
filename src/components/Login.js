@@ -4,12 +4,11 @@ import Logo from './Header/Logo';
 import Navbar from './Header/Navbar';
 
 export default function Login() {
-  
   return (
     <Fragment>
-      <Logo/>
-      <Navbar/>
-      <Container className="mt-4">
+      <Logo />
+      <Navbar />
+      <Container className="m-4">
         <Row className="justify-content-center">
           <Col sm={12} md={4}>
             <Form >
