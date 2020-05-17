@@ -3,12 +3,11 @@ import {Container, Carousel} from 'react-bootstrap'
 
 export default function Slider() {
     return (
-        <Container className="mt-3 mb-5">
             <Carousel>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="http://lorempixel.com/800/400/animals/2?text=First slide&bg=373940"
+                        src="http://lorempixel.com/800/400/animals/?text=Second slide&bg=373940"
                         alt="First slide"/>
                     <Carousel.Caption>
                         <h3>First slide label</h3>
@@ -29,7 +28,7 @@ export default function Slider() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="http://lorempixel.com/800/400/animals/1?text=Third slide&bg=20232a"
+                        src="http://lorempixel.com/800/400/animals/?text=Second slide&bg=20232a"
                         alt="Third slide"/>
 
                     <Carousel.Caption>
@@ -38,6 +37,5 @@ export default function Slider() {
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
-        </Container>
     )
 }
