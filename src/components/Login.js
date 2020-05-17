@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import {Container, Form, Button, Col, Row } from 'react-bootstrap';
-import Logo from './Logo';
-import Navbar from './Navbar';
+import Logo from './Header/Logo';
+import Navbar from './Header/Navbar';
 
 export default function Login() {
   
