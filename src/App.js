@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Footer from './components/Footer'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Carrito from './components/Carrito';
 import Tienda from './components/Tienda';
@@ -14,7 +14,6 @@ function App() {
     <div className="App">
      <Router>
        <Switch>
-
          <Route exact path ="/" component={Home}/>
          <Route exact path ="/tienda" component={Tienda}/>
          <Route exact path ="/servicios"/>
@@ -24,6 +23,7 @@ function App() {
          <Route exact path ="/login" component={Login}/>
          <Route exact path ="/registro" component={Registro}/>
        </Switch>
+       <Footer/>
      </Router>
     </div>
   );
