@@ -8,7 +8,7 @@ export default function Login() {
     <Fragment>
       <Logo />
       <Navbar />
-      <Container className="mt-4">
+      <Container className="m-4">
         <Row className="justify-content-center">
           <Col sm={12} md={4}>
             <Form >

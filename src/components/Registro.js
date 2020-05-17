@@ -10,7 +10,7 @@ export default function Registro() {
       <Navbar/>
       <Container className="m-4">
         <Row className="justify-content-center">
-          <Col className="p-0" sm={12} md={4}>
+          <Col sm={12} md={4}>
             <Form >
               <Form.Group controlId="formName">
                 <Form.Label className="d-flex justify-content-start">Nombre:</Form.Label>
