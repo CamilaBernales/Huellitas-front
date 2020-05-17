@@ -3,16 +3,24 @@ import {Container, Form, Button, Col, Row } from 'react-bootstrap';
 import Logo from './Header/Logo';
 import Navbar from './Header/Navbar';
 
-export default function Login() {
-  
-  return (
-    <Fragment>
+export default function Registro() {
+  <Fragment>
       <Logo/>
       <Navbar/>
       <Container className="mt-4">
         <Row className="justify-content-center">
           <Col sm={12} md={4}>
             <Form >
+              <Form.Group controlId="formName">
+                <Form.Label className="d-flex justify-content-start">Nombre:</Form.Label>
+                <Form.Control type="text" placeholder="Ingrese su nombre" />
+              </Form.Group>
+
+              <Form.Group controlId="formLastName">
+                <Form.Label className="d-flex justify-content-start">Apellido:</Form.Label>
+                <Form.Control type="text" placeholder="Ingrese su apellido" />
+              </Form.Group>
+
               <Form.Group controlId="formEmail">
                 <Form.Label className="d-flex justify-content-start">Email:</Form.Label>
                 <Form.Control type="email" placeholder="Ingrese su email" />
@@ -22,10 +30,15 @@ export default function Login() {
                 <Form.Label className="d-flex justify-content-start">Contraseña:</Form.Label>
                 <Form.Control type="password" placeholder="Ingrese su contraseña" />
               </Form.Group>
+
+              <Form.Group controlId="formConfirmPassword">
+                <Form.Label className="d-flex justify-content-start">Confirmar contraseña:</Form.Label>
+                <Form.Control type="password" placeholder="Ingrese su contraseña nuevamente" />
+              </Form.Group>
               
               <Row className="d-flex justify-content-end">
                 <Button variant="primary" type="submit">
-                  Ingresar
+                  Enviar
                 </Button>
               </Row>
             </Form>
@@ -33,5 +46,4 @@ export default function Login() {
         </Row>
       </Container>
     </Fragment>
-  );
 }

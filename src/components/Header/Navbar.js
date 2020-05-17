@@ -13,6 +13,7 @@ const NavBar = () => {
                 <Link to="/servicios" className="nav-link">Productos</Link>
                 <Link to="/equipo" className="nav-link">Nuestro Equipo</Link>
                 <Link to="/contacto" className="nav-link">Contacto</Link>
+                <Link to="/registro" className="nav-link">Registrarse</Link>
             </Nav>
         </Navbar>
     
