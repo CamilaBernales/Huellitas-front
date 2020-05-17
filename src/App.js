@@ -18,7 +18,7 @@ function App() {
         <Route exact path ="/equipo"/>
         <Route exact path ="/carrito"/>
         <Route exact path ="/login" component={Login}/>
-        <Route exact path ='/regitro' component={Registro}/>
+        <Route exact path ='/registro' component={Registro}/>
        </Switch>
      </Router>
     </div>

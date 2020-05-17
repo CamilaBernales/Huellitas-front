@@ -4,12 +4,13 @@ import Logo from './Header/Logo';
 import Navbar from './Header/Navbar';
 
 export default function Registro() {
-  <Fragment>
+  return(
+    <Fragment>
       <Logo/>
       <Navbar/>
-      <Container className="mt-4">
+      <Container className="m-4">
         <Row className="justify-content-center">
-          <Col sm={12} md={4}>
+          <Col className="p-0" sm={12} md={4}>
             <Form >
               <Form.Group controlId="formName">
                 <Form.Label className="d-flex justify-content-start">Nombre:</Form.Label>
@@ -35,15 +36,18 @@ export default function Registro() {
                 <Form.Label className="d-flex justify-content-start">Confirmar contraseña:</Form.Label>
                 <Form.Control type="password" placeholder="Ingrese su contraseña nuevamente" />
               </Form.Group>
-              
-              <Row className="d-flex justify-content-end">
-                <Button variant="primary" type="submit">
-                  Enviar
-                </Button>
+
+              <Row >
+                <Col className="d-flex justify-content-end">
+                  <Button variant="primary" type="submit">
+                    Enviar
+                  </Button>
+                </Col>
               </Row>
             </Form>
           </Col>
         </Row>
       </Container>
     </Fragment>
+  );
 }
