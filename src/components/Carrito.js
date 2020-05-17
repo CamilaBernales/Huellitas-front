@@ -15,7 +15,7 @@ const Carrito = () => {
     let index = compras.findIndex((produc) => produc.id === compra.id);
     let producto = compras[index];
     if (producto.cantidadAComprar > 1) {
-      producto.precio = producto.precio / producto.cantidadAComprar  
+      producto.precio = Math.round(producto.precio / producto.cantidadAComprar);  
       producto.cantidadAComprar -= 1;
       setComprasGuardada([...comprasGuardada, producto]);
       localStorage.setItem("compras", JSON.stringify(compras));
