@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Carrito from './components/Carrito';
 import Tienda from './components/Tienda';
 import Home from './components/Home';
-import Login from './components/Header/Login';
+import Login from './components/Login';
+import Registro from './components/Registro';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <div className="App">
      <Router>
        <Switch>
+<<<<<<< HEAD
          <Route exact path ="/" component={Home}/>
          <Route exact path ="/tienda" component={Tienda}/>
          <Route exact path ="/servicios"/>
@@ -20,6 +22,16 @@ function App() {
          <Route exact path ="/equipo"/>
          <Route exact path ="/carrito" component={Carrito}/>
          <Route exact path ="/Login" component={Login}/>
+=======
+        <Route exact path ="/" component={Home}/>
+        <Route exact path ="/tienda"/>
+        <Route exact path ="/servicios"/>
+        <Route exact path ="/contacto"/>
+        <Route exact path ="/equipo"/>
+        <Route exact path ="/carrito"/>
+        <Route exact path ="/login" component={Login}/>
+        <Route exact path ='/registro' component={Registro}/>
+>>>>>>> registro
        </Switch>
      </Router>
     </div>

@@ -13,9 +13,15 @@ const Logo = () => {
             <i className="fas fa-cart-plus fa-2x"></i>
           </Link>
         </div>
+<<<<<<< HEAD
         <div className="p-3">
           <Link to="/login">
             <i className="fas fa-users fa-2x"></i>
+=======
+        <div className="p-4">
+          <Link to="/Login">
+            <i className="fas fa-sign-in-alt fa-3x"/>
+>>>>>>> registro
           </Link>
         </div>
       </div>

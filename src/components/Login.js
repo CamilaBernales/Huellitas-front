@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import { Container, Form, Button, Col, Row } from 'react-bootstrap';
-import Logo from './Logo';
-import Navbar from './Navbar';
+import {Container, Form, Button, Col, Row } from 'react-bootstrap';
+import Logo from './Header/Logo';
+import Navbar from './Header/Navbar';
 
 export default function Login() {
   return (
@@ -22,9 +22,13 @@ export default function Login() {
                 <Form.Control type="password" placeholder="Ingrese su contraseña" />
               </Form.Group>
 
-              <Button variant="primary" className="btn btn-primary text-uppercase font-weight-bold w-100" type="submit">
-                Ingresar
-                </Button>
+              <Row>
+                <Col className="d-flex justify-content-end">
+                  <Button variant="primary" type="submit">
+                    Ingresar
+                  </Button>
+                </Col>
+              </Row>
             </Form>
           </Col>
         </Row>
