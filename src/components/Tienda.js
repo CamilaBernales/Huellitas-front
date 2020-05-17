@@ -1,6 +1,9 @@
-import React from "react";
-import { Container, Row } from "react-bootstrap";
+import React, { Fragment } from "react";
+import { Row, Container } from "react-bootstrap";
 import Producto from "../components/Producto";
+import Logo from "./Header/Logo";
+import Navbar from "./Header/Navbar";
+
 const Tienda = () => {
   let productos = [
     {
@@ -79,13 +82,17 @@ const Tienda = () => {
 
   return (
     <div>
-      <Container>
-        <Row className=" col-12 m-auto">
-          {productos.map((producto) => (
-            <Producto key={producto.id} producto={producto} />
-          ))}
-        </Row>
-      </Container>
+      <Fragment>
+        <Logo />
+        <Navbar />
+        <Container>
+          <Row className=" col-12 m-auto">
+            {productos.map((producto) => (
+              <Producto key={producto.id} producto={producto} />
+            ))}
+          </Row>
+        </Container>
+      </Fragment>
     </div>
   );
 };

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { Container, Table, Button } from "react-bootstrap";
+import Logo from './Header/Logo';
+import Navbar from './Header/Navbar';
 
 const Carrito = () => {
-  const [compras, setCompras] = useState(
-    JSON.parse(localStorage.getItem("compras")) || []
+  const [comprasGuardada, setComprasGuardada] = useState(
+    JSON.parse(localStorage.getItem("compras")) 
   );
   const [suma, setSuma] = useState(0);
 
@@ -13,8 +15,9 @@ const Carrito = () => {
     let index = compras.findIndex((produc) => produc.id === compra.id);
     let producto = compras[index];
     if (producto.cantidadAComprar > 1) {
+      producto.precio = producto.precio / producto.cantidadAComprar  
       producto.cantidadAComprar -= 1;
-      setCompras([...compras, producto]);
+      setComprasGuardada([...comprasGuardada, producto]);
       localStorage.setItem("compras", JSON.stringify(compras));
     } else {
       if (producto.cantidadAComprar <= 1) {
@@ -70,36 +73,40 @@ const Carrito = () => {
   useEffect(() => {
     sumaTotal();
     listarCompra();
-  }, [compras]);
+  }, [comprasGuardada]);
 
   return (
-    <Container className="mt-5 mb-5">
-      <Table responsive>
-        <thead>
-          <tr>
-            <th>Nombre Producto</th>
-            <th>Cantidad</th>
-            <th>Descuento</th>
-            <th>Total</th>
-            <th>Eliminar</th>
-          </tr>
-        </thead>
-        <tbody>{listarCompra()}</tbody>
-      </Table>
-      <div className="d-flex m-3 justify-content-center font-weight-bold">
-        <h3 className="text-uppercase text-monospace text-lg-left">
-          {" "}
+    <Fragment>
+      <Logo />
+      <Navbar />
+      <Container className="mt-5 mb-5">
+        <Table responsive>
+          <thead>
+            <tr>
+              <th>Nombre Producto</th>
+              <th>Cantidad</th>
+              <th>Descuento</th>
+              <th>Total</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>{listarCompra()}</tbody>
+        </Table>
+        <div className="d-flex m-3 justify-content-center font-weight-bold">
+          <h3 className="text-uppercase text-monospace text-lg-left">
+            {" "}
           Total a pagar:{" "}
-        </h3>
-        <h3 className="text-uppercase text-monospace text-lg-left" id="total">
-          {" "}
-          {suma}{" "}
-        </h3>
-      </div>
-      <Button className="btn btn-success mt-3 w-100  text-uppercase font-weight-bold">
-        Comprar!
+          </h3>
+          <h3 className="text-uppercase text-monospace text-lg-left" id="total">
+            {" "}
+            {suma}{" "}
+          </h3>
+        </div>
+        <Button className="btn btn-success mt-3 w-100  text-uppercase font-weight-bold">
+          Comprar!
       </Button>
-    </Container>
+      </Container>
+    </Fragment>
   );
 };
 

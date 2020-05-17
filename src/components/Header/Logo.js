@@ -3,6 +3,7 @@ import imagen from "../../imagen.png";
 import { Link } from "react-router-dom";
 
 const Logo = () => {
+
   return (
     <div>
       <div className=" img-fluid 
@@ -13,7 +14,7 @@ const Logo = () => {
           </Link>
         </div>
         <div className="p-3">
-          <Link to="/">
+          <Link to="/login">
             <i className="fas fa-users fa-2x"></i>
           </Link>
         </div>

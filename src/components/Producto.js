@@ -20,7 +20,7 @@ const Producto = ({ producto }) => {
 
                 if (window.confirm("Quieres agregar este producto de nuevo a tu carrito?")) {
                     compra.cantidadAComprar += 1;
-                    compra.precio *= compra.cantidadAComprar;
+                    compra.precio =  Number(compra.precio)+Number(compra.precio)
                     setProductoAgregado([...productoAgregado, producto]);
                     localStorage.setItem("compras", JSON.stringify(compras));
                 }
