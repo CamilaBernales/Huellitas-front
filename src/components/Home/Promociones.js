@@ -80,8 +80,8 @@ export default function Promociones() {
       ];
 
     return (
-        <Container className="mt-3">
-            <h1 className="text-center">Aprovecha estas promociones unicas</h1>
+        <Container className="my-5">
+            <h2 className="pb-3 mb-2 text-center">Aprovecha estas promociones unicas</h2>
             <Row>
             {productos.map(producto => (
                 producto.esPromo ? <Producto 

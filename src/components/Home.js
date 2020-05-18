@@ -1,17 +1,20 @@
-import React, { Fragment } from 'react'
-import {Container} from 'react-bootstrap'
-import Slider from './Home/Slider'
-import Promociones from './Home/Promociones'
+import React, { Fragment } from 'react';
 import Logo from './Header/Logo';
 import Navbar from './Header/Navbar';
-
+import Slider from './Home/Slider'
+import Promociones from './Home/Promociones'
+import {Container} from 'react-bootstrap'
 export default function Home() {
-    return (
-        <Fragment>
-            <Logo/>
-            <Navbar/>
-            <Slider/>
-            <Promociones/>
-        </Fragment>
-    )
-} 
+  return (
+    <Fragment>
+      <Logo/>
+      <Navbar/>
+      <div className="m-auto">
+        <Slider/>
+      </div>
+      <Container>
+        <Promociones/>
+      </Container>
+    </Fragment>
+  );
+}
