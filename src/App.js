@@ -1,14 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Carrito from './components/Carrito';
 import Tienda from './components/Tienda';
 import Home from './components/Home';
-<<<<<<< HEAD
-=======
-import Login from './components/Header/Login';
->>>>>>> 757085ae0d8695b0f6387caf6eb7d5ad24a976eb
+import Login from './components/Header/Login'
 
 
 function App() {
