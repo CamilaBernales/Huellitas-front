@@ -17,7 +17,7 @@ const Logo = () => {
 
         <div className="p-3">
           <Link to="/login">
-            <i className="fas fa-sign-in-alt fa-3x" />
+            <i className="fas fa-sign-in-alt fa-2x" />
           </Link>
         </div>
       </div>

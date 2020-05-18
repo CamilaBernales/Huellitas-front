@@ -1,9 +1,60 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import {Container, Form, Button, Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Logo from './Header/Logo';
 import Navbar from './Header/Navbar';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Registro() {
+  const [usuario, setUsuario] = useState({
+    id: '',
+    nombre: '',
+    apellido: '',
+    email: '',
+    password: ''
+  });
+
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const {id, nombre, apellido, email, password} = usuario;
+
+  const onChangeForm = (e) => {
+    setUsuario({
+      ...usuario,
+      id: uuidv4(),
+      [e.target.name]: e.target.value,
+    });
+  }
+  
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    if (nombre === '' || apellido === '' || email === '' || password === '' || passwordConfirm === '') {
+      alert('Por favor llenar todos los campos');
+      return;
+    }
+    if (password !== passwordConfirm) {
+      alert('La contraseña y la comfirmación no coinciden');
+      return;
+    }
+    let usuarios;
+    if (!localStorage.getItem('usuarios')) {
+      usuarios = [usuario]; 
+    } else {
+      usuarios = JSON.parse(localStorage.getItem('usuarios'));
+      usuarios = [usuario, ...usuarios];
+    }
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+    localStorage.setItem('usuarioLogeado', JSON.stringify(nombre));
+    setUsuario({
+      id: '',
+      nombre: '',
+      apellido: '',
+      email: '',
+      password: ''
+    });
+    setPasswordConfirm('');
+  }
+  
   return(
     <Fragment>
       <Logo/>
@@ -14,32 +65,69 @@ export default function Registro() {
             <Form >
               <Form.Group controlId="formName">
                 <Form.Label className="d-flex justify-content-start">Nombre:</Form.Label>
-                <Form.Control type="text" placeholder="Ingrese su nombre" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Ingrese su nombre"
+                  name="nombre"
+                  value={nombre}
+                  onChange={onChangeForm}
+                />
               </Form.Group>
 
               <Form.Group controlId="formLastName">
                 <Form.Label className="d-flex justify-content-start">Apellido:</Form.Label>
-                <Form.Control type="text" placeholder="Ingrese su apellido" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Ingrese su apellido"
+                  name="apellido"
+                  value={apellido} 
+                  onChange={onChangeForm}
+                />
               </Form.Group>
 
               <Form.Group controlId="formEmail">
                 <Form.Label className="d-flex justify-content-start">Email:</Form.Label>
-                <Form.Control type="email" placeholder="Ingrese su email" />
+                <Form.Control 
+                  type="email" 
+                  placeholder="Ingrese su email"
+                  name="email"
+                  value={email} 
+                  onChange={onChangeForm}
+                />
               </Form.Group>
 
               <Form.Group controlId="formPassword">
                 <Form.Label className="d-flex justify-content-start">Contraseña:</Form.Label>
-                <Form.Control type="password" placeholder="Ingrese su contraseña" />
+                <Form.Control 
+                  type="password" 
+                  placeholder="Ingrese su contraseña"
+                  name="password"
+                  value={password} 
+                  onChange={onChangeForm}
+                />
               </Form.Group>
 
               <Form.Group controlId="formConfirmPassword">
                 <Form.Label className="d-flex justify-content-start">Confirmar contraseña:</Form.Label>
-                <Form.Control type="password" placeholder="Ingrese su contraseña nuevamente" />
+                <Form.Control 
+                  type="password" 
+                  placeholder="Ingrese su contraseña nuevamente"
+                  name="passwordConfirm"
+                  value={passwordConfirm} 
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
+                />
               </Form.Group>
 
               <Row >
-                <Col className="d-flex justify-content-end">
-                  <Button variant="primary" type="submit">
+                <Col className="d-flex justify-content-between">
+                  <Link to="/login" className="nav-link p-0">
+                    Iniciar sesión
+                  </Link>
+                  <Button 
+                    variant="primary" 
+                    type="submit"
+                    onClick={onSubmitForm}
+                  >
                     Enviar
                   </Button>
                 </Col>
