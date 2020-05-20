@@ -9,7 +9,7 @@ export default function Login() {
       <Container className="m-4">
         <Row className="px-5 d-flex justify-content-center align-items-center ">
           <div className="col mx-5 img-fluid">
-            <img src={imgLogin} />
+            <img src={imgLogin} alt="imagen login"/>
           </div>
           <Col sm={12} md={4}>
             <div className={styles.formulario}>

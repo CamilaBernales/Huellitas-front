@@ -9,7 +9,7 @@ export default function Registro() {
       <Container className="m-4">
         <Row className="px-2 d-flex justify-content-center align-items-center">
           <div className="col mx-5 img-fluid">
-            <img src={registroimg} />
+            <img src={registroimg} alt="imagen registro" />
           </div>
           <Col sm={12} md={4}>
             <div className={styles.formulario}>
