@@ -2,17 +2,17 @@ import React, { Fragment } from 'react'
 import Imagen from "../imagen.png";
 import { Row, Col, Jumbotron } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-// import Fondo from './css/Footer.css'
+// import Style from './css/Footer.css'
 
 
 function Footer () {
     return(
         <Fragment>
             <Jumbotron>
-                <Row className="mt-4 mx-auto" xs={2} md={4}>
+                <Row className="mt-1 mx-auto" xs={2} md={4}>
                     <Col>
-                        <Link>
-                            <img alt="logo" href={Imagen} className="mt-4"/>
+                        <Link to="/">
+                            <img alt="logo" src={Imagen} className="ml-3"/>
                         </Link>
                     </Col>
                     <Col>
