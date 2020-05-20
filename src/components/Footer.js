@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Imagen from "../imagen.png";
 import { Row, Col, Jumbotron } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+// import Fondo from './css/Footer.css'
 
 
 function Footer () {
