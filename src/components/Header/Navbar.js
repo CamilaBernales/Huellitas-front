@@ -11,9 +11,6 @@ const NavBar = () => {
         <Nav.Link href="/tienda">Market</Nav.Link>
         <Nav.Link href="/equipo">Nuestro Equipo</Nav.Link>
         <Nav.Link href="/contacto">Contacto</Nav.Link>
-        <Link to="/registro" className="nav-link">
-          Registrarse
-        </Link>
       </Nav>
     </Navbar>
   );
