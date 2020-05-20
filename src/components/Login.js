@@ -6,14 +6,14 @@ import imgLogin from "./img/login.svg";
 export default function Login() {
   return (
     <Fragment>
-      <Container>
-        <Row className="p-5 d-flex justify-content-end align-items-center">
+      <Container className="m-4">
+        <Row className="px-5 d-flex justify-content-center align-items-center ">
           <div className="col mx-5 img-fluid">
             <img src={imgLogin} />
           </div>
-          <Col sm={12} md={4}>
+          <Col sm={12} md={4} >
             <Form className={styles.formulario}>
-              <h1 className="text-center ">LOGIN</h1>
+              <h2 className="text-center mx-4 ">LOGIN</h2>
               <Form.Group controlId="formEmail">
                 <Form.Label className="d-flex justify-content-start">
                   Email:
