@@ -5,6 +5,8 @@ import Slider from './Home/Slider'
 import Promociones from './Home/Promociones'
 import Footer from './Footer'
 import {Container} from 'react-bootstrap'
+
+
 export default function Home() {
   return (
     <Fragment>

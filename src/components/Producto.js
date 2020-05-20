@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import { Col, Card, Button, Alert } from "react-bootstrap";
 
 const Producto = ({ producto }) => {

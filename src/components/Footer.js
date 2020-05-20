@@ -8,14 +8,14 @@ function Footer () {
     return(
         <Fragment>
             <Jumbotron>
-                <Row className="mx-auto">
+                <Row className="mt-4 mx-auto" xs={2} md={4}>
                     <Col>
-                        <Link to='/'>
+                        <Link>
                             <img alt="logo" href={Imagen} className="mt-4"/>
                         </Link>
                     </Col>
                     <Col>
-                        <h4 className="mt-4">Información</h4>
+                        <h4 className="ml-3">Información</h4>
                             <Col>
                                 <Link to='/contacto'>
                                     Contacto
@@ -28,7 +28,7 @@ function Footer () {
                             </Col>
                     </Col>
                     <Col>
-                        <h4 className="mt-4">Guias</h4>
+                        <h4 className="ml-3">Guias</h4>
                             <Col>
                                 <Link>
                                     Medios de Pago
@@ -46,8 +46,8 @@ function Footer () {
                             </Col>
                     </Col>
                     <Col>
-                        <h4 className="mt-4">Nuestras Redes Sociales</h4>
-                        <div className="d-flex justify-content-center">
+                        <h4 className="ml-5">Redes Sociales</h4>
+                        <div className="ml-5">
                             <Link className="mx-1">
                                 <i class="fab fa-instagram"></i>
                             </Link>
