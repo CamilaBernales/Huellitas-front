@@ -5,6 +5,7 @@ import Slider from './Home/Slider'
 import Promociones from './Home/Promociones'
 import Servicio from './Home/Servicios'
 import {Container} from 'react-bootstrap'
+
 export default function Home() {
   return (
     <Fragment>
