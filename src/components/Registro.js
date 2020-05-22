@@ -14,17 +14,17 @@ export default function Registro() {
     password: ''
   });
 
+  const {nombre, apellido, email, password} = usuario;
+  
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
   const [redireccionar, setRedireccionar] = useState(false);
-
-  const {nombre, apellido, email, password} = usuario;
 
   const onChangeForm = (e) => {
     setUsuario({
       ...usuario,
       id: uuidv4(),
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   }
   
@@ -51,7 +51,6 @@ export default function Registro() {
       usuarios = [usuario, ...usuarios];
     }
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
-    localStorage.setItem('usuarioLogeado', JSON.stringify(nombre));
     setUsuario({
       id: '',
       nombre: '',

@@ -4,6 +4,7 @@ import Navbar from './Header/Navbar';
 import Slider from './Home/Slider'
 import Promociones from './Home/Promociones'
 import {Container} from 'react-bootstrap'
+
 export default function Home() {
   return (
     <Fragment>

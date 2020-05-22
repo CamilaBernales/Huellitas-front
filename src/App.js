@@ -22,7 +22,6 @@ function App() {
          <Route exact path ="/carrito" component={Carrito}/>
          <Route exact path ="/login" component={Login}/>
          <Route exact path ="/registro" component={Registro}/>
-         
        </Switch>
        <Footer/>
      </Router>
