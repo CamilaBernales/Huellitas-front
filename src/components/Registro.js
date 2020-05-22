@@ -4,6 +4,8 @@ import { Link, Redirect } from 'react-router-dom';
 import Logo from './Header/Logo';
 import Navbar from './Header/Navbar';
 import { v4 as uuidv4 } from 'uuid';
+import registroimg from "./img/registro.svg";
+import styles from "./css/Login.module.css";
 
 export default function Registro() {
   const [usuario, setUsuario] = useState({
@@ -64,7 +66,7 @@ export default function Registro() {
     setRedireccionar(true);
   }
   
-  return(
+  return (
     redireccionar ?
       <Redirect to="/"/>
     :
@@ -73,78 +75,89 @@ export default function Registro() {
         <Navbar/>
         <Container className="m-4">
           <Row className="justify-content-center">
+            <div className="col mx-5 img-fluid">
+              <img src={registroimg} alt="imagen registro" />
+            </div>
             <Col sm={12} md={4}>
-              <Form >
-                <Form.Group controlId="formName">
-                  <Form.Label className="d-flex justify-content-start">Nombre:</Form.Label>
-                  <Form.Control 
-                    type="text" 
-                    placeholder="Ingrese su nombre"
-                    name="nombre"
-                    value={nombre}
-                    onChange={onChangeForm}
-                  />
-                </Form.Group>
+              <div className={styles.formulario}>
+                <Form >
+                  <h2 className="text-center text-uppercase mx-4">
+                    Crear una cuenta
+                  </h2>
+                  <Form.Group controlId="formName">
+                    <Form.Label className="d-flex justify-content-start">Nombre:</Form.Label>
+                    <Form.Control 
+                      className="border border-warning rounded-left"
+                      type="text" 
+                      placeholder="Ingrese su nombre"
+                      name="nombre"
+                      value={nombre}
+                      onChange={onChangeForm}
+                    />
+                  </Form.Group>
 
-                <Form.Group controlId="formLastName">
-                  <Form.Label className="d-flex justify-content-start">Apellido:</Form.Label>
-                  <Form.Control 
-                    type="text" 
-                    placeholder="Ingrese su apellido"
-                    name="apellido"
-                    value={apellido} 
-                    onChange={onChangeForm}
-                  />
-                </Form.Group>
+                  <Form.Group controlId="formLastName">
+                    <Form.Label className="d-flex justify-content-start">Apellido:</Form.Label>
+                    <Form.Control 
+                      className="border border-warning rounded-left"
+                      type="text" 
+                      placeholder="Ingrese su apellido"
+                      name="apellido"
+                      value={apellido} 
+                      onChange={onChangeForm}
+                    />
+                  </Form.Group>
 
-                <Form.Group controlId="formEmail">
-                  <Form.Label className="d-flex justify-content-start">Email:</Form.Label>
-                  <Form.Control 
-                    type="email" 
-                    placeholder="Ingrese su email"
-                    name="email"
-                    value={email} 
-                    onChange={onChangeForm}
-                  />
-                </Form.Group>
+                  <Form.Group controlId="formEmail">
+                    <Form.Label className="d-flex justify-content-start">Email:</Form.Label>
+                    <Form.Control 
+                      className="border border-warning rounded-left"
+                      type="email" 
+                      placeholder="Ingrese su email"
+                      name="email"
+                      value={email} 
+                      onChange={onChangeForm}
+                    />
+                  </Form.Group>
 
-                <Form.Group controlId="formPassword">
-                  <Form.Label className="d-flex justify-content-start">Contraseña:</Form.Label>
-                  <Form.Control 
-                    type="password" 
-                    placeholder="Ingrese su contraseña"
-                    name="password"
-                    value={password} 
-                    onChange={onChangeForm}
-                  />
-                </Form.Group>
+                  <Form.Group controlId="formPassword">
+                    <Form.Label className="d-flex justify-content-start">Contraseña:</Form.Label>
+                    <Form.Control 
+                      className="border border-warning rounded-left"
+                      type="password" 
+                      placeholder="Ingrese su contraseña"
+                      name="password"
+                      value={password} 
+                      onChange={onChangeForm}
+                    />
+                  </Form.Group>
 
-                <Form.Group controlId="formConfirmPassword">
-                  <Form.Label className="d-flex justify-content-start">Confirmar contraseña:</Form.Label>
-                  <Form.Control 
-                    type="password" 
-                    placeholder="Ingrese su contraseña nuevamente"
-                    name="passwordConfirm"
-                    value={passwordConfirm} 
-                    onChange={(e) => setPasswordConfirm(e.target.value)}
-                  />
-                </Form.Group>
+                  <Form.Group controlId="formConfirmPassword">
+                    <Form.Label className="d-flex justify-content-start">Confirmar contraseña:</Form.Label>
+                    <Form.Control 
+                      className="border border-warning rounded-left"
+                      type="password" 
+                      placeholder="Ingrese su contraseña nuevamente"
+                      name="passwordConfirm"
+                      value={passwordConfirm} 
+                      onChange={(e) => setPasswordConfirm(e.target.value)}
+                    />
+                  </Form.Group>
 
-                <Row >
-                  <Col className="d-flex justify-content-between">
-                    <Link to="/login" className="nav-link p-0">
-                      Iniciar sesión
-                    </Link>
-                    <Button 
-                      variant="primary" 
-                      type="submit"
-                      onClick={onSubmitForm}
-                    >
-                      Enviar
-                    </Button>
-                  </Col>
-                </Row>
-              </Form>
+                  <Row >
+                    <Col className="d-flex justify-content-between">
+                      <Button 
+                        className="text-white text-uppercase font-weight-bold rounded-pill btn btn-button w-100"
+                        variant="warning" 
+                        type="submit"
+                        onClick={onSubmitForm}
+                      >
+                        Enviar
+                      </Button>
+                    </Col>
+                  </Row>
+                </Form>
+              </div>
             </Col>
           </Row>
         </Container>

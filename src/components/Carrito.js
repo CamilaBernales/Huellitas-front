@@ -1,11 +1,25 @@
+/* eslint-disable jsx-a11y/role-supports-aria-props */
 import React, { useEffect, useState, Fragment } from "react";
-import { Container, Table, Button } from "react-bootstrap";
-import Logo from './Header/Logo';
-import Navbar from './Header/Navbar';
+import {
+  Container,
+  Table,
+  Button,
+  Tabs,
+  Tab,
+  Row,
+  Col,
+  Form,
+  Accordion,
+  Card,
+} from "react-bootstrap";
+import Logo from "./Header/Logo";
+import Navbar from "./Header/Navbar";
 
 const Carrito = () => {
+  const [key, setKey] = useState("iniciocompra");
+
   const [comprasGuardada, setComprasGuardada] = useState(
-    JSON.parse(localStorage.getItem("compras")) 
+    JSON.parse(localStorage.getItem("compras"))
   );
   const [suma, setSuma] = useState(0);
 
@@ -15,7 +29,7 @@ const Carrito = () => {
     let index = compras.findIndex((produc) => produc.id === compra.id);
     let producto = compras[index];
     if (producto.cantidadAComprar > 1) {
-      producto.precio = Math.round(producto.precio / producto.cantidadAComprar);  
+      producto.precio = Math.round(producto.precio / producto.cantidadAComprar);
       producto.cantidadAComprar -= 1;
       setComprasGuardada([...comprasGuardada, producto]);
       localStorage.setItem("compras", JSON.stringify(compras));
@@ -57,7 +71,6 @@ const Carrito = () => {
           <option value="5">5</option>
         </select> */}
           </td>
-          <td>Descuento</td>
           <td>{element.precio}</td>
           <td>
             <button onClick={() => eliminarUnProducto(element)}>
@@ -80,31 +93,331 @@ const Carrito = () => {
       <Logo />
       <Navbar />
       <Container className="mt-5 mb-5">
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Nombre Producto</th>
-              <th>Cantidad</th>
-              <th>Descuento</th>
-              <th>Total</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
-          <tbody>{listarCompra()}</tbody>
-        </Table>
-        <div className="d-flex m-3 justify-content-center font-weight-bold">
-          <h3 className="text-uppercase text-monospace text-lg-left">
-            {" "}
-          Total a pagar:{" "}
-          </h3>
-          <h3 className="text-uppercase text-monospace text-lg-left" id="total">
-            {" "}
-            {suma}{" "}
-          </h3>
-        </div>
-        <Button className="btn btn-success mt-3 w-100  text-uppercase font-weight-bold">
-          Comprar!
-      </Button>
+        <Tabs
+          className="d-flex justify-content-center"
+          activeKey={key}
+          onSelect={(k) => setKey(k)}
+        >
+          <Tab eventKey="iniciocompra" title="Paso 1">
+            <Row>
+              <Col>
+                <Table responsive>
+                  <thead>
+                    <tr>
+                      <th>Nombre Producto</th>
+                      <th>Cantidad</th>
+                      <th>Descuento</th>
+                      <th>Precio</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>{listarCompra()}</tbody>
+                </Table>
+                <Row>
+                  <Col className="my-3">
+                    <Button
+                      className="mx-2"
+                      variant="secondary"
+                      onClick={() => setKey("datoscomprador")}
+                    >
+                      Continuar
+                    </Button>
+                  </Col>
+                </Row>
+              </Col>
+              <Col>
+                <Form.Label className="my-3 text-uppercase font-weight-bold d-flex justify-content-start">
+                  Inserta tu cupón de descuento
+                </Form.Label>
+                <Form.Control
+                  className="border border-warning rounded-left"
+                  type="cupo"
+                  placeholder="Cupón de descuento"
+                />
+                <hr />
+                <div className="descuento ">
+                  <Row>
+                    <Col className="d-flex justify-content-start">
+                      <h6>SUBTOTAL</h6>
+                    </Col>
+                    <Col className="d-flex justify-content-end">{suma}</Col>
+                  </Row>
+                  <Row>
+                    <Col className="d-flex justify-content-start">
+                      <h6>ENVIO</h6>
+                    </Col>
+                    <Col className="d-flex justify-content-end">FREE</Col>
+                  </Row>
+                  <Row>
+                    <Col className="d-flex justify-content-start">
+                      <h6>IMPUESTOS</h6>
+                    </Col>
+                    <Col className="d-flex justify-content-end">15%</Col>
+                  </Row>
+                </div>
+                <hr />
+                <div className="d-flex m-3 justify-content-center font-weight-bold">
+                  <h3 className="text-uppercase text-monospace text-lg-left">
+                    {" "}
+                    Total a pagar:{" "}
+                  </h3>
+                  <h3
+                    className="text-uppercase text-monospace text-lg-left"
+                    id="total"
+                  >
+                    {suma}
+                  </h3>
+                </div>
+              </Col>
+            </Row>
+          </Tab>
+          <Tab eventKey="datoscomprador" title="Paso 2">
+            <h3>Detalles de envio</h3>
+            <hr />
+            <Row>
+              <Col>
+                <Form>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control placeholder="First name" />
+                    </Col>
+                    <Col className="my-3">
+                      <Form.Control placeholder="Last name" />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control placeholder="correo" />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control placeholder="Adress" />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control placeholder="Adress 2" />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control as="select" value="Provincia">
+                        <option>Choose...</option>
+                        <option>...</option>
+                      </Form.Control>
+                    </Col>
+                    <Col className="my-3">
+                      <Form.Control placeholder="Código Postal" />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control placeholder="Numero de Télefono " />
+                    </Col>
+                    <Col className="my-3">
+                      <Form.Control placeholder="Numero de Télefono alternativo " />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="input-group-text input-group-lg">
+                        <Form.Check
+                          type="radio"
+                          label="Envio con demora de 3/4 días"
+                          name="formHorizontalRadios"
+                          id="formHorizontalRadios2"
+                        />
+                      </div>
+                    </Col>
+                    <Col>
+                      <div className="input-group-text input-group-lg ">
+                        <Form.Check
+                          type="radio"
+                          label="Envio en 24hs"
+                          name="formHorizontalRadios"
+                          id="formHorizontalRadios2"
+                        />
+                      </div>
+                    </Col>
+                  </Row>
+                </Form>
+                <Row>
+                  <Col className="my-3">
+                    <Button
+                      className="mx-2"
+                      onClick={() => setKey("iniciocompra")}
+                    >
+                      Volver
+                    </Button>
+                    <Button
+                      className="mx-2"
+                      variant="secondary"
+                      onClick={() => setKey("pagocompra")}
+                    >
+                      Continuar
+                    </Button>
+                  </Col>
+                </Row>
+              </Col>
+              <Col>
+                <Table responsive>
+                  <thead>
+                    <tr>
+                      <th>Nombre Producto</th>
+                      <th>Cantidad</th>
+                      <th>Descuento</th>
+                      <th>Precio</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>{listarCompra()}</tbody>
+                </Table>
+                <div className="d-flex m-3 justify-content-center font-weight-bold">
+                  <h3 className="text-uppercase text-monospace text-lg-left">
+                    {" "}
+                    Total a pagar:{" "}
+                  </h3>
+                  <h3
+                    className="text-uppercase text-monospace text-lg-left"
+                    id="total"
+                  >
+                    {suma}
+                  </h3>
+                </div>
+              </Col>
+            </Row>
+          </Tab>
+          <Tab eventKey="pagocompra" title="Paso 3">
+            <h3>Medios de Pago</h3>
+
+            <hr />
+            <Row>
+              <Col>
+                <Row>
+                  <Col>
+                    <Accordion>
+                      <Card>
+                        <Card.Header>
+                          <Accordion.Toggle
+                            as={Button}
+                            variant="Text"
+                            eventKey="0"
+                          >
+                            <Form.Check
+                              type="radio"
+                              name="formHorizontalRadios"
+                              id="formHorizontalRadios2"
+                              label="Rapipado o Pago Fácil"
+                            />
+                          </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="0">
+                          <Card.Body>
+                            Te reedireccionaremos a MercadoPago
+                          </Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                    </Accordion>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Accordion>
+                      <Card>
+                        <Card.Header>
+                          <Accordion.Toggle
+                            as={Button}
+                            variant="Text"
+                            eventKey="0"
+                          >
+                            <Form.Check
+                              type="radio"
+                              name="formHorizontalRadios"
+                              id="formHorizontalRadios2"
+                              label="Tárjeta de crédito o débito"
+                            />
+                          </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="0">
+                          <Card.Body>
+                            Te reedireccionaremos a MercadoPago
+                          </Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                    </Accordion>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Accordion>
+                      <Card>
+                        <Card.Header>
+                          <Accordion.Toggle
+                            as={Button}
+                            variant="Text"
+                            eventKey="0"
+                          >
+                            <Form.Check
+                              type="radio"
+                              name="formHorizontalRadios"
+                              id="formHorizontalRadios2"
+                              label="Efectivo (SÓLO TUCUMAN)"
+                            />
+                          </Accordion.Toggle>
+                        </Card.Header>
+                        <Accordion.Collapse eventKey="0">
+                          <Card.Body>
+                            Te reedireccionaremos a MercadoPago
+                          </Card.Body>
+                        </Accordion.Collapse>
+                      </Card>
+                    </Accordion>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="my-3">
+                    <Button
+                      className="mx-2"
+                      onClick={() => setKey("datoscomprador")}
+                    >
+                      Volver
+                    </Button>
+                  </Col>
+                </Row>
+              </Col>
+              <Col>
+                <Table responsive>
+                  <thead>
+                    <tr>
+                      <th>Nombre Producto</th>
+                      <th>Cantidad</th>
+                      <th>Descuento</th>
+                      <th>Precio</th>
+                      <th>Eliminar</th>
+                    </tr>
+                  </thead>
+                  <tbody>{listarCompra()}</tbody>
+                </Table>
+                <div className="d-flex m-3 justify-content-center font-weight-bold">
+                  <h3 className="text-uppercase text-monospace text-lg-left">
+                    {" "}
+                    Total a pagar:{" "}
+                  </h3>
+                  <h3
+                    className="text-uppercase text-monospace text-lg-left"
+                    id="total"
+                  >
+                    {suma}
+                  </h3>
+                </div>
+                <Button className="btn btn-success my-2 w-100  text-uppercase font-weight-bold">
+                  Comprar!
+                </Button>
+              </Col>
+            </Row>
+          </Tab>
+        </Tabs>
       </Container>
     </Fragment>
   );

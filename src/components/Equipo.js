@@ -33,7 +33,7 @@ const Equipo = () => {
       nombre: "Dr. Geronimo Bazan",
       cargo: "Médico Veterinario",
       informacion:
-        "Veterinario egresado de la U.B.A en 1995 (22 años de experiencia). Ex docente de anestesiología y cirugía de la F.C.V. de la U.B.A. Ex médico de planta del Hospital Escuela de la F.C.V. de la U.B.A. Miembro del grupo de cirugía cardiocascular de Buenos Aires. Se desempeña en áreas de cirugía, anestesiología y cardiología. Conferencista internacional.",
+        "Veterinario egresado de la U.B.A en 1995 (22 años de experiencia). Se desempeña en áreas de cirugía, anestesiología y cardiología. Conferencista internacional.",
     },
     {
       nombre: "Mariana Montero",
