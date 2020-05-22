@@ -12,18 +12,20 @@ const Logo = () => {
     localStorage.setItem('usuarioReg', '');
     setUsuario(localStorage.getItem('usuarioReg'));
   }
-  console.log(usuario);
-  if (usuario) {
-    loginLogo = <div className="p-3">
-      <em className="mr-3"><b>{usuario}</b></em>
-      <Button onClick={salir}>Salir</Button>
-    </div>;
+
+  if (usuario !== 'admin' && usuario !== '') {
+    loginLogo = 
+      <div className="p-3">
+        <em className="mr-3"><b>{usuario}</b></em>
+        <Button onClick={salir}>Salir</Button>
+      </div>;
   } else {
-    loginLogo = <div className="p-3">
-      <Link to="/login">
-        <i className="fas fa-sign-in-alt fa-2x"/>
-      </Link>
-    </div>;
+    loginLogo = 
+      <div className="p-3">
+        <Link to="/login">
+          <i className="fas fa-sign-in-alt fa-2x"/>
+        </Link>
+      </div>;
   }
   
   return (

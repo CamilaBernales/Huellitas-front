@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Registro from './components/Registro';
 import Equipo from './components/Equipo';
+import Turnosadmin from './components/Turnosadmin';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
          <Route exact path ="/carrito" component={Carrito}/>
          <Route exact path ="/login" component={Login}/>
          <Route exact path ="/registro" component={Registro}/>
+         <Route exact path ="/admin/turnos" component={Turnosadmin}/>
        </Switch>
        <Footer/>
      </Router>

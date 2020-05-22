@@ -14,6 +14,7 @@ export default function Login() {
   const {email, password} = ingreso;
 
   const [redireccionar, setRedireccionar] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   const onChangeForm = (e) => {
     setIngreso({
@@ -28,29 +29,39 @@ export default function Login() {
       alert('Por favor llenar todos los campos');
       return;
     }
-    let usuarios;
-    if (localStorage.getItem('usuarios')) {
-      usuarios = JSON.parse(localStorage.getItem('usuarios'));
+
+    if (email === 'admin' && password === 'admin') {
+      setAdmin(true);
     } else {
-      alert('El usuario no existe');
-      return;
+      let usuarios;
+      if (localStorage.getItem('usuarios')) {
+        usuarios = JSON.parse(localStorage.getItem('usuarios'));
+      } else {
+        alert('El usuario no existe');
+        return;
+      }
+      
+      if (usuarios.find(usuario => (usuario.email === email) && (usuario.password === password))) {
+        const usuarioReg = usuarios.find(usuario => (
+          (usuario.email === email) && (usuario.password === password) 
+        )).nombre;
+        localStorage.setItem('usuarioReg', usuarioReg);
+      } else {
+        alert('La contraseña o el email son incorrectos');
+        return;
+      }
+
     }
-    
-    if (usuarios.find(usuario => (usuario.email === email) && (usuario.password === password))) {
-      const usuarioReg = usuarios.find(usuario => (
-        (usuario.email === email) && (usuario.password === password) 
-      )).nombre;
-      localStorage.setItem('usuarioReg', usuarioReg);
-      setRedireccionar(true);
-    } else {
-      alert('La contraseña o el email son incorrectos');
-      return;
-    }
+
+    setRedireccionar(true);
   }
 
   return (
     redireccionar ?
-      <Redirect to="/"/>
+      admin ?
+        <Redirect to="/admin/turnos"/>
+      :
+        <Redirect to="/"/>
     :
       <Fragment>
         <Container className="m-4">
