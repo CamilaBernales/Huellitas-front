@@ -4,6 +4,7 @@ import GatoHome from "../img/gatoHome.svg";
 import formaspago from "../img/formaspago.png";
 import styles from "../css/Servicios.module.css";
 import { Link } from "react-router-dom";
+
 const Servicio = () => {
   return (
     <Fragment>
@@ -12,7 +13,7 @@ const Servicio = () => {
           <Col className="m-3 p-3">
             <div className={styles.info}>
               <span className={styles.icon}>
-                <i class="fas fa-star fa-3x d-flex justify-content-center"></i>
+                <i className="fas fa-star fa-3x d-flex justify-content-center"></i>
               </span>
               <h4 className=" text-warning font-weight-bold my-3">
                 15 años de experiencia
@@ -27,7 +28,7 @@ const Servicio = () => {
           <Col className="m-3 p-3">
             <div className={styles.info}>
               <span className={styles.icon}>
-                <i class="fas fa-heart fa-3x  d-flex justify-content-center"></i>
+                <i className="fas fa-heart fa-3x  d-flex justify-content-center"></i>
               </span>
               <h4 className="text-warning font-weight-bold my-3">
                 Servicios Veterinarios
@@ -76,7 +77,7 @@ const Servicio = () => {
           <Col className="m-3 p-3">
             <div className={styles.info}>
               <span className={styles.icon}>
-                <i class="fas fa-shower fa-3x d-flex justify-content-center bg-gradient-warning"></i>
+                <i className="fas fa-shower fa-3x d-flex justify-content-center bg-gradient-warning"></i>
               </span>
               <h4 className=" text-warning font-weight-bold my-3">
                 Peluquería
