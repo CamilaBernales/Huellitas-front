@@ -19,7 +19,7 @@ const NavBar = () => {
           <div className="p-3">
             <em className="mr-3"><b>Administrador</b></em>
             <Button onClick={salir}>Salir</Button>
-          </div>;
+          </div>
         </div>
         <div className="d-flex img-fluid mt-0 mb-3 justify-content-center">
           <img alt="logo" src={imagen} />

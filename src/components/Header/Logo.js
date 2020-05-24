@@ -36,7 +36,9 @@ const Logo = () => {
             <i className="fas fa-cart-plus fa-2x"/>
           </Link>
         </div>
-        <div>{loginLogo}</div>
+        <div>
+          {loginLogo}
+        </div>
       </div>
       
       <div className="d-flex img-fluid mt-0 mb-3 justify-content-center">
