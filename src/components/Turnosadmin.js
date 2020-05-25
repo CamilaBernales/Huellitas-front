@@ -1,25 +1,32 @@
 import React, { Fragment } from 'react';
-import { Table, Container } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
+import { Table, Container, Button } from 'react-bootstrap';
 import Navbaradmin from './Navbaradmin';
 
 export default function Turnosadmin () {
-  let turnos =[
+  const usuarioReg = localStorage.getItem('usuarioReg');
+
+  if (usuarioReg !== 'Administrador') {
+    return (<Redirect to="/"/>);
+  }
+
+  const turnosCode = [
     {
-      idTurnos: '01',
+      idTurno: '01',
       nombre: 'Maria',
       servicio: 'Peluquería',
       fecha: '02/07/20',
       hora: '10:00'
     },
     {
-      idTurnos: '02',
+      idTurno: '02',
       nombre: 'Pedro',
       servicio: 'Desparasitar',
       fecha: '04/07/20',
       hora: '14:00'
     },
     {
-      idTurnos: '03',
+      idTurno: '03',
       nombre: 'Daniel',
       servicio: 'Vacuna',
       fecha: '05/07/20',
@@ -27,24 +34,18 @@ export default function Turnosadmin () {
     }
   ];
 
-  const listarTurnos = () => {
-    let tbody = [];
-    for (let index = 0; index < turnos.length; index++) {
-      const turno = turnos[index];
-      tbody.push(
-        <tr key={turno.idTurnos}>
-          <td>{turno.idTurnos}</td>
-          <td>{turno.nombre}</td>
-          <td>{turno.servicio}</td>
-          <td>{turno.fecha}</td>
-          <td>{turno.hora}</td>
-        </tr>
-      );
+  localStorage.setItem('turnos', JSON.stringify(turnosCode));
+
+  const turnos = JSON.parse(localStorage.getItem('turnos'));
+
+  const eliminarTurno = (id) => {
+    if (window.confirm('Desea eliminar este turno?')) {
+      const turnosFilt = turnos.filter(turno => turno.idTurno !== id);
+      localStorage.setItem('turnos', JSON.stringify(turnosFilt));
     }
-    return tbody;
   }
 
-  return(
+  return (
     <Fragment>
       <Navbaradmin/>
       <Container className="d-flex justify-center py-5">
@@ -56,10 +57,28 @@ export default function Turnosadmin () {
               <th>Detalle servicio</th>
               <th>Fecha</th>
               <th>Hora</th>
+              <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
-            {listarTurnos()}
+            {
+              turnos.map((turno) => {
+                return(
+                  <tr key={turno.idTurno}>
+                    <td>{turno.idTurno}</td>
+                    <td>{turno.nombre}</td>
+                    <td>{turno.servicio}</td>
+                    <td>{turno.fecha}</td>
+                    <td>{turno.hora}</td>
+                    <td className="d-flex justify-content-center">
+                      <Button onClick={() => eliminarTurno(turno.idTurno)}>
+                        <i class="fas fa-trash"/>
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })
+            }
           </tbody>
         </Table>
       </Container>

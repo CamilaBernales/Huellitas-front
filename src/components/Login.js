@@ -31,6 +31,7 @@ export default function Login() {
     }
 
     if (email === 'admin' && password === 'admin') {
+      localStorage.setItem('usuarioReg', 'Administrador');
       setAdmin(true);
     } else {
       let usuarios;
