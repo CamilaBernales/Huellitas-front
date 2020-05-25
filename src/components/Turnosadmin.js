@@ -1,9 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Table, Container, Button } from 'react-bootstrap';
 import Navbaradmin from './Navbaradmin';
 
 export default function Turnosadmin () {
+  const [turnos, setTurnos] = useState(JSON.parse(localStorage.getItem('turnos')));
   const usuarioReg = localStorage.getItem('usuarioReg');
 
   if (usuarioReg !== 'Administrador') {
@@ -36,12 +37,11 @@ export default function Turnosadmin () {
 
   localStorage.setItem('turnos', JSON.stringify(turnosCode));
 
-  const turnos = JSON.parse(localStorage.getItem('turnos'));
-
   const eliminarTurno = (id) => {
     if (window.confirm('Desea eliminar este turno?')) {
       const turnosFilt = turnos.filter(turno => turno.idTurno !== id);
       localStorage.setItem('turnos', JSON.stringify(turnosFilt));
+      setTurnos(JSON.parse(localStorage.getItem('turnos')));
     }
   }
 
@@ -72,7 +72,7 @@ export default function Turnosadmin () {
                     <td>{turno.hora}</td>
                     <td className="d-flex justify-content-center">
                       <Button onClick={() => eliminarTurno(turno.idTurno)}>
-                        <i class="fas fa-trash"/>
+                        <i className="fas fa-trash"/>
                       </Button>
                     </td>
                   </tr>

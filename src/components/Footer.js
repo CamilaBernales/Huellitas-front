@@ -50,10 +50,10 @@ function Footer () {
                         <h4 className="ml-5">Redes Sociales</h4>
                         <div className="ml-5">
                             <Link className="mx-1">
-                                <i class="fab fa-instagram"></i>
+                                <i className="fab fa-instagram"></i>
                             </Link>
                             <Link className="mx-1">
-                                <i class="fab fa-facebook-square"></i>
+                                <i className="fab fa-facebook-square"></i>
                             </Link>
                             <Link className="mx-1">
                                 <i className="fab fa-twitter-square"></i>
