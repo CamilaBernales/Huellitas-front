@@ -36,9 +36,9 @@ const Logo = () => {
         </div>
         <div>{loginLogo}</div>
       </div>
-      
+
       <div className="d-flex img-fluid mt-0 mb-3 justify-content-center">
-      <img alt="logo" src={imagen} />
+        <img alt="logo" src={imagen} />
       </div>
     </div>
   );

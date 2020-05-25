@@ -1,0 +1,12 @@
+.fondoFooter{
+    background-color: yellow;
+}
+
+.posicionFooter{
+    position: fixed;
+    bottom: 0;
+}
+
+.letras{
+    color: tomato;
+}

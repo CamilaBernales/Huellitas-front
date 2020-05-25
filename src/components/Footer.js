@@ -1,22 +1,23 @@
 import React, { Fragment } from 'react'
-import Imagen from '../imagen.png'
-import { Row, Col,Jumbotron } from 'react-bootstrap'
+import Imagen from "../imagen.png";
+import { Row, Col, Jumbotron } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+// import Style from './css/Footer.css'
 
 
 function Footer () {
     return(
         <Fragment>
             <Jumbotron>
-                <Row>
+                <Row className="mt-1 mx-auto" xs={2} md={4}>
                     <Col>
-                        <Link to='/'>
-                            <img alt="logo" href={Imagen} className="mt-4"/>
+                        <Link to="/">
+                            <img alt="logo" src={Imagen} className="ml-3"/>
                         </Link>
                     </Col>
                     <Col>
-                        <h4 className="mx-auto mt-4">Información</h4>
-                            <Col bg="warning">
+                        <h4 className="ml-3">Información</h4>
+                            <Col>
                                 <Link to='/contacto'>
                                     Contacto
                                 </Link>
@@ -28,7 +29,7 @@ function Footer () {
                             </Col>
                     </Col>
                     <Col>
-                        <h4 className="mx-auto mt-4">Guias</h4>
+                        <h4 className="ml-3">Guias</h4>
                             <Col>
                                 <Link>
                                     Medios de Pago
@@ -46,10 +47,18 @@ function Footer () {
                             </Col>
                     </Col>
                     <Col>
-                        <h4 className="mx-auto mt-4">Nuestras Redes Sociales</h4>
-                            <Link className="mx-1">Instagram</Link>
-                            <Link className="mx-1">Facebook</Link>
-                            <Link className="mx-1">Twitter</Link>
+                        <h4 className="ml-5">Redes Sociales</h4>
+                        <div className="ml-5">
+                            <Link className="mx-1">
+                                <i class="fab fa-instagram"></i>
+                            </Link>
+                            <Link className="mx-1">
+                                <i class="fab fa-facebook-square"></i>
+                            </Link>
+                            <Link className="mx-1">
+                                <i className="fab fa-twitter-square"></i>
+                            </Link>
+                        </div>
                     </Col>
                 </Row>
                     <h6 className="mt-3">

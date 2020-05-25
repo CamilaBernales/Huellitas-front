@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Carousel} from 'react-bootstrap'
+import { Carousel} from 'react-bootstrap'
 
 export default function Slider() {
     return (
