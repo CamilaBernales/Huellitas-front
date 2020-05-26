@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import imagen from "../../src/imagen.png";
+import imagen from "../../img/logo.png";
 import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 

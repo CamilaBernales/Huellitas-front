@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { Container, Button, Col, Row } from "react-bootstrap";
-import GatoHome from "../img/gatoHome.svg";
-import formaspago from "../img/formaspago.png";
-import styles from "../css/Servicios.module.css";
+import GatoHome from "../../../img/gatoHome.svg";
+import formaspago from "../../../img/formaspago.png";
+import styles from "../../../css/Servicios.module.css";
 import { Link } from "react-router-dom";
 
 const Servicio = () => {

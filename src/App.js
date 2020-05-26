@@ -1,13 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Carrito from './components/Carrito';
-import Tienda from './components/Tienda';
-import Home from './components/Home';
-import Login from './components/Login';
-import Registro from './components/Registro';
-import Equipo from './components/Equipo';
-import Turnosadmin from './components/Turnosadmin';
+import Carrito from './components/usuario/Tienda/Carrito';
+import Tienda from './components/usuario/Tienda/Tienda';
+import Home from './components/usuario/Home/Home';
+import Login from './components/usuario/Registro-login/Login';
+import Registro from './components/usuario/Registro-login/Registro';
+import Equipo from './components/usuario/Equipo/Equipo';
+import Turnosadmin from './components/administrador/Turnosadmin';
 
 function App() {
   return (

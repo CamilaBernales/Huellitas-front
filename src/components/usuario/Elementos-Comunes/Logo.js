@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import imagen from "../../imagen.png";
+import imagen from "../../../img/logo.png";
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 

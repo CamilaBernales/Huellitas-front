@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import Imagen from "../imagen.png";
+import Imagen from "../../../img/logo.png";
 import { Row, Col, Jumbotron } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 // import Style from './css/Footer.css'

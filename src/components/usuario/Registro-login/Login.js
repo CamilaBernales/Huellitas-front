@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from "react";
 import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
-import styles from "./css/Login.module.css";
-import imgLogin from "./img/login.svg";
+import styles from "../../../css/Login.module.css";
+import imgLogin from "../../../img/login.svg";
 
 export default function Login() {
   
