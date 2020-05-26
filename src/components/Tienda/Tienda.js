@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { Row, Container } from "react-bootstrap";
-import Producto from "../components/Producto";
-import Logo from "./Header/Logo";
-import Navbar from "./Header/Navbar";
+import Producto from "../Producto";
+import Logo from "../Elementos-Comunes/Logo";
+import Navbar from "../Elementos-Comunes/Navbar";
 
 const Tienda = () => {
   let productos = [

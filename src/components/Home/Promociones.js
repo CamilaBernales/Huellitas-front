@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Button } from "react-bootstrap";
-import Producto from "../Producto";
+import Producto from "../Tienda/Producto";
 import { Link } from "react-router-dom";
 export default function Promociones() {
   let productos = [

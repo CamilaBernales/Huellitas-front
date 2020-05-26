@@ -1,7 +1,7 @@
 import React,{Fragment} from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import Logo from "./Header/Logo";
-import Navbar from "./Header/Navbar";
+import Logo from "../Elementos-Comunes/Logo";
+import Navbar from "../Elementos-Comunes/Navbar";
 
 const Equipo = () => {
   let equipo = [
