@@ -4,8 +4,8 @@ import { Redirect } from 'react-router-dom';
 import Logo from '../Elementos-Comunes/Logo';
 import Navbar from '../Elementos-Comunes/Navbar';
 import { v4 as uuidv4 } from 'uuid';
-import registroimg from "../../img/registro.svg";
-import styles from "../../css/Login.module.css";
+import registroimg from "../../../img/registro.svg";
+import styles from "../../../css/Login.module.css";
 
 export default function Registro() {
   const [usuario, setUsuario] = useState({
