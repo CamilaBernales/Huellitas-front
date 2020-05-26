@@ -7,7 +7,7 @@ import Home from './components/usuario/Home/Home';
 import Login from './components/usuario/Registro-login/Login';
 import Registro from './components/usuario/Registro-login/Registro';
 import Equipo from './components/usuario/Equipo/Equipo';
-import PrincipalProducto from './components/usuario/Tienda/PrincipalProducto';
+import ModalProducto from './components/usuario/Tienda/ModalProducto';
 import Turnosadmin from './components/administrador/Turnosadmin';
 
 
@@ -20,7 +20,7 @@ function App() {
          <Route exact path ="/tienda" component={Tienda}/>
          <Route exact path ="/servicios"/>
          <Route exact path ="/contacto"/>
-         <Route exact path ="/principalproducto" component={PrincipalProducto} />
+         <Route exact path ="/m" component={ModalProducto} />
          <Route exact path ="/equipo" component={Equipo} />
          <Route exact path ="/carrito" component={Carrito}/>
          <Route exact path ="/login" component={Login}/>
