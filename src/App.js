@@ -1,12 +1,12 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Carrito from './components/Carrito';
-import Tienda from './components/Tienda';
-import Home from './components/Home';
-import Login from './components/Login';
-import Registro from './components/Registro';
-import Equipo from './components/Equipo';
+import Carrito from './components/Tienda/Carrito';
+import Tienda from './components/Tienda/Tienda';
+import Home from './components/Home/Home';
+import Login from './components/Elementos-Comunes/Login';
+import Registro from './components/Registro/Registro';
+import Equipo from './components//Equipo/Equipo';
 import Turnosadmin from './components/Turnosadmin';
 
 function App() {
