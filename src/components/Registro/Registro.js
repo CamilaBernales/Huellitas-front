@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import {Container, Form, Button, Col, Row } from 'react-bootstrap';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Logo from './Header/Logo';
 import Navbar from './Header/Navbar';
 import { v4 as uuidv4 } from 'uuid';

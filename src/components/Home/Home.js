@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
-import Logo from '../Elementos-Comunes/Logo';
-import Navbar from '../Elementos-Comunes/Navbar';
-import Slider from './Slider'
-import Promociones from './Promociones'
-import Servicio from './Servicios'
+import Logo from './Header/Logo';
+import Navbar from './Header/Navbar';
+import Slider from './Home/Slider'
+import Promociones from './Home/Promociones'
+import Servicio from './Home/Servicios'
+import Footer from './Footer'
 import {Container} from 'react-bootstrap'
+
 export default function Home() {
   return (
     <Fragment>
@@ -17,6 +19,7 @@ export default function Home() {
       <Container>
         <Promociones/>
       </Container>
+      <Footer/>
     </Fragment>
   );
 }

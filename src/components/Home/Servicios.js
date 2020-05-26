@@ -44,7 +44,7 @@ const Servicio = () => {
           <Col className="m-3 p-3">
             <div className={styles.info}>
               <span className={styles.icon}>
-                <i class="fas fa-user-md fa-3x  d-flex justify-content-center"></i>
+                <i className="fas fa-user-md fa-3x  d-flex justify-content-center"></i>
               </span>
               <h4 className="text-warning font-weight-bold my-3">
                 Personal Cualificado
@@ -62,7 +62,7 @@ const Servicio = () => {
           <Col className="m-3 p-3">
             <div className={styles.info}>
               <span className={styles.icon}>
-                <i class="fas fa-shopping-cart fa-3x  d-flex justify-content-center"></i>
+                <i className="fas fa-shopping-cart fa-3x  d-flex justify-content-center"></i>
               </span>
               <h4 className="text-warning font-weight-bold my-3">
                 Tienda Especializada
