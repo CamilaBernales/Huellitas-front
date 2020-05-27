@@ -7,6 +7,7 @@ import {
   Accordion,
   Card,
   Button,
+  Alert
 } from "react-bootstrap";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
@@ -22,7 +23,7 @@ const TurnoConsulta = () => {
     profesional: "",
   });
 
-  const [turnosPeluqueria, setTurnoPeluqueria] = useState(
+  const [turnosConsulta, setTurnoConsulta] = useState(
     JSON.parse(localStorage.getItem("turnos clinica")) || []
   );
   const [error, setError] = useState(false);
@@ -37,10 +38,10 @@ const TurnoConsulta = () => {
       nuevoTurno.hora !== "" &&
       nuevoTurno.profesional !== ""
     ) {
-      setTurnoPeluqueria([...turnosPeluqueria, nuevoTurno]);
+      setTurnoConsulta([...turnosConsulta, nuevoTurno]);
       localStorage.setItem(
         "turnos peluqueria",
-        JSON.stringify(turnosPeluqueria)
+        JSON.stringify(turnosConsulta)
       );
     } else {
       setError(true);
@@ -61,6 +62,9 @@ const TurnoConsulta = () => {
       <Logo />
       <Navbar />
       <Container className="my-4 ">
+      {error ? (
+          <Alert variant="danger">Los campos deben estar completos</Alert>
+        ) : null}
         <Row class="col-12">
           <Col xs={12} md={8} lg={6}>
             <h3>Datos de tu Mascota</h3>
