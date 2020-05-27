@@ -5,11 +5,13 @@ import {
     Button,
     Alert,
     ButtonGroup,
-    Modal
+    Modal,
+    Row
 } from "react-bootstrap";
 import {Link} from "react-router-dom";
+import alimento from '../../../img/productos/alimento.jpg'
 
-function MyVerticallyCenteredModal(props) {
+function ModalProduct(props) {
     return (
         <Modal
             {...props}
@@ -18,20 +20,30 @@ function MyVerticallyCenteredModal(props) {
             centered>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
+                    Royal Canon Perro Diabetico - $200
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Centered Modal</h4>
-                <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac
-                    facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac,
-                    vestibulum at eros.
-                </p>
+                   <Row> 
+                        <Col lg={6}>
+                            <img className='img-fluid' alt='alimento' src={alimento}/>
+                        </Col>
+                        <Col lg={6}>
+                            <Row>
+                                <h6>Detalles del producto</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                                    sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                            </Row>
+                            <Row>
+                                <Button>Comprar</Button>
+                            </Row>
+                        </Col>
+                    </Row>      
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
         </Modal>
     );
 }
@@ -105,7 +117,7 @@ const Producto = ({producto}) => {
                         </Card.Text>
                         <ButtonGroup>
                             <Button renderAs='button' onClick={() => setModalShow(true)} className='mr-2'>Detalles</Button>
-                            <MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)}/>
+                            <ModalProduct show={modalShow} onHide={() => setModalShow(false)}/>
                             <Button onClick={() => guardarProducto(producto)}>
                                 {agregado
                                     ? "Producto agregado"
