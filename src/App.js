@@ -8,7 +8,9 @@ import Login from './components/usuario/Registro-login/Login';
 import Registro from './components/usuario/Registro-login/Registro';
 import Equipo from './components/usuario/Equipo/Equipo';
 import Turnosadmin from './components/administrador/Turnosadmin';
-
+import Turnos from './components/usuario/Turnos/Turnos';
+import TurnoConsulta from './components/usuario/Turnos/TurnoConsulta';
+import TurnoPeluqueria from './components/usuario/Turnos/TurnoPeluqueria';
 function App() {
   return (
     <div className="App">
@@ -22,6 +24,12 @@ function App() {
          <Route exact path ="/carrito" component={Carrito}/>
          <Route exact path ="/login" component={Login}/>
          <Route exact path ="/registro" component={Registro}/>
+         <Route exact path ="/turnos" component={Turnos}/>
+         <Route exact path ="/turnoConsulta" component={TurnoConsulta}/>
+         <Route exact path ="/turnoPeluqueria" component={TurnoPeluqueria}/>
+
+
+          {/* rutas admin */}
          <Route exact path ="/admin/turnos" component={Turnosadmin}/>
        </Switch>
      </Router>
