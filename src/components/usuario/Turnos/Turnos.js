@@ -20,7 +20,7 @@ const Turnos = () => {
                             <Card.Body>
                                 <Card.Text>
                                     <Link to={'/turnoConsulta'}>
-                                    <input type="submit" className="btn btn-primary w-100" value="Solicitar Turno" />
+                                    <input type="submit" className="btn btn-primary w-100" value="Solicitar Turno para Consulta Médica" />
                                     </Link>
                                 </Card.Text>
                             </Card.Body>
@@ -35,7 +35,7 @@ const Turnos = () => {
                                 <Card.Text>
                                     <Link to={'/turnoPeluqueria'}>
                                     
-                                    <input type="submit" className="btn btn-primary w-100" value="Solicitar Turno" />
+                                    <input type="submit" className="btn btn-primary w-100" value="Solicitar Turno para Peluquería" />
                                     </Link>
                                 </Card.Text>
                             </Card.Body>
