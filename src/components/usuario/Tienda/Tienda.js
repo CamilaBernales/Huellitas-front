@@ -95,7 +95,7 @@ const Tienda = () => {
         <Logo />
         <Navbar />
         <Container>
-          <Row className=" col-12 m-auto">
+          <Row className="col-12 m-auto">
             {productos.map((producto) => (
               <Producto key={producto.id} producto={producto} />
             ))}

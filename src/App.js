@@ -7,10 +7,16 @@ import Home from './components/usuario/Home/Home';
 import Login from './components/usuario/Registro-login/Login';
 import Registro from './components/usuario/Registro-login/Registro';
 import Equipo from './components/usuario/Equipo/Equipo';
+import ModalProducto from './components/usuario/Tienda/ModalProducto';
 import Turnosadmin from './components/administrador/Turnosadmin';
+<<<<<<< HEAD
 import Turnos from './components/usuario/Turnos/Turnos';
 import TurnoConsulta from './components/usuario/Turnos/TurnoConsulta';
 import TurnoPeluqueria from './components/usuario/Turnos/TurnoPeluqueria';
+=======
+
+
+>>>>>>> 0173d05cd4bf937f1d2cd7bf4bb744c6722a764e
 function App() {
   return (
     <div className="App">
@@ -20,6 +26,7 @@ function App() {
          <Route exact path ="/tienda" component={Tienda}/>
          <Route exact path ="/servicios"/>
          <Route exact path ="/contacto"/>
+         <Route exact path ="/m" component={ModalProducto} />
          <Route exact path ="/equipo" component={Equipo} />
          <Route exact path ="/carrito" component={Carrito}/>
          <Route exact path ="/login" component={Login}/>
