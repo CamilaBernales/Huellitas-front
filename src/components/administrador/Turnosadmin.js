@@ -5,7 +5,15 @@ import Navbaradmin from './Navbaradmin';
 
 export default function Turnosadmin () {
   const [turnos, setTurnos] = useState(JSON.parse(localStorage.getItem('turnos')));
-  const usuarioReg = localStorage.getItem('usuarioReg');
+  const [disabled, setDisabled] = useState(true);
+  const [editar, setEditar] = useState({
+    idTurno: '',
+    nombre: '',
+    servicio: '',
+    fecha: '',
+    hora: ''
+  });
+  const usuarioReg = sessionStorage.getItem('usuarioReg');
 
   if (usuarioReg !== 'Administrador') {
     return (<Redirect to="/"/>);
@@ -38,7 +46,49 @@ export default function Turnosadmin () {
   localStorage.setItem('turnos', JSON.stringify(turnosCode));
 
   const editarTurno = (id) => {
+    setDisabled(false);
+    const [turnoSelec] = turnos.filter(turno => turno.idTurno === id);
+    setEditar({
+      idTurno: turnoSelec.idTurno,
+      nombre: turnoSelec.nombre,
+      servicio: turnoSelec.servicio,
+      fecha: turnoSelec.fecha,
+      hora: turnoSelec.hora
+    });
+  }
 
+  const onChangeTurno = (e) => {
+    e.preventDefault();
+    setEditar({
+      ...editar,
+      [e.target.name]: e.target.value
+    });
+  }
+
+  const onClickGuardar = () => {
+    const turnosFilt = turnos.filter(turno => turno.idTurno !== editar.idTurno);
+    const turnosEdit = turnosFilt.concat([editar]);
+    setTurnos(turnosEdit);
+    setEditar({
+      idTurno: '',
+      nombre: '',
+      servicio: '',
+      fecha: '',
+      hora: ''
+    });
+    setDisabled(true);
+  }
+
+  const onClickCancelar = () => {
+    setEditar({
+      idTurno: '',
+      nombre: '',
+      servicio: '',
+      fecha: '',
+      hora: ''
+    });
+    setDisabled(true);
+    return;
   }
 
   const eliminarTurno = (id) => {
@@ -57,29 +107,79 @@ export default function Turnosadmin () {
           <Col className="pl-0">
             <label htmlFor="nombre"className="mb-0">Nombre</label>
             <InputGroup className="mb-4" size="sm">
-              <FormControl id="nombre" aria-describedby="nombre" />
+              <FormControl 
+                disabled={disabled}
+                id="nombre" 
+                aria-describedby="nombre"
+                type="text"
+                name="nombre"
+                value={editar.nombre}
+                onChange={onChangeTurno}
+              />
             </InputGroup>
           </Col>
           <Col>
             <label htmlFor="servicio"className="mb-0">Servicio</label>
             <InputGroup className="mb-4" size="sm">
-              <FormControl id="servicio" aria-describedby="servicio" />
+              <FormControl 
+                disabled={disabled}
+                id="servicio" 
+                aria-describedby="servicio" 
+                type="text"
+                name="servicio"
+                value={editar.servicio}
+                onChange={onChangeTurno}
+              />
             </InputGroup>
           </Col>
           <Col>
             <label htmlFor="fecha"className="mb-0">Fecha</label>
             <InputGroup className="mb-4" size="sm">
-              <FormControl id="fecha" aria-describedby="fecha" />
+              <FormControl 
+                disabled={disabled}
+                id="fecha" 
+                aria-describedby="fecha" 
+                type="text"
+                name="fecha"
+                value={editar.fecha}
+                onChange={onChangeTurno}
+              />
             </InputGroup>
           </Col>
           <Col>
             <label htmlFor="hora"className="mb-0">Hora</label>
             <InputGroup className="mb-4" size="sm">
-              <FormControl id="hora" aria-describedby="hora" />
+              <FormControl 
+                disabled={disabled}
+                id="hora" 
+                aria-describedby="hora" 
+                type="text"
+                name="hora"
+                value={editar.hora}
+                onChange={onChangeTurno}
+              />
             </InputGroup>
           </Col>
           <Col className="p-0">
-            <Button className="mb-4" size="sm">Guardar</Button>
+            <Button 
+              disabled={disabled}
+              className="mb-4" 
+              size="sm"
+              type="submit"
+              onClick={onClickGuardar}
+            >
+              Guardar
+            </Button>
+            <Button 
+              variant="outline-primary"
+              disabled={disabled}
+              className="mb-4 ml-3" 
+              size="sm"
+              type="submit"
+              onClick={onClickCancelar}
+            >
+              Cancelar
+            </Button>
           </Col>
         </Row>
         <Table striped bordered responsive size="sm">
@@ -104,12 +204,12 @@ export default function Turnosadmin () {
                     <td>{turno.servicio}</td>
                     <td>{turno.fecha}</td>
                     <td>{turno.hora}</td>
-                    <td className="d-flex-column">
+                    <td className="text-center">
                       <Button onClick={() => editarTurno(turno.idTurno)}>
                         <i className="fas fa-edit"/>
                       </Button>
                     </td>
-                    <td className="d-flex-column justify-content-center">
+                    <td className="text-center">
                       <Button onClick={() => eliminarTurno(turno.idTurno)}>
                         <i className="fas fa-trash"/>
                       </Button>

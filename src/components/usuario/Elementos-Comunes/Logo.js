@@ -6,11 +6,11 @@ import { Button } from 'react-bootstrap';
 const Logo = () => {
   let loginLogo;
   
-  const [usuario, setUsuario] = useState(localStorage.getItem('usuarioReg') || '');
+  const [usuario, setUsuario] = useState(sessionStorage.getItem('usuarioReg') || '');
 
   const salir = () => {
-    localStorage.setItem('usuarioReg', '');
-    setUsuario(localStorage.getItem('usuarioReg'));
+    sessionStorage.setItem('usuarioReg', '');
+    setUsuario(sessionStorage.getItem('usuarioReg'));
   }
 
   if (usuario !== 'admin' && usuario !== '') {
