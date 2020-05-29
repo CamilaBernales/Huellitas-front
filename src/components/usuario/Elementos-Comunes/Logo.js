@@ -21,11 +21,13 @@ const Logo = () => {
       </div>;
   } else {
     loginLogo = 
+    <div className="img-fluid d-flex justify-content-end m-0">
       <div className="p-3">
         <Link to="/login">
           <i className="fas fa-sign-in-alt fa-2x"/>
         </Link>
-      </div>;
+      </div>
+      </div>
   }
   
   return (
@@ -41,7 +43,7 @@ const Logo = () => {
         </div>
       </div>
 
-      <div className="d-flex img-fluid mt-0 mb-3 justify-content-center">
+      <div className="d-flex img-fluid mt-0 mb-3 justify-content-center align-items-center">
         <img alt="logo" src={imagen} />
       </div>
     </div>

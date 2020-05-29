@@ -15,8 +15,8 @@ export default function Home() {
       <div className="m-auto">
         <Slider/>
       </div>
-        <Servicio/>
       <Container>
+        <Servicio/>
         <Promociones/>
       </Container>
       <Footer/>
