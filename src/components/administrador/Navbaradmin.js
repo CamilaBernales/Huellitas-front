@@ -7,7 +7,7 @@ const NavBar = () => {
   const [redireccionar, setRedireccionar] = useState(false);
 
   const salir = () => {
-    localStorage.setItem('usuarioReg', '');
+    sessionStorage.setItem('usuarioReg', '');
     setRedireccionar(true);
   }
 
