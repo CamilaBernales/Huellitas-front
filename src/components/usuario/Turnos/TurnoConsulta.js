@@ -40,7 +40,7 @@ const TurnoConsulta = () => {
     ) {
       setTurnoConsulta([...turnosConsulta, nuevoTurno]);
       localStorage.setItem(
-        "turnos peluqueria",
+        "turnos clinica",
         JSON.stringify(turnosConsulta)
       );
     } else {
