@@ -10,48 +10,10 @@ import {
 } from "react-bootstrap";
 import {Link} from "react-router-dom";
 import alimento from '../../../img/productos/alimento.jpg'
-
-function ModalProduct(props) {
-    return (
-        <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered>
-            <Modal.Header closeButton>
-                <Modal.Title id="contained-modal-title-vcenter">
-                    Royal Canon Perro Diabetico - $200
-                </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                   <Row> 
-                        <Col lg={6}>
-                            <img className='img-fluid' alt='alimento' src={alimento}/>
-                        </Col>
-                        <Col lg={6}>
-                            <Row>
-                                <h6>Detalles del producto</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                                    sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-                            </Row>
-                            <Row>
-                                <Button>Comprar</Button>
-                            </Row>
-                        </Col>
-                    </Row>      
-            </Modal.Body>
-        </Modal>
-    );
-}
+import ModalProducto from './ModalProducto'
 
 const Producto = ({producto}) => {
 
-    const [modalShow,
-        setModalShow] = React.useState(false);
     const [productoAgregado,
         setProductoAgregado] = useState(JSON.parse(localStorage.getItem("compras")) || []);
     const [alert,
@@ -91,6 +53,12 @@ const Producto = ({producto}) => {
     };
 
     const {id, nombre, descripcion, precio, agregado} = producto;
+    const [modalShow, setModalShow] = React.useState(false);
+    const onHide = () => {
+        setModalShow(false)
+    }
+    console.log(modalShow);      
+
 
     return (
         <Fragment>
@@ -117,7 +85,7 @@ const Producto = ({producto}) => {
                         </Card.Text>
                         <ButtonGroup>
                             <Button renderAs='button' onClick={() => setModalShow(true)} className='mr-2'>Detalles</Button>
-                            <ModalProduct show={modalShow} onHide={() => setModalShow(false)}/>
+                            <ModalProducto producto={producto} modalShow={modalShow} setModalShow={setModalShow} onHide={onHide}/>
                             <Button onClick={() => guardarProducto(producto)}>
                                 {agregado
                                     ? "Producto agregado"

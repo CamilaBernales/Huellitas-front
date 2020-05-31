@@ -97,7 +97,7 @@ const Tienda = () => {
         <Container>
           <Row className="col-12 m-auto">
             {productos.map((producto) => (
-              <Producto key={producto.id} producto={producto} />
+              <Producto key={producto.id} producto={producto}/>
             ))}
           </Row>
         </Container>
