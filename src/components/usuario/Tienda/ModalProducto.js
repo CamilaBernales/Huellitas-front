@@ -2,22 +2,22 @@ import React from 'react'
 import {Modal, Button} from 'react-bootstrap'
 require("react-bootstrap/ModalHeader")
 
-export default function ModalProducto({modalShow, producto, setModalShow, onHide}) {
+export default function MyVerticallyCenteredModal({modalShow, producto, setModalShow, onHide}) {
   
   console.log(modalShow);
 
   return (
     <Modal
       show={modalShow}
+      onHide={onHide}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header>
+      <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           {producto.nombre}
         </Modal.Title>
-      <button type="button" class="close" data-dismiss="modal" onClick={onHide}>&times;</button>
       </Modal.Header>
       <Modal.Body>
         <h4>Centered Modal</h4>
