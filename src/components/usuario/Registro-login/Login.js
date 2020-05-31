@@ -32,7 +32,7 @@ export default function Login() {
     }
 
     if (email === 'admin' && password === 'admin') {
-      localStorage.setItem('usuarioReg', 'Administrador');
+      sessionStorage.setItem('usuarioReg', 'Administrador');
       setAdmin(true);
     } else {
       let usuarios;
@@ -47,7 +47,7 @@ export default function Login() {
         const usuarioReg = usuarios.find(usuario => (
           (usuario.email === email) && (usuario.password === password) 
         )).nombre;
-        localStorage.setItem('usuarioReg', usuarioReg);
+        sessionStorage.setItem('usuarioReg', usuarioReg);
       } else {
         alert('La contraseña o el email son incorrectos');
         return;
