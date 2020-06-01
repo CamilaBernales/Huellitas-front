@@ -13,6 +13,7 @@ import Turnosadmin from './components/administrador/Turnosadmin';
 import Turnos from './components/usuario/Turnos/Turnos';
 import TurnoConsulta from './components/usuario/Turnos/TurnoConsulta';
 import TurnoPeluqueria from './components/usuario/Turnos/TurnoPeluqueria';
+import PedidosAdmin from './components/administrador/pedidos/PedidosAdmin';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
 
           {/* rutas admin */}
          <Route exact path ="/admin/turnos" component={Turnosadmin}/>
+         <Route exact path ="/admin/pedidos" component={PedidosAdmin}/>
        </Switch>
      </Router>
     </div>

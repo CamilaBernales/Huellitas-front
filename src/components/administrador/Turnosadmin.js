@@ -9,7 +9,7 @@ import {
   InputGroup, 
   FormControl 
 } from 'react-bootstrap';
-import Navbaradmin from './Navbaradmin';
+import Navbaradmin from './Elementos-Comunes/Navbaradmin';
 
 export default function Turnosadmin () {
   const [turnos, setTurnos] = useState(JSON.parse(localStorage.getItem('turnos')) || []);
