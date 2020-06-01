@@ -76,7 +76,7 @@ const Producto = ({producto}) => {
                     style={{
                     width: "18rem"
                 }}>
-                    <Card.Img variant="top"/>
+                    <Card.Img variant="top" className='img-fluid' alt='alimento' src={alimento}/>
                     <Card.Body>
                         <Card.Title>{nombre}</Card.Title>
                         <Card.Text>
