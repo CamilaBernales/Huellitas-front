@@ -1,10 +1,18 @@
 import React, { Fragment, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Table, Container, Button, Row, Col, InputGroup, FormControl } from 'react-bootstrap';
+import { 
+  Table, 
+  Container, 
+  Button, 
+  Row, 
+  Col, 
+  InputGroup, 
+  FormControl 
+} from 'react-bootstrap';
 import Navbaradmin from './Navbaradmin';
 
 export default function Turnosadmin () {
-  const [turnos, setTurnos] = useState(JSON.parse(localStorage.getItem('turnos')));
+  const [turnos, setTurnos] = useState(JSON.parse(localStorage.getItem('turnos')) || []);
   const [disabled, setDisabled] = useState(true);
   const [editar, setEditar] = useState({
     idTurno: '',
@@ -182,44 +190,49 @@ export default function Turnosadmin () {
             </Button>
           </Col>
         </Row>
-        <Table striped bordered responsive size="sm">
-          <thead>
-            <tr>
-              <th>Turno Id</th>
-              <th>Nombre</th>
-              <th>Detalle servicio</th>
-              <th>Fecha</th>
-              <th>Hora</th>
-              <th>Editar</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              turnos.map((turno) => {
-                return(
-                  <tr key={turno.idTurno}>
-                    <td>{turno.idTurno}</td>
-                    <td>{turno.nombre}</td>
-                    <td>{turno.servicio}</td>
-                    <td>{turno.fecha}</td>
-                    <td>{turno.hora}</td>
-                    <td className="text-center">
-                      <Button onClick={() => editarTurno(turno.idTurno)}>
-                        <i className="fas fa-edit"/>
-                      </Button>
-                    </td>
-                    <td className="text-center">
-                      <Button onClick={() => eliminarTurno(turno.idTurno)}>
-                        <i className="fas fa-trash"/>
-                      </Button>
-                    </td>
-                  </tr>
-                );
-              })
-            }
-          </tbody>
-        </Table>
+        {
+          turnos.length === 0?
+            <h2 className="p-3 mx-auto">No hay turnos registardos</h2>
+          :
+            <Table striped bordered responsive size="sm">
+              <thead>
+                <tr>
+                  <th>Turno Id</th>
+                  <th>Nombre</th>
+                  <th>Detalle servicio</th>
+                  <th>Fecha</th>
+                  <th>Hora</th>
+                  <th>Editar</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  turnos.map((turno) => {
+                    return(
+                      <tr key={turno.idTurno}>
+                        <td>{turno.idTurno}</td>
+                        <td>{turno.nombre}</td>
+                        <td>{turno.servicio}</td>
+                        <td>{turno.fecha}</td>
+                        <td>{turno.hora}</td>
+                        <td className="text-center">
+                          <Button onClick={() => editarTurno(turno.idTurno)}>
+                            <i className="fas fa-edit"/>
+                          </Button>
+                        </td>
+                        <td className="text-center">
+                          <Button onClick={() => eliminarTurno(turno.idTurno)}>
+                            <i className="fas fa-trash"/>
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })
+                }
+              </tbody>
+            </Table>
+        }
       </Container>
     </Fragment>
   );
