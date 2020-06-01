@@ -13,7 +13,8 @@ const Tienda = () => {
       descripcion: "alimento para perros de entre 0 y 12 meses",
       agregado: false,
       cantidadAComprar: 0,
-      esPromo: true
+      esPromo: true,
+      stock: 0
     },
     {
       id: "2",
@@ -22,7 +23,8 @@ const Tienda = () => {
       descripcion: "alimento para gatos de entre 0 y 12 meses",
       agregado: false,
       cantidadAComprar: 0,
-      esPromo: true
+      esPromo: true,
+      stock: 1
     },
     {
       id: "3",
@@ -31,7 +33,8 @@ const Tienda = () => {
       descripcion: "alimento para perros de entre 12 o mas años",
       agregado: false,
       cantidadAComprar: 0,
-      esPromo: true
+      esPromo: true,
+      stock: 5
     },
     {
       id: "4",
@@ -40,7 +43,8 @@ const Tienda = () => {
       descripcion: "alimento para conejo de entre 0 y 12 meses",
       agregado: false,
       cantidadAComprar: 0,
-      esPromo: true
+      esPromo: true,
+      stock: 5
     },
     {
       id: "5",
@@ -49,7 +53,8 @@ const Tienda = () => {
       descripcion: "alimento para conejo de entre 0 y 12 meses",
       agregado: false,
       cantidadAComprar: 0,
-      esPromo: true
+      esPromo: true,
+      stock: 5
     },
     {
       id: "6",
@@ -58,7 +63,8 @@ const Tienda = () => {
       descripcion: "alimento para tortuga",
       agregado: false,
       cantidadAComprar: 0,
-      esPromo: true
+      esPromo: true,
+      stock: 5
     },
     {
       id: "7",
@@ -67,7 +73,8 @@ const Tienda = () => {
       descripcion: "alimento para hamsters de entre 0 y 12 meses",
       agregado: false,
       cantidadAComprar: 0,
-      esPromo: true
+      esPromo: true,
+      stock: 5
     },
     {
       id: "8",
@@ -76,7 +83,8 @@ const Tienda = () => {
       descripcion: "alimento para hamsters de entre 12 o mas años",
       agregado: false,
       cantidadAComprar: 0,
-      esPromo: true
+      esPromo: true,
+      stock: 5
     },
     {
       id: "9",
@@ -85,7 +93,8 @@ const Tienda = () => {
       descripcion: "alimento para gato adulto de 12 o mas años",
       agregado: false,
       cantidadAComprar: 0,
-      esPromo: true
+      esPromo: true,
+      stock: 5
     },
   ];
 
@@ -97,7 +106,7 @@ const Tienda = () => {
         <Container>
           <Row className="col-12 m-auto">
             {productos.map((producto) => (
-              <Producto key={producto.id} producto={producto} />
+              <Producto key={producto.id} producto={producto}/>
             ))}
           </Row>
         </Container>

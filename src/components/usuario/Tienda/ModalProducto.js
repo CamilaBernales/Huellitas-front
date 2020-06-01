@@ -1,47 +1,89 @@
-import React from 'react'
-import {Modal, Button} from 'react-bootstrap'
+import React, {useState, useEffect} from 'react'
+import {
+    Modal,
+    Col,
+    Row,
+    Button,
+    Form,
+    Alert
+} from 'react-bootstrap'
+import alimento from '../../../img/productos/alimento.jpg'
+import formasPagos from '../../../img/banner-mercadopago-producto.png'
 
-function MyVerticallyCenteredModal(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
+export default function MyVerticallyCenteredModal({agregado, guardarProducto, modalShow, producto, setModalShow, onHide}) {
 
-export default function ModalProducto() {
-  const [modalShow, setModalShow] = React.useState(false);
 
-  return (
-    <>
-      <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </Button>
+    const [hayStock,
+        setHayStock] = useState('')
 
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-    </>
-  );
+    const controlaStock = () => {
+        if (producto.stock <= 0) {
+            setHayStock(false)
+        } else {
+            setHayStock(true)
+        }
+    }
+
+
+    useEffect(() => {
+        controlaStock()
+    }, [])
+
+    return (
+        <Modal
+            show={modalShow}
+            onHide={onHide}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered>
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    {producto.nombre}
+                    - ${producto.precio}
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Row>
+                    <Col lg={6}>
+                        <img className='img-fluid' alt='alimento' src={alimento}/>
+                    </Col>
+                    <Col lg={6}>
+                        <Row>
+                            <h6>Detalles del producto</h6>
+                            <p>{producto.descripcion}</p>
+                        </Row>
+                        <Row>
+                            <Form>
+                                <Form.Group>
+                                    <Form.Control type='number' placeHolder='Cantidad'/>
+                                </Form.Group>
+                            </Form>
+                        </Row>
+                        <Row>
+                            {hayStock
+                                ? <Alert variant='success'>
+                                        Articulo disponible
+                                    </Alert>
+                                : <Alert variant='danger'>
+                                    Sin stock momentaneamente
+                                </Alert>}
+                        </Row>
+                        <Row>
+                            <Button onClick={() => guardarProducto(producto)}>
+                                {agregado
+                                    ? "Producto agregado"
+                                    : "Comprar"}
+                            </Button>
+                        </Row>
+                        <Row>
+                            <img className='img-fluid' alt='formas de pago' src={formasPagos}/>
+                        </Row>
+                    </Col>
+                </Row>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={onHide}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+    );
 }

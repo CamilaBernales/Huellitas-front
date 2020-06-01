@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/Producto.css'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Carrito from './components/usuario/Tienda/Carrito';
 import Tienda from './components/usuario/Tienda/Tienda';
