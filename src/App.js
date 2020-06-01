@@ -35,16 +35,13 @@ function App() {
         <Route exact path ="/turnoConsulta" component={TurnoConsulta}/>
         <Route exact path ="/turnoPeluqueria" component={TurnoPeluqueria}/>
 
-<<<<<<< HEAD
 
           {/* rutas admin */}
          <Route exact path ="/admin/turnos" component={Turnosadmin}/>
          <Route exact path ="/admin/pedidos" component={PedidosAdmin}/>
-=======
         {/* rutas admin */}
         <Route exact path ="/admin/productos" component={Productosadmin}/> 
         <Route exact path ="/admin/turnos" component={Turnosadmin}/>
->>>>>>> 35d304d6a6f601f0be055e866244c3352c4fdffc
        </Switch>
      </Router>
     </div>

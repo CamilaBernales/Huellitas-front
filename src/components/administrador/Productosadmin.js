@@ -9,7 +9,7 @@ import {
   InputGroup, 
   FormControl 
 } from 'react-bootstrap';
-import Navbaradmin from './Navbaradmin';
+import Navbaradmin from './Elementos-Comunes/Navbaradmin';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Productosadmin () {
@@ -54,7 +54,9 @@ export default function Productosadmin () {
     }
   ];
 
-  if (JSON.parse(localStorage.getItem('productos')).legth <= 3) {
+  
+
+  if (productos.length <= 3) {
     localStorage.setItem('productos', JSON.stringify(productosCode));
   }
 
