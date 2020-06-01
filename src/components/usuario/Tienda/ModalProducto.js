@@ -1,10 +1,33 @@
-import React from 'react'
-import {Modal, Col, Row, Button} from 'react-bootstrap'
+import React, {useState, useEffect} from 'react'
+import {
+    Modal,
+    Col,
+    Row,
+    Button,
+    Form,
+    Alert
+} from 'react-bootstrap'
 import alimento from '../../../img/productos/alimento.jpg'
+import formasPagos from '../../../img/banner-mercadopago-producto.png'
 
-export default function MyVerticallyCenteredModal({modalShow, producto, setModalShow, onHide}) {
+export default function MyVerticallyCenteredModal({agregado, guardarProducto, modalShow, producto, setModalShow, onHide}) {
 
-    console.log(modalShow);
+
+    const [hayStock,
+        setHayStock] = useState('')
+
+    const controlaStock = () => {
+        if (producto.stock <= 0) {
+            setHayStock(false)
+        } else {
+            setHayStock(true)
+        }
+    }
+
+
+    useEffect(() => {
+        controlaStock()
+    }, [])
 
     return (
         <Modal
@@ -15,7 +38,8 @@ export default function MyVerticallyCenteredModal({modalShow, producto, setModal
             centered>
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    {producto.nombre} - ${producto.precio}
+                    {producto.nombre}
+                    - ${producto.precio}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -29,7 +53,30 @@ export default function MyVerticallyCenteredModal({modalShow, producto, setModal
                             <p>{producto.descripcion}</p>
                         </Row>
                         <Row>
-                            <Button>Comprar</Button>
+                            <Form>
+                                <Form.Group>
+                                    <Form.Control type='number' placeHolder='Cantidad'/>
+                                </Form.Group>
+                            </Form>
+                        </Row>
+                        <Row>
+                            {hayStock
+                                ? <Alert variant='success'>
+                                        Articulo disponible
+                                    </Alert>
+                                : <Alert variant='danger'>
+                                    Sin stock momentaneamente
+                                </Alert>}
+                        </Row>
+                        <Row>
+                            <Button onClick={() => guardarProducto(producto)}>
+                                {agregado
+                                    ? "Producto agregado"
+                                    : "Comprar"}
+                            </Button>
+                        </Row>
+                        <Row>
+                            <img className='img-fluid' alt='formas de pago' src={formasPagos}/>
                         </Row>
                     </Col>
                 </Row>

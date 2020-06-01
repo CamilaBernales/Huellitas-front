@@ -1,7 +1,8 @@
-import React, {useState, Fragment} from "react";
+import React, {useState, Fragment, useEffect} from "react";
 import {
     Col,
     Card,
+    Form,
     Button,
     Alert,
     ButtonGroup,
@@ -53,12 +54,47 @@ const Producto = ({producto}) => {
     };
 
     const {id, nombre, descripcion, precio, agregado} = producto;
-    const [modalShow, setModalShow] = React.useState(false);
+    const [modalShow,
+        setModalShow] = React.useState(false);
     const onHide = () => {
         setModalShow(false)
     }
-    console.log(modalShow);      
 
+    const [hayStock,
+        setHayStock] = useState('')
+
+    const [cantidad,
+        setCantidad] = useState(0)
+
+    const handleCantidad = (e) => {
+        setCantidad([e.target.name] = e.target.value)
+        controlaStock()
+        console.log(cantidad);
+    }
+
+    const [stockDis,
+        setStockDisp] = useState(producto.stock)
+
+    const controlaStock = () => {
+
+        setStockDisp(producto.stock - cantidad)
+        
+        if (stockDis < 0) {
+            setHayStock(false)
+        } else {
+            setHayStock(true)
+        }
+    }
+
+    useEffect(() => {
+        controlaStock()
+    }, [handleCantidad])
+
+    useEffect(() => {
+        console.log(producto.stock);
+        console.log(cantidad);
+        console.log(stockDis);
+    }, [cantidad])
 
     return (
         <Fragment>
@@ -80,13 +116,54 @@ const Producto = ({producto}) => {
                     <Card.Body>
                         <Card.Title>{nombre}</Card.Title>
                         <Card.Text>
-                            {descripcion}
-                            <br/>${precio}
+                            Precio: ${precio}
                         </Card.Text>
+                        <Row>
+                            <Form>
+                                <Form.Row
+                                    style={{
+                                    margin: 0
+                                }}>
+                                    <Col>
+                                        <Form.Control
+                                            style={{
+                                            margin: 0
+                                        }}
+                                            name='cantidad'
+                                            onChange={handleCantidad}
+                                            size='sm'
+                                            type='number'
+                                            placeHolder='Cantidad'/>
+                                    </Col>
+                                    <Col>
+                                        { (hayStock && producto.stock > 0 )
+                                            ? <Alert variant='success'>
+                                                    Articulo disponible
+                                                </Alert>
+                                            : ((producto.stock > 0 && stockDis < 0) ? <Alert variant='danger'>
+                                                Solo tenemos {producto.stock} disponible
+                                            </Alert> : <Alert variant='danger'>
+                                                Sin stock
+                                            </Alert>)}
+                                    </Col>
+                                </Form.Row>
+                            </Form>
+                        </Row>
                         <ButtonGroup>
-                            <Button renderAs='button' onClick={() => setModalShow(true)} className='mr-2'>Detalles</Button>
-                            <ModalProducto producto={producto} modalShow={modalShow} setModalShow={setModalShow} onHide={onHide}/>
-                            <Button onClick={() => guardarProducto(producto)}>
+                            <Button
+                                renderAs='button'
+                                onClick={() => setModalShow(true)}
+                                className='mr-2'
+                                size='sm'>Detalles</Button>
+                            <ModalProducto
+                                agregado={agregado}
+                                guardarProducto={guardarProducto}
+                                producto={producto}
+                                modalShow={modalShow}
+                                setModalShow={setModalShow}
+                                onHide={onHide}/>
+
+                            <Button size='sm' onClick={() => guardarProducto(producto)}>
                                 {agregado
                                     ? "Producto agregado"
                                     : "Comprar"}
