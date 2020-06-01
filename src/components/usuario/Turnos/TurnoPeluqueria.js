@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
+import axiosConfig from "../../../config/axios";
 
 const TurnoPeluqueria = () => {
   const [nuevoTurno, setNuevoTurno] = useState({
@@ -39,10 +40,19 @@ const TurnoPeluqueria = () => {
       nuevoTurno.profesional !== ""
     ) {
       setTurnoPeluqueria([...turnosPeluqueria, nuevoTurno]);
-      localStorage.setItem(
-        "turnos peluqueria",
-        JSON.stringify(turnosPeluqueria)
-      );
+
+      axiosConfig
+        .post("/api/turnos/alta", turnosPeluqueria)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // localStorage.setItem(
+      //   "turnos peluqueria",
+      //   JSON.stringify(turnosPeluqueria)
+      // );
     } else {
       setError(true);
     }
