@@ -9,6 +9,7 @@ import Registro from './components/usuario/Registro-login/Registro';
 import Equipo from './components/usuario/Equipo/Equipo';
 import ModalProducto from './components/usuario/Tienda/ModalProducto';
 import Turnosadmin from './components/administrador/Turnosadmin';
+import Productosadmin from './components/administrador/Productosadmin';
 import Turnos from './components/usuario/Turnos/Turnos';
 import TurnoConsulta from './components/usuario/Turnos/TurnoConsulta';
 import TurnoPeluqueria from './components/usuario/Turnos/TurnoPeluqueria';
@@ -20,22 +21,22 @@ function App() {
     <div className="App">
      <Router>
        <Switch>
-         <Route exact path ="/" component={Home}/>
-         <Route exact path ="/tienda" component={Tienda}/>
-         <Route exact path ="/servicios"/>
-         <Route exact path ="/contacto"/>
-         <Route exact path ="/m" component={ModalProducto} />
-         <Route exact path ="/equipo" component={Equipo} />
-         <Route exact path ="/carrito" component={Carrito}/>
-         <Route exact path ="/login" component={Login}/>
-         <Route exact path ="/registro" component={Registro}/>
-         <Route exact path ="/turnos" component={Turnos}/>
-         <Route exact path ="/turnoConsulta" component={TurnoConsulta}/>
-         <Route exact path ="/turnoPeluqueria" component={TurnoPeluqueria}/>
+        <Route exact path ="/" component={Home}/>
+        <Route exact path ="/tienda" component={Tienda}/>
+        <Route exact path ="/servicios"/>
+        <Route exact path ="/contacto"/>
+        <Route exact path ="/m" component={ModalProducto} />
+        <Route exact path ="/equipo" component={Equipo} />
+        <Route exact path ="/carrito" component={Carrito}/>
+        <Route exact path ="/login" component={Login}/>
+        <Route exact path ="/registro" component={Registro}/>
+        <Route exact path ="/turnos" component={Turnos}/>
+        <Route exact path ="/turnoConsulta" component={TurnoConsulta}/>
+        <Route exact path ="/turnoPeluqueria" component={TurnoPeluqueria}/>
 
-
-          {/* rutas admin */}
-         <Route exact path ="/admin/turnos" component={Turnosadmin}/>
+        {/* rutas admin */}
+        <Route exact path ="/admin/productos" component={Productosadmin}/> 
+        <Route exact path ="/admin/turnos" component={Turnosadmin}/>
        </Switch>
      </Router>
     </div>
