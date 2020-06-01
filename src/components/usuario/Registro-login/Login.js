@@ -3,7 +3,8 @@ import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import styles from "../../../css/Login.module.css";
 import imgLogin from "../../../img/login.svg";
-
+import Logo from '../Elementos-Comunes/Logo';
+import Navbar from '../Elementos-Comunes/Navbar';
 export default function Login() {
   
   const [ingreso, setIngreso] = useState({
@@ -31,7 +32,7 @@ export default function Login() {
     }
 
     if (email === 'admin' && password === 'admin') {
-      localStorage.setItem('usuarioReg', 'Administrador');
+      sessionStorage.setItem('usuarioReg', 'Administrador');
       setAdmin(true);
     } else {
       let usuarios;
@@ -46,7 +47,7 @@ export default function Login() {
         const usuarioReg = usuarios.find(usuario => (
           (usuario.email === email) && (usuario.password === password) 
         )).nombre;
-        localStorage.setItem('usuarioReg', usuarioReg);
+        sessionStorage.setItem('usuarioReg', usuarioReg);
       } else {
         alert('La contraseña o el email son incorrectos');
         return;
@@ -65,6 +66,7 @@ export default function Login() {
         <Redirect to="/"/>
     :
       <Fragment>
+      <Navbar/>
         <Container className="m-4">
           <Row className="px-5 d-flex justify-content-center align-items-center ">
             <div className="col mx-5 img-fluid">
