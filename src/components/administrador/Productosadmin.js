@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { 
   Table, 
@@ -10,17 +10,20 @@ import {
   FormControl 
 } from 'react-bootstrap';
 import Navbaradmin from './Navbaradmin';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Productosadmin () {
   const [productos, setProductos] = useState(JSON.parse(localStorage.getItem('productos')) || []);
   const [disabled, setDisabled] = useState(true);
-  const [editar, setEditar] = useState({
+  const [entrada, setEntrada] = useState({
     idProducto: '',
     nombre: '',
     detalles: '',
-    fecha: '',
-    hora: ''
+    precio: '',
+    stock: ''
   });
+  const [agregarProducto, setAgregarProducto] = useState(true);
+  const [disabledAgregar, setDisabledAgregar] = useState(false);
   const usuarioReg = sessionStorage.getItem('usuarioReg');
 
   if (usuarioReg !== 'Administrador') {
@@ -30,82 +33,132 @@ export default function Productosadmin () {
   const productosCode = [
     {
       idProducto: '01',
-      nombre: 'Maria',
-      detalles: 'Peluquería',
-      fecha: '02/07/20',
-      hora: '10:00'
+      nombre: 'Alimento perros',
+      detalles: 'Alimento balanzeado',
+      precio: '$200.00',
+      stock: '5'
     },
     {
       idProducto: '02',
-      nombre: 'Pedro',
-      detalles: 'Desparasitar',
-      fecha: '04/07/20',
-      hora: '14:00'
+      nombre: 'Collar pulgas',
+      detalles: 'Collar para pulgas',
+      precio: '$400.00',
+      stock: '8'
     },
     {
       idProducto: '03',
-      nombre: 'Daniel',
-      detalles: 'Vacuna',
-      fecha: '05/07/20',
-      hora: '10:00'
+      nombre: 'Alimento gatos',
+      detalles: 'Alimento balanzeado',
+      precio: '$300.00',
+      stock: '15'
     }
   ];
 
-  localStorage.setItem('productos', JSON.stringify(productosCode));
+  if (JSON.parse(localStorage.getItem('productos')).legth <= 3) {
+    localStorage.setItem('productos', JSON.stringify(productosCode));
+  }
 
-  const editarproducto = (id) => {
+  
+  const editarProducto = (id) => {
+    setDisabledAgregar(true);
+    setAgregarProducto(true);
     setDisabled(false);
     const [productoSelec] = productos.filter(producto => producto.idProducto === id);
-    setEditar({
+    setEntrada({
       idProducto: productoSelec.idProducto,
       nombre: productoSelec.nombre,
       detalles: productoSelec.detalles,
-      fecha: productoSelec.fecha,
-      hora: productoSelec.hora
+      precio: productoSelec.precio,
+      stock: productoSelec.stock
     });
   }
 
-  const onChangeproducto = (e) => {
+  const onChangeProducto = (e) => {
     e.preventDefault();
-    setEditar({
-      ...editar,
+    if (!agregarProducto) {
+      setEntrada({
+        ...entrada,
+        idProducto: uuidv4(),
+        [e.target.name]: e.target.value
+      });
+      return;
+    }
+    setEntrada({
+      ...entrada,
       [e.target.name]: e.target.value
     });
   }
 
   const onClickGuardar = () => {
-    const productosFilt = productos.filter(producto => producto.idProducto !== editar.idProducto);
-    const productosEdit = productosFilt.concat([editar]);
-    setProductos(productosEdit);
-    setEditar({
-      idProducto: '',
+    setDisabledAgregar(false);
+    if (!agregarProducto) {
+      if (entrada.nombre === '' || entrada.detalles === '' || entrada.precio === '' || entrada.stock === '') {
+        alert('Por favor llenar todos los campos');
+        return;
+      }
+      setProductos(JSON.parse(localStorage.getItem('productos')));
+      setProductos([
+        ...productos,
+        entrada
+      ]);
+      localStorage.setItem('productos', JSON.stringify(productos));
+      setEntrada({
+        nombre: '',
+        detalles: '',
+        precio: '',
+        stock: ''
+      });
+      return;
+    }
+    const productosFilt = productos.filter(producto => producto.idProducto !== entrada.idProducto);
+    const productosEditado = productosFilt.concat([entrada]);
+    setProductos(productosEditado);
+    localStorage.setItem('productos', JSON.stringify(productosEditado));
+    setEntrada({
       nombre: '',
       detalles: '',
-      fecha: '',
-      hora: ''
+      precio: '',
+      stock: ''
     });
     setDisabled(true);
   }
+
 
   const onClickCancelar = () => {
-    setEditar({
-      idProducto: '',
+    setDisabledAgregar(false);
+    setEntrada({
       nombre: '',
       detalles: '',
-      fecha: '',
-      hora: ''
+      precio: '',
+      stock: ''
     });
     setDisabled(true);
-    return;
   }
 
-  const eliminarproducto = (id) => {
+  const onClickAgregarProducto = () => {
+    setDisabled(false);
+    setAgregarProducto(false);
+  }
+
+  const onClickTerminarProducto = () => {
+    setEntrada({
+      nombre: '',
+      detalles: '',
+      precio: '',
+      stock: ''
+    });
+    setDisabled(true);
+    setAgregarProducto(true);
+  }
+
+  const eliminarProducto = (id) => {
     if (window.confirm('Desea eliminar este producto?')) {
       const productosFilt = productos.filter(producto => producto.idProducto !== id);
       localStorage.setItem('productos', JSON.stringify(productosFilt));
       setProductos(JSON.parse(localStorage.getItem('productos')));
     }
   }
+
 
   return (
     <Fragment>
@@ -121,13 +174,13 @@ export default function Productosadmin () {
                 aria-describedby="nombre"
                 type="text"
                 name="nombre"
-                value={editar.nombre}
-                onChange={onChangeproducto}
+                value={entrada.nombre}
+                onChange={onChangeProducto}
               />
             </InputGroup>
           </Col>
           <Col>
-            <label htmlFor="detalles"className="mb-0">detalles</label>
+            <label htmlFor="detalles"className="mb-0">Detalles</label>
             <InputGroup className="mb-4" size="sm">
               <FormControl 
                 disabled={disabled}
@@ -135,40 +188,40 @@ export default function Productosadmin () {
                 aria-describedby="detalles" 
                 type="text"
                 name="detalles"
-                value={editar.detalles}
-                onChange={onChangeproducto}
+                value={entrada.detalles}
+                onChange={onChangeProducto}
               />
             </InputGroup>
           </Col>
           <Col>
-            <label htmlFor="fecha"className="mb-0">Fecha</label>
+            <label htmlFor="precio"className="mb-0">Precio</label>
             <InputGroup className="mb-4" size="sm">
               <FormControl 
                 disabled={disabled}
-                id="fecha" 
-                aria-describedby="fecha" 
+                id="precio" 
+                aria-describedby="precio" 
                 type="text"
-                name="fecha"
-                value={editar.fecha}
-                onChange={onChangeproducto}
+                name="precio"
+                value={entrada.precio}
+                onChange={onChangeProducto}
               />
             </InputGroup>
           </Col>
           <Col>
-            <label htmlFor="hora"className="mb-0">Hora</label>
+            <label htmlFor="stock"className="mb-0">Stock</label>
             <InputGroup className="mb-4" size="sm">
               <FormControl 
                 disabled={disabled}
-                id="hora" 
-                aria-describedby="hora" 
+                id="stock" 
+                aria-describedby="stock" 
                 type="text"
-                name="hora"
-                value={editar.hora}
-                onChange={onChangeproducto}
+                name="stock"
+                value={entrada.stock}
+                onChange={onChangeProducto}
               />
             </InputGroup>
           </Col>
-          <Col className="p-0">
+          <Col className="p-0 d-flex justify-content-end">
             <Button 
               disabled={disabled}
               className="mb-4" 
@@ -190,6 +243,31 @@ export default function Productosadmin () {
             </Button>
           </Col>
         </Row>
+        <Row>
+          {
+            agregarProducto ?
+              <Col className="d-flex justify-content-end">
+                <Button 
+                  disabled={disabledAgregar}
+                  className="mb-3"
+                  size="sm"
+                  onClick={onClickAgregarProducto}
+                >
+                  Agregar producto
+                </Button>
+              </Col>
+            :
+              <Col className="d-flex justify-content-end">
+                <Button 
+                  className="mb-3"
+                  size="sm"
+                  onClick={onClickTerminarProducto}
+                >
+                  Terminar
+                </Button>
+              </Col>
+          }
+        </Row>
         {
           productos.length === 0?
             <h2 className="p-3 mx-auto">No hay productos registardos</h2>
@@ -200,8 +278,8 @@ export default function Productosadmin () {
                   <th>Producto Id</th>
                   <th>Nombre</th>
                   <th>Detalles del producto</th>
-                  <th>Fecha</th>
-                  <th>Hora</th>
+                  <th>Precio</th>
+                  <th>Stock</th>
                   <th>Editar</th>
                   <th>Eliminar</th>
                 </tr>
@@ -214,15 +292,15 @@ export default function Productosadmin () {
                         <td>{producto.idProducto}</td>
                         <td>{producto.nombre}</td>
                         <td>{producto.detalles}</td>
-                        <td>{producto.fecha}</td>
-                        <td>{producto.hora}</td>
+                        <td>{producto.precio}</td>
+                        <td>{producto.stock}</td>
                         <td className="text-center">
-                          <Button onClick={() => editarproducto(producto.idProducto)}>
+                          <Button onClick={() => editarProducto(producto.idProducto)}>
                             <i className="fas fa-edit"/>
                           </Button>
                         </td>
                         <td className="text-center">
-                          <Button onClick={() => eliminarproducto(producto.idProducto)}>
+                          <Button onClick={() => eliminarProducto(producto.idProducto)}>
                             <i className="fas fa-trash"/>
                           </Button>
                         </td>
