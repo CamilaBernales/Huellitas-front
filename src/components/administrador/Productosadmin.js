@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { 
   Table, 
@@ -97,7 +97,7 @@ export default function Productosadmin () {
         return;
       }
       const productosPrev = JSON.parse(localStorage.getItem('productos'));
-      const productosActu = productosPrev.concat([entrada])
+      const productosActu = productosPrev.concat([entrada]);
       setProductos(productosActu);
       localStorage.setItem('productos', JSON.stringify(productosActu));
       console.log(JSON.parse(localStorage.getItem('productos')));
