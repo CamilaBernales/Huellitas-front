@@ -96,30 +96,29 @@ export default function Productosadmin () {
         alert('Por favor llenar todos los campos');
         return;
       }
-      setProductos(JSON.parse(localStorage.getItem('productos')));
-      setProductos([
-        ...productos,
-        entrada
-      ]);
-      localStorage.setItem('productos', JSON.stringify(productos));
+      const productosPrev = JSON.parse(localStorage.getItem('productos'));
+      const productosActu = productosPrev.concat([entrada])
+      setProductos(productosActu);
+      localStorage.setItem('productos', JSON.stringify(productosActu));
+      console.log(JSON.parse(localStorage.getItem('productos')));
       setEntrada({
         nombre: '',
         detalles: '',
         precio: '',
         stock: ''
       });
-      return;
+    } else {
+      const productosFilt = productos.filter(producto => producto.idProducto !== entrada.idProducto);
+      const productosEditado = productosFilt.concat([entrada]);
+      setProductos(productosEditado);
+      localStorage.setItem('productos', JSON.stringify(productosEditado));
+      setEntrada({
+        nombre: '',
+        detalles: '',
+        precio: '',
+        stock: ''
+      });
     }
-    const productosFilt = productos.filter(producto => producto.idProducto !== entrada.idProducto);
-    const productosEditado = productosFilt.concat([entrada]);
-    setProductos(productosEditado);
-    localStorage.setItem('productos', JSON.stringify(productosEditado));
-    setEntrada({
-      nombre: '',
-      detalles: '',
-      precio: '',
-      stock: ''
-    });
     setDisabled(true);
   }
 
