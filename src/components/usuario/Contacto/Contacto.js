@@ -12,7 +12,7 @@ export default function Contacto() {
         email:'',
         mensaje:''
     })
-    
+
     const {nombre, email, mensaje} = consulta
 
     const onChangeConsulta = (e) =>{
@@ -24,8 +24,8 @@ export default function Contacto() {
 
     const onSubmitConsulta = (e) =>{
         e.preventDefault()
-        if(nombre === '' || email === '' || mensaje === ''){
-            alert('Es obligatorio llenar todos los campos')
+        if(nombre === '' && email === '' && mensaje === ''){
+            alert('Debe completar todos los campos')
         }
     }
 
