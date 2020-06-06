@@ -7,49 +7,29 @@ import {
   Accordion,
   Card,
   Button,
-  Alert
+  Alert,
 } from "react-bootstrap";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
+import axiosConfig from "../../../config/axios";
 
 const TurnoConsulta = () => {
   const [nuevoTurno, setNuevoTurno] = useState({
-    nombre: "",
+    nombremascota: "",
     edad: "",
     raza: "",
     particularidades: "",
     fecha: "",
     hora: "",
-    profesional: "",
-  });
+    profesional: ""
+    });
 
   const [turnosConsulta, setTurnoConsulta] = useState(
     JSON.parse(localStorage.getItem("turnos clinica")) || []
   );
   const [error, setError] = useState(false);
 
-  const submitTurno = (e) => {
-    e.preventDefault();
-    if (
-      nuevoTurno.nombre !== "" &&
-      nuevoTurno.edad !== "" &&
-      nuevoTurno.raza !== "" &&
-      nuevoTurno.fecha !== "" &&
-      nuevoTurno.hora !== "" &&
-      nuevoTurno.profesional !== ""
-    ) {
-      setTurnoConsulta([...turnosConsulta, nuevoTurno]);
-      localStorage.setItem(
-        "turnos clinica",
-        JSON.stringify(turnosConsulta)
-      );
-    } else {
-      setError(true);
-    }
-    // console.log(turnosPeluqueria)
-    // console.log(nuevoTurno);
-  };
-
+  
   const handleTurno = (e) => {
     setNuevoTurno({
       ...nuevoTurno,
@@ -57,12 +37,34 @@ const TurnoConsulta = () => {
     });
   };
 
+
+  const submitTurno = (e) => {
+    e.preventDefault();
+    
+      axiosConfig
+        .post("/api/turnos/alta", nuevoTurno)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      // setTurnoConsulta([...turnosConsulta, nuevoTurno]);
+      // localStorage.setItem("turnos clinica", JSON.stringify(turnosConsulta));
+      // } else {
+      //   setError(true);
+      // }
+        // console.log(turnosPeluqueria)
+    // console.log(nuevoTurno);
+  };
+
+
   return (
     <>
       <Logo />
       <Navbar />
       <Container className="my-4 ">
-      {error ? (
+        {error ? (
           <Alert variant="danger">Los campos deben estar completos</Alert>
         ) : null}
         <Row class="col-12">

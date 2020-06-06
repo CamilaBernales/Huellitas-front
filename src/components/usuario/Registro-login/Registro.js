@@ -11,9 +11,8 @@ export default function Registro(props) {
   const [usuario, setUsuario] = useState({
     nombre: "",
     email: "",
-    password: "",
-    rol: "",
-  });
+    password: ""
+    });
 
   const { nombre, rol, email, password } = usuario;
 
@@ -150,20 +149,6 @@ export default function Registro(props) {
                     onChange={(e) => setPasswordConfirm(e.target.value)}
                   />
                 </Form.Group> */}
-
-                <Form.Group controlId="formLastName">
-                  <Form.Label className="d-flex justify-content-start">
-                    rol:
-                  </Form.Label>
-                  <Form.Control
-                    className="border border-warning rounded-left"
-                    type="text"
-                    placeholder="Ingrese su rol"
-                    name="rol"
-                    value={rol}
-                    onChange={onChangeForm}
-                  />
-                </Form.Group>
 
                 <Row>
                   <Col className="d-flex justify-content-between">

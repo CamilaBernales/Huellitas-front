@@ -33,7 +33,6 @@ const Turnos = () => {
               </Card.Body>
             </Card>
           </Col>
-
           <Col>
             <Card>
               <Card.Img

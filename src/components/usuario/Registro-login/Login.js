@@ -15,8 +15,8 @@ export default function Login(props) {
 
   const { email, password } = ingreso;
 
-  // const [redireccionar, setRedireccionar] = useState(false);
-  // const [admin, setAdmin] = useState(false);
+  const [redireccionar, setRedireccionar] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   const onChangeForm = (e) => {
     setIngreso({
@@ -31,15 +31,24 @@ export default function Login(props) {
       alert("Por favor llenar todos los campos");
       return;
     }
+    //data: "{"email":"admin@correo.com","password":"123456"}"
     axiosConfig
       .post("/api/auth/login", ingreso)
       .then((res) => {
+        console.log(ingreso);
+        if (ingreso.email === "admin@correo.com") {
+          sessionStorage.setItem("usuarioReg", "Administrador");
+          props.history.push("/admin/turnos");
+        } else {
+          props.history.push("/");
+        }
+        localStorage.setItem("user", JSON.stringify(res.data.token));
         console.log(res);
-        props.history.push("/");
       })
       .catch((err) => {
         console.log(err);
       });
+
     // if (email === 'admin' && password === 'admin') {
     //   sessionStorage.setItem('usuarioReg', 'Administrador');
     //   setAdmin(true);
@@ -51,7 +60,6 @@ export default function Login(props) {
     //     alert('El usuario no existe');
     //     return;
     //   }
-
     //   if (usuarios.find(usuario => (usuario.email === email) && (usuario.password === password))) {
     //     const usuarioReg = usuarios.find(usuario => (
     //       (usuario.email === email) && (usuario.password === password)

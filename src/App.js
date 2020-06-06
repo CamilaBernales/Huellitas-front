@@ -35,7 +35,7 @@ function App() {
 
 
           {/* rutas admin */}
-         <Route exact path ="/admin/turnos" component={Turnosadmin}/>
+          <Route exact path ="/admin/turnos" component={Turnosadmin}/>
        </Switch>
      </Router>
     </div>
