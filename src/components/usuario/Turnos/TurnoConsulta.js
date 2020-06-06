@@ -12,6 +12,7 @@ import {
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
+import tokenAuth from "../../../config/token";
 
 const TurnoConsulta = () => {
   const [nuevoTurno, setNuevoTurno] = useState({
@@ -21,15 +22,14 @@ const TurnoConsulta = () => {
     particularidades: "",
     fecha: "",
     hora: "",
-    profesional: ""
-    });
+    profesional: "",
+  });
 
   const [turnosConsulta, setTurnoConsulta] = useState(
     JSON.parse(localStorage.getItem("turnos clinica")) || []
   );
   const [error, setError] = useState(false);
 
-  
   const handleTurno = (e) => {
     setNuevoTurno({
       ...nuevoTurno,
@@ -37,27 +37,17 @@ const TurnoConsulta = () => {
     });
   };
 
-
   const submitTurno = (e) => {
     e.preventDefault();
-    
-      axiosConfig
-        .post("/api/turnos/alta", nuevoTurno)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      // setTurnoConsulta([...turnosConsulta, nuevoTurno]);
-      // localStorage.setItem("turnos clinica", JSON.stringify(turnosConsulta));
-      // } else {
-      //   setError(true);
-      // }
-        // console.log(turnosPeluqueria)
-    // console.log(nuevoTurno);
+    axiosConfig
+      .post("/api/turnos/alta", nuevoTurno)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
-
 
   return (
     <>
@@ -74,7 +64,11 @@ const TurnoConsulta = () => {
             <Form>
               <Row>
                 <Col className="my-3">
-                  <Form.Control placeholder="Nombre" />
+                  <Form.Control
+                    placeholder="Nombre de tu mascota"
+                    name="nombremascota"
+                    onChange={handleTurno}
+                  />
                 </Col>
               </Row>
               <Row>

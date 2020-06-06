@@ -6,6 +6,7 @@ import imgLogin from "../../../img/login.svg";
 // import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
+import tokenAuth from "../../../config/token";
 
 export default function Login(props) {
   const [ingreso, setIngreso] = useState({
@@ -27,11 +28,11 @@ export default function Login(props) {
 
   const onSubmitForm = (e) => {
     e.preventDefault();
+
     if (email === "" || password === "") {
       alert("Por favor llenar todos los campos");
       return;
     }
-    //data: "{"email":"admin@correo.com","password":"123456"}"
     axiosConfig
       .post("/api/auth/login", ingreso)
       .then((res) => {
@@ -42,8 +43,13 @@ export default function Login(props) {
         } else {
           props.history.push("/");
         }
-        localStorage.setItem("user", JSON.stringify(res.data.token));
+        localStorage.setItem("token", JSON.stringify(res.data.token));
         console.log(res);
+        // const token = localStorage.getItem('token');
+        // if(token) {
+        //     //funcion para enviar el token por headers
+        //      tokenAuth(token);
+        // }
       })
       .catch((err) => {
         console.log(err);

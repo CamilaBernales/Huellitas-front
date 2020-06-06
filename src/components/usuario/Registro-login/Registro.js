@@ -6,13 +6,14 @@ import Navbar from "../Elementos-Comunes/Navbar";
 import registroimg from "../../../img/registro.svg";
 import styles from "../../../css/Login.module.css";
 import axiosConfig from "../../../config/axios";
+import tokenAuth from "../../../config/token";
 
 export default function Registro(props) {
   const [usuario, setUsuario] = useState({
     nombre: "",
     email: "",
-    password: ""
-    });
+    password: "",
+  });
 
   const { nombre, rol, email, password } = usuario;
 
@@ -33,8 +34,7 @@ export default function Registro(props) {
     if (
       nombre === "" ||
       email === "" ||
-      password === "" ||
-      rol === ""
+      password === ""
       // passwordConfirm === ""
     ) {
       alert("Por favor llenar todos los campos");
@@ -49,7 +49,13 @@ export default function Registro(props) {
       .post("/api/usuarios/registro", usuario)
       .then((res) => {
         console.log(res);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
         props.history.push("/");
+        // const token = localStorage.getItem("token");
+        // if (token) {
+        //   //funcion para enviar el token por headers
+        //   tokenAuth(token);
+        // }
       })
       .catch((error) => {
         console.log(error);
