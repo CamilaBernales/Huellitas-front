@@ -4,7 +4,7 @@ import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import registroimg from "../../../img/registro.svg";
-import styles from "../../../css/Login.module.css";
+import "../../../css/Login.css";
 import axiosConfig from "../../../config/axios";
 
 export default function Registro(props) {
@@ -90,7 +90,7 @@ export default function Registro(props) {
             <img src={registroimg} alt="imagen registro" />
           </div>
           <Col sm={12} md={4}>
-            <div className={styles.formulario}>
+            <div className="formulario">
               <Form onSubmit={onSubmitForm}>
                 <h2 className="text-center text-uppercase mx-4">
                   Crear una cuenta
@@ -100,7 +100,7 @@ export default function Registro(props) {
                     Nombre:
                   </Form.Label>
                   <Form.Control
-                    className="border border-warning rounded-left"
+                    className="border border-primary rounded-left"
                     type="text"
                     placeholder="Ingrese su nombre"
                     name="nombre"
@@ -114,7 +114,7 @@ export default function Registro(props) {
                     Email:
                   </Form.Label>
                   <Form.Control
-                    className="border border-warning rounded-left"
+                    className="border border-primary rounded-left"
                     type="email"
                     placeholder="Ingrese su email"
                     name="email"
@@ -128,7 +128,7 @@ export default function Registro(props) {
                     Contraseña:
                   </Form.Label>
                   <Form.Control
-                    className="border border-warning rounded-left"
+                    className="border border-primary rounded-left"
                     type="password"
                     placeholder="Ingrese su contraseña"
                     name="password"
@@ -142,7 +142,7 @@ export default function Registro(props) {
                     Confirmar contraseña:
                   </Form.Label>
                   <Form.Control
-                    className="border border-warning rounded-left"
+                    className="border border-primary rounded-left"
                     type="password"
                     placeholder="Ingrese su contraseña nuevamente"
                     name="passwordConfirm"
@@ -156,7 +156,7 @@ export default function Registro(props) {
                     rol:
                   </Form.Label>
                   <Form.Control
-                    className="border border-warning rounded-left"
+                    className="border border-primary rounded-left"
                     type="text"
                     placeholder="Ingrese su rol"
                     name="rol"
@@ -168,8 +168,7 @@ export default function Registro(props) {
                 <Row>
                   <Col className="d-flex justify-content-between">
                     <Button
-                      className="text-white text-uppercase font-weight-bold rounded-pill btn btn-button w-100"
-                      variant="warning"
+                      className="text-white text-uppercase font-weight-bold rounded-pill btn btnauth btn-button w-100"
                       type="submit"
                     >
                       Enviar

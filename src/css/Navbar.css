@@ -1,0 +1,9 @@
+.navbar{
+    background-color:#4287ad;
+
+}
+.nav-link{
+    color: white !important;
+    text-transform: uppercase;
+    font-weight: 600;
+}

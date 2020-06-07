@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import imagen from "../../../img/logo.png";
+import imagen from "../../../img/logoprueba.png";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import "../../../css/Header.css";
 
 const Logo = () => {
   let loginLogo;
@@ -35,7 +36,7 @@ const Logo = () => {
   }
 
   return (
-    <div>
+    <div className="headerpage">
       <div className="img-fluid d-flex justify-content-end ">
         <div className="p-3 ml-5">
           <Link to="/carrito">

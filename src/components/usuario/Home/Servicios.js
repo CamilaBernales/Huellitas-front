@@ -1,8 +1,7 @@
 import React, { Fragment } from "react";
 import { Container, Button, Col, Row } from "react-bootstrap";
-import GatoHome from "../../../img/gatoHome.svg";
 import formaspago from "../../../img/formaspago.png";
-import styles from "../../../css/Servicios.module.css";
+import "../../../css/Servicios.css";
 import { Link } from "react-router-dom";
 
 const Servicio = () => {
@@ -11,11 +10,11 @@ const Servicio = () => {
       <Container className="my-4 py-4">
         <Row className="d-flex justify-content-center">
           <Col className="m-3 p-3">
-            <div className={styles.info}>
-              <span className={styles.icon}>
+            <div className="info">
+              <span className="icon">
                 <i className="fas fa-star fa-2x d-flex justify-content-center"></i>
               </span>
-              <h4 className=" text-warning font-weight-bold my-3">
+              <h4 className="  font-weight-bold my-3">
                 15 años de experiencia
               </h4>
               <p>
@@ -26,11 +25,11 @@ const Servicio = () => {
             </div>
           </Col>
           <Col className="m-3 p-3">
-            <div className={styles.info}>
-              <span className={styles.icon}>
+            <div className="info">
+              <span className="icon">
                 <i className="fas fa-heart fa-2x  d-flex justify-content-center"></i>
               </span>
-              <h4 className="text-warning font-weight-bold my-3">
+              <h4 className=" font-weight-bold my-3">
                 Servicios Veterinarios
               </h4>
               <p>
@@ -42,11 +41,11 @@ const Servicio = () => {
             </div>
           </Col>
           <Col className="m-3 p-3">
-            <div className={styles.info}>
-              <span className={styles.icon}>
+            <div className="info">
+              <span className="icon">
                 <i className="fas fa-user-md fa-2x  d-flex justify-content-center"></i>
               </span>
-              <h4 className="text-warning font-weight-bold my-3">
+              <h4 className=" font-weight-bold my-3">
                 Personal Cualificado
               </h4>
               <p>
@@ -60,11 +59,11 @@ const Servicio = () => {
 
         <Row>
           <Col className="m-3 p-3">
-            <div className={styles.info}>
-              <span className={styles.icon}>
+            <div className="info">
+              <span className="icon">
                 <i className="fas fa-shopping-cart fa-2x  d-flex justify-content-center"></i>
               </span>
-              <h4 className="text-warning font-weight-bold my-3">
+              <h4 className=" font-weight-bold my-3">
                 Tienda Especializada
               </h4>
               <p>
@@ -75,11 +74,11 @@ const Servicio = () => {
             </div>
           </Col>
           <Col className="m-3 p-3">
-            <div className={styles.info}>
-              <span className={styles.icon}>
+            <div className="info">
+              <span className="icon">
                 <i className="fas fa-shower fa-2x d-flex justify-content-center bg-gradient-warning"></i>
               </span>
-              <h4 className=" text-warning font-weight-bold my-3">
+              <h4 className="  font-weight-bold my-3">
                 Peluquería
               </h4>
               <p>
@@ -91,14 +90,11 @@ const Servicio = () => {
           <Col className="m-3 p-3">
             <div className=" d-flex justify-content-center">
               <div className="img-fluid ">
-                <img
-                  
-                  alt="imagen de gato "
-                />
+                <img alt="imagen de gato " />
               </div>
             </div>
             <div className=" my-3 d-flex justify-content-center">
-              <Button variant="light" className={styles.info}>
+              <Button variant="light" className="info">
                 <Link className="text-secondary" to="/turnos">
                   Quiero un turno!
                 </Link>
@@ -108,7 +104,7 @@ const Servicio = () => {
         </Row>
       </Container>
       <div className="m-4 ">
-        <div className={styles.equipo}>
+        <div className="equipo">
           <div className="text-center my-5">
             <h4>
               HUELLITAS BRINDA UN EQUIPO HUMANO ALTAMENTE CUALIFICADO PARA
@@ -123,20 +119,20 @@ const Servicio = () => {
         </div>
       </div>
 
-        <div className={styles.servicios}>
-          <Row>
-            <Col className="d-flex justify-content-center align-items-center">
-              <h3>Recibimos todas las formas de pago</h3>
-            </Col>
-            <Col>
-              <img
-                src={formaspago}
-                alt="tarjetas de crédito"
-                className="img-fluid"
-              />
-            </Col>
-          </Row>
-        </div>
+      <div className="servicios">
+        <Row>
+          <Col className="d-flex justify-content-center align-items-center">
+            <h3>Recibimos todas las formas de pago</h3>
+          </Col>
+          <Col>
+            <img
+              src={formaspago}
+              alt="tarjetas de crédito"
+              className="img-fluid"
+            />
+          </Col>
+        </Row>
+      </div>
     </Fragment>
   );
 };

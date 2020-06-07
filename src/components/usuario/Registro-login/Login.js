@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import styles from "../../../css/Login.module.css";
+import "../../../css/Login.css";
 import imgLogin from "../../../img/login.svg";
-// import Logo from "../Elementos-Comunes/Logo";
+import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
 
@@ -65,6 +65,7 @@ export default function Login(props) {
 
   return (
     <Fragment>
+      <Logo/>
       <Navbar />
       <Container className="m-4">
         <Row className="px-5 d-flex justify-content-center align-items-center ">
@@ -72,7 +73,7 @@ export default function Login(props) {
             <img src={imgLogin} alt="imagen login" />
           </div>
           <Col sm={12} md={4}>
-            <div className={styles.formulario}>
+            <div className="formulario">
               <Form onSubmit={onSubmitForm}>
                 <h2 className="text-center mx-4 ">LOGIN</h2>
                 <Form.Group controlId="formEmail">
@@ -82,7 +83,7 @@ export default function Login(props) {
                   <Form.Control
                     type="email"
                     placeholder="Ingrese su email"
-                    className="border border-warning rounded-left"
+                    className="border border-primary rounded-left"
                     name="email"
                     value={email}
                     onChange={onChangeForm}
@@ -93,7 +94,7 @@ export default function Login(props) {
                     Contraseña:
                   </Form.Label>
                   <Form.Control
-                    className="border border-warning rounded-left"
+                    className="border border-primary rounded-left"
                     type="password"
                     placeholder="Ingrese su contraseña"
                     name="password"
@@ -104,8 +105,7 @@ export default function Login(props) {
                 <Row>
                   <Col className="d-flex justify-content-center">
                     <Button
-                      className="text-white text-uppercase font-weight-bold rounded-pill btn btn-button w-100"
-                      variant="warning"
+                      className="text-white text-uppercase font-weight-bold btnauth rounded-pill btn btn-button w-100"
                       type="submit"
                     >
                       Ingresar

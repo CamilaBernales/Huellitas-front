@@ -7,7 +7,7 @@ export default function Slider() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="http://lorempixel.com/800/400/animals/?text=Second slide&bg=373940"
+                        src="images/carrusel1.jpg"
                         alt="First slide"/>
                     <Carousel.Caption>
                         <h3>First slide label</h3>
@@ -17,7 +17,7 @@ export default function Slider() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="http://lorempixel.com/800/400/animals/?text=Second slide&bg=282c34"
+                        src="images/carrusel2.jpg"
                         alt="Third slide"/>
 
                     <Carousel.Caption>
@@ -28,7 +28,7 @@ export default function Slider() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="http://lorempixel.com/800/400/animals/?text=Second slide&bg=20232a"
+                        src="images/carrusel3.jpg"
                         alt="Third slide"/>
 
                     <Carousel.Caption>
