@@ -1,9 +1,14 @@
-.navbar{
-    background-color:#4287ad;
-
+.navbar {
+  background-color: #4287ad;
 }
-.nav-link{
-    color: white !important;
-    text-transform: uppercase;
-    font-weight: 600;
+.nav-link {
+  color: white !important;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.navbar-brand {
+  color: white !important;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 4px;
 }

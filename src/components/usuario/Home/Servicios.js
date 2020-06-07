@@ -15,9 +15,7 @@ const Servicio = () => {
                 <span className="icon">
                   <i className="my-3 fas fa-star fa-2x justify-content-center"></i>
                 </span>
-                <h4 className="font-weight-bold">
-                  15 años de experiencia
-                </h4>
+                <h4 className="font-weight-bold">15 años de experiencia</h4>
                 <p>
                   HUELLITAS te ofrece uno de los mejores servicios de la zona,
                   con una gran relación calidad-precio, lo que nos convierte en
@@ -32,9 +30,7 @@ const Servicio = () => {
                 <span className="icon">
                   <i className="my-3 fas fa-heart fa-2x justify-content-center"></i>
                 </span>
-                <h4 className="font-weight-bold">
-                  Servicios Veterinarios
-                </h4>
+                <h4 className="font-weight-bold">Servicios Veterinarios</h4>
                 <p>
                   {" "}
                   HUELLITAS cuenta con una gran variedad de servicios médicos
@@ -109,36 +105,30 @@ const Servicio = () => {
           </div>
         </Row>
       </Container>
-      <div className="m-4 ">
-        <div className="equipo">
-          <div className="text-center my-5">
-            <h4>
-              HUELLITAS BRINDA UN EQUIPO HUMANO ALTAMENTE CUALIFICADO PARA
-              OFRECER EL MAS ALTO BIENESTAR A SUS PACIENTES
-            </h4>
-            <Button className="mt-3" variant="light">
-              <Link className="text-secondary" to="/equipo">
-                Conocenos!
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
 
-      <div className="servicios">
-        <Row>
-          <Col className="d-flex justify-content-center align-items-center">
-            <h3>Recibimos todas las formas de pago</h3>
+      {/* <div className="m-4 servicios">
+        <Row className="d-flex justify-content-around align-items-center">
+          <Col>
+            <i class="fas fa-7x fa-ambulance img-fluid  d-flex justify-content-center"></i>
+          </Col>
+          <Col>
+            <p>Atención las 24h</p>
+          </Col>
+        </Row>
+        <Row className="d-flex justify-content-around align-items-center">
+          <Col>
+            <p>Recibimos todas las formas de pago</p>
           </Col>
           <Col>
             <img
               src={formaspago}
               alt="tarjetas de crédito"
               className="img-fluid"
-            />
+  
+              />
           </Col>
         </Row>
-      </div>
+      </div> */}
     </Fragment>
   );
 };

@@ -5,7 +5,6 @@ import Slider from './Slider'
 import Promociones from './Promociones'
 import Servicio from './Servicios'
 import Footer from '../Elementos-Comunes/Footer'
-import {Container} from 'react-bootstrap'
 
 export default function Home() {
   return (
@@ -15,10 +14,8 @@ export default function Home() {
       <div className="m-auto">
         <Slider/>
       </div>
-      <Container>
         <Servicio/>
         <Promociones/>
-      </Container>
       <Footer/>
     </Fragment>
   );

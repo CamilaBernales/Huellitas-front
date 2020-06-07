@@ -4,9 +4,10 @@ import "../../../css/Navbar.css";
 const NavBar = () => {
   return (
     <Navbar className="navbar" collapseOnSelect expand="lg">
+      <Navbar.Brand href="/">Huellitas</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="nav mr-auto">
+        <Nav className="nav ml-auto ">
           <Nav.Link href="/">Inicio</Nav.Link>
           <Nav.Link href="/turnos">Turnos</Nav.Link>
           <Nav.Link href="/tienda">Market</Nav.Link>
