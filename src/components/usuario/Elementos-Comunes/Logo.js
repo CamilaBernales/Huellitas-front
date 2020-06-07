@@ -6,13 +6,15 @@ import "../../../css/Header.css";
 
 const Logo = () => {
   let loginLogo;
-  
-  const [usuario, setUsuario] = useState(sessionStorage.getItem('usuarioReg') || '');
+
+  const [usuario, setUsuario] = useState(
+    sessionStorage.getItem("usuarioReg") || ""
+  );
 
   const salir = () => {
-    sessionStorage.setItem('usuarioReg', '');
-    setUsuario(sessionStorage.getItem('usuarioReg'));
-  }
+    sessionStorage.setItem("usuarioReg", "");
+    setUsuario(sessionStorage.getItem("usuarioReg"));
+  };
 
   if (usuario !== "admin" && usuario !== "") {
     loginLogo = (
@@ -36,7 +38,7 @@ const Logo = () => {
   }
 
   return (
-    <div className="headerpage">
+  <header className="headerpage">
       <div className="img-fluid d-flex justify-content-end ">
         <div className="p-3 ml-5">
           <Link to="/carrito">
@@ -46,10 +48,10 @@ const Logo = () => {
         <div>{loginLogo}</div>
       </div>
 
-      <div className="d-flex img-fluid mt-0 mb-3 justify-content-center align-items-center">
+      <div className="d-flex img-fluid mt-0 justify-content-center align-items-center">
         <img alt="logo" src={imagen} />
       </div>
-    </div>
+    </header>
   );
 };
 
