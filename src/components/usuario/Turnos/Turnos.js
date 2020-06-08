@@ -22,7 +22,7 @@ const Turnos = () => {
               />
               <Card.Body>
                 <Card.Text>
-                  <Link to={"/turnoConsulta"}>
+                  <Link to={"/turno"}>
                     <input
                       type="submit"
                       className="btn btn-primary w-100"
@@ -43,7 +43,7 @@ const Turnos = () => {
               />
               <Card.Body>
                 <Card.Text>
-                  <Link to={"/turnoPeluqueria"}>
+                  <Link to={"/turno"}>
                     <input
                       type="submit"
                       className="btn btn-primary w-100"

@@ -34,12 +34,20 @@ export default function Login(props) {
     axiosConfig
       .post("/api/auth/login", ingreso)
       .then((res) => {
+        console.log(ingreso);
+        if (ingreso.email === "admin@correo.com") {
+          sessionStorage.setItem("usuarioReg", "Administrador");
+          props.history.push("/admin/turnos");
+        } else {
+          props.history.push("/");
+        }
+        localStorage.setItem("token", res.data.token);
         console.log(res);
-        props.history.push("/");
       })
       .catch((err) => {
         console.log(err);
       });
+
     // if (email === 'admin' && password === 'admin') {
     //   sessionStorage.setItem('usuarioReg', 'Administrador');
     //   setAdmin(true);
@@ -65,7 +73,7 @@ export default function Login(props) {
 
   return (
     <Fragment>
-      <Logo/>
+      <Logo />
       <Navbar />
       <Container className="m-4">
         <Row className="px-5 d-flex justify-content-center align-items-center ">
