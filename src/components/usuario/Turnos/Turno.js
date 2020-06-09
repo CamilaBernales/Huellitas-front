@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Col,
   Form,
@@ -24,6 +24,7 @@ const Turno = () => {
     fecha: "",
     hora: "",
     profesional: "",
+    resumen: "",
   });
 
   const [horarios, setHorarios] = useState([
@@ -54,6 +55,17 @@ const Turno = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const traerTurnosDisp = () => {
+    axiosConfig
+      .get(`/api/turnos/horariosdip/${nuevoTurno.fecha}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
   const submitTurno = (e) => {
     if (
       nuevoTurno.nombremascota.trim() !== "" &&
@@ -81,15 +93,6 @@ const Turno = () => {
             timer: 1500,
           });
           console.log(res);
-          // const index = horarios.findIndex(
-          //   (dianodisp) => dianodisp === nuevoTurno.hora
-          // );
-          // if (index) {
-          //   console.log(index);
-          //   horarios.splice(index, 1);
-          //   console.log(horarios);
-          //   setHorarios([...horarios, horarios]);
-          // }
         })
         .catch((err) => {
           console.log(err.response);
@@ -98,7 +101,9 @@ const Turno = () => {
       setError(true);
     }
   };
-
+  useEffect(() => {
+    traerTurnosDisp();
+  }, [nuevoTurno.fecha]);
   return (
     <>
       <Logo />
@@ -182,6 +187,17 @@ const Turno = () => {
                 className="m-3 w-50"
                 onChange={handleTurno}
               /> */}
+            </Row>
+            <Row>
+              <Col className="my-3">
+                <p>Cuentanos que le pasa a tu mascota</p>
+                <textarea
+                  className="p-4 w-100"
+                  id="resumen"
+                  name="resumen"
+                  onChange={handleTurno}
+                />
+              </Col>
             </Row>
           </Col>
 

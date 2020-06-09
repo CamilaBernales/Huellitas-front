@@ -1,11 +1,12 @@
 .navbar  {
   background-color: #4287ad;
 }
-.nav-link{
+.navlink , .navbar-light .navbar-nav .nav-link {
   color: white !important;
   text-transform: uppercase;
   font-weight: 600;
 }
+
 .dropdown-item{
   text-transform: uppercase;
   font-weight: 600;

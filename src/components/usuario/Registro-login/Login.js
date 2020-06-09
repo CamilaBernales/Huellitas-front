@@ -37,7 +37,7 @@ export default function Login(props) {
         console.log(ingreso);
         if (ingreso.email === "admin@correo.com") {
           sessionStorage.setItem("usuarioReg", "Administrador");
-          props.history.push("/admin/turnos");
+          props.history.push("/turno");
         } else {
           props.history.push("/");
         }
@@ -59,6 +59,7 @@ export default function Login(props) {
     //     alert('El usuario no existe');
     //     return;
     //   }
+    // }
 
     //   if (usuarios.find(usuario => (usuario.email === email) && (usuario.password === password))) {
     //     const usuarioReg = usuarios.find(usuario => (

@@ -22,7 +22,7 @@ const NavBar = () => {
       <Navbar.Brand href="/">Huellitas</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="nav ml-auto ">
+        <Nav className=" navlink ml-auto ">
           <Nav.Link href="/">Inicio</Nav.Link>
           {isLogIn ? (
             <NavDropdown title="Turnos" id="basic-nav-dropdown">
