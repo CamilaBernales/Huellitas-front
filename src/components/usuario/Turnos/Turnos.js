@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Col, Card, Container, Button } from "react-bootstrap";
+import { Row, Col, Card, Container } from "react-bootstrap";
 import turnoconsulta from "../../../img/turnoconsulta.jpg";
 import turnopeluqueria from "../../../img/turnopeluqueria.jpg";
 import Logo from "../Elementos-Comunes/Logo";

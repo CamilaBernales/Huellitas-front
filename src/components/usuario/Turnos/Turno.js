@@ -14,8 +14,9 @@ import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import tokenAuth from "../../../config/token";
 import axiosConfig from "../../../config/axios";
-
+import { equipo } from "../Equipo/Equipo";
 const Turno = () => {
+  console.log(equipo);
   const [nuevoTurno, setNuevoTurno] = useState({
     nombremascota: "",
     edad: "",
@@ -103,6 +104,7 @@ const Turno = () => {
   };
   useEffect(() => {
     traerTurnosDisp();
+    //eslint-disable-next-line
   }, [nuevoTurno.fecha]);
   return (
     <>
@@ -181,12 +183,6 @@ const Turno = () => {
                   </option>
                 ))}
               </select>
-              {/* <input
-                type="time"
-                name="hora"
-                className="m-3 w-50"
-                onChange={handleTurno}
-              /> */}
             </Row>
             <Row>
               <Col className="my-3">
@@ -205,204 +201,36 @@ const Turno = () => {
           <Col xs={12} md={8} lg={6}>
             <h3>Elige un Profesional</h3>
             <hr />
-            {/* opcion 1 */}
-            <Row className="my-3">
-              <Col>
-                <Accordion>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle as={Button} variant="Text" eventKey="0">
-                        <Form.Check
-                          type="radio"
-                          id="formHorizontalRadios2"
-                          label="Beatriz Silva (Clínica)"
-                          value="Beatriz Silva"
-                          name="profesional"
-                          onChange={handleTurno}
-                        />
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        Egresada de la Universidad de Tucumán, especializada en
-                        clínica y kinesiología de pequeños animales.
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </Col>
-            </Row>
+            {equipo.map((personal) => (
+              <Row>
+                <Col>
+                  <Accordion>
+                    <Card>
+                      <Card.Header>
+                        <Accordion.Toggle
+                          as={Button}
+                          variant="Text"
+                          eventKey="0"
+                        >
+                          <Form.Check
+                            type="radio"
+                            id={personal.id}
+                            label={personal.nombre}
+                            value={personal.nombre}
+                            name="profesional"
+                            onChange={handleTurno}
+                          />
+                        </Accordion.Toggle>
+                      </Card.Header>
+                      <Accordion.Collapse eventKey="0">
+                        <Card.Body>{personal.informacion}</Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+                  </Accordion>
+                </Col>
+              </Row>
+            ))}
 
-            {/* opcion 2 */}
-            <Row className="my-3">
-              <Col>
-                <Accordion>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle as={Button} variant="Text" eventKey="0">
-                        <Form.Check
-                          type="radio"
-                          id="formHorizontalRadios2"
-                          label="Ines Gonzales (Clínica)"
-                          value="Ines Gonzaleso"
-                          name="profesional"
-                          onChange={handleTurno}
-                        />
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        Egresada de la Universidad de Buenos Aires,
-                        especializada en clínica de pequeños animales
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </Col>
-            </Row>
-            {/* opcion 3 */}
-            <Row className="my-3">
-              <Col>
-                <Accordion>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle as={Button} variant="Text" eventKey="0">
-                        <Form.Check
-                          type="radio"
-                          id="formHorizontalRadios2"
-                          label="Martina Hernandez (Clínica)"
-                          value="Martina Hernandez"
-                          name="profesional"
-                          onChange={handleTurno}
-                        />
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        Egresada de la UNT, especializada en clínica de pequeños
-                        animales y en medicina felina, con 30 años de
-                        experiencia clínica y criador de felinos exóticos y
-                        persas
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </Col>
-            </Row>
-            {/* opcion 4 */}
-            <Row className="my-3">
-              <Col>
-                <Accordion>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle as={Button} variant="Text" eventKey="0">
-                        <Form.Check
-                          type="radio"
-                          id="formHorizontalRadios2"
-                          label="José Jarazo (Clínica)"
-                          value="José Jarazo"
-                          name="profesional"
-                          onChange={handleTurno}
-                        />
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        Egresado de la universidad del Salvador, especializado
-                        en clínica de pequeños animales y en cirugía de tejidos
-                        blandos traumatizados en el Royal Veterinary Collegue de
-                        la Universidad de Londres.
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </Col>
-            </Row>
-            {/* opcion 5 */}
-            <Row className="my-3">
-              <Col>
-                <Accordion>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle as={Button} variant="Text" eventKey="0">
-                        <Form.Check
-                          type="radio"
-                          id="formHorizontalRadios2"
-                          label="Gerónimo Bazán (Clínica)"
-                          value="Gerónimo Bazán"
-                          name="profesional"
-                          onChange={handleTurno}
-                        />
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        Veterinario egresado de la U.B.A en 1995 (22 años de
-                        experiencia). Se desempeña en áreas de cirugía,
-                        anestesiología y cardiología. Conferencista
-                        internacional.
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-                {/* confirmar turno */}
-              </Col>
-            </Row>
-            <Row className="my-3">
-              <Col>
-                <Accordion>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle as={Button} variant="Text" eventKey="0">
-                        <Form.Check
-                          type="radio"
-                          id="formHorizontalRadios2"
-                          label="Josefina Cipriani (Peluquería)"
-                          onChange={handleTurno}
-                          name="profesional"
-                          value="Josefina Cipriani"
-                        />
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        Jose se dedica a bañar al 4 patas del hogar. Trabaja
-                        hace 5 años con nosotros y destacamos su amabilidad y
-                        paciencia
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </Col>
-            </Row>
-            {/* opcion 2 */}
-            <Row>
-              <Col>
-                <Accordion>
-                  <Card>
-                    <Card.Header>
-                      <Accordion.Toggle as={Button} variant="Text" eventKey="0">
-                        <Form.Check
-                          type="radio"
-                          name="profesional"
-                          id="formHorizontalRadios2"
-                          label="Mariana Montero (Peluquería)"
-                          value="Mariana Moreno"
-                          onChange={handleTurno}
-                        />
-                      </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                      <Card.Body>
-                        Mariana tiene más de 10 años de experiencia y trabaja
-                        con nosotros hace 3. Se destaca por su simpatia y
-                        profesionalismo{" "}
-                      </Card.Body>
-                    </Accordion.Collapse>
-                  </Card>
-                </Accordion>
-              </Col>
-            </Row>
             <Button
               type="submit"
               onClick={submitTurno}
