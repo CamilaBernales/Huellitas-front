@@ -14,7 +14,6 @@ import Productosadmin from "./components/administrador/Productosadmin";
 import Turnos from "./components/usuario/Turnos/Turnos";
 import Turno from "./components/usuario/Turnos/Turno";
 import PedidosAdmin from "./components/administrador/pedidos/PedidosAdmin";
-
 function App() {
   return (
     <div className="App">
@@ -31,7 +30,6 @@ function App() {
           <Route exact path="/registro" component={Registro} />
           <Route exact path="/turnos" component={Turnos} />
           <Route exact path="/turno" component={Turno} />
-
           {/* rutas admin */}
           <Route exact path="/admin/turnos" component={Turnosadmin} />
           <Route exact path="/admin/pedidos" component={PedidosAdmin} />

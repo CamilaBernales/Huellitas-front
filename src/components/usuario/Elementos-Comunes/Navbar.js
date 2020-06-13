@@ -4,7 +4,6 @@ import "../../../css/Navbar.css";
 const NavBar = () => {
   const [isLogIn, setIsLogIn] = useState(false);
 
-  console.log(isLogIn);
   const revisarSesion = () => {
     const isLoggin = localStorage.getItem("token") || "";
     console.log(isLoggin);
@@ -17,7 +16,7 @@ const NavBar = () => {
 
   useEffect(() => {
     revisarSesion();
-  }, [isLogIn]);
+  }, []);
 
   return (
     <Navbar className="navbar" collapseOnSelect expand="lg">

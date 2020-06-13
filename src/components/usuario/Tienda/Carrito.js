@@ -94,13 +94,13 @@ const Carrito = () => {
       <Navbar />
       <Container className="mt-5 mb-5">
         <Tabs
-          className="d-flex justify-content-center"
+          className="d-flex justify-content-center align-items-center"
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
           <Tab eventKey="iniciocompra" title="Paso 1">
-            <Row>
-              <Col>
+            <Row className="d-flex justify-content-center align-items-center">
+              <Col sm={12} md={8} xl={6}>
                 <Table responsive>
                   <thead>
                     <tr>
@@ -125,7 +125,7 @@ const Carrito = () => {
                   </Col>
                 </Row>
               </Col>
-              <Col>
+              <Col sm={12} md={8} xl={6}>
                 <Form.Label className="my-3 text-uppercase font-weight-bold d-flex justify-content-start">
                   Inserta tu cupón de descuento
                 </Form.Label>
@@ -174,8 +174,8 @@ const Carrito = () => {
           <Tab eventKey="datoscomprador" title="Paso 2">
             <h3>Detalles de envio</h3>
             <hr />
-            <Row>
-              <Col>
+            <Row className="d-flex justify-content-center align-items-center">
+              <Col sm={12} md={8} xl={6}>
                 <Form>
                   <Row>
                     <Col className="my-3">
@@ -260,7 +260,7 @@ const Carrito = () => {
                   </Col>
                 </Row>
               </Col>
-              <Col>
+              <Col sm={12} md={8} xl={6}>
                 <Table responsive>
                   <thead>
                     <tr>
@@ -292,8 +292,8 @@ const Carrito = () => {
             <h3>Medios de Pago</h3>
 
             <hr />
-            <Row>
-              <Col>
+            <Row className="d-flex justify-content-center align-items-center">
+              <Col sm={12} md={8} xl={6}>
                 <Row>
                   <Col>
                     <Accordion>
@@ -386,7 +386,7 @@ const Carrito = () => {
                   </Col>
                 </Row>
               </Col>
-              <Col>
+              <Col sm={12} md={8} xl={6}>
                 <Table responsive>
                   <thead>
                     <tr>

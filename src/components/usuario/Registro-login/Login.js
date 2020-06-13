@@ -122,10 +122,7 @@ export default function Login(props) {
                     </Button>
                   </Col>
                 </Row>
-                <Link
-                  className="justify-content-start p-2"
-                  to={"/registro"}
-                >
+                <Link className="justify-content-start p-2" to={"/registro"}>
                   No tienes una cuenta? Registrate!
                 </Link>
               </Form>

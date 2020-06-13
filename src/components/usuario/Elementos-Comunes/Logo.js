@@ -5,15 +5,17 @@ import { Button } from "react-bootstrap";
 import "../../../css/Header.css";
 
 const Logo = () => {
-  let loginLogo;
 
+  let loginLogo;
   const [usuario, setUsuario] = useState(
     sessionStorage.getItem("usuarioReg") || ""
   );
 
   const salir = () => {
+    localStorage.removeItem('token');
     sessionStorage.setItem("usuarioReg", "");
     setUsuario(sessionStorage.getItem("usuarioReg"));
+    window.location.href = '/'
   };
 
   if (usuario !== "admin" && usuario !== "") {
@@ -30,7 +32,7 @@ const Logo = () => {
       <div className="img-fluid d-flex justify-content-end ">
         <div className="p-3">
           <Link to="/login">
-          <span>0</span>
+            <span className="p-2">Iniciar Sesión</span>
             <i className="fas fa-sign-in-alt fa-2x" />
           </Link>
         </div>
@@ -39,15 +41,14 @@ const Logo = () => {
   }
 
   return (
-  <header className="headerpage">
+    <header className="headerpage">
       <div className="img-fluid d-flex justify-content-end ">
         <div className="p-3 ml-5">
           <Link to="/carrito">
-            <span>Carrito</span>
+            <span className="p-2">(0)</span>
             <i className="fas fa-cart-plus fa-2x" />
           </Link>
         </div>
-        
         <div>{loginLogo}</div>
       </div>
 

@@ -121,8 +121,8 @@ const Turno = () => {
             Los campos deben estar completos
           </Alert>
         ) : null}
-        <Row class="col-12">
-          <Col xs={12} md={8} lg={6}>
+        <Row className="d-flex justify-content-center align-items-center">
+          <Col sm={12} md={8} xl={6}>
             <h3>Datos de tu Mascota</h3>
             <hr />
             <Form>
@@ -200,7 +200,7 @@ const Turno = () => {
           </Col>
 
           {/* columna de profesionales */}
-          <Col xs={12} md={8} lg={6}>
+          <Col sm={12} md={8} xl={6}>
             <h3>Elige un Profesional</h3>
             <hr />
             {equipo.map((personal) => (
