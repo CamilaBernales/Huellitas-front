@@ -30,6 +30,7 @@ const Logo = () => {
       <div className="img-fluid d-flex justify-content-end ">
         <div className="p-3">
           <Link to="/login">
+          <span>0</span>
             <i className="fas fa-sign-in-alt fa-2x" />
           </Link>
         </div>
@@ -42,9 +43,11 @@ const Logo = () => {
       <div className="img-fluid d-flex justify-content-end ">
         <div className="p-3 ml-5">
           <Link to="/carrito">
+            <span>Carrito</span>
             <i className="fas fa-cart-plus fa-2x" />
           </Link>
         </div>
+        
         <div>{loginLogo}</div>
       </div>
 

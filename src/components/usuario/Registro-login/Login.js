@@ -39,6 +39,7 @@ export default function Login(props) {
           sessionStorage.setItem("usuarioReg", "Administrador");
           props.history.push("/turno");
         } else {
+          sessionStorage.setItem("usuarioReg", "Usuario");
           props.history.push("/");
         }
         localStorage.setItem("token", res.data.token);
@@ -76,17 +77,17 @@ export default function Login(props) {
     <Fragment>
       <Logo />
       <Navbar />
-      <Container className="m-4">
+      <Container className="my-4">
         <Row className="px-5 d-flex justify-content-center align-items-center ">
-          <div className="col mx-5 img-fluid">
-            <img src={imgLogin} alt="imagen login" />
-          </div>
-          <Col sm={12} md={4}>
+          <Col sm={12} md={8} xl={6} className="col-12 mx-3 my-2">
+            <img src={imgLogin} className="img-fluid" alt="imagen login" />
+          </Col>
+          <Col sm={12} md={8} xl={4} className="col-12 mx-3 my-2">
             <div className="formulario">
               <Form onSubmit={onSubmitForm}>
                 <h2 className="text-center mx-4 ">LOGIN</h2>
                 <Form.Group controlId="formEmail">
-                  <Form.Label className="d-flex justify-content-start">
+                  <Form.Label className=" d-flex justify-content-start">
                     Email:
                   </Form.Label>
                   <Form.Control
@@ -99,7 +100,7 @@ export default function Login(props) {
                   />
                 </Form.Group>
                 <Form.Group controlId="formPassword">
-                  <Form.Label className="d-flex justify-content-start">
+                  <Form.Label className="justify-content-start">
                     Contraseña:
                   </Form.Label>
                   <Form.Control
@@ -112,7 +113,7 @@ export default function Login(props) {
                   />
                 </Form.Group>
                 <Row>
-                  <Col className="d-flex justify-content-center">
+                  <Col className="justify-content-center">
                     <Button
                       className="text-white text-uppercase font-weight-bold btnauth rounded-pill btn btn-button w-100"
                       type="submit"
@@ -122,7 +123,7 @@ export default function Login(props) {
                   </Col>
                 </Row>
                 <Link
-                  className="d-flex justify-content-start p-2"
+                  className="justify-content-start p-2"
                   to={"/registro"}
                 >
                   No tienes una cuenta? Registrate!

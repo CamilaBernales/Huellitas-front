@@ -9,12 +9,14 @@ import {
   Button,
   Alert,
 } from "react-bootstrap";
+import { equipo } from "../Equipo/Equipo";
 import Swal from "sweetalert2";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import tokenAuth from "../../../config/token";
 import axiosConfig from "../../../config/axios";
-import { equipo } from "../Equipo/Equipo";
+import moment from 'moment';
+
 const Turno = () => {
   console.log(equipo);
   const [nuevoTurno, setNuevoTurno] = useState({

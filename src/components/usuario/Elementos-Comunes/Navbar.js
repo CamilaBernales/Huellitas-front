@@ -4,18 +4,20 @@ import "../../../css/Navbar.css";
 const NavBar = () => {
   const [isLogIn, setIsLogIn] = useState(false);
 
+  console.log(isLogIn);
   const revisarSesion = () => {
-    const isLoggin = localStorage.getItem("token");
-    if (isLoggin !== "") {
-      setIsLogIn(true);
-    } else {
+    const isLoggin = localStorage.getItem("token") || "";
+    console.log(isLoggin);
+    if (isLoggin === "") {
       setIsLogIn(false);
+    } else {
+      setIsLogIn(true);
     }
   };
 
   useEffect(() => {
     revisarSesion();
-  }, []);
+  }, [isLogIn]);
 
   return (
     <Navbar className="navbar" collapseOnSelect expand="lg">
@@ -30,7 +32,7 @@ const NavBar = () => {
               <NavDropdown.Item href="/">Mis Turnos</NavDropdown.Item>
             </NavDropdown>
           ) : (
-            <Nav.Link href="/turnos">Turnos</Nav.Link>
+            <Nav.Link href="/login">Turnos</Nav.Link>
           )}
           <Nav.Link href="/tienda">Market</Nav.Link>
           <Nav.Link href="/equipo">Nuestro Equipo</Nav.Link>
