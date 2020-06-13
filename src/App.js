@@ -10,6 +10,7 @@ import Equipo from './components/usuario/Equipo/Equipo';
 import Contacto from './components/usuario/Contacto/Contacto'
 import ModalProducto from './components/usuario/Tienda/ModalProducto';
 import Turnosadmin from './components/administrador/Turnosadmin';
+import ListadoMensajes from './components/usuario/Contacto/ListadoMensajes'
 import Turnos from './components/usuario/Turnos/Turnos';
 import TurnoConsulta from './components/usuario/Turnos/TurnoConsulta';
 import TurnoPeluqueria from './components/usuario/Turnos/TurnoPeluqueria';
@@ -37,6 +38,7 @@ function App() {
 
           {/* rutas admin */}
          <Route exact path ="/admin/turnos" component={Turnosadmin}/>
+         <Route exact path ="/admin/mensajes" component={ListadoMensajes}/>
        </Switch>
      </Router>
     </div>

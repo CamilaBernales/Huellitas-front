@@ -7,26 +7,44 @@ import { Form, Container, Button, Col, Row, } from 'react-bootstrap'
 
 export default function Contacto() {
 
+    //Defino el state
     const [consulta, setConsulta] = useState({
         nombre:'',
         email:'',
         mensaje:''
     })
 
+    //Extraigo la consulta
     const {nombre, email, mensaje} = consulta
 
-    const onChangeConsulta = (e) =>{
+
+    //Cuando hay cambios en el formulario
+    const onChangeConsulta = e =>{
         setConsulta({
             ...consulta,
             [e.target.name] : e.target.value
         });
     }
 
-    const onSubmitConsulta = (e) =>{
+
+    //Cuando quiero mandar la consulta
+    const onSubmitConsulta = e =>{
         e.preventDefault()
-        if(nombre === '' && email === '' && mensaje === ''){
-            alert('Debe completar todos los campos')
+        
+        //Validar campos
+        if(nombre.trim() === '' || email.trim() === '' || mensaje.trim() === ''){
+            alert('Todos los campos son obligatorios');
+            return
         }
+
+        //Agrego la consulta
+        
+        //Reseteo el formulario
+        setConsulta({
+            nombre: '',
+            email: '',
+            mensaje: ''
+        })
     }
 
     return (

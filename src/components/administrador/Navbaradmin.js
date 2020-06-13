@@ -31,6 +31,7 @@ const NavBar = () => {
             <Link to="/admin/turnos" className="nav-link">Turnos</Link>
             <Link to="/admin/productos" className="nav-link">Productos</Link>
             <Link to="/admin/usuarios" className="nav-link">Usuarios</Link>
+            <Link to="/admin/mensajes" className="nav-link">Mensajes</Link>
           </Nav>
         </Navbar>
       </Fragment>
