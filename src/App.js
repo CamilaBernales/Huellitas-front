@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/Producto.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import RutaPrivada from './components/usuario/RutaPrivada/RutaPrivada'
 import Carrito from "./components/usuario/Tienda/Carrito";
 import Tienda from "./components/usuario/Tienda/Tienda";
 import Home from "./components/usuario/Home/Home";
@@ -19,17 +20,18 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
+          {/* Rutas privadas */}
+          <RutaPrivada exact path="/turno" component={Turno} />
+          <RutaPrivada exact path="/carrito" component={Carrito} />
           <Route exact path="/" component={Home} />
           <Route exact path="/tienda" component={Tienda} />
           <Route exact path="/servicios" />
           <Route exact path="/contacto" />
           <Route exact path="/m" component={ModalProducto} />
           <Route exact path="/equipo" component={Equipo} />
-          <Route exact path="/carrito" component={Carrito} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/registro" component={Registro} />
           <Route exact path="/turnos" component={Turnos} />
-          <Route exact path="/turno" component={Turno} />
           {/* rutas admin */}
           <Route exact path="/admin/turnos" component={Turnosadmin} />
           <Route exact path="/admin/pedidos" component={PedidosAdmin} />
