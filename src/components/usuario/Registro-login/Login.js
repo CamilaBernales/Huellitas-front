@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Container, Form, Button, Col, Row } from "react-bootstrap";
+import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../../../css/Login.css";
 import imgLogin from "../../../img/login.svg";
@@ -14,7 +14,8 @@ export default function Login(props) {
   });
 
   const { email, password } = ingreso;
-
+  const [error, setError] = useState(false);
+  const [msgError, setMsgError] = useState("");
   // const [redireccionar, setRedireccionar] = useState(false);
   // const [admin, setAdmin] = useState(false);
 
@@ -37,7 +38,7 @@ export default function Login(props) {
         console.log(ingreso);
         if (ingreso.email === "admin@correo.com") {
           sessionStorage.setItem("usuarioReg", "Administrador");
-          props.history.push("/turno");
+          props.history.push("/admin/turnos");
         } else {
           sessionStorage.setItem("usuarioReg", "Usuario");
           props.history.push("/");
@@ -46,7 +47,9 @@ export default function Login(props) {
         console.log(res);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.msg);
+        setError(true);
+        setMsgError(err.response.data.msg);
       });
 
     // if (email === 'admin' && password === 'admin') {
@@ -78,6 +81,14 @@ export default function Login(props) {
       <Logo />
       <Navbar />
       <Container className="my-4">
+        {error ? (
+          <Alert
+            className="p-3 text-center text-uppercase font-weight-bold"
+            variant="danger"
+          >
+            {msgError}
+          </Alert>
+        ) : null}
         <Row className="px-5 d-flex justify-content-center align-items-center ">
           <Col sm={12} md={8} xl={6} className="col-12 mx-3 my-2">
             <img src={imgLogin} className="img-fluid" alt="imagen login" />

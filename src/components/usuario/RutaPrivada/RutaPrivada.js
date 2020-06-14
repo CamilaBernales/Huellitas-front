@@ -24,6 +24,7 @@ const RutaPrivada = ({ component: Component, ...props }) => {
         !isLogIn ? <Redirect to="/login" /> : <Component {...props} />
       }
     />
+    
   );
 };
 

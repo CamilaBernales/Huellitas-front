@@ -18,7 +18,8 @@ import axiosConfig from "../../../config/axios";
 import moment from "moment";
 
 const Turno = () => {
-  console.log(equipo);
+
+
   const [nuevoTurno, setNuevoTurno] = useState({
     nombremascota: "",
     edad: "",
@@ -28,9 +29,8 @@ const Turno = () => {
     hora: "",
     profesional: "",
     resumen: "",
-    contacto:''
+    contacto: "",
   });
-
   const [horarios, setHorarios] = useState([
     "9:00",
     "9:30",
@@ -52,7 +52,7 @@ const Turno = () => {
     "19:00",
   ]);
   const [error, setError] = useState(false);
-
+  const [msgError, setMsgError] = useState("");
   const handleTurno = (e) => {
     setNuevoTurno({
       ...nuevoTurno,
@@ -99,9 +99,13 @@ const Turno = () => {
         })
         .catch((err) => {
           console.log(err.response);
+          setError(true);
+          setMsgError(err.response.data.msg);
+          setMsgError(err.response.data.msg);
         });
     } else {
       setError(true);
+      setMsgError("Los campos deben estar completos.");
     }
   };
   useEffect(() => {
@@ -118,7 +122,7 @@ const Turno = () => {
             className="p-3 text-center text-uppercase font-weight-bold"
             variant="danger"
           >
-            Los campos deben estar completos
+            {msgError}
           </Alert>
         ) : null}
         <Row className="d-flex justify-content-center align-items-center">
@@ -129,15 +133,18 @@ const Turno = () => {
               <Row>
                 <Col className="my-3">
                   <Form.Control
+                    required
                     placeholder="Nombre de tu mascota"
                     name="nombremascota"
                     onChange={handleTurno}
+                    maxlength="40"
                   />
                 </Col>
               </Row>
               <Row>
                 <Col className="my-3">
                   <Form.Control
+                    required
                     placeholder="Edad"
                     name="edad"
                     onChange={handleTurno}
@@ -147,18 +154,22 @@ const Turno = () => {
               <Row>
                 <Col className="my-3">
                   <Form.Control
+                    required
                     placeholder="Raza"
                     name="raza"
                     onChange={handleTurno}
+                    maxlength="40"
                   />
                 </Col>
               </Row>
               <Row>
                 <Col className="my-3">
                   <Form.Control
+                    required
                     placeholder="Alergias y otras particularidades"
                     name="particularidades"
                     onChange={handleTurno}
+                    maxlength="120"
                   />
                 </Col>
               </Row>
@@ -168,17 +179,19 @@ const Turno = () => {
 
             <h3>Información de tu turno</h3>
             <Row>
-                <Col className="my-3">
-                  <Form.Control
-                    placeholder="Tu número de teléfono"
-                    name="contacto"
-                    onChange={handleTurno}
-                  />
-                </Col>
-              </Row>
+              <Col className="my-3">
+                <Form.Control
+                  required
+                  placeholder="Tu número de teléfono"
+                  name="contacto"
+                  onChange={handleTurno}
+                />
+              </Col>
+            </Row>
             <Row className="m-3">
               <label>Elegi una fecha</label>
               <input
+                required
                 type="date"
                 className="m-3 w-50"
                 name="fecha"
@@ -199,10 +212,12 @@ const Turno = () => {
               <Col className="my-3">
                 <p>Cuentanos que le pasa a tu mascota</p>
                 <textarea
+                  required
                   className="p-4 w-100"
                   id="resumen"
                   name="resumen"
                   onChange={handleTurno}
+                  maxlength="200"
                 />
               </Col>
             </Row>
