@@ -34,8 +34,7 @@ export default function Registro(props) {
     if (
       nombre === "" ||
       email === "" ||
-      password === "" ||
-      rol === ""
+      password === ""
       // passwordConfirm === ""
     ) {
       alert("Por favor llenar todos los campos");

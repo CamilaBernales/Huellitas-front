@@ -23,6 +23,7 @@ function App() {
           {/* Rutas privadas */}
           <RutaPrivada exact path="/turno" component={Turno} />
           <RutaPrivada exact path="/carrito" component={Carrito} />
+          {/* no privadas */}
           <Route exact path="/" component={Home} />
           <Route exact path="/tienda" component={Tienda} />
           <Route exact path="/servicios" />

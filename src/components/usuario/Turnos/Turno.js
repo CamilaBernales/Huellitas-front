@@ -15,7 +15,7 @@ import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import tokenAuth from "../../../config/token";
 import axiosConfig from "../../../config/axios";
-import moment from 'moment';
+import moment from "moment";
 
 const Turno = () => {
   console.log(equipo);
@@ -28,6 +28,7 @@ const Turno = () => {
     hora: "",
     profesional: "",
     resumen: "",
+    contacto:''
   });
 
   const [horarios, setHorarios] = useState([
@@ -76,15 +77,14 @@ const Turno = () => {
       nuevoTurno.raza.trim() !== "" &&
       nuevoTurno.fecha.trim() !== "" &&
       nuevoTurno.hora.trim() !== "" &&
-      nuevoTurno.profesional.trim() !== ""
+      nuevoTurno.profesional.trim() !== "" &&
+      nuevoTurno.contacto.trim() !== ""
     ) {
       e.preventDefault();
       const token = localStorage.getItem("token");
       if (token) {
         tokenAuth(token);
       }
-
-      console.log(token);
       axiosConfig
         .post("/api/turnos/alta", nuevoTurno)
         .then((res) => {
@@ -167,6 +167,15 @@ const Turno = () => {
             <hr />
 
             <h3>Información de tu turno</h3>
+            <Row>
+                <Col className="my-3">
+                  <Form.Control
+                    placeholder="Tu número de teléfono"
+                    name="contacto"
+                    onChange={handleTurno}
+                  />
+                </Col>
+              </Row>
             <Row className="m-3">
               <label>Elegi una fecha</label>
               <input
