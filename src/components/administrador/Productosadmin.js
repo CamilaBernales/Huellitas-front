@@ -26,9 +26,6 @@ export default function Productosadmin () {
   const [disabledAgregar, setDisabledAgregar] = useState(false);
   const usuarioReg = sessionStorage.getItem('usuarioReg');
 
-  if (usuarioReg !== 'Administrador') {
-    return (<Redirect to="/"/>);
-  }
 
   const productosCode = [
     {

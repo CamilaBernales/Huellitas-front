@@ -101,7 +101,6 @@ const Turno = () => {
           console.log(err.response);
           setError(true);
           setMsgError(err.response.data.msg);
-          setMsgError(err.response.data.msg);
         });
     } else {
       setError(true);

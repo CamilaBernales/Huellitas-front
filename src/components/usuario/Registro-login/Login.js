@@ -16,8 +16,6 @@ export default function Login(props) {
   const { email, password } = ingreso;
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
-  // const [redireccionar, setRedireccionar] = useState(false);
-  // const [admin, setAdmin] = useState(false);
 
   const onChangeForm = (e) => {
     setIngreso({
@@ -35,45 +33,15 @@ export default function Login(props) {
     axiosConfig
       .post("/api/auth/login", ingreso)
       .then((res) => {
-        console.log(ingreso);
-        if (ingreso.email === "admin@correo.com") {
-          sessionStorage.setItem("usuarioReg", "Administrador");
-          props.history.push("/admin/turnos");
-        } else {
-          sessionStorage.setItem("usuarioReg", "Usuario");
-          props.history.push("/");
-        }
-        localStorage.setItem("token", res.data.token);
         console.log(res);
+        localStorage.setItem("token", res.data.token);
+        props.history.push("/");
       })
       .catch((err) => {
         console.log(err.response.data.msg);
         setError(true);
         setMsgError(err.response.data.msg);
       });
-
-    // if (email === 'admin' && password === 'admin') {
-    //   sessionStorage.setItem('usuarioReg', 'Administrador');
-    //   setAdmin(true);
-    // } else {
-    //   let usuarios;
-    //   if (localStorage.getItem('usuarios')) {
-    //     usuarios = JSON.parse(localStorage.getItem('usuarios'));
-    //   } else {
-    //     alert('El usuario no existe');
-    //     return;
-    //   }
-    // }
-
-    //   if (usuarios.find(usuario => (usuario.email === email) && (usuario.password === password))) {
-    //     const usuarioReg = usuarios.find(usuario => (
-    //       (usuario.email === email) && (usuario.password === password)
-    //     )).nombre;
-    //     sessionStorage.setItem('usuarioReg', usuarioReg);
-    //   } else {
-    //     alert('La contraseña o el email son incorrectos');
-    //     return;
-    //   }
   };
 
   return (

@@ -4,17 +4,12 @@ import { Navbar, Nav, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 
 const NavBar = () => {
-  const [redireccionar, setRedireccionar] = useState(false);
 
   const salir = () => {
     sessionStorage.setItem('usuarioReg', '');
-    setRedireccionar(true);
   }
 
   return (
-    redireccionar ?
-      <Redirect to='/'/>
-    :
       <Fragment>
         <div className="img-fluid d-flex justify-content-end m-0">
           <div className="p-3">

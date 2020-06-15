@@ -2,19 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 
 const RutaPrivada = ({ component: Component, ...props }) => {
-  const [isLogIn, setIsLogIn] = useState(localStorage.getItem("token") || "");
-
-  const revisarSesion = () => {
-    if (isLogIn === "") {
-      setIsLogIn(false);
-    } else {
-      setIsLogIn(true);
-    }
-  };
+  const [isLogIn, setIsLogIn] = useState(false);
 
   useEffect(() => {
+    const revisarSesion = () => {
+      const token = localStorage.getItem("token") || "";
+      if (token === "") {
+        setIsLogIn(false);
+      } else {
+        setIsLogIn(true);
+      }
+    };
     revisarSesion();
-    //eslint-disable-next-line
   }, []);
 
   return (
@@ -24,7 +23,6 @@ const RutaPrivada = ({ component: Component, ...props }) => {
         !isLogIn ? <Redirect to="/login" /> : <Component {...props} />
       }
     />
-    
   );
 };
 

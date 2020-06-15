@@ -2,7 +2,8 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/Producto.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import RutaPrivada from './components/usuario/RutaPrivada/RutaPrivada'
+import RutaPrivada from "./components/usuario/RutaPrivada/RutaPrivada";
+import RutaPrivAdmin from "./components/administrador/RutaPrivada/RutaPrivAdmin";
 import Carrito from "./components/usuario/Tienda/Carrito";
 import Tienda from "./components/usuario/Tienda/Tienda";
 import Home from "./components/usuario/Home/Home";
@@ -33,10 +34,15 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/registro" component={Registro} />
           <Route exact path="/turnos" component={Turnos} />
-          {/* rutas admin */}
-          <Route exact path="/admin/turnos" component={Turnosadmin} />
-          <Route exact path="/admin/pedidos" component={PedidosAdmin} />
-          <Route exact path="/admin/productos" component={Productosadmin} />
+          {/* rutas privadas admin */}
+
+          <RutaPrivAdmin exact path="/admin/turnos" component={Turnosadmin} />
+          <RutaPrivAdmin exact path="/admin/pedidos" component={PedidosAdmin} />
+          <RutaPrivAdmin
+            exact
+            path="/admin/productos"
+            component={Productosadmin}
+          />
         </Switch>
       </Router>
     </div>
