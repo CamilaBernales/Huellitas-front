@@ -25,7 +25,7 @@ const NavBar = () => {
             <Link to="/admin/pedidos" className="nav-link">Pedidos</Link>
             <Link to="/admin/turnos" className="nav-link">Turnos</Link>
             <Link to="/admin/productos" className="nav-link">Productos</Link>
-            <Link to="/admin/usuarios" className="nav-link">Usuarios</Link>
+            <Link to="/admin/listadousuarios" className="nav-link">Usuarios</Link>
           </Nav>
         </Navbar>
       </Fragment>

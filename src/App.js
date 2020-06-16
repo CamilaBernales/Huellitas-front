@@ -16,6 +16,7 @@ import Productosadmin from "./components/administrador/Productosadmin";
 import Turnos from "./components/usuario/Turnos/Turnos";
 import Turno from "./components/usuario/Turnos/Turno";
 import PedidosAdmin from "./components/administrador/pedidos/PedidosAdmin";
+import ListadoUsuarios from "./components/administrador/Usuarios/ListadoUsuarios";
 function App() {
   return (
     <div className="App">
@@ -42,6 +43,11 @@ function App() {
             exact
             path="/admin/productos"
             component={Productosadmin}
+          />
+          <RutaPrivAdmin
+            exact
+            path="/admin/listadousuarios"
+            component={ListadoUsuarios}
           />
         </Switch>
       </Router>

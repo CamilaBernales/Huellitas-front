@@ -13,7 +13,6 @@ const NavBar = () => {
       setIsLogIn(true);
     }
   };
-
   useEffect(() => {
     revisarSesion();
   }, []);
