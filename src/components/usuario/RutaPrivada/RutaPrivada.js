@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
+const RutaPrivAdmin = ({ component: Component, ...props }) => {
+  const [permisoValido, setPermisoValido] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-const RutaPrivada = ({ component: Component, ...props }) => {
-
-  const [isLogIn, setIsLogIn] = useState(localStorage.getItem("token") || "");
-
-  const revisarSesion = () => {
-    if (isLogIn === "") {
-      setIsLogIn(false);
-    } else {
-      setIsLogIn(true);
-    }
-  };
-
+  console.log(props);
   useEffect(() => {
-    revisarSesion();
+    const uservalidation = () => {
+      if (props.respuesta.validToken === true) {
+        setPermisoValido(true);
+        setLoading(false);
+      } else {
+        setPermisoValido(false);
+        setLoading(false);
+      }
+    };
+    uservalidation();
   }, []);
-
-  return (
+  return loading ? (
+    <p>Cargando...</p>
+  ) : (
     <Route
       {...props}
       render={(props) =>
-        !isLogIn ? <Redirect to="/login" /> : <Component {...props} />
+        !permisoValido ? <Redirect to="/" /> : <Component {...props} />
       }
     />
   );
 };
-
-export default RutaPrivada;
+export default RutaPrivAdmin;

@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "../../../css/Navbar.css";
+import tokenAuth from "../../../config/token";
 const NavBar = () => {
   const [isLogIn, setIsLogIn] = useState(false);
-
-  const revisarSesion = () => {
-    const isLoggin = localStorage.getItem("token") || "";
-    console.log(isLoggin);
-    if (isLoggin === "") {
-      setIsLogIn(false);
-    } else {
-      setIsLogIn(true);
-    }
-  };
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const revisarSesion = () => {
+      if (token) {
+        tokenAuth(token);
+        setIsLogIn(true);
+      } else {
+        setIsLogIn(false);
+      }
+    };
     revisarSesion();
   }, []);
 

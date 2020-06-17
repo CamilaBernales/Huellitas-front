@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/Producto.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -17,40 +17,98 @@ import Turnos from "./components/usuario/Turnos/Turnos";
 import Turno from "./components/usuario/Turnos/Turno";
 import PedidosAdmin from "./components/administrador/pedidos/PedidosAdmin";
 import ListadoUsuarios from "./components/administrador/Usuarios/ListadoUsuarios";
+import axiosConfig from "./config/axios";
+import tokenAuth from "./config/token";
+
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [respuesta, setRespuesta] = useState({});
+  useEffect(() => {
+    const uservalidation = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        tokenAuth(token);
+        try {
+          let res = await axiosConfig.get("/api/auth/uservalidation");
+          console.log(res.data);
+          setRespuesta(res.data);
+        } catch (err) {
+          console.log(err.response.data);
+        }
+      }
+      setLoading(false);
+    };
+    uservalidation();
+  }, []);
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          {/* Rutas privadas */}
-          <RutaPrivada exact path="/turno" component={Turno} />
-          <RutaPrivada exact path="/carrito" component={Carrito} />
-          {/* no privadas */}
-          <Route exact path="/" component={Home} />
-          <Route exact path="/tienda" component={Tienda} />
-          <Route exact path="/servicios" />
-          <Route exact path="/contacto" />
-          <Route exact path="/m" component={ModalProducto} />
-          <Route exact path="/equipo" component={Equipo} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/registro" component={Registro} />
-          <Route exact path="/turnos" component={Turnos} />
-          {/* rutas privadas admin */}
-
-          <RutaPrivAdmin exact path="/admin/turnos" component={Turnosadmin} />
-          <RutaPrivAdmin exact path="/admin/pedidos" component={PedidosAdmin} />
-          <RutaPrivAdmin
-            exact
-            path="/admin/productos"
-            component={Productosadmin}
-          />
-          <RutaPrivAdmin
-            exact
-            path="/admin/listadousuarios"
-            component={ListadoUsuarios}
-          />
-        </Switch>
-      </Router>
+      {!loading ? (
+        <Router>
+          <Switch>
+            (
+            <RutaPrivAdmin
+              exact
+              path="/admin/turnos"
+              respuesta={respuesta}
+              component={Turnosadmin}
+            />
+            <RutaPrivAdmin
+              exact
+              path="/admin/pedidos"
+              component={PedidosAdmin}
+              respuesta={respuesta}
+            />
+            <RutaPrivAdmin
+              exact
+              path="/admin/productos"
+              component={Productosadmin}
+              respuesta={respuesta}
+            />
+            <RutaPrivAdmin
+              exact
+              path="/admin/listadousuarios"
+              component={ListadoUsuarios}
+              respuesta={respuesta}
+            />
+            <RutaPrivada
+              exact
+              path="/turno"
+              component={Turno}
+              respuesta={respuesta}
+            />
+            <RutaPrivada
+              exact
+              path="/carrito"
+              component={Carrito}
+              respuesta={respuesta}
+            />
+            )
+            <Route exact path="/" component={Home} />
+            <Route exact path="/tienda" component={Tienda} />
+            <Route exact path="/servicios" />
+            <Route exact path="/contacto" />
+            <Route exact path="/m" component={ModalProducto} />
+            <Route exact path="/equipo" component={Equipo} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/registro" component={Registro} />
+            <Route exact path="/turnos" component={Turnos} />
+          </Switch>
+        </Router>
+      ) : (
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/tienda" component={Tienda} />
+            <Route exact path="/servicios" />
+            <Route exact path="/contacto" />
+            <Route exact path="/m" component={ModalProducto} />
+            <Route exact path="/equipo" component={Equipo} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/registro" component={Registro} />
+            <Route exact path="/turnos" component={Turnos} />
+          </Switch>
+        </Router>
+      )}
     </div>
   );
 }
