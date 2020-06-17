@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Container } from "react-bootstrap";
 import Producto from "./Producto";
-import Logo from "../Elementos-Comunes/Logo";
-import Navbar from "../Elementos-Comunes/Navbar";
 
 const Tienda = () => {
   let productos = [
@@ -14,7 +12,7 @@ const Tienda = () => {
       agregado: false,
       cantidadAComprar: 0,
       esPromo: true,
-      stock: 0
+      stock: 0,
     },
     {
       id: "2",
@@ -24,7 +22,7 @@ const Tienda = () => {
       agregado: false,
       cantidadAComprar: 0,
       esPromo: true,
-      stock: 1
+      stock: 1,
     },
     {
       id: "3",
@@ -34,7 +32,7 @@ const Tienda = () => {
       agregado: false,
       cantidadAComprar: 0,
       esPromo: true,
-      stock: 5
+      stock: 5,
     },
     {
       id: "4",
@@ -44,7 +42,7 @@ const Tienda = () => {
       agregado: false,
       cantidadAComprar: 0,
       esPromo: true,
-      stock: 5
+      stock: 5,
     },
     {
       id: "5",
@@ -54,7 +52,7 @@ const Tienda = () => {
       agregado: false,
       cantidadAComprar: 0,
       esPromo: true,
-      stock: 5
+      stock: 5,
     },
     {
       id: "6",
@@ -64,7 +62,7 @@ const Tienda = () => {
       agregado: false,
       cantidadAComprar: 0,
       esPromo: true,
-      stock: 5
+      stock: 5,
     },
     {
       id: "7",
@@ -74,7 +72,7 @@ const Tienda = () => {
       agregado: false,
       cantidadAComprar: 0,
       esPromo: true,
-      stock: 5
+      stock: 5,
     },
     {
       id: "8",
@@ -84,7 +82,7 @@ const Tienda = () => {
       agregado: false,
       cantidadAComprar: 0,
       esPromo: true,
-      stock: 5
+      stock: 5,
     },
     {
       id: "9",
@@ -94,19 +92,17 @@ const Tienda = () => {
       agregado: false,
       cantidadAComprar: 0,
       esPromo: true,
-      stock: 5
+      stock: 5,
     },
   ];
 
   return (
     <div>
       <Fragment>
-        <Logo />
-        <Navbar />
         <Container>
           <Row className="col-12 m-auto">
             {productos.map((producto) => (
-              <Producto key={producto.id} producto={producto}/>
+              <Producto key={producto.id} producto={producto} />
             ))}
           </Row>
         </Container>

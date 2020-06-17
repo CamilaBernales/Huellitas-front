@@ -3,10 +3,9 @@ import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../../../css/Login.css";
 import imgLogin from "../../../img/login.svg";
+import axiosConfig from "../../../config/axios";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
-import axiosConfig from "../../../config/axios";
-
 export default function Login(props) {
   const [ingreso, setIngreso] = useState({
     email: "",
@@ -35,7 +34,7 @@ export default function Login(props) {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        props.history.push("/");
+        props.history.push("/admin/pedidos");
       })
       .catch((err) => {
         console.log(err.response.data.msg);
@@ -92,7 +91,7 @@ export default function Login(props) {
                   />
                 </Form.Group>
                 <Row>
-                  <Col className="justify-content-center">
+                  <Col className="justify-content-center mb-3">
                     <Button
                       className="text-white text-uppercase font-weight-bold btnauth rounded-pill btn btn-button w-100"
                       type="submit"
@@ -101,7 +100,7 @@ export default function Login(props) {
                     </Button>
                   </Col>
                 </Row>
-                <Link className="justify-content-start p-2" to={"/registro"}>
+                <Link className="justify-content-start p-2 " to={"/registro"}>
                   No tienes una cuenta? Registrate!
                 </Link>
               </Form>

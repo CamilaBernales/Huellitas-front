@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 
 const RutaPrivada = ({ component: Component, ...props }) => {
-  const [isLogIn, setIsLogIn] = useState(false);
+
+  const [isLogIn, setIsLogIn] = useState(localStorage.getItem("token") || "");
+
+  const revisarSesion = () => {
+    if (isLogIn === "") {
+      setIsLogIn(false);
+    } else {
+      setIsLogIn(true);
+    }
+  };
 
   useEffect(() => {
-    const revisarSesion = () => {
-      const token = localStorage.getItem("token") || "";
-      if (token === "") {
-        setIsLogIn(false);
-      } else {
-        setIsLogIn(true);
-      }
-    };
     revisarSesion();
   }, []);
 
