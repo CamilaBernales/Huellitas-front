@@ -12,14 +12,14 @@ import Registro from "./components/usuario/Registro-login/Registro";
 import Equipo from "./components/usuario/Equipo/Equipo";
 import ModalProducto from "./components/usuario/Tienda/ModalProducto";
 import Turnosadmin from "./components/administrador/Turnosadmin";
-import Productosadmin from "./components/administrador/Productosadmin";
+import ListadoProductos from "./components/administrador/Productos/ListadoProductos";
+import FormProductos from "./components/administrador/Productos/FormProductos";
 import Turnos from "./components/usuario/Turnos/Turnos";
 import Turno from "./components/usuario/Turnos/Turno";
 import PedidosAdmin from "./components/administrador/pedidos/PedidosAdmin";
 import ListadoUsuarios from "./components/administrador/Usuarios/ListadoUsuarios";
 import axiosConfig from "./config/axios";
 import tokenAuth from "./config/token";
-
 function App() {
   const [loading, setLoading] = useState(true);
   const [respuesta, setRespuesta] = useState({});
@@ -45,7 +45,6 @@ function App() {
       {!loading ? (
         <Router>
           <Switch>
-            (
             <RutaPrivAdmin
               exact
               path="/admin/turnos"
@@ -61,7 +60,13 @@ function App() {
             <RutaPrivAdmin
               exact
               path="/admin/productos"
-              component={Productosadmin}
+              component={ListadoProductos}
+              respuesta={respuesta}
+            />
+            <RutaPrivAdmin
+              exact
+              path="/admin/altaproducto"
+              component={FormProductos}
               respuesta={respuesta}
             />
             <RutaPrivAdmin
@@ -82,7 +87,6 @@ function App() {
               component={Carrito}
               respuesta={respuesta}
             />
-            )
             <Route exact path="/" component={Home} />
             <Route exact path="/tienda" component={Tienda} />
             <Route exact path="/servicios" />
@@ -103,7 +107,12 @@ function App() {
             <Route exact path="/contacto" />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />
-            <Route exact path="/login" component={Login} />
+            <Route
+              exact
+              path="/login"
+              component={Login}
+              respuesta={respuesta}
+            />
             <Route exact path="/registro" component={Registro} />
             <Route exact path="/turnos" component={Turnos} />
           </Switch>

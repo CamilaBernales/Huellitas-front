@@ -13,44 +13,21 @@ import { equipo } from "../Equipo/Equipo";
 import Swal from "sweetalert2";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
-import tokenAuth from "../../../config/token";
 import axiosConfig from "../../../config/axios";
 import moment from "moment";
 
 const Turno = () => {
-
-
   const [nuevoTurno, setNuevoTurno] = useState({
     nombremascota: "",
     edad: "",
     raza: "",
     particularidades: "",
-    fecha: "",
+    fecha: new Date(),
     hora: "",
-    profesional: "",
     resumen: "",
     contacto: "",
   });
-  const [horarios, setHorarios] = useState([
-    "9:00",
-    "9:30",
-    "10:00",
-    "10:30",
-    "11:00",
-    "11:30",
-    "12:00",
-    "14:00",
-    "14:30",
-    "15:00",
-    "15:30",
-    "16:00",
-    "16:30",
-    "17:00",
-    "17:30",
-    "18:00",
-    "18:30",
-    "19:00",
-  ]);
+  const [horarios, setHorarios] = useState([]);
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
   const handleTurno = (e) => {
@@ -63,28 +40,24 @@ const Turno = () => {
     axiosConfig
       .get(`/api/turnos/horariosdip/${nuevoTurno.fecha}`)
       .then((res) => {
-        console.log(res);
+        setHorarios(res.data.hdisp);
       })
       .catch((err) => {
         console.log(err.response);
+        setError(true);
+        setMsgError(err.response.data.msg);
       });
   };
 
   const submitTurno = (e) => {
     if (
       nuevoTurno.nombremascota.trim() !== "" &&
-      nuevoTurno.edad.trim() !== "" &&
-      nuevoTurno.raza.trim() !== "" &&
-      nuevoTurno.fecha.trim() !== "" &&
+      nuevoTurno.resumen.trim() !== "" &&
+      nuevoTurno.fecha !== "" &&
       nuevoTurno.hora.trim() !== "" &&
-      nuevoTurno.profesional.trim() !== "" &&
       nuevoTurno.contacto.trim() !== ""
     ) {
       e.preventDefault();
-      const token = localStorage.getItem("token");
-      if (token) {
-        tokenAuth(token);
-      }
       axiosConfig
         .post("/api/turnos/alta", nuevoTurno)
         .then((res) => {
@@ -100,7 +73,6 @@ const Turno = () => {
         .catch((err) => {
           console.log(err.response);
           setError(true);
-          setMsgError(err.response.data.msg);
           setMsgError(err.response.data.msg);
         });
     } else {
@@ -129,7 +101,7 @@ const Turno = () => {
           <Col sm={12} md={8} xl={6}>
             <h3>Datos de tu Mascota</h3>
             <hr />
-            <Form>
+            <Form onSubmit={submitTurno}>
               <Row>
                 <Col className="my-3">
                   <Form.Control
@@ -137,14 +109,13 @@ const Turno = () => {
                     placeholder="Nombre de tu mascota"
                     name="nombremascota"
                     onChange={handleTurno}
-                    maxlength="40"
+                    maxLength="40"
                   />
                 </Col>
               </Row>
               <Row>
                 <Col className="my-3">
                   <Form.Control
-                    required
                     placeholder="Edad"
                     name="edad"
                     onChange={handleTurno}
@@ -154,22 +125,20 @@ const Turno = () => {
               <Row>
                 <Col className="my-3">
                   <Form.Control
-                    required
                     placeholder="Raza"
                     name="raza"
                     onChange={handleTurno}
-                    maxlength="40"
+                    maxLength="40"
                   />
                 </Col>
               </Row>
               <Row>
                 <Col className="my-3">
                   <Form.Control
-                    required
                     placeholder="Alergias y otras particularidades"
                     name="particularidades"
                     onChange={handleTurno}
-                    maxlength="120"
+                    maxLength="120"
                   />
                 </Col>
               </Row>
@@ -217,46 +186,10 @@ const Turno = () => {
                   id="resumen"
                   name="resumen"
                   onChange={handleTurno}
-                  maxlength="200"
+                  maxLength="200"
                 />
               </Col>
             </Row>
-          </Col>
-
-          {/* columna de profesionales */}
-          <Col sm={12} md={8} xl={6}>
-            <h3>Elige un Profesional</h3>
-            <hr />
-            {equipo.map((personal) => (
-              <Row>
-                <Col>
-                  <Accordion>
-                    <Card>
-                      <Card.Header>
-                        <Accordion.Toggle
-                          as={Button}
-                          variant="Text"
-                          eventKey="0"
-                        >
-                          <Form.Check
-                            type="radio"
-                            id={personal.id}
-                            label={personal.nombre}
-                            value={personal.nombre}
-                            name="profesional"
-                            onChange={handleTurno}
-                          />
-                        </Accordion.Toggle>
-                      </Card.Header>
-                      <Accordion.Collapse eventKey="0">
-                        <Card.Body>{personal.informacion}</Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                  </Accordion>
-                </Col>
-              </Row>
-            ))}
-
             <Button
               type="submit"
               onClick={submitTurno}
