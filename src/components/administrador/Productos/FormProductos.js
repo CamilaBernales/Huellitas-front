@@ -103,12 +103,13 @@ function FormProductos() {
               </Row>
               <Row>
                 <Col className="my-3">
-                  <Form.Group controlId="img">
+                  <Form.Group controlId="imagen">
                     <Form.Label>Imagen</Form.Label>
                     <Form.File
-                      id="img"
+                      id="imagen"
                       name="imagen"
                       accept="image/*"
+                      randomizeFilename
                       onChange={onChangeProducto}
                     />
                   </Form.Group>

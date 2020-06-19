@@ -27,7 +27,7 @@ const NavBar = () => {
           {isLogIn ? (
             <NavDropdown title="Turnos" id="basic-nav-dropdown">
               <NavDropdown.Item href="/turno">Solicitar Turno</NavDropdown.Item>
-              <NavDropdown.Item href="/">Mis Turnos</NavDropdown.Item>
+              <NavDropdown.Item href="/misturnos">Mis Turnos</NavDropdown.Item>
             </NavDropdown>
           ) : (
             <Nav.Link href="/login">Turnos</Nav.Link>

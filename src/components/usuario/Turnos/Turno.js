@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Col,
-  Form,
-  Row,
-  Container,
-  Accordion,
-  Card,
-  Button,
-  Alert,
-} from "react-bootstrap";
-import { equipo } from "../Equipo/Equipo";
+import { Col, Form, Row, Container, Button, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";

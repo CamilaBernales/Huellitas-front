@@ -15,6 +15,7 @@ import Turnosadmin from "./components/administrador/Turnosadmin";
 import ListadoProductos from "./components/administrador/Productos/ListadoProductos";
 import FormProductos from "./components/administrador/Productos/FormProductos";
 import Turnos from "./components/usuario/Turnos/Turnos";
+import MisTurnos from "./components/usuario/Turnos/MisTurnos";
 import Turno from "./components/usuario/Turnos/Turno";
 import PedidosAdmin from "./components/administrador/pedidos/PedidosAdmin";
 import ListadoUsuarios from "./components/administrador/Usuarios/ListadoUsuarios";
@@ -30,7 +31,7 @@ function App() {
         tokenAuth(token);
         try {
           let res = await axiosConfig.get("/api/auth/uservalidation");
-          console.log(res.data);
+          // console.log(res.data);
           setRespuesta(res.data);
         } catch (err) {
           console.log(err.response.data);
@@ -85,6 +86,12 @@ function App() {
               exact
               path="/carrito"
               component={Carrito}
+              respuesta={respuesta}
+            />
+            <RutaPrivada
+              exact
+              path="/misturnos"
+              component={MisTurnos}
               respuesta={respuesta}
             />
             <Route exact path="/" component={Home} />

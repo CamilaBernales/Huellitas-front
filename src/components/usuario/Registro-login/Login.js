@@ -32,12 +32,11 @@ export default function Login(props) {
     axiosConfig
       .post("/api/auth/login", ingreso)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         localStorage.setItem("token", res.data.token);
-        console.log(props)
       })
       .catch((err) => {
-        console.log(err.response.data.msg);
+        // console.log(err.response.data.msg);
         setError(true);
         setMsgError(err.response.data.msg);
       });

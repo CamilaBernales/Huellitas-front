@@ -41,7 +41,7 @@ const Productosadmin = (props) => {
   };
   const actualizarProducto = () => {
     Swal.fire({
-      title: "Estas seguro de que quieres guardar esta edición",
+      title: "Estas seguro de que quieres guardar esta edición?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -54,9 +54,9 @@ const Productosadmin = (props) => {
           .then((res) => {
             console.log(res);
             window.location.reload(true);
+            Swal.fire("Editado!", "La edición se guardo con éxito.", "success");
           })
           .catch((err) => console.log(err.response));
-        Swal.fire("Editado!", "La edición se guardo con éxito.", "success");
       }
     });
   };
@@ -113,9 +113,15 @@ const Productosadmin = (props) => {
                 </Row>
                 <Row>
                   <Col className="my-3">
-                    <Form.Group controlId="img">
+                    <Form.Group controlId="imagen">
                       <Form.Label>Imagen</Form.Label>
-                      <Form.File id="img" name="imagen" accept="image/*" />
+                      <Form.File
+                        id="imagen"
+                        name="imagen"
+                        accept="image/*"
+                        randomizeFilename
+                        onChange={onChangeProducto}
+                      />
                     </Form.Group>
                   </Col>
                 </Row>
@@ -154,7 +160,7 @@ const Productosadmin = (props) => {
             </Col>
           </Row>
         ) : null}
-        <Row className="d-flex justify-content-center align-items-center  text-center my-5">
+        <Row className="d-flex justify-content-center align-items-center  text-start my-5">
           <Col sm={12} md={8} xl={10}>
             <Table responsive striped bordered hover size="sm">
               <thead>
