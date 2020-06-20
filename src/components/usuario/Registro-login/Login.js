@@ -32,11 +32,14 @@ export default function Login(props) {
     axiosConfig
       .post("/api/auth/login", ingreso)
       .then((res) => {
-        // console.log(res);
         localStorage.setItem("token", res.data.token);
+        if (res.data.payload.usuario.rol === "admin") {
+          props.history.push("/admin/turnos");
+        } else {
+          props.history.push("/");
+        }
       })
       .catch((err) => {
-        // console.log(err.response.data.msg);
         setError(true);
         setMsgError(err.response.data.msg);
       });

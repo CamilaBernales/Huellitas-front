@@ -1,12 +1,12 @@
 
-
 .fondoFooter{
-    background-color: yellow;
+    background-color: #999999;
 }
 
 .posicionFooter{
-    position: fixed;
+    position: relative;
     bottom: 0;
+
 }
 
 .letras{

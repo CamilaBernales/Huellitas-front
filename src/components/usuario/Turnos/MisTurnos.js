@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import Logo from "../../../components/usuario/Elementos-Comunes/Logo";
+import Navbar from "../../../components/usuario/Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
-import { Table, Button, Card } from "react-bootstrap";
+import { Table, Button, Card, Row, Col, Container } from "react-bootstrap";
 import moment from "moment";
 import Swal from "sweetalert2";
+import "../../../css/Turno.css";
 
 const MisTurnos = () => {
   let fecha = new Date();
@@ -45,43 +48,70 @@ const MisTurnos = () => {
     listarMisTurnos();
   }, []);
   return (
-    <div>
-      <h1>Tus turnos</h1>
-      <Table responsive striped bordered hover size="sm">
-        <thead>
-          <tr>
-            <th>Hora</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          {misTurnos.map((turno) => {
-            if (turno.fecha < fechaActual) {
-              return (
-                <tr key={turno._id}>
-                  <td>{turno.hora}</td>
-                  <td>{turno.fecha}</td>
+    <>
+      <Logo />
+      <Navbar />
+      <Container>
+        <Row className="d-flex justify-content-center align-items-center text-start my-3">
+          <Col sm={12} md={8} xl={10}>
+            <p>Tus turnos</p>
+            <Table responsive striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Hora</th>
                 </tr>
-              );
-            } else {
-              return (
-                <Card>
-                  <Card.Header></Card.Header>
-                  <Card.Body>
-                    Fecha: {turno.fecha} Hora: {turno.hora}
-                  </Card.Body>
-                  <Card.Footer>
-                    <Button onClick={() => cancelarTurno(turno._id)}>
-                      <i className="fas fa-trash" />
-                    </Button>
-                  </Card.Footer>
-                </Card>
-              );
-            }
-          })}
-        </tbody>
-      </Table>
-    </div>
+              </thead>
+              <tbody>
+                {misTurnos.map((turno) => {
+                  if (turno.fecha < fechaActual) {
+                    return (
+                      <tr key={turno._id}>
+                        <td>{turno.fecha}</td>
+                        <td>{turno.hora}</td>
+                      </tr>
+                    );
+                  }
+                })}
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+        <Row className="d-flex justify-content-center align-items-center text-start my-3">
+          <Col sm={12} md={8} xl={10}>
+            <p>Próximo Turno</p>
+            {misTurnos.map((turno) => {
+              if (turno.fecha > fechaActual) {
+                return (
+                  <Card
+                    className="my-3 font-weight-bold cardTurno"
+                    // bg="info"
+                    key={turno._id}
+                    // text="light"
+                    style={{ width: "18rem" }}
+                  >
+                    {/* <Card.Header> <p>Próximo Turno</p></Card.Header> */}
+                    <Card.Body>
+                      <Row> Fecha: {turno.fecha}</Row>
+                      <Row> Hora: {turno.hora}</Row>
+                    </Card.Body>
+                    <Card.Footer>
+                      <Button
+                        className="btn btn-primary w-100  justify-content-center align-items-center font-weight-bold"
+                        onClick={() => cancelarTurno(turno._id)}
+                      >
+                        cancelar turno {"   "}
+                        <i className="fas fa-trash" />
+                      </Button>
+                    </Card.Footer>
+                  </Card>
+                );
+              }
+            })}
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 

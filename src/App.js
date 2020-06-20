@@ -34,7 +34,7 @@ function App() {
           // console.log(res.data);
           setRespuesta(res.data);
         } catch (err) {
-          console.log(err.response.data);
+          // console.log(err.response.data);
         }
       }
       setLoading(false);
@@ -114,12 +114,7 @@ function App() {
             <Route exact path="/contacto" />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />
-            <Route
-              exact
-              path="/login"
-              component={Login}
-              respuesta={respuesta}
-            />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/registro" component={Registro} />
             <Route exact path="/turnos" component={Turnos} />
           </Switch>

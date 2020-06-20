@@ -70,7 +70,7 @@ const Productosadmin = (props) => {
       <Container className="my-5">
         {editar ? (
           <Row className="d-flex justify-content-center align-items-center my-5">
-            <Col sm={12} md={8} xl={6}>
+            <Col sm={12} md={8} xl={10}>
               <Form>
                 <Row>
                   <Col className="my-3">

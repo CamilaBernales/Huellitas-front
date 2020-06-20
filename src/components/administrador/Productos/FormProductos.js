@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Form, Col, Row, Button, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Navbaradmin from '../Elementos-Comunes/Navbaradmin'
+import Navbaradmin from "../Elementos-Comunes/Navbaradmin";
 import axiosConfig from "../../../config/axios";
 function FormProductos() {
   const [nuevoProducto, setNuevoProducto] = useState({
@@ -11,6 +11,7 @@ function FormProductos() {
     disponibilidad: "Disponible",
     imagen: null,
     espromo: false,
+    tipoproducto: "",
   });
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
@@ -27,7 +28,8 @@ function FormProductos() {
       nuevoProducto.nombre.trim() !== "" &&
       nuevoProducto.descripcion.trim() !== "" &&
       nuevoProducto.precio !== null &&
-      nuevoProducto.imagen !== null
+      nuevoProducto.imagen !== null &&
+      nuevoProducto.tipoproducto.trim() !== ""
     ) {
       axiosConfig
         .post("/api/productos/altaproducto", nuevoProducto)
@@ -43,26 +45,59 @@ function FormProductos() {
         })
         .catch((err) => {
           console.log(err.response);
+          setError(true);
+          setMsgError(err.response.data.msg);
         });
     } else {
       setError(true);
       setMsgError("Los campos deben estar completos.");
     }
   };
+  const onChangeMemeImg = async (e) => {
+    if (e.target.files[0]) {
+      if (e.target.files[0].size > 4194304) {
+        // 5242880 = 5MB
+        // 4194304 = 4MB
+        setError(true);
+        setMsgError("La imagen es demasiado grande.");
+        e.target.value = null;
+        setNuevoProducto({
+          ...nuevoProducto,
+          imagen: null,
+        });
+
+        return;
+      }
+      let reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onloadend = () => {
+        setNuevoProducto({
+          ...nuevoProducto,
+          imagen: reader.result,
+        });
+      };
+    } else {
+      setNuevoProducto({
+        ...nuevoProducto,
+        imagen: null,
+      });
+    }
+  };
+
   return (
     <div>
-      <Navbaradmin/>
-      <Container>
-        {error ? (
-          <Alert
-            className="p-3 text-center text-uppercase font-weight-bold"
-            variant="danger"
-          >
-            {msgError}
-          </Alert>
-        ) : null}
+      <Navbaradmin />
+      <Container className="my-3">
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
+            {error ? (
+              <Alert
+                className="p-3 text-center w-100 text-uppercase font-weight-bold my-3"
+                variant="danger"
+              >
+                {msgError}
+              </Alert>
+            ) : null}
             <Form>
               <Row>
                 <Col className="my-3">
@@ -109,9 +144,24 @@ function FormProductos() {
                       id="imagen"
                       name="imagen"
                       accept="image/*"
-                      randomizeFilename
-                      onChange={onChangeProducto}
+                      onChange={onChangeMemeImg}
                     />
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="my-3">
+                  <Form.Label>Tipo de Producto</Form.Label>
+                  <Form.Group>
+                    <select name="tipoproducto" onChange={onChangeProducto}>
+                      <option value="" disabled selected>
+                        Elege el tipo de producto
+                      </option>
+                      <option value="alimento">Alimento</option>
+                      <option value="jueguete">Jueguete</option>
+                      <option value="accesorios">Accesorios</option>
+                      <option value="limpieza">Productos de Limpieza</option>
+                    </select>
                   </Form.Group>
                 </Col>
               </Row>
@@ -120,8 +170,8 @@ function FormProductos() {
                   <Form.Label>Disponibilidad</Form.Label>
                   <Form.Group>
                     <select name="disponibilidad" onChange={onChangeProducto}>
-                      <option value="" selected>
-                        Elegí la disponibilidad del producto
+                      <option value="" selected disabled>
+                        Elege la disponibilidad del producto
                       </option>
                       <option value="Disponible"> Disponible</option>
                       <option value="No Disponible">No Disponible</option>
