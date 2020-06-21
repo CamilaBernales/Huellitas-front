@@ -78,7 +78,7 @@ const Productosadmin = (props) => {
                     <Form.Control
                       placeholder="Titulo del producto"
                       name="nombre"
-                      maxlength="40"
+                      maxLength="40"
                       type="text"
                       onChange={onChangeProducto}
                       value={productoEditado.nombre}
@@ -102,8 +102,6 @@ const Productosadmin = (props) => {
                     <Form.Label>Precio</Form.Label>
 
                     <Form.Control
-                      required
-                      enabled
                       name="precio"
                       value={productoEditado.precio}
                       onChange={onChangeProducto}
@@ -119,18 +117,33 @@ const Productosadmin = (props) => {
                         id="imagen"
                         name="imagen"
                         accept="image/*"
-                        randomizeFilename
                         onChange={onChangeProducto}
                       />
                     </Form.Group>
                   </Col>
                 </Row>
                 <Row>
+                <Col className="my-3">
+                  <Form.Label>Tipo de Producto</Form.Label>
+                  <Form.Group>
+                    <select name="tipoproducto" onChange={onChangeProducto}>
+                      <option value="" disabled defaultValue>
+                        Elege el tipo de producto
+                      </option>
+                      <option value="alimento">Alimento</option>
+                      <option value="jueguete">Jueguete</option>
+                      <option value="accesorios">Accesorios</option>
+                      <option value="limpieza">Productos de Limpieza</option>
+                    </select>
+                  </Form.Group>
+                </Col>
+              </Row>
+                <Row>
                   <Col className="my-3">
                     <Form.Label>Disponibilidad</Form.Label>
                     <Form.Group>
                       <select name="disponibilidad" onChange={onChangeProducto}>
-                        <option value="">
+                        <option value="" disabled defaultValue>
                           Elegí la disponibilidad del producto
                         </option>
                         <option value="Disponible">Disponible</option>

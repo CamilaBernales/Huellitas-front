@@ -33,6 +33,7 @@ export default function Login(props) {
       .post("/api/auth/login", ingreso)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+         console.log(res.data.payload.usuario.rol)
         if (res.data.payload.usuario.rol === "admin") {
           props.history.push("/admin/turnos");
         } else {

@@ -90,10 +90,10 @@ const Turno = () => {
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
             <h3>Datos de tu Mascota</h3>
-            <hr />
             <Form onSubmit={submitTurno}>
               <Row>
                 <Col className="my-3">
+                  <Form.Label>Nombre de tu mascota</Form.Label>
                   <Form.Control
                     required
                     placeholder="Nombre de tu mascota"
@@ -105,6 +105,7 @@ const Turno = () => {
               </Row>
               <Row>
                 <Col className="my-3">
+                  <Form.Label>Edad de tu mascota</Form.Label>
                   <Form.Control
                     placeholder="Edad"
                     name="edad"
@@ -114,6 +115,8 @@ const Turno = () => {
               </Row>
               <Row>
                 <Col className="my-3">
+                  <Form.Label>Raza de tu mascota</Form.Label>
+
                   <Form.Control
                     placeholder="Raza"
                     name="raza"
@@ -124,6 +127,8 @@ const Turno = () => {
               </Row>
               <Row>
                 <Col className="my-3">
+                  <Form.Label>Alergias y otras particularidades</Form.Label>
+
                   <Form.Control
                     placeholder="Alergias y otras particularidades"
                     name="particularidades"
@@ -139,6 +144,8 @@ const Turno = () => {
             <h3>Información de tu turno</h3>
             <Row>
               <Col className="my-3">
+                <Form.Label>Tu número de teléfono</Form.Label>
+
                 <Form.Control
                   required
                   placeholder="Tu número de teléfono"
@@ -147,29 +154,36 @@ const Turno = () => {
                 />
               </Col>
             </Row>
-            <Row className="m-3">
-              <label>Elegi una fecha</label>
-              <input
-                required
-                type="date"
-                className="m-3 w-50"
-                name="fecha"
-                onChange={handleTurno}
-              />
-            </Row>
-            <Row className="m-3">
-              <label>Elegi un Horario</label>
-              <select onChange={handleTurno} name="hora">
-                {horarios.map((cita, i) => (
-                  <option value={cita} key={i}>
-                    {cita}
-                  </option>
-                ))}
-              </select>
+            <Row>
+              <Col className="my-3">
+                <Form.Label>Elige una fecha para tu turno</Form.Label>
+                <Form.Control
+                  required
+                  type="date"
+                  name="fecha"
+                  onChange={handleTurno}
+                />
+              </Col>
             </Row>
             <Row>
               <Col className="my-3">
-                <p>Cuentanos que le pasa a tu mascota</p>
+                <Form.Label>Elige un horario para tu turno</Form.Label>
+                <Form.Group>
+                  <select onChange={handleTurno} name="hora" >
+                    {horarios.map((cita, i) => (
+                      <option value={cita} key={i}>
+                        {cita}
+                      </option>
+                    ))}
+                  </select>
+                </Form.Group>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="my-3">
+                <Form.Label>
+                  Escribe un breve resumen de lo que le pasa tu mascota
+                </Form.Label>
                 <textarea
                   required
                   className="p-4 w-100"

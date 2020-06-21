@@ -8,9 +8,8 @@ function FormProductos() {
     nombre: "",
     descripcion: "",
     precio: "",
-    disponibilidad: "Disponible",
-    imagen: null,
-    espromo: false,
+    disponibilidad: "",
+    imagen: '',
     tipoproducto: "",
   });
   const [error, setError] = useState(false);
@@ -106,7 +105,7 @@ function FormProductos() {
                     required
                     placeholder="Titulo del producto"
                     name="nombre"
-                    maxlength="40"
+                    maxLength="40"
                     type="text"
                     onChange={onChangeProducto}
                   />
@@ -154,7 +153,7 @@ function FormProductos() {
                   <Form.Label>Tipo de Producto</Form.Label>
                   <Form.Group>
                     <select name="tipoproducto" onChange={onChangeProducto}>
-                      <option value="" disabled selected>
+                      <option value=""  disabled defaultValue>
                         Elege el tipo de producto
                       </option>
                       <option value="alimento">Alimento</option>
@@ -170,7 +169,7 @@ function FormProductos() {
                   <Form.Label>Disponibilidad</Form.Label>
                   <Form.Group>
                     <select name="disponibilidad" onChange={onChangeProducto}>
-                      <option value="" selected disabled>
+                      <option value=""  disabled defaultValue>
                         Elege la disponibilidad del producto
                       </option>
                       <option value="Disponible"> Disponible</option>
