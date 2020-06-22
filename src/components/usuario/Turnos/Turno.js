@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
-import moment from "moment";
+// import moment from "moment";
 
 const Turno = () => {
   const [nuevoTurno, setNuevoTurno] = useState({
@@ -58,7 +58,6 @@ const Turno = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          console.log(res);
         })
         .catch((err) => {
           console.log(err.response);
@@ -69,6 +68,16 @@ const Turno = () => {
       setError(true);
       setMsgError("Los campos deben estar completos.");
     }
+    setNuevoTurno({
+      nombremascota: "",
+      edad: "",
+      raza: "",
+      particularidades: "",
+      fecha: new Date(),
+      hora: "",
+      resumen: "",
+      contacto: "",
+    });
   };
   useEffect(() => {
     traerTurnosDisp();
@@ -110,6 +119,7 @@ const Turno = () => {
                     placeholder="Edad"
                     name="edad"
                     onChange={handleTurno}
+                    type="number"
                   />
                 </Col>
               </Row>
@@ -137,70 +147,69 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
+
+              <hr />
+
+              <h3>Información de tu turno</h3>
+              <Row>
+                <Col className="my-3">
+                  <Form.Label>Tu número de teléfono</Form.Label>
+                  <Form.Control
+                    required
+                    placeholder="Tu número de teléfono"
+                    name="contacto"
+                    onChange={handleTurno}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col className="my-3">
+                  <Form.Label>Elige una fecha para tu turno</Form.Label>
+                  <Form.Control
+                    required
+                    type="date"
+                    name="fecha"
+                    onChange={handleTurno}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col className="my-3">
+                  <Form.Label>Elige un horario para tu turno</Form.Label>
+                  <Form.Group>
+                    <select onChange={handleTurno} name="hora">
+                      {horarios.map((cita, i) => (
+                        <option value={cita} key={i}>
+                          {cita}
+                        </option>
+                      ))}
+                    </select>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="my-3">
+                  <Form.Label>
+                    Escribe un breve resumen de lo que le pasa tu mascota
+                  </Form.Label>
+                  <textarea
+                    required
+                    className="p-4 w-100"
+                    id="resumen"
+                    name="resumen"
+                    onChange={handleTurno}
+                    maxLength="200"
+                  />
+                </Col>
+              </Row>
+              <Button
+                type="submit"
+                onClick={submitTurno}
+                className="btn btn-primary my-2 w-100 mt-4 text-uppercase font-weight-bold"
+              >
+                Confirmar Turno
+              </Button>
             </Form>
-
-            <hr />
-
-            <h3>Información de tu turno</h3>
-            <Row>
-              <Col className="my-3">
-                <Form.Label>Tu número de teléfono</Form.Label>
-
-                <Form.Control
-                  required
-                  placeholder="Tu número de teléfono"
-                  name="contacto"
-                  onChange={handleTurno}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="my-3">
-                <Form.Label>Elige una fecha para tu turno</Form.Label>
-                <Form.Control
-                  required
-                  type="date"
-                  name="fecha"
-                  onChange={handleTurno}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="my-3">
-                <Form.Label>Elige un horario para tu turno</Form.Label>
-                <Form.Group>
-                  <select onChange={handleTurno} name="hora" >
-                    {horarios.map((cita, i) => (
-                      <option value={cita} key={i}>
-                        {cita}
-                      </option>
-                    ))}
-                  </select>
-                </Form.Group>
-              </Col>
-            </Row>
-            <Row>
-              <Col className="my-3">
-                <Form.Label>
-                  Escribe un breve resumen de lo que le pasa tu mascota
-                </Form.Label>
-                <textarea
-                  required
-                  className="p-4 w-100"
-                  id="resumen"
-                  name="resumen"
-                  onChange={handleTurno}
-                  maxLength="200"
-                />
-              </Col>
-            </Row>
-            <Button
-              type="submit"
-              onClick={submitTurno}
-              className="btn btn-primary my-2 w-100 mt-4 text-uppercase font-weight-bold"
-            >
-              Confirmar Turno
-            </Button>
           </Col>
         </Row>
       </Container>

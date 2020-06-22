@@ -70,7 +70,7 @@ const Productosadmin = (props) => {
       <Container className="my-5">
         {editar ? (
           <Row className="d-flex justify-content-center align-items-center my-5">
-            <Col sm={12} md={8} xl={10}>
+            <Col sm={12} md={8} xl={6}>
               <Form>
                 <Row>
                   <Col className="my-3">
@@ -118,31 +118,40 @@ const Productosadmin = (props) => {
                         name="imagen"
                         accept="image/*"
                         onChange={onChangeProducto}
+                        className="w-100"
                       />
                     </Form.Group>
                   </Col>
                 </Row>
                 <Row>
-                <Col className="my-3">
-                  <Form.Label>Tipo de Producto</Form.Label>
-                  <Form.Group>
-                    <select name="tipoproducto" onChange={onChangeProducto}>
-                      <option value="" disabled defaultValue>
-                        Elege el tipo de producto
-                      </option>
-                      <option value="alimento">Alimento</option>
-                      <option value="jueguete">Jueguete</option>
-                      <option value="accesorios">Accesorios</option>
-                      <option value="limpieza">Productos de Limpieza</option>
-                    </select>
-                  </Form.Group>
-                </Col>
-              </Row>
+                  <Col className="my-3">
+                    <Form.Label>Tipo de Producto</Form.Label>
+                    <Form.Group>
+                      <select
+                        className="w-100"
+                        name="tipoproducto"
+                        onChange={onChangeProducto}
+                      >
+                        <option value="" disabled defaultValue>
+                          Elege el tipo de producto
+                        </option>
+                        <option value="alimento">Alimento</option>
+                        <option value="jueguete">Jueguete</option>
+                        <option value="accesorios">Accesorios</option>
+                        <option value="Higiene">Productos de Higiene</option>
+                      </select>
+                    </Form.Group>
+                  </Col>
+                </Row>
                 <Row>
                   <Col className="my-3">
                     <Form.Label>Disponibilidad</Form.Label>
                     <Form.Group>
-                      <select name="disponibilidad" onChange={onChangeProducto}>
+                      <select
+                        name="disponibilidad"
+                        className="w-100"
+                        onChange={onChangeProducto}
+                      >
                         <option value="" disabled defaultValue>
                           Elegí la disponibilidad del producto
                         </option>
@@ -167,9 +176,15 @@ const Productosadmin = (props) => {
                 </Col>
               </Row> */}
               </Form>
-              <Button className="w-100" onClick={actualizarProducto}>
-                Guardar
-              </Button>
+              <Row className="d-flex justify-content-end align-items-end">
+                <Button
+                  variant="outline-primary"
+                  size="lg"
+                  onClick={actualizarProducto}
+                >
+                  Guardar
+                </Button>
+              </Row>
             </Col>
           </Row>
         ) : null}
@@ -182,6 +197,7 @@ const Productosadmin = (props) => {
                   <th>Detalles del producto</th>
                   <th>Precio</th>
                   <th>Stock</th>
+                  <th>Producto</th>
                   <th>Editar</th>
                 </tr>
               </thead>
@@ -193,6 +209,7 @@ const Productosadmin = (props) => {
                       <td>{producto.descripcion}</td>
                       <td>{producto.precio}</td>
                       <td>{producto.disponibilidad}</td>
+                      <td>{producto.tipoproducto}</td>
                       <td className="text-center">
                         <Button onClick={() => obtenerUnProducto(producto._id)}>
                           <i className="fas fa-edit" />

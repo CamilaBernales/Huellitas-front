@@ -15,7 +15,7 @@ const Turnosadmin = () => {
     <>
       <Navbaradmin />
       <Container className="my-5">
-        <Row className="d-flex justify-content-center align-items-center text-center my-5">
+        <Row className="d-flex justify-content-center align-items-center text-start my-5">
           <Col sm={12} md={8} xl={10}>
             <Table responsive striped bordered hover size="sm">
               <thead>
@@ -31,7 +31,7 @@ const Turnosadmin = () => {
                   <tr>
                     <td>{turno.nombremascota}</td>
                     <td>{turno.fecha}</td>
-                    <td>{turno.fecha}</td>
+                    <td>{turno.hora}</td>
                     <td>{turno.contacto}</td>
                   </tr>
                 ))}

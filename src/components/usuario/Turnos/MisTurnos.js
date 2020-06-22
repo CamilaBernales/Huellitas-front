@@ -25,8 +25,8 @@ const MisTurnos = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      cancelButtonText: "No",
-      confirmButtonText: "Sí, cancelar!",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Confirmar",
     }).then((result) => {
       if (result.value) {
         axiosConfig
@@ -53,7 +53,7 @@ const MisTurnos = () => {
       <Navbar />
       <Container>
         <Row className="d-flex justify-content-center align-items-center text-start my-3">
-          <Col sm={12} md={8} xl={10}>
+          <Col sm={12} md={6} xl={10}>
             <p>Tus turnos</p>
             <Table responsive striped bordered hover size="sm">
               <thead>
@@ -77,20 +77,27 @@ const MisTurnos = () => {
             </Table>
           </Col>
         </Row>
-        <Row className="d-flex justify-content-center align-items-center text-start my-3">
-          <Col sm={12} md={8} xl={10}>
-            <p>Próximo Turno</p>
-            {misTurnos.map((turno) => {
-              if (turno.fecha > fechaActual) {
-                return (
+        <Row className="d-flex justify-content-start align-items-start text-start my-3">
+          {misTurnos.map((turno) => {
+            if (turno.fecha > fechaActual) {
+              return (
+                <Col
+                  sm={12}
+                  md={8}
+                  xl={4}
+                  className="d-flex justify-content-center my-3"
+                >
                   <Card
-                    className="my-3 font-weight-bold cardTurno"
+                    className="font-weight-bold cardTurno"
                     // bg="info"
                     key={turno._id}
                     // text="light"
                     style={{ width: "18rem" }}
                   >
-                    {/* <Card.Header> <p>Próximo Turno</p></Card.Header> */}
+                    <Card.Header>
+                      {" "}
+                      <p>Próximo Turno</p>
+                    </Card.Header>
                     <Card.Body>
                       <Row> Fecha: {turno.fecha}</Row>
                       <Row> Hora: {turno.hora}</Row>
@@ -105,10 +112,10 @@ const MisTurnos = () => {
                       </Button>
                     </Card.Footer>
                   </Card>
-                );
-              }
-            })}
-          </Col>
+                </Col>
+              );
+            }
+          })}
         </Row>
       </Container>
     </>

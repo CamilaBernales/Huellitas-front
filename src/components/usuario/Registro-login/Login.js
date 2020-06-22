@@ -25,6 +25,7 @@ export default function Login(props) {
 
   const onSubmitForm = (e) => {
     e.preventDefault();
+
     if (email === "" || password === "") {
       alert("Por favor llenar todos los campos");
       return;
@@ -33,11 +34,11 @@ export default function Login(props) {
       .post("/api/auth/login", ingreso)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
-         console.log(res.data.payload.usuario.rol)
-        if (res.data.payload.usuario.rol === "admin") {
-          props.history.push("/admin/turnos");
-        } else {
+        console.log(res.data);
+        if (res.data.usuario.rol !== "admin") {
           props.history.push("/");
+        } else {
+          props.history.push("/admin/turnos");
         }
       })
       .catch((err) => {

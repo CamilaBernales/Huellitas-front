@@ -8,8 +8,8 @@ function FormProductos() {
     nombre: "",
     descripcion: "",
     precio: "",
-    disponibilidad: "",
-    imagen: '',
+    disponibilidad: "Disponible",
+    imagen: "",
     tipoproducto: "",
   });
   const [error, setError] = useState(false);
@@ -51,6 +51,7 @@ function FormProductos() {
       setError(true);
       setMsgError("Los campos deben estar completos.");
     }
+
   };
   const onChangeMemeImg = async (e) => {
     if (e.target.files[0]) {
@@ -97,7 +98,7 @@ function FormProductos() {
                 {msgError}
               </Alert>
             ) : null}
-            <Form>
+            <Form onSubmit={guardarProducto}>
               <Row>
                 <Col className="my-3">
                   <Form.Label>Titulo del producto</Form.Label>
@@ -152,14 +153,18 @@ function FormProductos() {
                 <Col className="my-3">
                   <Form.Label>Tipo de Producto</Form.Label>
                   <Form.Group>
-                    <select name="tipoproducto" onChange={onChangeProducto}>
-                      <option value=""  disabled defaultValue>
-                        Elege el tipo de producto
+                    <select
+                      name="tipoproducto"
+                      className="w-100"
+                      onChange={onChangeProducto}
+                    >
+                      <option value="" disabled defaultValue>
+                        Elige el tipo de producto
                       </option>
                       <option value="alimento">Alimento</option>
                       <option value="jueguete">Jueguete</option>
                       <option value="accesorios">Accesorios</option>
-                      <option value="limpieza">Productos de Limpieza</option>
+                      <option value="Higiene">Productos de Higiene</option>
                     </select>
                   </Form.Group>
                 </Col>
@@ -168,9 +173,13 @@ function FormProductos() {
                 <Col className="my-3">
                   <Form.Label>Disponibilidad</Form.Label>
                   <Form.Group>
-                    <select name="disponibilidad" onChange={onChangeProducto}>
-                      <option value=""  disabled defaultValue>
-                        Elege la disponibilidad del producto
+                    <select
+                      className="w-100"
+                      name="disponibilidad"
+                      onChange={onChangeProducto}
+                    >
+                      <option value="" disabled defaultValue>
+                        Elige la disponibilidad del producto
                       </option>
                       <option value="Disponible"> Disponible</option>
                       <option value="No Disponible">No Disponible</option>
@@ -191,7 +200,7 @@ function FormProductos() {
                 </Col>
               </Row> */}
             </Form>
-            <Button className="w-100" onClick={guardarProducto}>
+            <Button className="w-100" onClick={guardarProducto} >
               Guardar
             </Button>
           </Col>
