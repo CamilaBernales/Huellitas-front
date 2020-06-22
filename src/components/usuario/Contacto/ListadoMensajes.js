@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import Navbaradmin from '../../administrador/Navbaradmin'
-import { Container, Row, Col, InputGroup, FormControl, Button, Table} from 'react-bootstrap'
+import { Container, Table} from 'react-bootstrap'
 
 export default function ListadoMensajes() {
     

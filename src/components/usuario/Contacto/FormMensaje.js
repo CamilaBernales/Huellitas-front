@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
-
 import { Form, Container, Button, Col, Row, } from 'react-bootstrap'
+import axiosConfig from "../../../config/axios"
+import Swal from "sweetalert2";
 // import style from '../../../css/Login.module.css'
 
 export default function FormMensaje() {
@@ -11,6 +12,8 @@ export default function FormMensaje() {
         email:'',
         mensaje:''
     })
+    const [error, setError] = useState(false);
+    const [msgError, setMsgError] = useState("");
 
     //Extraigo la consulta
     const {nombre, email, mensaje} = consulta
@@ -25,26 +28,43 @@ export default function FormMensaje() {
     }
 
 
-    //Cuando quiero mandar la consulta
+    //Cuando quiero mandar el mensaje
     const onSubmitConsulta = e =>{
         e.preventDefault()
         
         //Validar campos
-        if(nombre.trim() === '' || email.trim() === '' || mensaje.trim() === ''){
-            alert('Todos los campos son obligatorios');
-            return
+        if(consulta.nombre.trim() !== '' && consulta.email.trim() !== '' && consulta.mensaje.trim() !== ''){
+              
+            //Agrego el mensaje en la BD
+            axiosConfig
+            .post("/api/mensajes/", consulta)
+            .then((res) => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "El mensaje fue enviado con éxito.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err.response);
+                setError(true);
+                setMsgError(err.response.data.msg);
+            });
+            //Reseteo el formulario
+            setConsulta({
+                nombre: '',
+                email: '',
+                mensaje: ''
+            })
+        } else{
+            setError(true);
+            setMsgError("Los campos deben estar completos.");
         }
-
-        //Agrego la consulta
-        
-        //Reseteo el formulario
-        setConsulta({
-            nombre: '',
-            email: '',
-            mensaje: ''
-        })
     }
-
+        
     return (
         <Fragment>
             <Container className="m-4">
@@ -80,7 +100,7 @@ export default function FormMensaje() {
                                     />
                                 </Form.Group>
                                 <Form.Group controlId="exampleForm.ControlTextarea1">
-                                    <Form.Label>Example textarea</Form.Label>
+                                    <Form.Label>Decinos en que podemos ayudarte</Form.Label>
                                     <Form.Control
                                     className="border border-warning"
                                     as="textarea"
