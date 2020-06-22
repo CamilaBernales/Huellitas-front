@@ -7,6 +7,8 @@ import RutaPrivAdmin from "./components/administrador/RutaPrivada/RutaPrivAdmin"
 import Carrito from "./components/usuario/Tienda/Carrito";
 import Tienda from "./components/usuario/Tienda/Tienda";
 import Home from "./components/usuario/Home/Home";
+import Contacto from "./components/usuario/Contacto/Contacto"
+import ListarMensajes from "./components/usuario/Contacto/ListadoMensajes"
 import Login from "./components/usuario/Registro-login/Login";
 import Registro from "./components/usuario/Registro-login/Registro";
 import Equipo from "./components/usuario/Equipo/Equipo";
@@ -97,7 +99,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/tienda" component={Tienda} />
             <Route exact path="/servicios" />
-            <Route exact path="/contacto" />
+            <Route exact path="/contacto" component={Contacto} />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />
             <Route exact path="/login" component={Login} />
@@ -111,7 +113,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/tienda" component={Tienda} />
             <Route exact path="/servicios" />
-            <Route exact path="/contacto" />
+            <Route exact path="/contacto" component={Contacto} />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />
             <Route exact path="/login" component={Login} />
