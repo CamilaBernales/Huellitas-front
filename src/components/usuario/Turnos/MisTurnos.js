@@ -94,10 +94,7 @@ const MisTurnos = () => {
                     // text="light"
                     style={{ width: "18rem" }}
                   >
-                    <Card.Header>
-                      {" "}
-                      <p>Próximo Turno</p>
-                    </Card.Header>
+                    <Card.Header> <p>Próximo Turno</p></Card.Header>
                     <Card.Body>
                       <Row> Fecha: {turno.fecha}</Row>
                       <Row> Hora: {turno.hora}</Row>

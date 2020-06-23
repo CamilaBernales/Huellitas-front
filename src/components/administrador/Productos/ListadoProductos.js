@@ -132,8 +132,8 @@ const Productosadmin = (props) => {
                         name="tipoproducto"
                         onChange={onChangeProducto}
                       >
-                        <option value="" disabled defaultValue>
-                          Elege el tipo de producto
+                        <option value="" defaultValue>
+                          Elegi el tipo de producto
                         </option>
                         <option value="alimento">Alimento</option>
                         <option value="jueguete">Jueguete</option>
@@ -152,7 +152,7 @@ const Productosadmin = (props) => {
                         className="w-100"
                         onChange={onChangeProducto}
                       >
-                        <option value="" disabled defaultValue>
+                        <option value="" defaultValue>
                           Elegí la disponibilidad del producto
                         </option>
                         <option value="Disponible">Disponible</option>

@@ -177,7 +177,7 @@ const Turno = () => {
                 <Col className="my-3">
                   <Form.Label>Elige un horario para tu turno</Form.Label>
                   <Form.Group>
-                    <select onChange={handleTurno} name="hora">
+                    <select className="w-100" onChange={handleTurno} name="hora">
                       {horarios.map((cita, i) => (
                         <option value={cita} key={i}>
                           {cita}

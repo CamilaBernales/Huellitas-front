@@ -8,7 +8,7 @@ function FormProductos() {
     nombre: "",
     descripcion: "",
     precio: "",
-    disponibilidad: "Disponible",
+    disponibilidad: "",
     imagen: "",
     tipoproducto: "",
   });
@@ -158,7 +158,7 @@ function FormProductos() {
                       className="w-100"
                       onChange={onChangeProducto}
                     >
-                      <option value="" disabled defaultValue>
+                      <option value="" defaultValue>
                         Elige el tipo de producto
                       </option>
                       <option value="alimento">Alimento</option>
@@ -178,7 +178,7 @@ function FormProductos() {
                       name="disponibilidad"
                       onChange={onChangeProducto}
                     >
-                      <option value="" disabled defaultValue>
+                      <option value="" defaultValue >
                         Elige la disponibilidad del producto
                       </option>
                       <option value="Disponible"> Disponible</option>
