@@ -4,8 +4,12 @@ import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 
 const NavBar = () => {
+
   const salir = () => {
-    sessionStorage.setItem("usuarioReg", "");
+
+    localStorage.clear()
+    window.location.reload(true);
+    
   };
 
   return (
