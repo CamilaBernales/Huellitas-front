@@ -1,41 +1,53 @@
-import React from 'react'
-import { Carousel} from 'react-bootstrap'
-
+import React from "react";
+import {Link} from 'react-router-dom'
+import { Carousel, Button } from "react-bootstrap";
+import "../../../css/Home.css";
 export default function Slider() {
-    return (
-            <Carousel>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src="images/carrusel1.jpg"
-                        alt="First slide"/>
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src="images/carrusel2.jpg"
-                        alt="Third slide"/>
+  return (
+    <Carousel className="carousel">
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="images/carrusel1.jpg"
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <em>
+            {" "}
+            <h3>Profesionales de calidad</h3>
+          </em>
+          <Button size="lg" variant="outline-info"><Link className="text-white" to="/equipo">Conocenos</Link></Button>
+          {/* <Button variant="outline-primary">Conocenos</Button>{' '} */}
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="images/carrusel2.jpg"
+          alt="Third slide"
+        />
 
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src="images/carrusel3.jpg"
-                        alt="Third slide"/>
+        <Carousel.Caption>
+          <em>
+            <h3>Atención personalizada</h3>
+          </em>
+          <Button size="lg" variant="outline-info"><Link className="text-white" to="/turno">Solicitar turno</Link></Button>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="images/carrusel3.jpg"
+          alt="Third slide"
+        />
 
-                    <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-            </Carousel>
-    )
+        <Carousel.Caption>
+          <em>
+            <h3>Tienda con variedad de productos</h3>
+          </em>
+          <Button size="lg" variant="outline-info"><Link className="text-white" to="/tienda">Comprar</Link></Button>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+  );
 }

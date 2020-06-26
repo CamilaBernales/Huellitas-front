@@ -6,10 +6,8 @@ import { Link, Redirect } from "react-router-dom";
 const NavBar = () => {
 
   const salir = () => {
-
     localStorage.clear()
     window.location.reload(true);
-    
   };
 
   return (

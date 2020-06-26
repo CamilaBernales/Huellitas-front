@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "../../../css/Login.css";
 import imgLogin from "../../../img/login.svg";
 import axiosConfig from "../../../config/axios";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
-export default function Login(props) {
+export default function Login() {
   const [ingreso, setIngreso] = useState({
     email: "",
     password: "",
@@ -36,9 +36,9 @@ export default function Login(props) {
         localStorage.setItem("token", res.data.token);
         console.log(res.data);
         if (res.data.usuario.rol !== "admin") {
-          props.history.push("/");
+          window.location.href = "/";
         } else {
-          props.history.push("/admin/turnos");
+          window.location.href = "/admin/turnos";;
         }
       })
       .catch((err) => {

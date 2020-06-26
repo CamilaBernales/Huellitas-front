@@ -7,8 +7,8 @@ import RutaPrivAdmin from "./components/administrador/RutaPrivada/RutaPrivAdmin"
 import Carrito from "./components/usuario/Tienda/Carrito";
 import Tienda from "./components/usuario/Tienda/Tienda";
 import Home from "./components/usuario/Home/Home";
-import Contacto from "./components/usuario/Contacto/Contacto"
-import ListarMensajes from "./components/usuario/Contacto/ListadoMensajes"
+import Contacto from "./components/usuario/Contacto/Contacto";
+import ListarMensajes from "./components/usuario/Contacto/ListadoMensajes";
 import Login from "./components/usuario/Registro-login/Login";
 import Registro from "./components/usuario/Registro-login/Registro";
 import Equipo from "./components/usuario/Equipo/Equipo";
@@ -21,6 +21,7 @@ import MisTurnos from "./components/usuario/Turnos/MisTurnos";
 import Turno from "./components/usuario/Turnos/Turno";
 import PedidosAdmin from "./components/administrador/pedidos/PedidosAdmin";
 import ListadoUsuarios from "./components/administrador/Usuarios/ListadoUsuarios";
+import PerfilUsuario from "./components/usuario/Elementos-Comunes/PerfilUsuario";
 import axiosConfig from "./config/axios";
 import tokenAuth from "./config/token";
 function App() {
@@ -96,15 +97,22 @@ function App() {
               component={MisTurnos}
               respuesta={respuesta}
             />
+            {/* <RutaPrivada
+              exact
+              path="/perfilusuario"
+              component={PerfilUsuario}
+              respuesta={respuesta}
+            /> */}
             <Route exact path="/" component={Home} />
             <Route exact path="/tienda" component={Tienda} />
             <Route exact path="/servicios" />
-            <Route exact path="/contacto" component={Contacto} />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/registro" component={Registro} />
             <Route exact path="/turnos" component={Turnos} />
+            <Route exact path="/perfilusuario" component={PerfilUsuario} />
+
           </Switch>
         </Router>
       ) : (
@@ -113,12 +121,12 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/tienda" component={Tienda} />
             <Route exact path="/servicios" />
-            <Route exact path="/contacto" component={Contacto} />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/registro" component={Registro} />
             <Route exact path="/turnos" component={Turnos} />
+            <Route exact path="/perfilusuario" component={PerfilUsuario} />
           </Switch>
         </Router>
       )}

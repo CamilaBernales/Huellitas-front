@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Form, Container, Button, Col, Row } from "react-bootstrap";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
-// import style from '../../../css/Login.module.css'
+import  '../../../css/Mensaje.css'
 
 export default function FormMensaje() {
   //Defino el state
@@ -67,64 +67,66 @@ export default function FormMensaje() {
 
   return (
     <Fragment>
-      <Container className="m-4">
-        <Row className="px-5 d-flex justify-content-center  ">
-          <Col sm={12} md={4}>
-            <div>
-              <Form onSubmit={onSubmitConsulta}>
-                <h4 className="text-center mx-1 ">MANDANOS TU CONSULTA</h4>
-                <Form.Group controlId="formName">
-                  <Form.Label className="d-flex justify-content-start">
-                    Nombre:
-                  </Form.Label>
-                  <Form.Control
-                    className="border border-warning rounded-left"
-                    type="name"
-                    placeholder="Ingrese su nombre completo"
-                    name="nombre"
-                    value={nombre}
-                    onChange={onChangeConsulta}
-                  />
-                </Form.Group>
-                <Form.Group controlId="formEmail">
-                  <Form.Label className="d-flex justify-content-start">
-                    Email:
-                  </Form.Label>
-                  <Form.Control
-                    className="border border-warning rounded-left"
-                    type="email"
-                    placeholder="Ingrese su Email"
-                    name="email"
-                    value={email}
-                    onChange={onChangeConsulta}
-                  />
-                </Form.Group>
-                <Form.Group controlId="exampleForm.ControlTextarea1">
-                  <Form.Label>Decinos en que podemos ayudarte</Form.Label>
-                  <Form.Control
-                    className="border border-warning"
-                    as="textarea"
-                    rows="3"
-                    name="mensaje"
-                    value={mensaje}
-                    onChange={onChangeConsulta}
-                  />
-                </Form.Group>
-                <Row>
-                  <Col className="d-flex justify-content-center">
-                    <Button
-                      className="text-white text-uppercase font-weight-bold rounded-pill btn btn-button w-100"
-                      variant="warning"
-                      type="submit"
-                    >
-                      Enviar
-                    </Button>
-                  </Col>
-                </Row>
-              </Form>
-            </div>
-          </Col>
-        </Row>
+      <Container className="px-5 my-4">
+        <h3 className="text-center my-4 py-3 ">Contactanos</h3>
+        <p className="text-center my-3 py-2 text-secondary">
+          San Miguel de Tucumán. Provincia de Tucumán. Argentina +54 9 381
+          094-4312 | +54 984609234
+        </p>
+        <Form onSubmit={onSubmitConsulta}>
+          <Row className="d-flex justify-content-around align-items-center">
+            <Col sm={12} md={6} className="my-2">
+              <Form.Group controlId="formName">
+                <Form.Control
+                  placeholder="Nombre"
+                  className="formulariosMensaje"
+                  type="name"
+                  name="nombre"
+                  value={nombre}
+                  onChange={onChangeConsulta}
+                />
+              </Form.Group>
+            </Col>
+            <Col sm={12} md={6} className="my-2">
+              <Form.Group controlId="formEmail">
+                <Form.Control
+                  placeholder="Email"
+                  className="formulariosMensaje"
+                  rows="3"
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={onChangeConsulta}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="my-2">
+              <Form.Group
+                controlId="exampleForm.ControlTextarea1"
+                className="w-100"
+              >
+                <Form.Control
+                  placeholder="Mensaje"
+                  className="formulariosMensaje"
+                  as="textarea"
+                  rows="3"
+                  name="mensaje"
+                  value={mensaje}
+                  onChange={onChangeConsulta}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="my-2 d-flex justify-content-end">
+              <Button size="md" variant="outline-primary" type="submit">
+                Enviar
+              </Button>
+            </Col>
+          </Row>
+        </Form>
       </Container>
     </Fragment>
   );
