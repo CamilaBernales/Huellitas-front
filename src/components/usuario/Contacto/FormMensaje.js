@@ -121,7 +121,7 @@ export default function FormMensaje() {
           </Row>
           <Row>
             <Col className="my-2 d-flex justify-content-end">
-              <Button size="md" variant="outline-primary" type="submit">
+              <Button size="md" variant="outline-info" type="submit">
                 Enviar
               </Button>
             </Col>

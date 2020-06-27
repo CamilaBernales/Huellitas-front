@@ -1,31 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import imagen from "../../../img/logoprueba.png";
 import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Dropdown, Row } from "react-bootstrap";
 import "../../../css/Header.css";
+import tokenAuth from "../../../config/token";
 
 const Logo = () => {
-
   let loginLogo;
-  const [usuario, setUsuario] = useState(
-    sessionStorage.getItem("usuarioReg") || ""
-  );
+  const [isLogIn, setIsLogIn] = useState(false);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const revisarSesion = () => {
+      if (token) {
+        tokenAuth(token);
+        setIsLogIn(true);
+      } else {
+        setIsLogIn(false);
+      }
+    };
+    revisarSesion();
+  }, []);
 
   const salir = () => {
-    localStorage.removeItem('token');
-    sessionStorage.setItem("usuarioReg", "");
-    setUsuario(sessionStorage.getItem("usuarioReg"));
-    window.location.href = '/'
+    localStorage.removeItem("token");
+    window.location.href = "/";
   };
 
-  if (usuario !== "admin" && usuario !== "") {
+  if (isLogIn) {
     loginLogo = (
-      <div className="p-3">
-        <em className="mr-3">
-          <b>{usuario}</b>
-        </em>
-        <Button onClick={salir}>Salir</Button>
-      </div>
+      <Row className="p-3 mr-2">
+        <Dropdown>
+          <Dropdown.Toggle id="dropdown-custom-1">Mi cuenta</Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item href="/perfilusuario">Mi perfil</Dropdown.Item>
+            <Dropdown.Item onClick={() => salir()}>Cerrar sesión</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Row>
     );
   } else {
     loginLogo = (

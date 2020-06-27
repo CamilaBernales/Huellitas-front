@@ -1,15 +1,8 @@
 import React, { useState, Fragment } from "react";
-import {
-  Col,
-  Card,
-  Button,
-  Alert,
-  Row,
-} from "react-bootstrap";
+import { Col, Card, Button, Alert, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ModalProducto from "./ModalProducto";
-import InputCantidad from "./InputCantidad";
-
+import "./../../../css/Tienda.css";
 const Producto = ({ producto }) => {
   const [productoAgregado, setProductoAgregado] = useState(
     JSON.parse(localStorage.getItem("compras")) || []
@@ -59,7 +52,7 @@ const Producto = ({ producto }) => {
           tu compra
         </Alert>
       ) : null}
-      <Col sm={12} md={6} xl={4}>
+      <Col sm={12} md={6} xl={4} className="d-flex justify-content-center p-3 ">
         <Card
           key={_id}
           border="primary"
@@ -67,7 +60,11 @@ const Producto = ({ producto }) => {
             width: "18rem",
           }}
         >
-          <Card.Img variant="top" className="img-fluid" src={imagen}/>
+          <Card.Img
+            variant="top"
+            className="img-fluid imagentienda"
+            src={imagen}
+          />
           <Card.Body>
             <Card.Title>{nombre}</Card.Title>
             <Card.Text>

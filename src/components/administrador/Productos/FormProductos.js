@@ -53,7 +53,7 @@ function FormProductos() {
     }
 
   };
-  const onChangeMemeImg = async (e) => {
+  const onChangeImagenProducto = async (e) => {
     if (e.target.files[0]) {
       if (e.target.files[0].size > 4194304) {
         // 5242880 = 5MB
@@ -65,7 +65,6 @@ function FormProductos() {
           ...nuevoProducto,
           imagen: null,
         });
-
         return;
       }
       let reader = new FileReader();
@@ -144,7 +143,7 @@ function FormProductos() {
                       id="imagen"
                       name="imagen"
                       accept="image/*"
-                      onChange={onChangeMemeImg}
+                      onChange={onChangeImagenProducto}
                     />
                   </Form.Group>
                 </Col>

@@ -97,12 +97,12 @@ function App() {
               component={MisTurnos}
               respuesta={respuesta}
             />
-            {/* <RutaPrivada
+            <RutaPrivada
               exact
               path="/perfilusuario"
               component={PerfilUsuario}
               respuesta={respuesta}
-            /> */}
+            />
             <Route exact path="/" component={Home} />
             <Route exact path="/tienda" component={Tienda} />
             <Route exact path="/servicios" />
@@ -112,7 +112,6 @@ function App() {
             <Route exact path="/registro" component={Registro} />
             <Route exact path="/turnos" component={Turnos} />
             <Route exact path="/perfilusuario" component={PerfilUsuario} />
-
           </Switch>
         </Router>
       ) : (
@@ -126,7 +125,6 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/registro" component={Registro} />
             <Route exact path="/turnos" component={Turnos} />
-            <Route exact path="/perfilusuario" component={PerfilUsuario} />
           </Switch>
         </Router>
       )}

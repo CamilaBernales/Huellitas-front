@@ -1,0 +1,25 @@
+.imagenPerfilUsuario{
+    height: 178px;
+    width: 171px;
+    overflow: hidden;
+    border:#F49F0A 2px solid ;
+    border-style: double;
+    -webkit-box-shadow: 0px 0px 18px -6px rgba(240,135,0,1);
+    -moz-box-shadow: 0px 0px 18px -6px rgba(240,135,0,1);
+    box-shadow: 0px 0px 18px -6px rgba(240,135,0,1);
+}
+.boxPerfil{
+    border: 5px solid #F58F29;
+    border-style: dashed;
+}
+.botonEditarUsuario{
+    background-color: #00A6A6;
+}
+.botonEditarUsuario:hover{
+    background-color: #00A6A6;
+}
+.border-primary{
+    color: #F58F29;
+    border-color: #00A6A6 !important
+    ;
+}
