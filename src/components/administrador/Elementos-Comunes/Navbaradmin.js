@@ -2,27 +2,16 @@ import React, { Fragment, useState } from "react";
 import imagen from "../../../img/logoprueba.png";
 import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
-
+import Logo from "../../../components/usuario/Elementos-Comunes/Logo";
 const NavBar = () => {
-
   const salir = () => {
-    localStorage.clear()
+    localStorage.clear();
     window.location.reload(true);
   };
 
   return (
     <Fragment>
-      <div className="img-fluid d-flex justify-content-end m-0">
-        <div className="p-3">
-          <em className="mr-3">
-            <b>Administrador</b>
-          </em>
-          <Button onClick={salir}>Salir</Button>
-        </div>
-      </div>
-      <div className="d-flex img-fluid mt-0 mb-3 justify-content-center">
-        <img alt="logo" src={imagen} />
-      </div>
+      <Logo />
       <Navbar className="navbar" collapseOnSelect expand="lg">
         <Navbar.Brand href="/">Huellitas</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

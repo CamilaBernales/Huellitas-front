@@ -1,14 +1,33 @@
-
-.fondoFooter{
-    background-color: #999999;
+.footer {
+  background-color: #647aa3;
+  width: 100%;
+  margin-bottom: 0;
+  position: relative;
+  color: #95b2b0;
+  border-radius: none;
+  padding: 2rem 2rem 1rem 2rem;
+}
+h4 {
+  color: #ffffff;
+  font-size: 16px;
+  margin-top: 5px;
+  letter-spacing: 3px;
+  font-weight: 800;
+}
+.fab {
+  color: #ffffff;
+}
+.fab:hover {
+  color: #c6ebbe;
+  -webkit-box-shadow: 0px 0px 18px -6px #95b2b0;
+  -moz-box-shadow: 0px 0px 18px -6px #95b2b0;
+  box-shadow: 5px 5px 30px 7px #95b2b0;
 }
 
-.posicionFooter{
-    position: relative;
-    bottom: 0;
-
+.linkfooter {
+  color: #ffffff;
+  text-decoration: none;
 }
-
-.letras{
-    color: tomato;
+.linkfooter:hover{
+color: #c6ebbe;
 }

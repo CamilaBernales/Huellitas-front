@@ -91,7 +91,7 @@ const Servicio = () => {
             <Col>
               <div className="d-flex justify-content-center">
                 <div className="img-fluid ">
-                  <img alt="imagen de gato " />
+                  <img className="imagenlastcard" alt="animales domesticos" />
                 </div>
               </div>
               <div className=" my-3 d-flex justify-content-center">

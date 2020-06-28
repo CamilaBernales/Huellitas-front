@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/Producto.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -24,6 +25,7 @@ import ListadoUsuarios from "./components/administrador/Usuarios/ListadoUsuarios
 import PerfilUsuario from "./components/usuario/Elementos-Comunes/PerfilUsuario";
 import axiosConfig from "./config/axios";
 import tokenAuth from "./config/token";
+import Footer from "./components/usuario/Elementos-Comunes/Footer";
 function App() {
   const [loading, setLoading] = useState(true);
   const [respuesta, setRespuesta] = useState({});
@@ -46,8 +48,8 @@ function App() {
   }, []);
   return (
     <div className="App">
-      {!loading ? (
-        <Router>
+      <Router>
+        {!loading ? (
           <Switch>
             <RutaPrivAdmin
               exact
@@ -113,9 +115,7 @@ function App() {
             <Route exact path="/turnos" component={Turnos} />
             <Route exact path="/perfilusuario" component={PerfilUsuario} />
           </Switch>
-        </Router>
-      ) : (
-        <Router>
+        ) : (
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/tienda" component={Tienda} />
@@ -126,8 +126,9 @@ function App() {
             <Route exact path="/registro" component={Registro} />
             <Route exact path="/turnos" component={Turnos} />
           </Switch>
-        </Router>
-      )}
+        )}
+      <Footer />
+      </Router>
     </div>
   );
 }

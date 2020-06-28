@@ -16,7 +16,6 @@ export default function Home() {
       </div>
       <Servicio />
       <Contacto/>
-      <Footer />
     </Fragment>
   );
 }

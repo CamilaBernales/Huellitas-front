@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Form, Container, Button, Col, Row } from "react-bootstrap";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
-import  '../../../css/Mensaje.css'
+import "../../../css/Mensaje.css";
 
 export default function FormMensaje() {
   //Defino el state

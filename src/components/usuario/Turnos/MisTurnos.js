@@ -54,52 +54,6 @@ const MisTurnos = () => {
       <Logo />
       <Navbar />
       <Container>
-        {historial ? (
-          <>
-            <strong>
-              <em>
-                {" "}
-                <Link onClick={() => setHistorial(false)}>
-                  Ocultar historial
-                </Link>
-              </em>
-            </strong>
-            <Row className="d-flex justify-content-center align-items-center text-start my-3">
-              <Col sm={12} md={6} xl={10}>
-                <p>Tus turnos</p>
-                <Table responsive striped bordered hover size="sm">
-                  <thead>
-                    <tr>
-                      <th>Fecha</th>
-                      <th>Hora</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {misTurnos.map((turno) => {
-                      if (turno.fecha < fechaActual) {
-                        return (
-                          <tr key={turno._id}>
-                            <td>{turno.fecha}</td>
-                            <td>{turno.hora}</td>
-                          </tr>
-                        );
-                      }
-                    })}
-                  </tbody>
-                </Table>
-              </Col>
-            </Row>
-          </>
-        ) : (
-          <strong>
-            <em>
-              {" "}
-              <Link onClick={() => setHistorial(true)}>
-                Historial de turnos
-              </Link>
-            </em>
-          </strong>
-        )}
         <Row className="d-flex justify-content-start align-items-start text-start my-3">
           {misTurnos.map((turno) => {
             if (turno.fecha > fechaActual) {
@@ -140,6 +94,55 @@ const MisTurnos = () => {
             }
           })}
         </Row>
+
+        {historial ? (
+          <>
+            <strong>
+              <em>
+                {" "}
+                <Link onClick={() => setHistorial(false)}>
+                  Ocultar historial
+                </Link>
+              </em>
+            </strong>
+            <Row className="d-flex justify-content-center align-items-center text-start my-3">
+              <Col sm={12} md={6} xl={10}>
+                <p>Tus turnos</p>
+                <Table responsive striped bordered hover size="sm">
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Hora</th>
+                      <th>Motivo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {misTurnos.map((turno) => {
+                      if (turno.fecha < fechaActual) {
+                        return (
+                          <tr key={turno._id}>
+                            <td>{turno.fecha}</td>
+                            <td>{turno.hora}</td>
+                            <td>{turno.resumen}</td>
+                          </tr>
+                        );
+                      }
+                    })}
+                  </tbody>
+                </Table>
+              </Col>
+            </Row>
+          </>
+        ) : (
+          <strong>
+            <em>
+              {" "}
+              <Link onClick={() => setHistorial(true)}>
+                Historial de turnos
+              </Link>
+            </em>
+          </strong>
+        )}
       </Container>
     </>
   );

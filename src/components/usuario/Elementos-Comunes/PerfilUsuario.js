@@ -19,6 +19,7 @@ const PerfilUsuario = () => {
       .put(`/api/usuarios/updateusuario/${usuario._id}`, usuario)
       .then((res) => {
         console.log(res);
+        window.location.reload(true);
       })
       .catch((err) => console.log(err.response));
   };
@@ -71,14 +72,14 @@ const PerfilUsuario = () => {
             <Row className="d-flex justify-content-around align-items-center m-auto ">
               <Col xs={6} md={4} xl={4}>
                 <Image
-                  className="imagenPerfilUsuario img-fluid my-5"
+                  className="imagenPerfilUsuario img-fluid my-4"
                   src={usuario.imagen}
                   roundedCircle
                 />
               </Col>
             </Row>
             <Form>
-              <Form.Group controlId="imagen">
+              <Form.Group className="my-4" controlId="imagen">
                 <Form.Label>Foto de perfil</Form.Label>
                 <Form.File
                   id="imagen"
@@ -87,8 +88,8 @@ const PerfilUsuario = () => {
                   onChange={onChangeUsuarioImagen}
                 />
               </Form.Group>
-              <Form.Group controlId="formName">
-                <Form.Label className=" justify-content-start">
+              <Form.Group className="my-4" controlId="formName">
+                <Form.Label className="justify-content-start">
                   Nombre:
                 </Form.Label>
                 <Form.Control
@@ -101,7 +102,7 @@ const PerfilUsuario = () => {
                 />
               </Form.Group>
 
-              <Form.Group controlId="formEmail">
+              <Form.Group className="my-4" controlId="formEmail">
                 <Form.Label className="justify-content-start">
                   Email:
                 </Form.Label>
@@ -114,46 +115,9 @@ const PerfilUsuario = () => {
                   value={usuario.email}
                 />
               </Form.Group>
-
-              <Form.Group controlId="formPassword">
-                <Form.Label className="justify-content-start">
-                  Contraseña actual:
-                </Form.Label>
-                <Form.Control
-                  className="border border-primary rounded-left"
-                  type="password"
-                  placeholder="Ingrese su contraseña"
-                  name="password"
-                  onChange={onChangeUsuario}
-                />
-              </Form.Group>
-              <Form.Group controlId="formPassword">
-                <Form.Label className="justify-content-start">
-                  Nueva contaseña:
-                </Form.Label>
-                <Form.Control
-                  className="border border-primary rounded-left"
-                  type="password"
-                  placeholder="Ingrese su contraseña"
-                  name="newpassword"
-                  onChange={onChangeUsuario}
-                />
-              </Form.Group>
-              <Form.Group controlId="formPassword">
-                <Form.Label className="justify-content-start">
-                  Confirmar nueva contaseña:
-                </Form.Label>
-                <Form.Control
-                  className="border border-primary rounded-left"
-                  type="password"
-                  placeholder="Ingrese su contraseña"
-                  name="confirmpassword"
-                  onChange={onChangeUsuario}
-                />
-              </Form.Group>
             </Form>
             <Button
-              className="w-100 my-1 botonEditarUsuario text-uppercase"
+              className="w-100 my-3 botonEditarUsuario text-uppercase"
               onClick={() => editarUsuario()}
             >
               Guardar
