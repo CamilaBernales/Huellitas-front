@@ -24,33 +24,33 @@ function Footer() {
           <Col sm={12} md={4} className="my-2">
             <h4 className="ml-3">Guias</h4>
             <Col sm={12} md={4} className="my-2">
-              <Link className="linkfooter">Medios de Pago</Link>
+              <Link className="linkfooter" to="#">Medios de Pago</Link>
             </Col>
             <Col sm={12} md={4} className="my-2">
-              <Link className="linkfooter">Terminos y Condiciones de Uso</Link>
+              <Link className="linkfooter" to="#">Terminos y Condiciones de Uso</Link>
             </Col>
             <Col sm={12} md={4} className="my-2">
-              <Link className="linkfooter">Sampling</Link>
+              <Link className="linkfooter" to="#">Sampling</Link>
             </Col>
           </Col>
           <Col sm={12} md={4} className="my-2">
             <h4 className="ml-3">Redes sociales</h4>
-            <Link className="mx-2">
+            <Link className="mx-2" to="wwww.instagram.com">
               <i className="fab fa-instagram fa-2x"></i>
             </Link>
-            <Link className="mx-2">
+            <Link className="mx-2" to="wwww.facebook.com">
               <i className="fab fa-facebook-square fa-2x"></i>
             </Link>
-            <Link className="mx-2">
+            <Link className="mx-2" to="wwww.twitter.com">
               <i className="fab fa-twitter-square fa-2x"></i>
             </Link>
 
             <Link
               target="_blank"
-              href="mailto:camilabernales09@gmail.com?Subject=Aqui%20el%20asunto%20del%20mail"
+              to="mailto:camilabernales09@gmail.com?Subject=Aqui%20el%20asunto%20del%20mail"
               className="mx-2"
             >
-              <i class="fab far fa-envelope fa-2x"></i>
+              <i className="fab far fa-envelope fa-2x"></i>
             </Link>
           </Col>
         </Row>

@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Row, Container, Col, Form, Button } from "react-bootstrap";
+import { Row, Container, Col, Form, Button, Alert } from "react-bootstrap";
 import Producto from "./Producto";
 import axiosConfig from "../../../config/axios";
 import Logo from "../Elementos-Comunes/Logo";
@@ -11,6 +11,10 @@ const Tienda = () => {
   const OnChangeFiltrados = (e) => {
     setProductosFiltrados(e.target.value);
   };
+  const [filtrarTipo, setFiltrarTipo] = useState("");
+  const onChangeFiltroTipos = (e) => {
+    setFiltrarTipo(e.target.value);
+  };
 
   const traerProductos = () => {
     axiosConfig
@@ -20,7 +24,9 @@ const Tienda = () => {
   };
   const filtrarProductos = () => {
     axiosConfig
-      .get(`/api/productos/productosfiltrados?nombre=${productosFiltrados}`)
+      .get(
+        `/api/productos/productosfiltrados?nombre=${productosFiltrados}&&tipoproducto=${filtrarTipo}`
+      )
       .then((res) => setProductos(res.data))
       .catch((err) => console.log(err));
   };
@@ -33,7 +39,7 @@ const Tienda = () => {
       <Fragment>
         <Logo />
         <Navbar />
-        <Container>
+        <Container className="my-5 py-3">
           <Form.Row onSubmit={filtrarProductos}>
             <Col>
               <Form.Group>
@@ -45,15 +51,48 @@ const Tienda = () => {
               </Form.Group>
             </Col>
             <Col>
+              <Form.Group>
+                <select
+                  name="tipoproducto"
+                  className="w-100"
+                  onChange={onChangeFiltroTipos}
+                >
+                  <option value="" defaultValue>
+                    Elige el tipo de producto
+                  </option>
+                  <option value="alimento">Alimento</option>
+                  <option value="jueguete">Jueguete</option>
+                  <option value="accesorios">Accesorios</option>
+                  <option value="Higiene">Productos de Higiene</option>
+                </select>
+              </Form.Group>
+            </Col>
+            <Col>
               <Button onClick={filtrarProductos} type="submit">
                 Buscar
               </Button>
             </Col>
           </Form.Row>
           <Row className="col-12 m-auto">
-            {productos.map((producto) => (
-              <Producto key={producto._id} producto={producto} />
-            ))}
+            {productos.length === 0 ? (
+              <Row className="d-flex justify-content-center align-items-center">
+                <Alert className="text-center" variant="warning">
+                  <h6>
+                    {" "}
+                    No hay resultados para tu búsqueda{" "}
+                    <span role="img" aria-label="cara triste">
+                      &#128546;
+                    </span>{" "}
+                  </h6>
+                </Alert>
+              </Row>
+            ) : (
+              <>
+                {productos.map((producto) => (
+                  <Producto key={producto._id} producto={producto} />
+                ))}
+              </>
+            )}
           </Row>
         </Container>
       </Fragment>

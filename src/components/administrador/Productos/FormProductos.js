@@ -40,18 +40,26 @@ function FormProductos() {
             showConfirmButton: false,
             timer: 1500,
           });
-          console.log(res);
+          setNuevoProducto({
+            nombre: "",
+            descripcion: "",
+            precio: "",
+            disponibilidad: "",
+            imagen: "",
+            tipoproducto: "",
+          });
         })
         .catch((err) => {
-          console.log(err.response);
+          // console.log(err.response);
+          window.scrollTo(0, 200);
           setError(true);
           setMsgError(err.response.data.msg);
         });
     } else {
       setError(true);
+      window.scrollTo(0, 200);
       setMsgError("Los campos deben estar completos.");
     }
-
   };
   const onChangeImagenProducto = async (e) => {
     if (e.target.files[0]) {
@@ -86,7 +94,7 @@ function FormProductos() {
   return (
     <div>
       <Navbaradmin />
-      <Container className="my-3">
+      <Container className="my-5">
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
             {error ? (
@@ -177,7 +185,7 @@ function FormProductos() {
                       name="disponibilidad"
                       onChange={onChangeProducto}
                     >
-                      <option value="" defaultValue >
+                      <option value="" defaultValue>
                         Elige la disponibilidad del producto
                       </option>
                       <option value="Disponible"> Disponible</option>
@@ -199,7 +207,7 @@ function FormProductos() {
                 </Col>
               </Row> */}
             </Form>
-            <Button className="w-100" onClick={guardarProducto} >
+            <Button className="w-100" onClick={guardarProducto}>
               Guardar
             </Button>
           </Col>

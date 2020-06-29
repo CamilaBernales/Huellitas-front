@@ -24,6 +24,7 @@ const Productosadmin = (props) => {
       .catch((err) => console.log(err));
   };
   const obtenerUnProducto = (id) => {
+    window.scrollTo(0, 200);
     axiosConfig
       .get(`/api/productos/producto/${id}`)
       .then((res) => {
@@ -52,12 +53,12 @@ const Productosadmin = (props) => {
         axiosConfig
           .put(`/api/productos/update/${productoEditado._id}`, productoEditado)
           .then((res) => {
-            console.log(res);
-            window.location.reload(true);
+            // console.log(res);
             Swal.fire("Editado!", "La edición se guardo con éxito.", "success");
           })
           .catch((err) => console.log(err.response));
-      }
+        }
+        window.location.reload(true);
     });
   };
 
@@ -79,7 +80,6 @@ const Productosadmin = (props) => {
                       placeholder="Titulo del producto"
                       name="nombre"
                       maxLength="40"
-                      type="text"
                       onChange={onChangeProducto}
                       value={productoEditado.nombre}
                     />
@@ -91,7 +91,6 @@ const Productosadmin = (props) => {
                     <Form.Control
                       placeholder="Descripción"
                       name="descripcion"
-                      type="text"
                       onChange={onChangeProducto}
                       value={productoEditado.descripcion}
                     />
@@ -161,20 +160,6 @@ const Productosadmin = (props) => {
                     </Form.Group>
                   </Col>
                 </Row>
-                {/* <Row>
-                <Col className="my-3">
-                  <Form.Label>En Promo</Form.Label>
-                  <Form.Group>
-                    <select name="espromo" onChange={onChangeProducto}>
-                      <option value="">
-                        Elegí la disponibilidad del producto
-                      </option>
-                      <option value="true">Sí</option>
-                      <option value="false">No</option>
-                    </select>
-                  </Form.Group>
-                </Col>
-              </Row> */}
               </Form>
               <Row className="d-flex justify-content-end align-items-end">
                 <Button
@@ -215,11 +200,6 @@ const Productosadmin = (props) => {
                           <i className="fas fa-edit" />
                         </Button>
                       </td>
-                      {/* <td className="text-center">
-                  <Button>
-                    <i className="fas fa-trash" />
-                  </Button>
-                </td> */}
                     </tr>
                   );
                 })}

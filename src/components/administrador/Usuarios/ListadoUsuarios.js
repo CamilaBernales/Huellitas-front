@@ -6,18 +6,11 @@ import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
 const ListadoUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
-  const [usuario, setUsuario] = useState({});
   const [usuarioEditado, setUsuarioEditado] = useState(false);
 
-  const otorgarPermisos = (id) => {
-    axiosConfig
-      .get(`/api/usuarios/obtenerusuario/${id}`)
-      .then((res) => {
-        setUsuario(res.data.usuario);
-      })
-      .catch((err) => console.log(err));
+  const otorgarPermisos = (usuario) => {
     Swal.fire({
-      title: `¿Estas seguro de convertir al usuario ${usuario.nombre} en administrador?`,
+      title: `¿Estas seguro de otorgar permisos de administrador a ${usuario.nombre}?`,
       text: "No podrás revertir esta acción.",
       icon: "warning",
       showCancelButton: true,
@@ -28,26 +21,21 @@ const ListadoUsuarios = () => {
     }).then((result) => {
       if (result.value) {
         axiosConfig
-          .put(`/api/usuarios/quitaerpermisos/${id}`)
+          .put(`/api/usuarios/otorgarpermisos/${usuario._id}`)
           .then((res) => {
             // console.log(res)
             Swal.fire("La edición fue guardada con éxito!", "", "success");
             setUsuarioEditado(true);
+            window.location.reload(true);
           })
           .catch((res) => console.log(res.response));
       }
     });
   };
 
-  const quitarPermisos = (id) => {
-    axiosConfig
-      .get(`/api/usuarios/obtenerusuario/${id}`)
-      .then((res) => {
-        setUsuario(res.data.usuario);
-      })
-      .catch((err) => console.log(err));
+  const quitarPermisos = (usuario) => {
     Swal.fire({
-      title: `¿Estas seguro de convertir al usuario ${usuario.nombre} en usuario?`,
+      title: `¿Estas seguro de quitar permisos de administrador a ${usuario.nombre} ?`,
       text: "No podrás revertir esta acción.",
       icon: "warning",
       showCancelButton: true,
@@ -58,11 +46,12 @@ const ListadoUsuarios = () => {
     }).then((result) => {
       if (result.value) {
         axiosConfig
-          .put(`/api/usuarios/quitarpermisos/${id}`)
+          .put(`/api/usuarios/quitarpermisos/${usuario._id}`)
           .then((res) => {
             // console.log(res)
             Swal.fire("La edición fue guardada con éxito!", "", "success");
             setUsuarioEditado(true);
+            window.location.reload(true)
           })
           .catch((res) => console.log(res.response));
       }
@@ -73,10 +62,10 @@ const ListadoUsuarios = () => {
       .get("/api/usuarios/listadousuarios")
       .then((res) => {
         setUsuarios(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
   useEffect(() => {
@@ -107,7 +96,7 @@ const ListadoUsuarios = () => {
                         <td>{usuario.email}</td>
                         <td>{usuario.rol}</td>
                         <td>
-                          <button onClick={() => quitarPermisos(usuario._id)}>
+                          <button onClick={() => quitarPermisos(usuario)}>
                             Quitar Permisos
                           </button>
                         </td>
@@ -120,7 +109,7 @@ const ListadoUsuarios = () => {
                         <td>{usuario.email}</td>
                         <td>{usuario.rol}</td>
                         <td>
-                          <button onClick={() => otorgarPermisos(usuario._id)}>
+                          <button onClick={() => otorgarPermisos(usuario)}>
                             Otorgar Permisos
                           </button>
                         </td>

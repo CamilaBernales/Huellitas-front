@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const Servicio = () => {
   return (
     <Fragment>
-      <Container className="my-5 py-5">
+      <Container className="my-5 py-3">
         <Row className="d-flex justify-content-around align-items-center">
           <div class="cardServicios">
             <Col>

@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
+import '../../../css/Turno.css'
 // import moment from "moment";
 
 const Turno = () => {
@@ -63,8 +64,10 @@ const Turno = () => {
           console.log(err.response);
           setError(true);
           setMsgError(err.response.data.msg);
+          window.scrollTo(0, 200);
         });
     } else {
+      window.scrollTo(0, 200);
       setError(true);
       setMsgError("Los campos deben estar completos.");
     }
@@ -87,7 +90,7 @@ const Turno = () => {
     <>
       <Logo />
       <Navbar />
-      <Container className="my-4 ">
+      <Container className="my-5 py-3">
         {error ? (
           <Alert
             className="p-3 text-center text-uppercase font-weight-bold"
@@ -98,9 +101,9 @@ const Turno = () => {
         ) : null}
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
-            <h3>Datos de tu Mascota</h3>
+            <h4>Datos de tu Mascota</h4>
             <Form onSubmit={submitTurno}>
-              <Row>
+              <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>Nombre de tu mascota</Form.Label>
                   <Form.Control
@@ -112,7 +115,7 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <Row>
+              <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>Edad de tu mascota</Form.Label>
                   <Form.Control
@@ -123,7 +126,7 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <Row>
+              <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>Raza de tu mascota</Form.Label>
 
@@ -135,7 +138,7 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <Row>
+              <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>Alergias y otras particularidades</Form.Label>
 
@@ -150,8 +153,8 @@ const Turno = () => {
 
               <hr />
 
-              <h3>Información de tu turno</h3>
-              <Row>
+              <h4>Información de tu turno</h4>
+              <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>Tu número de teléfono</Form.Label>
                   <Form.Control
@@ -162,7 +165,7 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <Row>
+              <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>Elige una fecha para tu turno</Form.Label>
                   <Form.Control
@@ -173,7 +176,7 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <Row>
+              <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>Elige un horario para tu turno</Form.Label>
                   <Form.Group>
@@ -187,7 +190,7 @@ const Turno = () => {
                   </Form.Group>
                 </Col>
               </Row>
-              <Row>
+              <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>
                     Escribe un breve resumen de lo que le pasa tu mascota
