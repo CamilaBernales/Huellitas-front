@@ -70,8 +70,9 @@ const PerfilUsuario = () => {
         <Row className="d-flex justify-content-center align-items-center my-5 ">
           <Col sm={12} md={8} xl={6} className="boxPerfil p-4">
             <Row className="d-flex justify-content-around align-items-center m-auto ">
-              <Col xs={6} md={4} xl={4}>
+              <Col xs={6} md={6} xl={6}>
                 <Image
+                  fluid
                   className="imagenPerfilUsuario img-fluid my-4"
                   src={usuario.imagen}
                   roundedCircle
