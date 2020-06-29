@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
-import '../../../css/Turno.css'
+import "../../../css/Turno.css";
 // import moment from "moment";
 
 const Turno = () => {
@@ -59,33 +59,29 @@ const Turno = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 2000);
         })
         .catch((err) => {
-          console.log(err.response);
+          // console.log(err.response);
           setError(true);
           setMsgError(err.response.data.msg);
           window.scrollTo(0, 200);
         });
     } else {
-      window.scrollTo(0, 200);
       setError(true);
       setMsgError("Los campos deben estar completos.");
+      window.scrollTo(0, 200);
     }
-    setNuevoTurno({
-      nombremascota: "",
-      edad: "",
-      raza: "",
-      particularidades: "",
-      fecha: new Date(),
-      hora: "",
-      resumen: "",
-      contacto: "",
-    });
   };
   useEffect(() => {
     traerTurnosDisp();
     //eslint-disable-next-line
   }, [nuevoTurno.fecha]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Logo />
@@ -101,7 +97,7 @@ const Turno = () => {
         ) : null}
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
-            <h4>Datos de tu Mascota</h4>
+            <h3>Datos de tu Mascota</h3>
             <Form onSubmit={submitTurno}>
               <Row className="my-3">
                 <Col className="my-3">
@@ -150,10 +146,8 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-
               <hr />
-
-              <h4>Información de tu turno</h4>
+              <h3>Información de tu turno</h3>
               <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>Tu número de teléfono</Form.Label>
@@ -162,6 +156,7 @@ const Turno = () => {
                     placeholder="Tu número de teléfono"
                     name="contacto"
                     onChange={handleTurno}
+                    type="number"
                   />
                 </Col>
               </Row>
@@ -180,7 +175,11 @@ const Turno = () => {
                 <Col className="my-3">
                   <Form.Label>Elige un horario para tu turno</Form.Label>
                   <Form.Group>
-                    <select className="w-100" onChange={handleTurno} name="hora">
+                    <select
+                      className="w-100"
+                      onChange={handleTurno}
+                      name="hora"
+                    >
                       {horarios.map((cita, i) => (
                         <option value={cita} key={i}>
                           {cita}

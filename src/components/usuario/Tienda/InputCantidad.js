@@ -2,15 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Form, Col, Alert, Row } from "react-bootstrap";
 
 export default function InputCantidad({ producto }) {
-
-
   const [cantidad, setCantidad] = useState(0);
 
   const handleCantidad = (e) => {
     e.preventDefault();
     setCantidad(([e.target.name] = e.target.value));
   };
-
 
   return (
     <>
@@ -26,7 +23,7 @@ export default function InputCantidad({ producto }) {
                 size="sm"
                 type="number"
                 max="5"
-                min="0"
+                min="1"
                 placeHolder="Cantidad"
               />
             </Col>
@@ -44,7 +41,7 @@ export default function InputCantidad({ producto }) {
                 size="sm"
                 type="number"
                 max="5"
-                min="0"
+                min="1"
                 placeHolder="Cantidad"
               />
             </Col>

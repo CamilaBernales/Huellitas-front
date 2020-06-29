@@ -21,6 +21,7 @@ const MisTurnos = () => {
   let fecha = new Date();
   let fechaActual = moment(fecha).format("YYYY-MM-DD");
   const [misTurnos, setMisTurnos] = useState([]);
+
   const listarMisTurnos = () => {
     axiosConfig
       .get(`/api/turnos/listadoturno`)
@@ -67,7 +68,7 @@ const MisTurnos = () => {
         </em>
         <Row className="d-flex justify-content-center align-items-center text-start my-3">
           {misTurnos.length === 0 ? (
-            <Col>
+            <>
               <Alert className="text-center" variant="info">
                 <h6>
                   {" "}
@@ -83,7 +84,7 @@ const MisTurnos = () => {
                   </Link>{" "}
                 </h6>
               </Alert>
-            </Col>
+            </>
           ) : (
             <>
               {misTurnos.map((turno) => {
@@ -116,6 +117,28 @@ const MisTurnos = () => {
                       </Card>
                     </Col>
                   );
+                } else {
+                  return (
+                    <>
+                      <Col>
+                        <Alert className="text-center" variant="info">
+                          <h6>
+                            {" "}
+                            No tienes ningún turno próximamente{" "}
+                            <span role="img" aria-label="cara triste">
+                              &#128546;
+                            </span>{" "}
+                            <Link to="/turno">
+                              Solicita un turno{" "}
+                              <span role="img" aria-label="cara triste">
+                                &#128522;
+                              </span>{" "}
+                            </Link>{" "}
+                          </h6>
+                        </Alert>
+                      </Col>
+                    </>
+                  );
                 }
               })}
             </>
@@ -137,7 +160,7 @@ const MisTurnos = () => {
             </p>
             <Row className="d-flex justify-content-center align-items-center text-start my-3">
               {misTurnos.length === 0 ? (
-                <Col>
+                <>
                   <Alert className="text-center" variant="info">
                     <h6>
                       {" "}
@@ -153,32 +176,54 @@ const MisTurnos = () => {
                       </Link>{" "}
                     </h6>
                   </Alert>
-                </Col>
+                </>
               ) : (
                 <>
                   <Col sm={12} md={6} xl={10}>
-                    <Table responsive striped bordered hover size="sm">
-                      <thead>
-                        <tr>
-                          <th>Fecha</th>
-                          <th>Hora</th>
-                          <th>Motivo</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {misTurnos.map((turno) => {
-                          if (turno.fecha < fechaActual) {
-                            return (
-                              <tr key={turno._id}>
-                                <td>{turno.fecha}</td>
-                                <td>{turno.hora}</td>
-                                <td>{turno.resumen}</td>
-                              </tr>
-                            );
-                          }
-                        })}
-                      </tbody>
-                    </Table>
+                    {misTurnos.map((turno) => {
+                      if (turno.fecha < fechaActual) {
+                        return (
+                          <>
+                            <Table responsive striped bordered hover size="sm">
+                              <thead>
+                                <tr>
+                                  <th>Fecha</th>
+                                  <th>Hora</th>
+                                  <th>Motivo</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr key={turno._id}>
+                                  <td>{turno.fecha}</td>
+                                  <td>{turno.hora}</td>
+                                  <td>{turno.resumen}</td>
+                                </tr>
+                              </tbody>
+                            </Table>
+                          </>
+                        );
+                      } else {
+                        return (
+                          <>
+                            <Alert className="text-center" variant="info">
+                              <h6>
+                                {" "}
+                                Aún no tienes un historial para mostrar{" "}
+                                <span role="img" aria-label="cara triste">
+                                  &#128546;
+                                </span>{" "}
+                                <Link to="/turno">
+                                  Solicita un turno{" "}
+                                  <span role="img" aria-label="cara triste">
+                                    &#128522;
+                                  </span>{" "}
+                                </Link>{" "}
+                              </h6>
+                            </Alert>
+                          </>
+                        );
+                      }
+                    })}
                   </Col>
                 </>
               )}
