@@ -23,10 +23,11 @@ export default function InputCantidad({ producto }) {
             <Col>
               <Form.Control
                 name="cantidad"
+                onChange={handleCantidad}
                 size="sm"
                 type="number"
                 max="5"
-                min="0"
+                min="1"
                 placeHolder="Cantidad"
               />
             </Col>
@@ -44,7 +45,7 @@ export default function InputCantidad({ producto }) {
                 size="sm"
                 type="number"
                 max="5"
-                min="0"
+                min="1"
                 placeHolder="Cantidad"
               />
             </Col>
