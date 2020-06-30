@@ -9,7 +9,7 @@ import Carrito from "./components/usuario/Tienda/Carrito";
 import Tienda from "./components/usuario/Tienda/Tienda";
 import Home from "./components/usuario/Home/Home";
 import Contacto from "./components/usuario/Contacto/Contacto";
-import ListarMensajes from "./components/usuario/Contacto/ListadoMensajes";
+import ListadoMensajes from "./components/administrador/Mensajes/ListadoMensajes";
 import Login from "./components/usuario/Registro-login/Login";
 import Registro from "./components/usuario/Registro-login/Registro";
 import Equipo from "./components/usuario/Equipo/Equipo";
@@ -81,6 +81,12 @@ function App() {
               component={ListadoUsuarios}
               respuesta={respuesta}
             />
+            <RutaPrivAdmin
+              exact
+              path="/admin/listadomensajes"
+              component={ListadoMensajes}
+              respuesta={respuesta}
+            />
             <RutaPrivada
               exact
               path="/turno"
@@ -127,7 +133,7 @@ function App() {
             <Route exact path="/turnos" component={Turnos} />
           </Switch>
         )}
-      <Footer />
+        <Footer />
       </Router>
     </div>
   );

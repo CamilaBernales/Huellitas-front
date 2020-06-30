@@ -156,7 +156,7 @@ const MisTurnos = () => {
               </em>
             </strong>
             <p>
-              <em>Tus turnos</em>
+              <em>Tus turnos anteriores</em>
             </p>
             <Row className="d-flex justify-content-center align-items-center text-start my-3">
               {misTurnos.length === 0 ? (
@@ -200,26 +200,6 @@ const MisTurnos = () => {
                                 </tr>
                               </tbody>
                             </Table>
-                          </>
-                        );
-                      } else {
-                        return (
-                          <>
-                            <Alert className="text-center" variant="info">
-                              <h6>
-                                {" "}
-                                Aún no tienes un historial para mostrar{" "}
-                                <span role="img" aria-label="cara triste">
-                                  &#128546;
-                                </span>{" "}
-                                <Link to="/turno">
-                                  Solicita un turno{" "}
-                                  <span role="img" aria-label="cara triste">
-                                    &#128522;
-                                  </span>{" "}
-                                </Link>{" "}
-                              </h6>
-                            </Alert>
                           </>
                         );
                       }

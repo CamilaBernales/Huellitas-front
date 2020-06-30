@@ -12,10 +12,12 @@ import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
 import Navbaradmin from "../Elementos-Comunes/Navbaradmin";
 
-const Productosadmin = (props) => {
+const Productosadmin = () => {
   const [productos, setProductos] = useState([]);
   const [editar, setEditar] = useState(false);
   const [productoEditado, setProductoEditado] = useState({});
+  const [error, setError] = useState(false);
+  const [msgError, setMsgError] = useState("");
 
   const listarProductos = () => {
     axiosConfig
@@ -24,12 +26,12 @@ const Productosadmin = (props) => {
       .catch((err) => console.log(err));
   };
   const obtenerUnProducto = (id) => {
-    window.scrollTo(0, 200);
     axiosConfig
       .get(`/api/productos/producto/${id}`)
       .then((res) => {
         setEditar(true);
         setProductoEditado(res.data.producto);
+        window.scrollTo(0, 200);
       })
       .catch((err) => console.log(err));
   };
@@ -41,25 +43,53 @@ const Productosadmin = (props) => {
     });
   };
   const actualizarProducto = () => {
-    Swal.fire({
-      title: "Estas seguro de que quieres guardar esta edición?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si, editar!",
-    }).then((result) => {
-      if (result.value) {
-        axiosConfig
-          .put(`/api/productos/update/${productoEditado._id}`, productoEditado)
-          .then((res) => {
-            // console.log(res);
-            Swal.fire("Editado!", "La edición se guardo con éxito.", "success");
-          })
-          .catch((err) => console.log(err.response));
+    if (
+      productoEditado.nombre.trim() !== "" &&
+      productoEditado.tipoproducto.trim() !== "" &&
+      productoEditado.disponibilidad.trim() !== "" &&
+      productoEditado.descripcion.trim() !== "" &&
+      productoEditado.precio !== "" &&
+      productoEditado.imagen !== ""
+    ) {
+      Swal.fire({
+        title: "Estas seguro de que quieres guardar esta edición?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, editar!",
+      }).then((result) => {
+        if (result.value) {
+          axiosConfig
+            .put(
+              `/api/productos/update/${productoEditado._id}`,
+              productoEditado
+            )
+            .then((res) => {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "El producto fue guardado con éxito.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              setTimeout(() => {
+                window.location.reload(true);
+              }, 2000);
+            })
+            .catch((err) => {
+              setError(true);
+              setMsgError(err.response.data.msg);
+              return;
+            });
         }
-        window.location.reload(true);
-    });
+      });
+    } else {
+      setError(true);
+      setMsgError("Todos los campos deben ser completados.");
+      window.scrollTo(0, 200);
+      return;
+    }
   };
 
   useEffect(() => {
@@ -69,6 +99,14 @@ const Productosadmin = (props) => {
     <div>
       <Navbaradmin />
       <Container className="my-5">
+        {error ? (
+          <Alert
+            className="p-3 text-center text-uppercase font-weight-bold"
+            variant="danger"
+          >
+            {msgError}
+          </Alert>
+        ) : null}
         {editar ? (
           <Row className="d-flex justify-content-center align-items-center my-5">
             <Col sm={12} md={8} xl={6}>
