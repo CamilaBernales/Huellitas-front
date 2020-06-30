@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
 import "../../../css/Login.css";
@@ -26,8 +26,10 @@ export default function Login() {
   const onSubmitForm = (e) => {
     e.preventDefault();
 
-    if (email === "" || password === "") {
-      alert("Por favor llenar todos los campos");
+    if (email.trim() === "" || password.trim() === "") {
+      setError(true);
+      setMsgError("Por favor llenar todos los campos");
+      window.scrollTo(0, 200);
       return;
     }
     axiosConfig
@@ -39,15 +41,18 @@ export default function Login() {
         if (res.data.usuario.rol !== "admin") {
           window.location.href = "/";
         } else {
-          window.location.href = "/admin/turnos";;
+          window.location.href = "/admin/turnos";
         }
       })
       .catch((err) => {
         setError(true);
         setMsgError(err.response.data.msg);
+        window.scrollTo(0, 200);
       });
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 300);
+  }, []);
   return (
     <Fragment>
       <Logo />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Col, Alert, Row } from "react-bootstrap";
 
 export default function InputCantidad({ producto }) {
-  const [cantidad, setCantidad] = useState(0);
+  const [cantidad, setCantidad] = useState(1);
 
   const handleCantidad = (e) => {
     e.preventDefault();
@@ -19,6 +19,7 @@ export default function InputCantidad({ producto }) {
             </Col>
             <Col>
               <Form.Control
+                value={cantidad}
                 name="cantidad"
                 onChange={handleCantidad}
                 size="sm"
@@ -26,6 +27,7 @@ export default function InputCantidad({ producto }) {
                 max="5"
                 min="1"
                 placeHolder="Cantidad"
+                onChange={handleCantidad}
               />
             </Col>
           </Row>

@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Container, Form, Image, Button, Col, Row } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Image,
+  Button,
+  Col,
+  Row,
+  Alert,
+} from "react-bootstrap";
 import Navbar from "../../../components/usuario/Elementos-Comunes/Navbar";
 import Logo from "../../../components/usuario/Elementos-Comunes/Logo";
 import "../../../css/Perfil.css";
 import axiosConfig from "../../../config/axios";
 const PerfilUsuario = () => {
   const [usuario, setUsuario] = useState({});
+  const [error, setError] = useState(false);
+  const [msgError, setMsgError] = useState("");
   const obtenerUsuario = () => {
     axiosConfig
       .get(`/api/usuarios/usuarioactual`)
@@ -15,13 +25,24 @@ const PerfilUsuario = () => {
       .catch((err) => console.log(err.response));
   };
   const editarUsuario = () => {
-    axiosConfig
-      .put(`/api/usuarios/updateusuario/${usuario._id}`, usuario)
-      .then((res) => {
-        console.log(res);
-        window.location.reload(true);
-      })
-      .catch((err) => console.log(err.response));
+    if (usuario.nombre.trim() !== "" && usuario.email.trim() !== "") {
+      axiosConfig
+        .put(`/api/usuarios/updateusuario/${usuario._id}`, usuario)
+        .then((res) => {
+          console.log(res);
+          window.location.reload(true);
+          window.scrollTo(0, 0);
+        })
+        .catch((err) => {
+          setError(true);
+          setMsgError(err.response.data.msg);
+          window.scrollTo(0, 200);
+        });
+    } else {
+      setError(true);
+      setMsgError("Complete todos los campos.");
+      window.scrollTo(0, 200);
+    }
   };
   const onChangeUsuarioImagen = async (e) => {
     if (e.target.files[0]) {
@@ -67,10 +88,18 @@ const PerfilUsuario = () => {
       <Logo />
       <Navbar />
       <Container className="my-5 py-3">
+        {error ? (
+          <Alert
+            className="p-3 text-center text-uppercase font-weight-bold"
+            variant="danger"
+          >
+            {msgError}
+          </Alert>
+        ) : null}
         <Row className="d-flex justify-content-center align-items-center my-5 ">
           <Col sm={12} md={8} xl={6} className="boxPerfil p-4">
             <Row className="d-flex justify-content-around align-items-center m-auto ">
-              <Col xs={6} md={6} xl={6}>
+              <Col xs={6} sm={12} md={8} xl={8}>
                 <Image
                   fluid
                   className="imagenPerfilUsuario img-fluid my-4"
@@ -114,6 +143,19 @@ const PerfilUsuario = () => {
                   name="email"
                   onChange={onChangeUsuario}
                   value={usuario.email}
+                />
+              </Form.Group>
+              <Form.Group className="my-4" controlId="formTelefono">
+                <Form.Label className="justify-content-start">
+                  Teléfono (opcional):
+                </Form.Label>
+                <Form.Control
+                  className="border border-primary rounded-left"
+                  type="number"
+                  placeholder="Ingrese su número de telefono"
+                  name="telefono"
+                  onChange={onChangeUsuario}
+                  value={usuario.telefono}
                 />
               </Form.Group>
             </Form>

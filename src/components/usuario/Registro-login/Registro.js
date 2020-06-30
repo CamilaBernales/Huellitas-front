@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Container, Form, Button, Col, Row } from "react-bootstrap";
+import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 // import { Redirect } from "react-router-dom";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
@@ -12,19 +12,16 @@ export default function Registro(props) {
     nombre: "",
     email: "",
     password: "",
-    rol: "",
+    telefono: "",
   });
 
-  const { nombre, rol, email, password } = usuario;
-
-  // const [passwordConfirm, setPasswordConfirm] = useState("");
-
-  // const [redireccionar, setRedireccionar] = useState(false);
-
+  const { nombre, email, password, telefono } = usuario;
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [error, setError] = useState(false);
+  const [msgError, setMsgError] = useState("");
   const onChangeForm = (e) => {
     setUsuario({
       ...usuario,
-      // id: uuidv4(),
       [e.target.name]: e.target.value,
     });
   };
@@ -32,58 +29,46 @@ export default function Registro(props) {
   const onSubmitForm = (e) => {
     e.preventDefault();
     if (
-      nombre === "" ||
-      email === "" ||
-      password === ""
-      // passwordConfirm === ""
+      nombre.trim() === "" ||
+      email.trim() === "" ||
+      password.trim() === "" ||
+      passwordConfirm.trim() === ""
     ) {
-      alert("Por favor llenar todos los campos");
+      setError(true);
+      setMsgError("Los campos deben estar completos.");
+      window.scrollTo(0, 200);
+      return;
+    } else if (password !== passwordConfirm) {
+      setError(true);
+      setMsgError("Las contraseñas ingresadas no coinciden");
+      window.scrollTo(0, 200);
       return;
     }
-    // if (password !== passwordConfirm) {
-    //   alert("La contraseña y la confirmación no coinciden");
-    //   return;
-    // }
-
     axiosConfig
       .post("/api/usuarios/registro", usuario)
       .then((res) => {
-        console.log(res);
-        props.history.push("/");
+        window.location.href = "/login"
       })
       .catch((error) => {
-        console.log(error);
+        setError(true);
+        setMsgError(error.response.data.msg);
+        window.scrollTo(0, 200);
       });
-    // let usuarios;
-    // if (!localStorage.getItem("usuarios")) {
-    //   usuarios = [usuario];
-    // } else {
-    //   usuarios = JSON.parse(localStorage.getItem("usuarios"));
-    //   if (usuarios.find((usuario) => usuario.email === email)) {
-    //     alert("El email ya existe");
-    //     setUsuario({ email: "" });
-    //     return;
-    //   }
-    //   usuarios = [usuario, ...usuarios];
-    // }
-    // localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    // setUsuario({
-    //   id: "",
-    //   nombre: "",
-    //   rol: "",
-    //   email: "",
-    //   password: "",
-    // });
-    // setPasswordConfirm("");
-    // alert("Usuario registrado correctamente");
-    // setRedireccionar(true);
   };
 
   return (
     <Fragment>
       <Logo />
       <Navbar />
-      <Container className="my-4">
+      <Container className="my-5 py-3">
+        {error ? (
+          <Alert
+            className="p-3 text-center text-uppercase font-weight-bold"
+            variant="danger"
+          >
+            {msgError}
+          </Alert>
+        ) : null}
         <Row className="px-5 d-flex justify-content-center align-items-center ">
           <Col sm={12} md={8} xl={6} className="col-12 mx-3 my-2">
             <img src={registroimg} alt="imagen registro" />
@@ -135,28 +120,30 @@ export default function Registro(props) {
                 />
               </Form.Group>
 
-              {/* <Form.Group controlId="formConfirmPassword">
-                  <Form.Label className="justify-content-start">
-                    Confirmar contraseña:
-                  </Form.Label>
-                  <Form.Control
-                    className="border border-primary rounded-left"
-                    type="password"
-                    placeholder="Ingrese su contraseña nuevamente"
-                    name="passwordConfirm"
-                    value={passwordConfirm}
-                    onChange={(e) => setPasswordConfirm(e.target.value)}
-                  />
-                </Form.Group> */}
-
-              <Form.Group controlId="formLastName">
-                <Form.Label className="justify-content-start">rol:</Form.Label>
+              <Form.Group controlId="formConfirmPassword">
+                <Form.Label className="justify-content-start">
+                  Confirmar contraseña:
+                </Form.Label>
                 <Form.Control
                   className="border border-primary rounded-left"
-                  type="text"
-                  placeholder="Ingrese su rol"
-                  name="rol"
-                  value={rol}
+                  type="password"
+                  placeholder="Ingrese su contraseña nuevamente"
+                  name="passwordConfirm"
+                  value={passwordConfirm}
+                  onChange={(e) => setPasswordConfirm(e.target.value)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formLastName">
+                <Form.Label className="justify-content-start">
+                  Teléfono (opciona):
+                </Form.Label>
+                <Form.Control
+                  className="border border-primary rounded-left"
+                  type="number"
+                  placeholder="Ingrese su telefono (opcional)"
+                  name="telefono"
+                  value={telefono}
                   onChange={onChangeForm}
                 />
               </Form.Group>

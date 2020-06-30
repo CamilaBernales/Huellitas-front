@@ -40,14 +40,9 @@ function FormProductos() {
             showConfirmButton: false,
             timer: 1500,
           });
-          setNuevoProducto({
-            nombre: "",
-            descripcion: "",
-            precio: "",
-            disponibilidad: "",
-            imagen: "",
-            tipoproducto: "",
-          });
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 2000);
         })
         .catch((err) => {
           // console.log(err.response);

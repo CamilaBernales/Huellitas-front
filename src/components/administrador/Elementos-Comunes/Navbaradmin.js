@@ -17,7 +17,6 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className=" navlink ml-auto ">
-            <Nav.Link href="/admin/turnos">Inicio</Nav.Link>
             <Link to="/admin/pedidos" className="nav-link">
               Pedidos
             </Link>
@@ -37,6 +36,9 @@ const NavBar = () => {
             </NavDropdown>
             <Link to="/admin/listadousuarios" className="nav-link">
               Usuarios
+            </Link>
+            <Link to="/admin/listadomensajes" className="nav-link">
+              Mensajes
             </Link>
           </Nav>
         </Navbar.Collapse>

@@ -49,7 +49,7 @@ const Logo = () => {
           <Dropdown.Menu>
             <Dropdown.Item disabled>
               <Row className="d-flex justify-content-center align-items-center">
-                <Col className="d-flex justify-content-center align-items-center my-1">
+                <Col xs={6} sm={12} md={10} className="d-flex justify-content-center align-items-center my-1">
                   {" "}
                   <Image
                     fluid
