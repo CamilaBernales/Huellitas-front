@@ -14,6 +14,7 @@ import {
 } from "react-bootstrap";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
+import PaymentForm from "./PaymentForm";
 
 const Carrito = () => {
   const [key, setKey] = useState("iniciocompra");
@@ -25,7 +26,7 @@ const Carrito = () => {
   
   const [detallesEnvio, setDetallesEnvio] = useState(JSON.parse(localStorage.getItem("usuario")) || null);
 
-  const {nombre, email, direccion, telefono} = detallesEnvio;
+  const {nombre, email, direccion, provincia, localidad, codigopostal, telefono} = detallesEnvio;
 
   const onChangeDetalle = (e) => {
     setDetallesEnvio({
@@ -222,6 +223,36 @@ const Carrito = () => {
                       />
                     </Col>
                   </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control 
+                        name="provincia"
+                        placeholder="Provincia"
+                        value={provincia}
+                        onChange={onChangeDetalle}
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control 
+                        name="localidad"
+                        placeholder="Localidad"
+                        value={localidad}
+                        onChange={onChangeDetalle}
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control 
+                        name="codigopostal"
+                        placeholder="Código Postal"
+                        value={codigopostal}
+                        onChange={onChangeDetalle}
+                      />
+                    </Col>
+                  </Row>
                   {/*<Row>
                     <Col className="my-3">
                       <Form.Control placeholder="Adress 2" />
@@ -325,7 +356,7 @@ const Carrito = () => {
             <hr />
             <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
-                <Row>
+                {/*<Row>
                   <Col>
                     <Accordion>
                       <Card>
@@ -351,7 +382,7 @@ const Carrito = () => {
                       </Card>
                     </Accordion>
                   </Col>
-                </Row>
+                </Row>*/}
                 <Row>
                   <Col>
                     <Accordion>
@@ -372,7 +403,7 @@ const Carrito = () => {
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
-                            Te reedireccionaremos a MercadoPago
+                            <PaymentForm/>
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
@@ -399,7 +430,7 @@ const Carrito = () => {
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
-                            Te reedireccionaremos a MercadoPago
+                            Pronto nos contactaremos para confirmar tu compra
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
