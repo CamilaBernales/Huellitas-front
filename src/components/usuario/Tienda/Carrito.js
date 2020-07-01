@@ -14,6 +14,7 @@ import {
 } from "react-bootstrap";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
+import PaymentForm from "./PaymentForm";
 
 const Carrito = () => {
   const [key, setKey] = useState("iniciocompra");
@@ -22,6 +23,17 @@ const Carrito = () => {
     JSON.parse(localStorage.getItem("compras"))
   );
   const [suma, setSuma] = useState(0);
+  
+  const [detallesEnvio, setDetallesEnvio] = useState(JSON.parse(localStorage.getItem("usuario")) || null);
+
+  const {nombre, email, direccion, provincia, localidad, codigopostal, telefono} = detallesEnvio;
+
+  const onChangeDetalle = (e) => {
+    setDetallesEnvio({
+      ...detallesEnvio,
+      [e.target.name]: [e.target.value]
+    })
+  }
 
   const eliminarUnProducto = (compra) => {
     console.log(compra);
@@ -73,9 +85,9 @@ const Carrito = () => {
           </td>
           <td>{element.precio}</td>
           <td>
-            <button onClick={() => eliminarUnProducto(element)}>
-              <i class="fas fa-trash fa-2x"></i>
-            </button>
+            <Button onClick={() => eliminarUnProducto(element)}>
+              <i class="fas fa-trash fa-1x"></i>
+            </Button>
           </td>
         </tr>
       );
@@ -98,7 +110,9 @@ const Carrito = () => {
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-          <Tab eventKey="iniciocompra" title="Paso 1">
+          <Tab eventKey="iniciocompra" title="Lista de compras">
+          <h3>Lista de compras</h3>
+          <hr/>
             <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
                 <Table responsive>
@@ -106,7 +120,6 @@ const Carrito = () => {
                     <tr>
                       <th>Nombre Producto</th>
                       <th>Cantidad</th>
-                      <th>Descuento</th>
                       <th>Precio</th>
                       <th>Eliminar</th>
                     </tr>
@@ -126,16 +139,16 @@ const Carrito = () => {
                 </Row>
               </Col>
               <Col sm={12} md={8} xl={6}>
-                <Form.Label className="my-3 text-uppercase font-weight-bold d-flex justify-content-start">
+                {/*<Form.Label className="my-3 text-uppercase font-weight-bold d-flex justify-content-start">
                   Inserta tu cupón de descuento
                 </Form.Label>
                 <Form.Control
                   className="border border-warning rounded-left"
                   type="cupo"
                   placeholder="Cupón de descuento"
-                />
+                />*/}
                 <hr />
-                <div className="descuento ">
+                <div className="descuento">
                   <Row>
                     <Col className="d-flex justify-content-start">
                       <h6>SUBTOTAL</h6>
@@ -171,7 +184,7 @@ const Carrito = () => {
               </Col>
             </Row>
           </Tab>
-          <Tab eventKey="datoscomprador" title="Paso 2">
+          <Tab eventKey="datoscomprador" title="Detalles de envio">
             <h3>Detalles de envio</h3>
             <hr />
             <Row className="d-flex justify-content-center align-items-center">
@@ -179,28 +192,73 @@ const Carrito = () => {
                 <Form>
                   <Row>
                     <Col className="my-3">
-                      <Form.Control placeholder="First name" />
+                      <Form.Control 
+                        name="nombre"
+                        placeholder="Nombre"
+                        value={nombre}
+                        onChange={onChangeDetalle}
+                      />
                     </Col>
-                    <Col className="my-3">
+                    {/*<Col className="my-3">
                       <Form.Control placeholder="Last name" />
+                    </Col>}*/}
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control 
+                        name="email"
+                        placeholder="Correo"
+                        value={email}
+                        onChange={onChangeDetalle}
+                      />
                     </Col>
                   </Row>
                   <Row>
                     <Col className="my-3">
-                      <Form.Control placeholder="correo" />
+                      <Form.Control 
+                        name="direccion"
+                        placeholder="Dirección"
+                        value={direccion}
+                        onChange={onChangeDetalle}
+                      />
                     </Col>
                   </Row>
                   <Row>
                     <Col className="my-3">
-                      <Form.Control placeholder="Adress" />
+                      <Form.Control 
+                        name="provincia"
+                        placeholder="Provincia"
+                        value={provincia}
+                        onChange={onChangeDetalle}
+                      />
                     </Col>
                   </Row>
                   <Row>
+                    <Col className="my-3">
+                      <Form.Control 
+                        name="localidad"
+                        placeholder="Localidad"
+                        value={localidad}
+                        onChange={onChangeDetalle}
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control 
+                        name="codigopostal"
+                        placeholder="Código Postal"
+                        value={codigopostal}
+                        onChange={onChangeDetalle}
+                      />
+                    </Col>
+                  </Row>
+                  {/*<Row>
                     <Col className="my-3">
                       <Form.Control placeholder="Adress 2" />
                     </Col>
-                  </Row>
-                  <Row>
+                  </Row>*/}
+                  {/*<Row>
                     <Col className="my-3">
                       <Form.Control as="select" value="Provincia">
                         <option>Choose...</option>
@@ -208,18 +266,23 @@ const Carrito = () => {
                       </Form.Control>
                     </Col>
                     <Col className="my-3">
-                      <Form.Control placeholder="Código Postal" />
+                      <Form.Control placeholder="Código Postal" value="4000"/>
                     </Col>
-                  </Row>
+                  </Row>*/}
                   <Row>
                     <Col className="my-3">
-                      <Form.Control placeholder="Numero de Télefono " />
+                      <Form.Control 
+                        name="telefono"
+                        placeholder="Número de Télefono"
+                        value={telefono}
+                        onChange={onChangeDetalle}
+                      />
                     </Col>
-                    <Col className="my-3">
+                    {/*<Col className="my-3">
                       <Form.Control placeholder="Numero de Télefono alternativo " />
-                    </Col>
+                    </Col>*/}
                   </Row>
-                  <Row>
+                  {/*<Row>
                     <Col>
                       <div className="input-group-text input-group-lg">
                         <Form.Check
@@ -240,7 +303,7 @@ const Carrito = () => {
                         />
                       </div>
                     </Col>
-                  </Row>
+                  </Row>*/}
                 </Form>
                 <Row>
                   <Col className="my-3">
@@ -266,7 +329,6 @@ const Carrito = () => {
                     <tr>
                       <th>Nombre Producto</th>
                       <th>Cantidad</th>
-                      <th>Descuento</th>
                       <th>Precio</th>
                       <th>Eliminar</th>
                     </tr>
@@ -288,13 +350,13 @@ const Carrito = () => {
               </Col>
             </Row>
           </Tab>
-          <Tab eventKey="pagocompra" title="Paso 3">
+          <Tab eventKey="pagocompra" title="Medio de pago">
             <h3>Medios de Pago</h3>
 
             <hr />
             <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
-                <Row>
+                {/*<Row>
                   <Col>
                     <Accordion>
                       <Card>
@@ -320,7 +382,7 @@ const Carrito = () => {
                       </Card>
                     </Accordion>
                   </Col>
-                </Row>
+                </Row>*/}
                 <Row>
                   <Col>
                     <Accordion>
@@ -341,7 +403,7 @@ const Carrito = () => {
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
-                            Te reedireccionaremos a MercadoPago
+                            <PaymentForm/>
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
@@ -368,7 +430,7 @@ const Carrito = () => {
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
-                            Te reedireccionaremos a MercadoPago
+                            Pronto nos contactaremos para confirmar tu compra
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
@@ -392,7 +454,6 @@ const Carrito = () => {
                     <tr>
                       <th>Nombre Producto</th>
                       <th>Cantidad</th>
-                      <th>Descuento</th>
                       <th>Precio</th>
                       <th>Eliminar</th>
                     </tr>

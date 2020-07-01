@@ -36,6 +36,7 @@ export default function Login() {
       .post("/api/auth/login", ingreso)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("usuario", JSON.stringify(res.data.usuario));
         console.log(res.data);
         if (res.data.usuario.rol !== "admin") {
           window.location.href = "/";

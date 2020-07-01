@@ -9,8 +9,9 @@ const Producto = ({ producto }) => {
   );
   const [alert, setAalert] = useState(false);
   const guardarProducto = (producto) => {
+    console.log(producto);
     const compras = JSON.parse(localStorage.getItem("compras")) || [];
-    const index = compras.findIndex((compra) => compra.id === producto.id);
+    const index = compras.findIndex((compra) => compra.id === producto._id);
     let compra = compras[index];
     if (compra) {
       if (compra.cantidadAComprar < 5) {
@@ -23,6 +24,7 @@ const Producto = ({ producto }) => {
           compra.precio = Number(compra.precio) + Number(compra.precio);
           setProductoAgregado([...productoAgregado, producto]);
           localStorage.setItem("compras", JSON.stringify(compras));
+          window.alert("Producto agregado al carrito");
         }
       } else {
         setAalert(true);
@@ -34,6 +36,7 @@ const Producto = ({ producto }) => {
       setProductoAgregado([...productoAgregado, producto]);
       compras.push(producto);
       localStorage.setItem("compras", JSON.stringify(compras));
+      window.alert("Producto agregado al carrito");
     }
   };
 

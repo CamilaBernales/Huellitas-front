@@ -21,6 +21,7 @@ export default function InputCantidad({ producto }) {
               <Form.Control
                 value={cantidad}
                 name="cantidad"
+                onChange={handleCantidad}
                 size="sm"
                 type="number"
                 max="5"
