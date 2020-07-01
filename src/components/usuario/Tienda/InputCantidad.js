@@ -27,7 +27,6 @@ export default function InputCantidad({ producto }) {
                 max="5"
                 min="1"
                 placeHolder="Cantidad"
-                onChange={handleCantidad}
               />
             </Col>
           </Row>
