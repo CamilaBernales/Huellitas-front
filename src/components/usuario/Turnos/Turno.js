@@ -157,7 +157,7 @@ const Turno = () => {
                     name="contacto"
                     onChange={handleTurno}
                     type="number"
-                    maxLength='10'
+                    maxLength="10"
                   />
                 </Col>
               </Row>
