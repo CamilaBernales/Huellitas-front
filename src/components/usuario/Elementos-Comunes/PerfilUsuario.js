@@ -16,6 +16,7 @@ const PerfilUsuario = () => {
   const [usuario, setUsuario] = useState({});
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
+  const [edicionExitosa, setEdicionExitosa] = useState(false);
   const obtenerUsuario = () => {
     axiosConfig
       .get(`/api/usuarios/usuarioactual`)
@@ -30,8 +31,11 @@ const PerfilUsuario = () => {
         .put(`/api/usuarios/updateusuario/${usuario._id}`, usuario)
         .then((res) => {
           console.log(res);
-          window.location.reload(true);
-          window.scrollTo(0, 0);
+          setEdicionExitosa(true);
+          window.scrollTo(0, 200);
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 1000);
         })
         .catch((err) => {
           setError(true);
@@ -94,6 +98,17 @@ const PerfilUsuario = () => {
             variant="danger"
           >
             {msgError}
+          </Alert>
+        ) : null}
+        {edicionExitosa ? (
+          <Alert
+            className="p-3 text-center text-uppercase font-weight-bold"
+            variant="success"
+          >
+            Edición guardada con éxito.{" "}
+            <span role="img" aria-label="cara triste">
+            &#128513;
+            </span>{" "}
           </Alert>
         ) : null}
         <Row className="d-flex justify-content-center align-items-center my-5 ">
