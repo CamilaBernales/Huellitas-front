@@ -50,6 +50,7 @@ export default function Registro(props) {
         window.location.href = "/login"
       })
       .catch((error) => {
+        console.log(error.response)
         setError(true);
         setMsgError(error.response.data.msg);
         window.scrollTo(0, 200);

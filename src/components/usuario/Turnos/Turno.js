@@ -80,7 +80,7 @@ const Turno = () => {
     //eslint-disable-next-line
   }, [nuevoTurno.fecha]);
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 300);
   }, []);
   return (
     <>
@@ -157,6 +157,7 @@ const Turno = () => {
                     name="contacto"
                     onChange={handleTurno}
                     type="number"
+                    maxLength='10'
                   />
                 </Col>
               </Row>
