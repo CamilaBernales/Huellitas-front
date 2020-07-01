@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Form, Container, Button, Col, Row } from "react-bootstrap";
+import { Form, Container, Button, Col, Row, Alert } from "react-bootstrap";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
 import "../../../css/Mensaje.css";
@@ -33,7 +33,7 @@ export default function FormMensaje() {
     if (
       consulta.nombre.trim() !== "" &&
       consulta.email.trim() !== "" &&
-      consulta.mensaje.trim() !== ""
+      consulta.mensaje.trim() !== "" 
     ) {
       //Agrego el mensaje en la BD
       axiosConfig
@@ -49,9 +49,10 @@ export default function FormMensaje() {
           console.log(res);
         })
         .catch((err) => {
-          console.log(err.response);
           setError(true);
-          setMsgError(err.response.data.msg);
+          setMsgError(
+            "Hubo un error al intentar enviar tu mensaje. Asegurate de ingresar un email válido"
+          );
         });
       //Reseteo el formulario
       setConsulta({
@@ -68,6 +69,14 @@ export default function FormMensaje() {
   return (
     <Fragment>
       <Container className="px-5 my-4">
+        {error ? (
+          <Alert
+            className="p-3 text-center text-uppercase font-weight-bold"
+            variant="danger"
+          >
+            {msgError}
+          </Alert>
+        ) : null}
         <h3 className="text-center my-4 py-3 ">Contactanos</h3>
         <p className="text-center my-3 py-2 text-secondary">
           San Miguel de Tucumán. Provincia de Tucumán. Argentina +54 9 381
@@ -115,6 +124,7 @@ export default function FormMensaje() {
                   name="mensaje"
                   value={mensaje}
                   onChange={onChangeConsulta}
+                  maxLength="250"
                 />
               </Form.Group>
             </Col>

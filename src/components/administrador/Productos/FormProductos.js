@@ -7,7 +7,7 @@ function FormProductos() {
   const [nuevoProducto, setNuevoProducto] = useState({
     nombre: "",
     descripcion: "",
-    precio: "",
+    precio: "100",
     disponibilidad: "",
     imagen: "",
     tipoproducto: "",
@@ -123,6 +123,7 @@ function FormProductos() {
                     name="descripcion"
                     type="text"
                     onChange={onChangeProducto}
+                    maxLength="200"
                   />
                 </Col>
               </Row>
@@ -135,6 +136,8 @@ function FormProductos() {
                     name="precio"
                     type="number"
                     onChange={onChangeProducto}
+                    min="100"
+                    value={nuevoProducto.precio}
                   />
                 </Col>
               </Row>
@@ -189,18 +192,6 @@ function FormProductos() {
                   </Form.Group>
                 </Col>
               </Row>
-              {/* <Row>
-                <Col className="my-3">
-                  <Form.Label>En Promo</Form.Label>
-                  <Form.Group>
-                    <select name="espromo" onChange={onChangeProducto}>
-                      <option value="">En Promoción?</option>
-                      <option value="true">Sí</option>
-                      <option value="false">No</option>
-                    </sele6ct>
-                  </Form.Group>
-                </Col>
-              </Row> */}
             </Form>
             <Button className="w-100" onClick={guardarProducto}>
               Guardar

@@ -120,6 +120,7 @@ const Productosadmin = () => {
                       maxLength="40"
                       onChange={onChangeProducto}
                       value={productoEditado.nombre}
+                      maxLength="40"
                     />
                   </Col>
                 </Row>
@@ -131,6 +132,7 @@ const Productosadmin = () => {
                       name="descripcion"
                       onChange={onChangeProducto}
                       value={productoEditado.descripcion}
+                      maxLength="200"
                     />
                   </Col>
                 </Row>
@@ -143,6 +145,7 @@ const Productosadmin = () => {
                       value={productoEditado.precio}
                       onChange={onChangeProducto}
                       type="number"
+                      min="100"
                     />
                   </Col>
                 </Row>
