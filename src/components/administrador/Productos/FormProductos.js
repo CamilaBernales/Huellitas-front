@@ -16,7 +16,8 @@ function FormProductos() {
   const [msgError, setMsgError] = useState("");
 
   const onChangeProducto = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    setError(false);
     setNuevoProducto({
       ...nuevoProducto,
       [e.target.name]: e.target.value,

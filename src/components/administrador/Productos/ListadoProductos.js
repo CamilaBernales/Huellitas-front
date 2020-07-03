@@ -37,6 +37,7 @@ const Productosadmin = () => {
   };
   const onChangeProducto = (e) => {
     e.preventDefault();
+    setError(false);
     setProductoEditado({
       ...productoEditado,
       [e.target.name]: e.target.value,

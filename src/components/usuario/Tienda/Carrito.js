@@ -2,7 +2,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import {
   Container,
-  Table,
   Button,
   Tabs,
   Tab,
@@ -16,12 +15,10 @@ import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import PaymentForm from "./PaymentForm";
 import ListadoCompras from "./ListadoCompras";
+import axiosConfig from "../../../config/axios";
 const Carrito = () => {
   const [key, setKey] = useState("iniciocompra");
 
-  const [comprasGuardada, setComprasGuardada] = useState(
-    JSON.parse(localStorage.getItem("compras"))
-  );
   const [suma, setSuma] = useState(0);
 
   const [detallesEnvio, setDetallesEnvio] = useState(
@@ -38,6 +35,12 @@ const Carrito = () => {
     telefono,
   } = detallesEnvio;
 
+  const guardarCompra = () => {
+    axiosConfig
+      .post("/api/compra", detallesEnvio)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err.response));
+  };
   const onChangeDetalle = (e) => {
     setDetallesEnvio({
       ...detallesEnvio,
@@ -57,7 +60,7 @@ const Carrito = () => {
 
   useEffect(() => {
     sumaTotal();
-  }, [comprasGuardada]);
+  }, []);
 
   return (
     <Fragment>
@@ -197,6 +200,7 @@ const Carrito = () => {
                       />
                     </Col>
                   </Row>
+                  
                 </Form>
                 <Row>
                   <Col className="my-3">
@@ -316,7 +320,10 @@ const Carrito = () => {
                     {suma}
                   </h3>
                 </div>
-                <Button className="btn btn-success my-2 w-100  text-uppercase font-weight-bold">
+                <Button
+                  onClick={() => guardarCompra()}
+                  className="btn btn-success my-2 w-100  text-uppercase font-weight-bold"
+                >
                   Comprar!
                 </Button>
               </Col>

@@ -22,6 +22,7 @@ const PerfilUsuario = () => {
       .get(`/api/usuarios/usuarioactual`)
       .then((res) => {
         setUsuario(res.data.usuario);
+        console.log(res);
       })
       .catch((err) => console.log(err.response));
   };
@@ -41,6 +42,7 @@ const PerfilUsuario = () => {
           setError(true);
           setMsgError(err.response.data.msg);
           window.scrollTo(0, 200);
+          console.log(err.response);
         });
     } else {
       setError(true);
@@ -49,6 +51,7 @@ const PerfilUsuario = () => {
     }
   };
   const onChangeUsuarioImagen = async (e) => {
+    setError(false);
     if (e.target.files[0]) {
       if (e.target.files[0].size > 4194304) {
         // 5242880 = 5MB
@@ -78,6 +81,7 @@ const PerfilUsuario = () => {
   };
   const onChangeUsuario = (e) => {
     e.preventDefault();
+    setError(false);
     setUsuario({
       ...usuario,
       [e.target.name]: e.target.value,
@@ -106,15 +110,15 @@ const PerfilUsuario = () => {
             variant="success"
           >
             Edición guardada con éxito.{" "}
-            <span role="img" aria-label="cara triste">
-            &#128513;
+            <span role="img" aria-label="cara feliz">
+              &#128513;
             </span>{" "}
           </Alert>
         ) : null}
         <Row className="d-flex justify-content-center align-items-center my-5 ">
           <Col sm={12} md={8} xl={6} className="boxPerfil p-4">
             <Row className="d-flex justify-content-around align-items-center m-auto ">
-              <Col sm={12} xs={6} md={4} >
+              <Col sm={12} xs={6} md={4}>
                 <Image
                   fluid
                   className="imagenPerfilUsuario img-fluid my-4"

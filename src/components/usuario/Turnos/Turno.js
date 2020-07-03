@@ -16,12 +16,14 @@ const Turno = () => {
     fecha: new Date(),
     hora: "",
     resumen: "",
-    contacto: "",
+    telefono: "",
   });
   const [horarios, setHorarios] = useState([]);
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
   const handleTurno = (e) => {
+    e.preventDefault();
+    setError(false);
     setNuevoTurno({
       ...nuevoTurno,
       [e.target.name]: e.target.value,
@@ -46,7 +48,7 @@ const Turno = () => {
       nuevoTurno.resumen.trim() !== "" &&
       nuevoTurno.fecha !== "" &&
       nuevoTurno.hora.trim() !== "" &&
-      nuevoTurno.contacto.trim() !== ""
+      nuevoTurno.telefono.trim() !== ""
     ) {
       e.preventDefault();
       axiosConfig
@@ -64,7 +66,7 @@ const Turno = () => {
           }, 2000);
         })
         .catch((err) => {
-          // console.log(err.response);
+          console.log(err.response);
           setError(true);
           setMsgError(err.response.data.msg);
           window.scrollTo(0, 200);
@@ -154,7 +156,7 @@ const Turno = () => {
                   <Form.Control
                     required
                     placeholder="Tu número de teléfono"
-                    name="contacto"
+                    name="telefono"
                     onChange={handleTurno}
                     type="number"
                     maxLength="10"
@@ -174,20 +176,24 @@ const Turno = () => {
               </Row>
               <Row className="my-3">
                 <Col className="my-3">
-                  <Form.Label>Elige un horario para tu turno</Form.Label>
-                  <Form.Group>
-                    <select
-                      className="w-100"
-                      onChange={handleTurno}
-                      name="hora"
-                    >
-                      {horarios.map((cita, i) => (
-                        <option value={cita} key={i}>
-                          {cita}
-                        </option>
-                      ))}
-                    </select>
-                  </Form.Group>
+                  <Form>
+                    <Form.Group controlId="exampleForm.SelectCustom">
+                      <Form.Label>Elige un horario para tu turno</Form.Label>
+                      <Form.Control
+                        as="select"
+                        className="w-100"
+                        onChange={handleTurno}
+                        name="hora"
+                        custom
+                      >
+                        {horarios.map((cita, i) => (
+                          <option value={cita} key={i}>
+                            {cita}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Form.Group>
+                  </Form>
                 </Col>
               </Row>
               <Row className="my-3">

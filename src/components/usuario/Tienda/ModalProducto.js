@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Col, Row, Button, Form, Alert } from "react-bootstrap";
-import alimento from "../../../img/productos/alimento.jpg";
 import formasPagos from "../../../img/banner-mercadopago-producto.png";
-import InputCantidad from "./InputCantidad";
 
 export default function MyVerticallyCenteredModal({
   modalShow,

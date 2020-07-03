@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 // import { Redirect } from "react-router-dom";
 import Logo from "../Elementos-Comunes/Logo";
@@ -20,6 +20,8 @@ export default function Registro(props) {
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
   const onChangeForm = (e) => {
+    e.preventDefault()
+    setError(false);
     setUsuario({
       ...usuario,
       [e.target.name]: e.target.value,
@@ -47,16 +49,18 @@ export default function Registro(props) {
     axiosConfig
       .post("/api/usuarios/registro", usuario)
       .then((res) => {
-        window.location.href = "/login"
+        window.location.href = "/login";
       })
       .catch((error) => {
-        console.log(error.response)
+        console.log(error.response);
         setError(true);
         setMsgError(error.response.data.msg);
         window.scrollTo(0, 200);
       });
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 300);
+  }, []);
   return (
     <Fragment>
       <Logo />

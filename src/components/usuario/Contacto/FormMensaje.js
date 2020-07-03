@@ -19,6 +19,8 @@ export default function FormMensaje() {
 
   //Cuando hay cambios en el formulario
   const onChangeConsulta = (e) => {
+    e.preventDefault();
+    setError(false);
     setConsulta({
       ...consulta,
       [e.target.name]: e.target.value,
@@ -33,7 +35,7 @@ export default function FormMensaje() {
     if (
       consulta.nombre.trim() !== "" &&
       consulta.email.trim() !== "" &&
-      consulta.mensaje.trim() !== "" 
+      consulta.mensaje.trim() !== ""
     ) {
       //Agrego el mensaje en la BD
       axiosConfig
@@ -46,7 +48,12 @@ export default function FormMensaje() {
             showConfirmButton: false,
             timer: 1500,
           });
-          console.log(res);
+          //Reseteo el formulario
+          setConsulta({
+            nombre: "",
+            email: "",
+            mensaje: "",
+          });
         })
         .catch((err) => {
           setError(true);
@@ -54,12 +61,6 @@ export default function FormMensaje() {
             "Hubo un error al intentar enviar tu mensaje. Asegurate de ingresar un email válido"
           );
         });
-      //Reseteo el formulario
-      setConsulta({
-        nombre: "",
-        email: "",
-        mensaje: "",
-      });
     } else {
       setError(true);
       setMsgError("Los campos deben estar completos.");
