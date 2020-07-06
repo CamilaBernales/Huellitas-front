@@ -14,9 +14,17 @@ export default function TablaPedidos({compras}) {
     const [pedido,
         setPedido] = useState([]);
 
-    const mostrar = (p) => {
+        const [compra,
+            setCompra] = useState({});
+
+    
+
+    const mostrar = (c, p) => {
         setModalShow(true)
         setPedido(p)
+        setCompra(c)
+        console.log(c);
+        console.log(p);
     }
 
     return (
@@ -28,26 +36,28 @@ export default function TablaPedidos({compras}) {
                         <th>Cliente</th>
                         <th>Direccion</th>
                         <th>Acciones</th>
+                        <th>Importe Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {compras.map(p => <tr key={p._id}>
-                        <td>{p.fecha}</td>
-                        <td>{p.nombre} {p.apellido}</td>
-                        <td>{p.direccion}</td>
+                    {compras.map(c => <tr key={c._id}>
+                        <td>{c.fecha}</td>
+                        <td>{c.nombre} {c.apellido}</td>
+                        <td>{c.direccion}</td>
                         <td>
-                            <Button size='sm' variant='danger' className='ml-1'>Eliminar</Button>
                             <Button
                                 size='sm'
                                 variant='success'
-                                onClick={()=> mostrar(p.pedido)}
-                                className='ml-1'>Ver perdido</Button>
+                                onClick={()=> mostrar(c, c.pedido)}
+                                className='ml-1'>Detalle</Button>
                         </td>
+                        <td>${c.pedido.map(p=> p.precio).reduce((a,b)=>a+b,0)}</td>
                     </tr>)}
                 </tbody>
             </Table>
             <ModalPedido
                 pedido={pedido}
+                compra={compra}
                 modalShow={modalShow}
                 setModalShow={setModalShow}
                 onHide={onHide}/>
