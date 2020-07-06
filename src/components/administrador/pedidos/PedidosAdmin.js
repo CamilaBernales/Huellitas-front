@@ -1,42 +1,21 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState, useEffect} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import NavBarSearch from './NavBarSearch';
 import TablaPedidos from './TablaPedidos';
+import axiosConfig from '../../../config/axios'
+
 
 export default function PedidosAdmin() {
 
-    const pedidos = [
-        {
-            id: 1,
-            fecha: "01/06/2020",
-            cliente: 'Francisco Perez',
-            observaciones: '',
-            pedido: [
-                {
-                    id: '1',
-                    nombre: 'Alimento Conejo Adulto'
-                }, {
-                    id: '2',
-                    nombre: "Alimento Gato Cachorro"
-                }
-            ]
+    const [compras,
+        setCompras] = useState([]);
 
-        }, {
-            id: 2,
-            fecha: "27/05/2020",
-            cliente: 'Nicolas Origuela',
-            observaciones: 'llevar a la san juan 1883',
-            pedido: [
-                {
-                    id: '1',
-                    nombre: 'Alimento Conejo Adulto'
-                }, {
-                    id: '2',
-                    nombre: "Alimento Gato Cachorro"
-                }
-            ]
-        }
-    ]
+    useEffect(() => {
+        axiosConfig
+            .get("/api/compra/listado")
+            .then((res) => setCompras(res.data))
+            .catch((err) => console.log(err.response));
+    }, []);
 
     return (
         <Fragment>
@@ -46,7 +25,7 @@ export default function PedidosAdmin() {
                     <Col></Col>
                 </Row>
                 <Row>
-                    <TablaPedidos pedidos={pedidos}/>
+                    <TablaPedidos compras={compras}/>
                 </Row>
             </Container>
         </Fragment>
