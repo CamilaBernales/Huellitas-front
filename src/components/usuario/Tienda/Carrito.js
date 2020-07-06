@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/role-supports-aria-props */
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect, useState, useRef , Fragment } from "react";
 import {
   Container,
   Button,
@@ -16,6 +16,8 @@ import Navbar from "../Elementos-Comunes/Navbar";
 import PaymentForm from "./PaymentForm";
 import ListadoCompras from "./ListadoCompras";
 import axiosConfig from "../../../config/axios";
+import Swal from "sweetalert2";
+
 const Carrito = () => {
   const [key, setKey] = useState("iniciocompra");
 
@@ -35,16 +37,14 @@ const Carrito = () => {
     telefono,
   } = detallesEnvio;
 
-  const guardarCompra = () => {
-    axiosConfig
-      .post("/api/compra", detallesEnvio)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err.response));
-  };
+  const primerRender = useRef(true);
+
+  const [compraPagada, setCompraPagada] =  useState({});
+
   const onChangeDetalle = (e) => {
     setDetallesEnvio({
       ...detallesEnvio,
-      [e.target.name]: [e.target.value],
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -60,7 +60,48 @@ const Carrito = () => {
 
   useEffect(() => {
     sumaTotal();
-  }, []);
+    if (primerRender.current) {
+      primerRender.current = false;
+      return;
+    }
+    solicitudCompra();
+  }, [compraPagada]);
+  
+  const pagarCompra = () => {
+    const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
+    const pedidoCompras = comprasGuardada.map(function(compra) {
+      const compraModif = {
+        producto: compra._id,
+        precio: compra.precio,
+        cantidad: compra.cantidad
+      };
+      return compraModif;  
+    });
+    setCompraPagada({
+      nombre: detallesEnvio.nombre,
+      apellido: detallesEnvio.nombre,
+      telefono: detallesEnvio.telefono,
+      direccion: detallesEnvio.direccion,
+      codigoPostal: detallesEnvio.codigopostal,
+      total: suma,
+      pedido: pedidoCompras
+    });
+  };
+
+  const solicitudCompra = () => {
+    //console.log(compraPagada);
+    axiosConfig
+      .post('api/compra', compraPagada)
+      .then((res) => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Tu compra fue exitosa",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+  };
 
   return (
     <Fragment>
@@ -194,7 +235,7 @@ const Carrito = () => {
                     <Col className="my-3">
                       <Form.Control
                         name="telefono"
-                        placeholder="Número de Télefono"
+                        placeholder="Télefono"
                         value={telefono}
                         onChange={onChangeDetalle}
                       />
@@ -320,9 +361,9 @@ const Carrito = () => {
                     {suma}
                   </h3>
                 </div>
-                <Button
-                  onClick={() => guardarCompra()}
+                <Button 
                   className="btn btn-success my-2 w-100  text-uppercase font-weight-bold"
+                  onClick={pagarCompra}
                 >
                   Comprar!
                 </Button>
