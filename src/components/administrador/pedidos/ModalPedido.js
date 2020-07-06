@@ -25,15 +25,15 @@ export default function ModalPedido({pedido, compra, modalShow, onHide}) {
             <Modal.Body>
                 <Row>
                     <Col xs={12} md={8}>
-                        <p>Nombre:
-                            <strong>{compra.nombre} {compra.apellido}</strong>
+                        <p>Nombre: 
+                            <strong> {compra.nombre} {compra.apellido}</strong>
                         </p>
-                        <p>Direccion:
-                            <strong>{compra.direccion}
+                        <p>Direccion: 
+                            <strong> {compra.direccion}
                             </strong>
                         </p>
-                        <p>Telefono:
-                            <strong>{compra.telefono}</strong>
+                        <p>Telefono: 
+                            <strong> {compra.telefono}</strong>
                         </p>
                     </Col>
                 </Row>
