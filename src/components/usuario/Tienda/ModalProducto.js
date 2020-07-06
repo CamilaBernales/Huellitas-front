@@ -7,12 +7,13 @@ export default function MyVerticallyCenteredModal({
   producto,
   setModalShow,
   onHide,
+  setComprasGuardadas
 }) {
   const [cantidad, setCantidad] = useState(1);
+  const [productoAgregado, setProductoAgregado] = useState([]);
   const handleCantidad = (e) => {
     setCantidad(([e.target.name] = e.target.value));
   };
-  const [productoAgregado, setProductoAgregado] = useState([]);
   const guardarProducto = () => {
     const compras = JSON.parse(localStorage.getItem("compras")) || [];
     console.log(productoAgregado);
@@ -22,6 +23,7 @@ export default function MyVerticallyCenteredModal({
     compras.push(productoAgregado);
     localStorage.setItem("compras", JSON.stringify(compras));
     window.alert("Producto agregado al carrito");
+    setComprasGuardadas(JSON.parse(localStorage.getItem("compras")).length);
   };
   useEffect(() => {
     setProductoAgregado({ ...producto, cantidad });

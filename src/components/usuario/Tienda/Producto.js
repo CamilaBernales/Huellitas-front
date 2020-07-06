@@ -1,13 +1,9 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Col, Card, Button, Alert, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import ModalProducto from "./ModalProducto";
 import "./../../../css/Tienda.css";
-const Producto = ({ producto }) => {
-
-
+const Producto = ({ producto, setComprasGuardadas }) => {
   const { _id, nombre, precio, imagen, disponibilidad } = producto;
-
   const [modalShow, setModalShow] = React.useState(false);
   const onHide = () => {
     setModalShow(false);
@@ -30,7 +26,6 @@ const Producto = ({ producto }) => {
           />
           <Card.Body>
             <Card.Title>{nombre}</Card.Title>
-            <Card.Text>
               <Row>Precio: ${precio}</Row>
               <Row>
                 {disponibilidad === "No Disponible" ? (
@@ -39,11 +34,10 @@ const Producto = ({ producto }) => {
                   <Alert variant="success">{disponibilidad}</Alert>
                 )}
               </Row>
-            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <Button
-              renderAs="button"
+              renderas="button"
               onClick={() => setModalShow(true)}
               className="w-100"
               size="sm"
@@ -55,6 +49,7 @@ const Producto = ({ producto }) => {
               modalShow={modalShow}
               setModalShow={setModalShow}
               onHide={onHide}
+              setComprasGuardadas={setComprasGuardadas}
             />
           </Card.Footer>
         </Card>

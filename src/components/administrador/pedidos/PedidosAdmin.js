@@ -1,7 +1,5 @@
-import React, {Fragment, useState} from 'react';
-import {Redirect} from 'react-router-dom';
+import React, {Fragment} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
-import Navbaradmin from '../Elementos-Comunes/Navbaradmin';
 import NavBarSearch from './NavBarSearch';
 import TablaPedidos from './TablaPedidos';
 
@@ -42,7 +40,6 @@ export default function PedidosAdmin() {
 
     return (
         <Fragment>
-            <Navbaradmin/>
             <Container className="d-flex flex-column justify-center py-3">
                 <NavBarSearch/>
                 <Row>

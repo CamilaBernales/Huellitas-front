@@ -8,8 +8,6 @@ import {
   Row,
   Alert,
 } from "react-bootstrap";
-import Navbar from "../../../components/usuario/Elementos-Comunes/Navbar";
-import Logo from "../../../components/usuario/Elementos-Comunes/Logo";
 import "../../../css/Perfil.css";
 import axiosConfig from "../../../config/axios";
 const PerfilUsuario = () => {
@@ -89,12 +87,11 @@ const PerfilUsuario = () => {
   };
   useEffect(() => {
     obtenerUsuario();
+    window.scrollTo(0, 400);
   }, []);
 
   return (
     <>
-      <Logo />
-      <Navbar />
       <Container className="my-5 py-3">
         {error ? (
           <Alert

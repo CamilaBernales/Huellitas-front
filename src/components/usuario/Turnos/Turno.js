@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Form, Row, Container, Button, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Logo from "../Elementos-Comunes/Logo";
-import Navbar from "../Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
 import "../../../css/Turno.css";
 // import moment from "moment";
@@ -86,8 +84,6 @@ const Turno = () => {
   }, []);
   return (
     <>
-      <Logo />
-      <Navbar />
       <Container className="my-5 py-3">
         {error ? (
           <Alert

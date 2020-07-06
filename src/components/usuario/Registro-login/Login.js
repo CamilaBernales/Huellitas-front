@@ -1,11 +1,9 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../../css/Login.css";
 import imgLogin from "../../../img/login.svg";
 import axiosConfig from "../../../config/axios";
-import Logo from "../Elementos-Comunes/Logo";
-import Navbar from "../Elementos-Comunes/Navbar";
 export default function Login() {
   const [ingreso, setIngreso] = useState({
     email: "",
@@ -57,8 +55,6 @@ export default function Login() {
   }, []);
   return (
     <Fragment>
-      <Logo />
-      <Navbar />
       <Container className="my-4">
         {error ? (
           <Alert

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/role-supports-aria-props */
-import React, { useEffect, useState, useRef , Fragment } from "react";
+import React, { useEffect, useState, useRef, Fragment } from "react";
 import {
   Container,
   Button,
@@ -11,18 +11,14 @@ import {
   Accordion,
   Card,
 } from "react-bootstrap";
-import Logo from "../Elementos-Comunes/Logo";
-import Navbar from "../Elementos-Comunes/Navbar";
 import PaymentForm from "./PaymentForm";
 import ListadoCompras from "./ListadoCompras";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
 
-const Carrito = () => {
+const Carrito = ({ setComprasGuardadas }) => {
   const [key, setKey] = useState("iniciocompra");
-
   const [suma, setSuma] = useState(0);
-
   const [detallesEnvio, setDetallesEnvio] = useState(
     JSON.parse(localStorage.getItem("usuario")) || null
   );
@@ -39,7 +35,7 @@ const Carrito = () => {
 
   const primerRender = useRef(true);
 
-  const [compraPagada, setCompraPagada] =  useState({});
+  const [compraPagada, setCompraPagada] = useState({});
 
   const onChangeDetalle = (e) => {
     setDetallesEnvio({
@@ -65,17 +61,18 @@ const Carrito = () => {
       return;
     }
     solicitudCompra();
+    // eslint-disable-next-line
   }, [compraPagada]);
-  
+
   const pagarCompra = () => {
     const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
-    const pedidoCompras = comprasGuardada.map(function(compra) {
+    const pedidoCompras = comprasGuardada.map(function (compra) {
       const compraModif = {
         producto: compra._id,
         precio: compra.precio,
-        cantidad: compra.cantidad
+        cantidad: compra.cantidad,
       };
-      return compraModif;  
+      return compraModif;
     });
     setCompraPagada({
       nombre: detallesEnvio.nombre,
@@ -84,29 +81,25 @@ const Carrito = () => {
       direccion: detallesEnvio.direccion,
       codigoPostal: detallesEnvio.codigopostal,
       total: suma,
-      pedido: pedidoCompras
+      pedido: pedidoCompras,
     });
   };
 
   const solicitudCompra = () => {
     //console.log(compraPagada);
-    axiosConfig
-      .post('api/compra', compraPagada)
-      .then((res) => {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Tu compra fue exitosa",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+    axiosConfig.post("api/compra", compraPagada).then((res) => {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Tu compra fue exitosa",
+        showConfirmButton: false,
+        timer: 1500,
       });
+    });
   };
 
   return (
     <Fragment>
-      <Logo />
-      <Navbar />
       <Container className="mt-5 mb-5">
         <Tabs
           className="d-flex justify-content-center align-items-center"
@@ -117,7 +110,7 @@ const Carrito = () => {
             <h3>Lista de compras</h3>
             <Row className="d-flex">
               <Col sm={12} md={8} xl={6}>
-                <ListadoCompras />
+                <ListadoCompras setComprasGuardadas={setComprasGuardadas} />
                 <Row>
                   <Col className="my-3">
                     <Button
@@ -241,7 +234,6 @@ const Carrito = () => {
                       />
                     </Col>
                   </Row>
-                  
                 </Form>
                 <Row>
                   <Col className="my-3">
@@ -262,7 +254,7 @@ const Carrito = () => {
                 </Row>
               </Col>
               <Col sm={12} md={8} xl={6}>
-                <ListadoCompras />
+                <ListadoCompras setComprasGuardadas={setComprasGuardadas} />
                 <div className="d-flex m-3 justify-content-center font-weight-bold">
                   <h3 className="text-uppercase text-monospace text-lg-left">
                     {" "}
@@ -348,7 +340,7 @@ const Carrito = () => {
                 </Row>
               </Col>
               <Col sm={12} md={8} xl={6}>
-                <ListadoCompras />
+                <ListadoCompras setComprasGuardadas={setComprasGuardadas} />
                 <div className="d-flex m-3 justify-content-center font-weight-bold">
                   <h3 className="text-uppercase text-monospace text-lg-left">
                     {" "}
@@ -361,7 +353,7 @@ const Carrito = () => {
                     {suma}
                   </h3>
                 </div>
-                <Button 
+                <Button
                   className="btn btn-success my-2 w-100  text-uppercase font-weight-bold"
                   onClick={pagarCompra}
                 >

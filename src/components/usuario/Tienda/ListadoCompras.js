@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Table, Button } from "react-bootstrap";
-const ListadoCompras = () => {
-  const [comprasGuardads, setComprasGuardads] = useState(
+const ListadoCompras = ({ setComprasGuardadas }) => {
+  const [compraGuardada, setCompraGuardada] = useState(
     JSON.parse(localStorage.getItem("compras")) || []
   );
 
   const eliminarUnProducto = (id) => {
-    let compras = JSON.parse(localStorage.getItem("compras")) || [];
-    let index = compras.findIndex((produc) => produc.id === id);
-    let producto = compras[index];
-    compras.splice(producto, 1);
-    localStorage.setItem("compras", JSON.stringify(compras));
-    setComprasGuardads(JSON.parse(localStorage.getItem("compras")));
-    window.location.reload(true);
+    let index = compraGuardada.findIndex((produc) => produc.id === id);
+    let producto = compraGuardada[index];
+    compraGuardada.splice(producto, 1);
+    localStorage.setItem("compras", JSON.stringify(compraGuardada));
+    setCompraGuardada(JSON.parse(localStorage.getItem("compras")));
+    setComprasGuardadas(JSON.parse(localStorage.getItem("compras")).length);
   };
 
   return (
@@ -27,7 +26,7 @@ const ListadoCompras = () => {
           </tr>
         </thead>
         <tbody>
-          {comprasGuardads.map((compra) => (
+          {compraGuardada.map((compra) => (
             <tr key={compra._id}>
               <td>{compra.nombre}</td>
               <td>{compra.cantidad}</td>

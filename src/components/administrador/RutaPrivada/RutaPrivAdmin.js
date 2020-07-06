@@ -17,6 +17,7 @@ const RutaPrivAdmin = ({ component: Component, ...props }) => {
       }
     };
     uservalidation();
+     // eslint-disable-next-line
   }, []);
   return loading ? (
     <p>Cargando...</p>

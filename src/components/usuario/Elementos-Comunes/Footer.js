@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Col, Jumbotron } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../../css/Footer.css";
 
 function Footer() {

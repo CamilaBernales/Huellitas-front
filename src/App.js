@@ -8,7 +8,6 @@ import RutaPrivAdmin from "./components/administrador/RutaPrivada/RutaPrivAdmin"
 import Carrito from "./components/usuario/Tienda/Carrito";
 import Tienda from "./components/usuario/Tienda/Tienda";
 import Home from "./components/usuario/Home/Home";
-import Contacto from "./components/usuario/Contacto/Contacto";
 import ListadoMensajes from "./components/administrador/Mensajes/ListadoMensajes";
 import Login from "./components/usuario/Registro-login/Login";
 import Registro from "./components/usuario/Registro-login/Registro";
@@ -25,10 +24,13 @@ import ListadoUsuarios from "./components/administrador/Usuarios/ListadoUsuarios
 import PerfilUsuario from "./components/usuario/Elementos-Comunes/PerfilUsuario";
 import axiosConfig from "./config/axios";
 import tokenAuth from "./config/token";
+import Navbar from "./components/usuario/Elementos-Comunes/Navbar";
+import Logo from "./components/usuario/Elementos-Comunes/Logo";
 import Footer from "./components/usuario/Elementos-Comunes/Footer";
 function App() {
   const [loading, setLoading] = useState(true);
   const [respuesta, setRespuesta] = useState({});
+  const [comprasGuardadas, setComprasGuardadas] = useState(0);
   useEffect(() => {
     const uservalidation = async () => {
       const token = localStorage.getItem("token");
@@ -45,10 +47,16 @@ function App() {
       setLoading(false);
     };
     uservalidation();
+    let compras = JSON.parse(localStorage.getItem("compras"));
+    if (compras !== null) {
+      setComprasGuardadas(compras.length);
+    }
   }, []);
   return (
     <div className="App">
       <Router>
+        <Logo />
+        <Navbar comprasGuardadas={comprasGuardadas} respuesta={respuesta} />
         {!loading ? (
           <Switch>
             <RutaPrivAdmin
@@ -96,7 +104,9 @@ function App() {
             <RutaPrivada
               exact
               path="/carrito"
-              component={Carrito}
+              component={() => (
+                <Carrito setComprasGuardadas={setComprasGuardadas} />
+              )}
               respuesta={respuesta}
             />
             <RutaPrivada
@@ -112,7 +122,13 @@ function App() {
               respuesta={respuesta}
             />
             <Route exact path="/" component={Home} />
-            <Route exact path="/tienda" component={Tienda} />
+            <Route
+              exact
+              path="/tienda"
+              component={() => (
+                <Tienda setComprasGuardadas={setComprasGuardadas} />
+              )}
+            />
             <Route exact path="/servicios" />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />
@@ -124,7 +140,13 @@ function App() {
         ) : (
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/tienda" component={Tienda} />
+            <Route
+              exact
+              path="/tienda"
+              component={() => (
+                <Tienda setComprasGuardadas={setComprasGuardadas} />
+              )}
+            />
             <Route exact path="/servicios" />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />

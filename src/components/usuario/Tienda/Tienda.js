@@ -2,10 +2,9 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Row, Container, Col, Form, Button, Alert } from "react-bootstrap";
 import Producto from "./Producto";
 import axiosConfig from "../../../config/axios";
-import Logo from "../Elementos-Comunes/Logo";
-import Navbar from "../Elementos-Comunes/Navbar";
 
-const Tienda = () => {
+const Tienda = ({setComprasGuardadas}) => {
+
   const [productos, setProductos] = useState([]);
   const [productosFiltrados, setProductosFiltrados] = useState("");
   const OnChangeFiltrados = (e) => {
@@ -34,11 +33,10 @@ const Tienda = () => {
     traerProductos();
     // filtrarProductos()
   }, []);
+
   return (
     <div>
       <Fragment>
-        <Logo />
-        <Navbar />
         <Container className="my-5 py-3">
           <Form.Row onSubmit={filtrarProductos}>
             <Col>
@@ -93,7 +91,7 @@ const Tienda = () => {
             ) : (
               <>
                 {productos.map((producto) => (
-                  <Producto key={producto._id} producto={producto} />
+                  <Producto key={producto._id} producto={producto} setComprasGuardadas={setComprasGuardadas}/>
                 ))}
               </>
             )}

@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../../config/axios";
 import { Container, Table, Row, Col, Button } from "react-bootstrap";
-import Navbaradmin from "../../administrador/Elementos-Comunes/Navbaradmin";
-import axiosConfig from "../../../config/axios";
-import Swal from "sweetalert2";
 const ListadoMensajes = () => {
   const [mensajes, setMensajes] = useState([]);
-  const [usuarioEditado, setUsuarioEditado] = useState(false);
 
   const listarMensajes = () => {
     axios
@@ -24,7 +20,6 @@ const ListadoMensajes = () => {
   }, []);
   return (
     <>
-      <Navbaradmin />
       <Container className="my-5">
         {/* {loading ? <p>Obtniendo...</p> : null} */}
         <Row className="d-flex justify-content-center align-items-center text-start my-5">

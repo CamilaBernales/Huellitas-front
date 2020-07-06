@@ -10,7 +10,6 @@ import {
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
-import Navbaradmin from "../Elementos-Comunes/Navbaradmin";
 
 const Productosadmin = () => {
   const [productos, setProductos] = useState([]);
@@ -98,7 +97,6 @@ const Productosadmin = () => {
   }, []);
   return (
     <div>
-      <Navbaradmin />
       <Container className="my-5">
         {error ? (
           <Alert
