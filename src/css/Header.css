@@ -3,9 +3,7 @@
     min-height: 300px;
 }
 .headeruserphoto{
-    max-height: 50px;
-    max-width: 100px;
     border: 5px solid #C6EBBE ;
     border-style: double;
-
+    overflow: hidden;
 }

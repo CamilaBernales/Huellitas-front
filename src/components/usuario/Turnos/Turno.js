@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import Logo from "../Elementos-Comunes/Logo";
 import Navbar from "../Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
-import '../../../css/Turno.css'
+import "../../../css/Turno.css";
 // import moment from "moment";
 
 const Turno = () => {
@@ -16,12 +16,14 @@ const Turno = () => {
     fecha: new Date(),
     hora: "",
     resumen: "",
-    contacto: "",
+    telefono: "",
   });
   const [horarios, setHorarios] = useState([]);
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
   const handleTurno = (e) => {
+    e.preventDefault();
+    setError(false);
     setNuevoTurno({
       ...nuevoTurno,
       [e.target.name]: e.target.value,
@@ -46,7 +48,7 @@ const Turno = () => {
       nuevoTurno.resumen.trim() !== "" &&
       nuevoTurno.fecha !== "" &&
       nuevoTurno.hora.trim() !== "" &&
-      nuevoTurno.contacto.trim() !== ""
+      nuevoTurno.telefono.trim() !== ""
     ) {
       e.preventDefault();
       axiosConfig
@@ -59,6 +61,9 @@ const Turno = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 2000);
         })
         .catch((err) => {
           console.log(err.response);
@@ -67,25 +72,18 @@ const Turno = () => {
           window.scrollTo(0, 200);
         });
     } else {
-      window.scrollTo(0, 200);
       setError(true);
       setMsgError("Los campos deben estar completos.");
+      window.scrollTo(0, 200);
     }
-    setNuevoTurno({
-      nombremascota: "",
-      edad: "",
-      raza: "",
-      particularidades: "",
-      fecha: new Date(),
-      hora: "",
-      resumen: "",
-      contacto: "",
-    });
   };
   useEffect(() => {
     traerTurnosDisp();
     //eslint-disable-next-line
   }, [nuevoTurno.fecha]);
+  useEffect(() => {
+    window.scrollTo(0, 300);
+  }, []);
   return (
     <>
       <Logo />
@@ -101,7 +99,7 @@ const Turno = () => {
         ) : null}
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
-            <h4>Datos de tu Mascota</h4>
+            <h3>Datos de tu Mascota</h3>
             <Form onSubmit={submitTurno}>
               <Row className="my-3">
                 <Col className="my-3">
@@ -150,18 +148,18 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-
               <hr />
-
-              <h4>Información de tu turno</h4>
+              <h3>Información de tu turno</h3>
               <Row className="my-3">
                 <Col className="my-3">
                   <Form.Label>Tu número de teléfono</Form.Label>
                   <Form.Control
                     required
                     placeholder="Tu número de teléfono"
-                    name="contacto"
+                    name="telefono"
                     onChange={handleTurno}
+                    type="number"
+                    maxLength="10"
                   />
                 </Col>
               </Row>
@@ -178,16 +176,24 @@ const Turno = () => {
               </Row>
               <Row className="my-3">
                 <Col className="my-3">
-                  <Form.Label>Elige un horario para tu turno</Form.Label>
-                  <Form.Group>
-                    <select className="w-100" onChange={handleTurno} name="hora">
-                      {horarios.map((cita, i) => (
-                        <option value={cita} key={i}>
-                          {cita}
-                        </option>
-                      ))}
-                    </select>
-                  </Form.Group>
+                  <Form>
+                    <Form.Group controlId="exampleForm.SelectCustom">
+                      <Form.Label>Elige un horario para tu turno</Form.Label>
+                      <Form.Control
+                        as="select"
+                        className="w-100"
+                        onChange={handleTurno}
+                        name="hora"
+                        custom
+                      >
+                        {horarios.map((cita, i) => (
+                          <option value={cita} key={i}>
+                            {cita}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Form.Group>
+                  </Form>
                 </Col>
               </Row>
               <Row className="my-3">

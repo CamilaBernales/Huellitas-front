@@ -1,29 +1,57 @@
 import React, { useEffect, useState } from "react";
-import { Container, Form, Image, Button, Col, Row } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Image,
+  Button,
+  Col,
+  Row,
+  Alert,
+} from "react-bootstrap";
 import Navbar from "../../../components/usuario/Elementos-Comunes/Navbar";
 import Logo from "../../../components/usuario/Elementos-Comunes/Logo";
 import "../../../css/Perfil.css";
 import axiosConfig from "../../../config/axios";
 const PerfilUsuario = () => {
   const [usuario, setUsuario] = useState({});
+  const [error, setError] = useState(false);
+  const [msgError, setMsgError] = useState("");
+  const [edicionExitosa, setEdicionExitosa] = useState(false);
   const obtenerUsuario = () => {
     axiosConfig
       .get(`/api/usuarios/usuarioactual`)
       .then((res) => {
         setUsuario(res.data.usuario);
+        console.log(res);
       })
       .catch((err) => console.log(err.response));
   };
   const editarUsuario = () => {
-    axiosConfig
-      .put(`/api/usuarios/updateusuario/${usuario._id}`, usuario)
-      .then((res) => {
-        console.log(res);
-        window.location.reload(true);
-      })
-      .catch((err) => console.log(err.response));
+    if (usuario.nombre.trim() !== "" && usuario.email.trim() !== "") {
+      axiosConfig
+        .put(`/api/usuarios/updateusuario/${usuario._id}`, usuario)
+        .then((res) => {
+          console.log(res);
+          setEdicionExitosa(true);
+          window.scrollTo(0, 200);
+          setTimeout(() => {
+            window.location.reload(true);
+          }, 1000);
+        })
+        .catch((err) => {
+          setError(true);
+          setMsgError(err.response.data.msg);
+          window.scrollTo(0, 200);
+          console.log(err.response);
+        });
+    } else {
+      setError(true);
+      setMsgError("Complete todos los campos.");
+      window.scrollTo(0, 200);
+    }
   };
   const onChangeUsuarioImagen = async (e) => {
+    setError(false);
     if (e.target.files[0]) {
       if (e.target.files[0].size > 4194304) {
         // 5242880 = 5MB
@@ -53,6 +81,7 @@ const PerfilUsuario = () => {
   };
   const onChangeUsuario = (e) => {
     e.preventDefault();
+    setError(false);
     setUsuario({
       ...usuario,
       [e.target.name]: e.target.value,
@@ -67,11 +96,31 @@ const PerfilUsuario = () => {
       <Logo />
       <Navbar />
       <Container className="my-5 py-3">
+        {error ? (
+          <Alert
+            className="p-3 text-center text-uppercase font-weight-bold"
+            variant="danger"
+          >
+            {msgError}
+          </Alert>
+        ) : null}
+        {edicionExitosa ? (
+          <Alert
+            className="p-3 text-center text-uppercase font-weight-bold"
+            variant="success"
+          >
+            Edición guardada con éxito.{" "}
+            <span role="img" aria-label="cara feliz">
+              &#128513;
+            </span>{" "}
+          </Alert>
+        ) : null}
         <Row className="d-flex justify-content-center align-items-center my-5 ">
           <Col sm={12} md={8} xl={6} className="boxPerfil p-4">
             <Row className="d-flex justify-content-around align-items-center m-auto ">
-              <Col xs={6} md={4} xl={4}>
+              <Col sm={12} xs={6} md={4}>
                 <Image
+                  fluid
                   className="imagenPerfilUsuario img-fluid my-4"
                   src={usuario.imagen}
                   roundedCircle
@@ -113,6 +162,19 @@ const PerfilUsuario = () => {
                   name="email"
                   onChange={onChangeUsuario}
                   value={usuario.email}
+                />
+              </Form.Group>
+              <Form.Group className="my-4" controlId="formTelefono">
+                <Form.Label className="justify-content-start">
+                  Teléfono (opcional):
+                </Form.Label>
+                <Form.Control
+                  className="border border-primary rounded-left"
+                  type="number"
+                  placeholder="Ingrese su número de telefono"
+                  name="telefono"
+                  onChange={onChangeUsuario}
+                  value={usuario.telefono}
                 />
               </Form.Group>
             </Form>

@@ -51,21 +51,25 @@ const Tienda = () => {
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group>
-                <select
-                  name="tipoproducto"
-                  className="w-100"
-                  onChange={onChangeFiltroTipos}
-                >
-                  <option value="" defaultValue>
-                    Elige el tipo de producto
-                  </option>
-                  <option value="alimento">Alimento</option>
-                  <option value="jueguete">Jueguete</option>
-                  <option value="accesorios">Accesorios</option>
-                  <option value="Higiene">Productos de Higiene</option>
-                </select>
-              </Form.Group>
+              <Form>
+                <Form.Group controlId="exampleForm.SelectCustom">
+                  <Form.Control
+                    as="select"
+                    name="tipoproducto"
+                    className="w-100"
+                    onChange={onChangeFiltroTipos}
+                    custom
+                  >
+                    <option value="" defaultValue>
+                      Elige el tipo de producto
+                    </option>
+                    <option value="alimento">Alimento</option>
+                    <option value="jueguete">Jueguete</option>
+                    <option value="accesorios">Accesorios</option>
+                    <option value="Higiene">Productos de Higiene</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form>
             </Col>
             <Col>
               <Button onClick={filtrarProductos} type="submit">
