@@ -2,6 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react'
 import {Table, Button} from 'react-bootstrap'
 import ModalPedido from './ModalPedido'
 import axiosConfig from "../../../config/axios";
+import moment from 'moment';
 
 export default function TablaPedidos({compras}) {
 
@@ -41,7 +42,7 @@ export default function TablaPedidos({compras}) {
                 </thead>
                 <tbody>
                     {compras.map(c => <tr key={c._id}>
-                        <td>{c.fecha}</td>
+                        <td>{moment(c.fecha).format("DD/MM/YYYY")}</td>
                         <td>{c.nombre} {c.apellido}</td>
                         <td>{c.direccion}</td>
                         <td>
