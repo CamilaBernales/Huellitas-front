@@ -26,14 +26,14 @@ const Producto = ({ producto, setComprasGuardadas }) => {
           />
           <Card.Body>
             <Card.Title>{nombre}</Card.Title>
-              <Row>Precio: ${precio}</Row>
-              <Row>
-                {disponibilidad === "No Disponible" ? (
-                  <Alert variant="danger">{disponibilidad}</Alert>
-                ) : (
-                  <Alert variant="success">{disponibilidad}</Alert>
-                )}
-              </Row>
+            <Row>Precio: ${precio}</Row>
+            <Row>
+              {disponibilidad === "No Disponible" ? (
+                <Alert variant="danger">{disponibilidad}</Alert>
+              ) : (
+                <Alert variant="success">{disponibilidad}</Alert>
+              )}
+            </Row>
           </Card.Body>
           <Card.Footer>
             <Button
