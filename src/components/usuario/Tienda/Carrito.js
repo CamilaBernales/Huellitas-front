@@ -116,8 +116,7 @@ const Carrito = ({ setComprasGuardadas }) => {
         });
         window.location.href = "/";
       });
-    });
-  };
+  }
 
   return (
     <Fragment>

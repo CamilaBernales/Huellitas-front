@@ -26,7 +26,6 @@ const Producto = ({ producto, setComprasGuardadas }) => {
           />
           <Card.Body>
             <Card.Title>{nombre}</Card.Title>
-<<<<<<< HEAD
             <div>
               <Row>Precio: ${precio}</Row>
               <Row>
@@ -37,16 +36,6 @@ const Producto = ({ producto, setComprasGuardadas }) => {
                 )}
               </Row>
             </div>
-=======
-            <Row>Precio: ${precio}</Row>
-            <Row>
-              {disponibilidad === "No Disponible" ? (
-                <Alert variant="danger">{disponibilidad}</Alert>
-              ) : (
-                <Alert variant="success">{disponibilidad}</Alert>
-              )}
-            </Row>
->>>>>>> 5827dc034a1169fd8be811d4026fe36cc4b56d25
           </Card.Body>
           <Card.Footer>
             <Button
