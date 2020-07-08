@@ -1,7 +1,7 @@
-import React, {Fragment, useState, useEffect} from 'react'
+import React, {Fragment, useState } from 'react'
 import {Table, Button} from 'react-bootstrap'
 import ModalPedido from './ModalPedido'
-import axiosConfig from "../../../config/axios";
+// import axiosConfig from "../../../config/axios";
 import moment from 'moment';
 
 export default function TablaPedidos({compras}) {

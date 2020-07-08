@@ -7,6 +7,8 @@ import {
 import { Link } from "react-router-dom";
 import "../../../css/Navbar.css";
 import tokenAuth from "../../../config/token";
+import BotonInicioSesion from "./BotonInicioSesion"
+
 const NavBar = ({ comprasGuardadas, respuesta }) => {
   
   const [isLogIn, setIsLogIn] = useState(false);
@@ -22,6 +24,7 @@ const NavBar = ({ comprasGuardadas, respuesta }) => {
     };
     revisarSesion();
   }, []);
+
   return (
     <Navbar className="navbar navlink" collapseOnSelect expand="lg">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -90,6 +93,7 @@ const NavBar = ({ comprasGuardadas, respuesta }) => {
           </Navbar.Collapse>
         </>
       )}
+      <BotonInicioSesion />
     </Navbar>
   );
 };

@@ -80,7 +80,7 @@ const Servicio = () => {
                 </span>
                 <h4 className="font-weight-bold">Peluquería</h4>
                 <p>
-                  Ademas ofrecemos Servicios para el cuidado, aseo y incluso
+                  Ademas ofrecemos Servicios para el cuidado, aseo e incluso
                   para darle un nuevo Look a tu mascota.
                 </p>
               </div>
