@@ -30,7 +30,7 @@ const Producto = ({ producto }) => {
           />
           <Card.Body>
             <Card.Title>{nombre}</Card.Title>
-            <Card.Text>
+            <div>
               <Row>Precio: ${precio}</Row>
               <Row>
                 {disponibilidad === "No Disponible" ? (
@@ -39,11 +39,11 @@ const Producto = ({ producto }) => {
                   <Alert variant="success">{disponibilidad}</Alert>
                 )}
               </Row>
-            </Card.Text>
+            </div>
           </Card.Body>
           <Card.Footer>
             <Button
-              renderAs="button"
+              renderas="button"
               onClick={() => setModalShow(true)}
               className="w-100"
               size="sm"

@@ -69,6 +69,11 @@ const Carrito = () => {
   
   const pagarCompra = () => {
     const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
+    if (comprasGuardada.length === 0) {
+      alert('No hay productos guadados');
+      window.location.href = "/";
+      return;   
+    }
     const pedidoCompras = comprasGuardada.map(function(compra) {
       const compraModif = {
         producto: compra._id,
@@ -89,10 +94,10 @@ const Carrito = () => {
   };
 
   const solicitudCompra = () => {
-    //console.log(compraPagada);
     axiosConfig
       .post('api/compra', compraPagada)
       .then((res) => {
+        console.log(res);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -100,6 +105,19 @@ const Carrito = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+      })
+      .then(() => {
+        localStorage.setItem('compras', JSON.stringify([]));
+        setDetallesEnvio({
+          nombre: '',
+          email: '',
+          direccion: '',
+          provincia: '',
+          localidad: '',
+          codigopostal: '',
+          telefono: ''
+        });
+        window.location.href = "/";
       });
   };
 
@@ -175,6 +193,8 @@ const Carrito = () => {
                     <Col className="my-3">
                       <Form.Control
                         name="nombre"
+                        type="text"
+                        maxLength="30"
                         placeholder="Nombre"
                         value={nombre}
                         onChange={onChangeDetalle}
@@ -185,6 +205,8 @@ const Carrito = () => {
                     <Col className="my-3">
                       <Form.Control
                         name="email"
+                        type="email"
+                        maxLength="20"
                         placeholder="Correo"
                         value={email}
                         onChange={onChangeDetalle}
@@ -195,6 +217,8 @@ const Carrito = () => {
                     <Col className="my-3">
                       <Form.Control
                         name="direccion"
+                        type="text"
+                        maxLength="20"
                         placeholder="Dirección"
                         value={direccion}
                         onChange={onChangeDetalle}
@@ -205,6 +229,7 @@ const Carrito = () => {
                     <Col className="my-3">
                       <Form.Control
                         name="provincia"
+                        type="text"
                         placeholder="Provincia"
                         value={provincia}
                         onChange={onChangeDetalle}
@@ -215,6 +240,8 @@ const Carrito = () => {
                     <Col className="my-3">
                       <Form.Control
                         name="localidad"
+                        type="text"
+                        maxLength="20"
                         placeholder="Localidad"
                         value={localidad}
                         onChange={onChangeDetalle}
@@ -225,6 +252,8 @@ const Carrito = () => {
                     <Col className="my-3">
                       <Form.Control
                         name="codigopostal"
+                        type="text"
+                        maxLength="8"
                         placeholder="Código Postal"
                         value={codigopostal}
                         onChange={onChangeDetalle}
@@ -235,6 +264,8 @@ const Carrito = () => {
                     <Col className="my-3">
                       <Form.Control
                         name="telefono"
+                        type="tel"
+                        maxLength="14"
                         placeholder="Télefono"
                         value={telefono}
                         onChange={onChangeDetalle}
