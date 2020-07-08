@@ -1,8 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import Navbaradmin from '../Elementos-Comunes/Navbaradmin'
-import TablaPedidos from './TablaPedidos'
+import React from 'react'
 import {Table, Modal, Button, Row, Col} from 'react-bootstrap'
-import axiosConfig from "../../../config/axios";
 
 export default function ModalPedido({pedido, compra, modalShow, onHide}) {
 

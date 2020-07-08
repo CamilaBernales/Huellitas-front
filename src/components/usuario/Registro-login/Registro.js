@@ -1,8 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 // import { Redirect } from "react-router-dom";
-import Logo from "../Elementos-Comunes/Logo";
-import Navbar from "../Elementos-Comunes/Navbar";
 import registroimg from "../../../img/registro.svg";
 import "../../../css/Login.css";
 import axiosConfig from "../../../config/axios";
@@ -63,8 +61,6 @@ export default function Registro(props) {
   }, []);
   return (
     <Fragment>
-      <Logo />
-      <Navbar />
       <Container className="my-5 py-3">
         {error ? (
           <Alert

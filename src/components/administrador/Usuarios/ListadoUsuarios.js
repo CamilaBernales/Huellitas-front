@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../../config/axios";
 import { Container, Table, Row, Col } from "react-bootstrap";
-import Navbaradmin from "../Elementos-Comunes/Navbaradmin";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
 const ListadoUsuarios = () => {
@@ -51,7 +50,7 @@ const ListadoUsuarios = () => {
             // console.log(res)
             Swal.fire("La edición fue guardada con éxito!", "", "success");
             setUsuarioEditado(true);
-            window.location.reload(true)
+            window.location.reload(true);
           })
           .catch((res) => console.log(res.response));
       }
@@ -73,7 +72,6 @@ const ListadoUsuarios = () => {
   }, [usuarioEditado]);
   return (
     <>
-      <Navbaradmin />
       <Container className="my-5">
         {/* {loading ? <p>Obtniendo...</p> : null} */}
         <Row className="d-flex justify-content-center align-items-center text-start my-5">
@@ -97,7 +95,7 @@ const ListadoUsuarios = () => {
                         <td>{usuario.rol}</td>
                         <td>
                           <button onClick={() => quitarPermisos(usuario)}>
-                            Quitar Permisos
+                            Hacer usuario general
                           </button>
                         </td>
                       </tr>
@@ -110,7 +108,7 @@ const ListadoUsuarios = () => {
                         <td>{usuario.rol}</td>
                         <td>
                           <button onClick={() => otorgarPermisos(usuario)}>
-                            Otorgar Permisos
+                            Hacer admin
                           </button>
                         </td>
                       </tr>

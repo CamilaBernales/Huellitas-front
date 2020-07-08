@@ -43,14 +43,6 @@ const NavBar = () => {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      {/* <Navbar className="d-flex justify-content-center " bg="warning">
-          <Nav>
-            <Link to="/admin/pedidos" className="nav-link">Pedidos</Link>
-            <Link to="/admin/turnos" className="nav-link">Turnos</Link>
-            <Link to="/admin/productos" className="nav-link">Productos</Link>
-            <Link to="/admin/listadousuarios" className="nav-link">Usuarios</Link>
-          </Nav>
-        </Navbar> */}
     </Fragment>
   );
 };

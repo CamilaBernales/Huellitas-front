@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Container, Form, Col, Row, Button, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
-import Navbaradmin from "../Elementos-Comunes/Navbaradmin";
 import axiosConfig from "../../../config/axios";
 function FormProductos() {
   const [nuevoProducto, setNuevoProducto] = useState({
@@ -89,7 +88,6 @@ function FormProductos() {
 
   return (
     <div>
-      <Navbaradmin />
       <Container className="my-5">
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>

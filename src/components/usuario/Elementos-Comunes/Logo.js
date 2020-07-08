@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import imagen from "../../../img/logoprueba.png";
 import { Link } from "react-router-dom";
-import { Image, Dropdown, Row, Col, Button } from "react-bootstrap";
+import { Image, Dropdown, Row, Col } from "react-bootstrap";
 import "../../../css/Header.css";
 import tokenAuth from "../../../config/token";
 import axiosConfig from "../../../config/axios";
-import SubMenu from "./SubMenu";
 
 const Logo = () => {
   const [usuario, setUsuario] = useState({});
@@ -49,7 +48,12 @@ const Logo = () => {
           <Dropdown.Menu>
             <Dropdown.Item disabled>
               <Row className="d-flex justify-content-center align-items-center">
-                <Col xs={6} sm={12} md={10} className="d-flex justify-content-center align-items-center my-1">
+                <Col
+                  xs={6}
+                  sm={12}
+                  md={10}
+                  className="d-flex justify-content-center align-items-center my-1"
+                >
                   {" "}
                   <Image
                     fluid
@@ -85,14 +89,6 @@ const Logo = () => {
   return (
     <header className="headerpage">
       <div className="img-fluid d-flex justify-content-end ">
-        <div className="p-3 ml-5">
-            <Link to="/carrito">
-          <Button>
-            Tu carrito
-            <i className="fas fa-cart-plus fa-2x" />
-          </Button>
-            </Link>
-        </div>
         <div>{loginLogo}</div>
       </div>
 

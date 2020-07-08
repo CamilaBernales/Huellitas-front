@@ -1,8 +1,5 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import Logo from "../Elementos-Comunes/Logo";
-import Navbar from "../Elementos-Comunes/Navbar";
-
 
 export let equipo = [
   {
@@ -76,15 +73,12 @@ export let equipo = [
   },
 ];
 
-
-
 const Equipo = () => {
-
+  useEffect(() => {
+    window.scrollTo(0, 300);
+  }, []);
   return (
     <Fragment>
-      <Logo />
-      <Navbar />
-
       <Container className="my-5 py-3">
         <Row className=" col-12 m-auto">
           {equipo.map((persona) => (

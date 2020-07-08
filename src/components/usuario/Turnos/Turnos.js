@@ -3,14 +3,10 @@ import { Link } from "react-router-dom";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import turnoconsulta from "../../../img/turnoconsulta.jpg";
 import turnopeluqueria from "../../../img/turnopeluqueria.jpg";
-import Logo from "../Elementos-Comunes/Logo";
-import Navbar from "../Elementos-Comunes/Navbar";
 
 const Turnos = () => {
   return (
     <>
-      <Logo />
-      <Navbar />
       <Container className="my-4">
         <Row className="col-12 m-auto">
           <Col>

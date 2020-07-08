@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../../components/usuario/Elementos-Comunes/Logo";
-import Navbar from "../../../components/usuario/Elementos-Comunes/Navbar";
 import axiosConfig from "../../../config/axios";
 import {
   Table,
@@ -21,7 +19,6 @@ const MisTurnos = () => {
   let fecha = new Date();
   let fechaActual = moment(fecha).format("YYYY-MM-DD");
   const [misTurnos, setMisTurnos] = useState([]);
-
   const listarMisTurnos = () => {
     axiosConfig
       .get(`/api/turnos/listadoturno`)
@@ -56,12 +53,11 @@ const MisTurnos = () => {
     });
   };
   useEffect(() => {
+    window.scrollTo(0, 300);
     listarMisTurnos();
   }, []);
   return (
     <>
-      <Logo />
-      <Navbar />
       <Container className="my-5 py-3">
         <em>
           <p>Tus próximos turnos</p>

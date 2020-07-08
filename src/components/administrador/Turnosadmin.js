@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table, Row, Col } from "react-bootstrap";
 import axiosConfig from "../../config/axios";
-import Navbaradmin from "./Elementos-Comunes/Navbaradmin";
 
 const Turnosadmin = () => {
   const [turnos, setTurnos] = useState([]);
@@ -13,7 +12,6 @@ const Turnosadmin = () => {
   }, []);
   return (
     <>
-      <Navbaradmin />
       <Container className="my-5">
         <Row className="d-flex justify-content-center align-items-center text-start my-5">
           <Col sm={12} md={8} xl={10}>

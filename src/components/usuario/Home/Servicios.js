@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Container, Button, Col, Row } from "react-bootstrap";
-import formaspago from "../../../img/formaspago.png";
 import "../../../css/Servicios.css";
 import { Link } from "react-router-dom";
 
