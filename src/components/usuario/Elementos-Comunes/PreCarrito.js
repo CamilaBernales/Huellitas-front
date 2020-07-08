@@ -4,8 +4,13 @@ import { Link } from "react-router-dom";
 import "../../../css/Precarrito.css";
 const PreCarrito = ({ modalShow, onHide }) => {
   const [comprasLS, setComprasLS] = useState([]);
+  const [carroVacio, setCarroVacio] = useState(false);
+
   const traerComprasLS = () => {
     let compras = JSON.parse(localStorage.getItem("compras"));
+    if (compras === null) {
+      setCarroVacio(true);
+    }
     setComprasLS(compras);
   };
   useEffect(() => {
@@ -19,33 +24,45 @@ const PreCarrito = ({ modalShow, onHide }) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Producto</th>
-              <th>Nombre</th>
-              <th>Cantidad</th>
-            </tr>
-          </thead>
-          <tbody>
-            {comprasLS.map((compra) => (
+        {
+          !carroVacio ? 
+          (
+            <>
+            <Table responsive>
+            <thead>
               <tr>
-                <td>
-                  <Col xs={6} md={8} className="p-0 m-0">
-                    <Image fluid src={compra.imagen} />
-                  </Col>
-                </td>
-                <td>{compra.nombre}</td>
-                <td>{compra.cantidad}</td>
+                <th>Producto</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-        <Button className="w-100 text-align-center">
-          <Link className="text-white" to="/carrito">
-            ver carrito
-          </Link>
-        </Button>
+            </thead>
+            <tbody>
+              {comprasLS.map((compra) => (
+                <tr>
+                  <td>
+                    <Col xs={6} md={8} className="p-0 m-0">
+                      <Image fluid src={compra.imagen} />
+                    </Col>
+                  </td>
+                  <td>{compra.nombre}</td>
+                  <td>{compra.cantidad}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+          <Button className="w-100 text-align-center">
+            <Link className="text-white" to="/carrito">
+              ver carrito
+            </Link>
+          </Button>
+          </>
+          )
+          : 
+          <>
+         <h5>Aún no tienes nada agregado a tu carrito de compras</h5>
+         </>
+        }
+
       </Modal.Body>
     </Modal>
   );
