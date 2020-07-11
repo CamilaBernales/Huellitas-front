@@ -46,7 +46,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 ) : (
                   <Nav.Link href="/login">Turnos</Nav.Link>
                 )}
-                <Nav.Link href="/tienda">Market</Nav.Link>
+                <Nav.Link href="/tienda">Tienda</Nav.Link>
                 <Nav.Link href="/equipo">Nuestro Equipo</Nav.Link>
               </Nav>
             </Navbar.Collapse>

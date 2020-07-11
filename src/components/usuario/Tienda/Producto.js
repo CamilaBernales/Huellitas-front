@@ -4,7 +4,6 @@ import ModalProducto from "./ModalProducto";
 import "./../../../css/Tienda.css";
 const Producto = (props) => {
   const { producto, setComprasGuardadas } = props;
-  console.log(props)
   const { _id, nombre, precio, imagen, disponibilidad } = producto;
   const [modalShow, setModalShow] = React.useState(false);
   const onHide = () => {
@@ -16,7 +15,7 @@ const Producto = (props) => {
       <Col sm={12} md={6} xl={4} className="d-flex justify-content-center p-3 ">
         <Card
           key={_id}
-          border="primary"
+          border="info"
           style={{
             width: "18rem",
           }}
@@ -27,35 +26,41 @@ const Producto = (props) => {
             src={imagen}
           />
           <Card.Body>
-            <Card.Title>{nombre}</Card.Title>
+            <Card.Title align="center" className="my-3">
+              {nombre}
+            </Card.Title>
             <div>
-              <Row>Precio: ${precio}</Row>
               <Row>
-                {disponibilidad === "No Disponible" ? (
-                  <Alert variant="danger">{disponibilidad}</Alert>
-                ) : (
-                  <Alert variant="success">{disponibilidad}</Alert>
-                )}
+                <Col>${precio}</Col>
+                <Col>
+                  {disponibilidad === "No Disponible" ? (
+                    <Alert variant="danger">{disponibilidad}</Alert>
+                  ) : (
+                    <Alert variant="success">{disponibilidad}</Alert>
+                  )}
+                </Col>
+              </Row>
+              <Row >
+                <Button
+                  variant="outline-info"
+                  renderas="button"
+                  onClick={() => setModalShow(true)}
+                  className="w-100 h-100"
+                  size="sm"
+                >
+                  Ver producto
+                </Button>
               </Row>
             </div>
           </Card.Body>
-          <Card.Footer>
-            <Button
-              renderas="button"
-              onClick={() => setModalShow(true)}
-              className="w-100"
-              size="sm"
-            >
-              Detalles
-            </Button>
-            <ModalProducto
-              producto={producto}
-              modalShow={modalShow}
-              setModalShow={setModalShow}
-              onHide={onHide}
-              setComprasGuardadas={setComprasGuardadas}
-            />
-          </Card.Footer>
+
+          <ModalProducto
+            producto={producto}
+            modalShow={modalShow}
+            setModalShow={setModalShow}
+            onHide={onHide}
+            setComprasGuardadas={setComprasGuardadas}
+          />
         </Card>
       </Col>
     </Fragment>

@@ -92,7 +92,7 @@ const PerfilUsuario = () => {
 
   return (
     <>
-      <Container className="my-5 py-3">
+      <Container className="my-5 py-3 perfilUsuario">
         {error ? (
           <Alert
             className="p-3 text-center text-uppercase font-weight-bold"

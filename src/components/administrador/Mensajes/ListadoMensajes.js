@@ -30,6 +30,7 @@ const ListadoMensajes = () => {
                   <th>Camila</th>
                   <th>Correo</th>
                   <th>Mensaje</th>
+                  <th>Fecha</th>
                   <th>Responder</th>
                 </tr>
               </thead>
@@ -40,13 +41,16 @@ const ListadoMensajes = () => {
                       <td>{mensaje.nombre}</td>
                       <td>{mensaje.email}</td>
                       <td>{mensaje.mensaje}</td>
+                      <td>{mensaje.created_at}</td>
                       <td className="text-center">
-                        <Button>
+                        <Button variant="info">
                           <a
                             href={`mailto:${mensaje.email}?subject=Equipo%20Veterinaria%20Huellitas`}
                             className="mx-2"
                           >
-                            <i className="fab far fa-envelope fa-2x"></i>
+                            <i
+                              className="fab far fa-envelope fa-1x "
+                            ></i>
                           </a>
                         </Button>
                       </td>

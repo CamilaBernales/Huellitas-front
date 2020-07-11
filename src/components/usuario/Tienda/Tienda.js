@@ -4,8 +4,7 @@ import Producto from "./Producto";
 import axiosConfig from "../../../config/axios";
 
 const Tienda = (props) => {
-  const {setComprasGuardadas} = props
-  console.log(props)
+  const { setComprasGuardadas } = props;
   const [productos, setProductos] = useState([]);
   const [productosFiltrados, setProductosFiltrados] = useState("");
   const OnChangeFiltrados = (e) => {
@@ -31,26 +30,26 @@ const Tienda = (props) => {
       .catch((err) => console.log(err));
   };
   useEffect(() => {
+    window.scrollTo(0, 300);
     traerProductos();
-    // filtrarProductos()
   }, []);
 
   return (
     <div>
       <Fragment>
         <Container className="my-5 py-3">
-          <Form.Row onSubmit={filtrarProductos}>
-            <Col>
-              <Form.Group>
-                <Form.Control
-                  onChange={OnChangeFiltrados}
-                  type="text"
-                  placeholder="Busca algo"
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form>
+          <Form onSubmit={filtrarProductos}>
+            <Row className="d-flex justify-content-around align-items-center">
+              <Col sm={12} md={6} className="my-2">
+                <Form.Group>
+                  <Form.Control
+                    onChange={OnChangeFiltrados}
+                    type="text"
+                    placeholder="Busca algo"
+                  />
+                </Form.Group>
+              </Col>
+              <Col sm={12} md={6} className="my-2">
                 <Form.Group controlId="exampleForm.SelectCustom">
                   <Form.Control
                     as="select"
@@ -68,17 +67,17 @@ const Tienda = (props) => {
                     <option value="Higiene">Productos de Higiene</option>
                   </Form.Control>
                 </Form.Group>
-              </Form>
-            </Col>
-            <Col>
-              <Button onClick={filtrarProductos} type="submit">
-                Buscar
-              </Button>
-            </Col>
-          </Form.Row>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="mt-2 mb-4 d-flex justify-content-end">
+                <Button variant="outline-info" onClick={filtrarProductos}>Buscar</Button>
+              </Col>
+            </Row>
+          </Form>
           <Row className="col-12 m-auto">
             {productos.length === 0 ? (
-              <Row className="d-flex justify-content-center align-items-center">
+              <Row className="m-auto my-4">
                 <Alert className="text-center" variant="warning">
                   <h6>
                     {" "}
@@ -92,7 +91,11 @@ const Tienda = (props) => {
             ) : (
               <>
                 {productos.map((producto) => (
-                  <Producto key={producto._id} producto={producto} setComprasGuardadas={setComprasGuardadas}/>
+                  <Producto
+                    key={producto._id}
+                    producto={producto}
+                    setComprasGuardadas={setComprasGuardadas}
+                  />
                 ))}
               </>
             )}

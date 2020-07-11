@@ -3,27 +3,28 @@ import { Modal, Col, Row, Button, Form, Alert } from "react-bootstrap";
 import formasPagos from "../../../img/banner-mercadopago-producto.png";
 
 export default function MyVerticallyCenteredModal(props) {
-  const {
-    modalShow,
-    producto,
-    setComprasGuardadas,
-    onHide,
-  } = props
-  console.log(props)
+  const { modalShow, producto, setComprasGuardadas, onHide } = props;
   const [cantidad, setCantidad] = useState(1);
   const [productoAgregado, setProductoAgregado] = useState([]);
+  const [productoRepetido, setProductoRepetido] = useState(false);
+
   const handleCantidad = (e) => {
     setCantidad(([e.target.name] = e.target.value));
   };
-  const guardarProducto = () => {
+  const guardarProducto = (id) => {
     const compras = JSON.parse(localStorage.getItem("compras")) || [];
-    if (productoAgregado.cantidad > 1) {
-      productoAgregado.precio *= productoAgregado.cantidad;
+    let buscado = compras.find((prod) => prod._id === id);
+    if (buscado) {
+      setProductoRepetido(true);
+    } else {
+      if (productoAgregado.cantidad > 1) {
+        productoAgregado.precio *= productoAgregado.cantidad;
+      }
+      compras.push(productoAgregado);
+      localStorage.setItem("compras", JSON.stringify(compras));
+      window.alert("Producto agregado al carrito");
+      setComprasGuardadas(compras.length);
     }
-    compras.push(productoAgregado);
-    localStorage.setItem("compras", JSON.stringify(compras));
-    window.alert("Producto agregado al carrito");
-    setComprasGuardadas(compras.length);
   };
   useEffect(() => {
     setProductoAgregado({ ...producto, cantidad });
@@ -42,6 +43,12 @@ export default function MyVerticallyCenteredModal(props) {
           {producto.nombre}- ${producto.precio}
         </Modal.Title>
       </Modal.Header>
+      {productoRepetido ? (
+        <Alert variant="warning">
+          Este producto ya se encuentra agregado a su carrito de compras. No
+          puede volver a agregarlo
+        </Alert>
+      ) : null}
       <Modal.Body>
         <Row>
           <Col lg={6}>
@@ -95,10 +102,12 @@ export default function MyVerticallyCenteredModal(props) {
               </Col>
             </Row>
             <Row>
-              {producto.disponibilidad === "Disponible" ? (
-                <Button onClick={() => guardarProducto()}>Comprar</Button>
+              {producto.disponibilidad === "Disponible" && !productoRepetido ? (
+                <Button onClick={() => guardarProducto(producto._id)}>
+                  Añadir al carrito
+                </Button>
               ) : (
-                <Button disabled>Comprar</Button>
+                <Button disabled>Añadir al carrito</Button>
               )}
             </Row>
             <Row>

@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ListadoCompras from "../Tienda/ListadoCompras";
-import { Modal, Button, Table, Image, Col } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../../../css/Precarrito.css";
 const PreCarrito = (props) => {
   const { modalShow, onHide, setComprasGuardadas, comprasGuardadas } = props;
-  console.log(props);
   return (
     <Modal id="preCarrito" show={modalShow} onHide={onHide}>
       <Modal.Header closeButton className="text-align-center">
@@ -18,7 +17,10 @@ const PreCarrito = (props) => {
           setComprasGuardadas={setComprasGuardadas}
           comprasGuardadas={comprasGuardadas}
         />
-        <Link to="/carrito">ver carrito</Link>
+        <Button variant="info" className="w-100 text-center my-3">
+          {" "}
+          <Link className="text-white" to="/carrito">Ver proceso de compra</Link>
+        </Button>
       </Modal.Body>
     </Modal>
   );

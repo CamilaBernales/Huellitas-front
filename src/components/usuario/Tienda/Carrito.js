@@ -18,7 +18,6 @@ import Swal from "sweetalert2";
 
 const Carrito = (props) => {
   const { setComprasGuardadas, comprasGuardadas } = props;
-  console.log(props);
   const [key, setKey] = useState("iniciocompra");
   const [suma, setSuma] = useState(0);
   const [detallesEnvio, setDetallesEnvio] = useState(

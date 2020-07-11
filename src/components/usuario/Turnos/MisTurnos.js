@@ -83,10 +83,11 @@ const MisTurnos = () => {
             </>
           ) : (
             <>
-              {misTurnos.map((turno) => {
+              {misTurnos.map((turno, i) => {
                 if (turno.fecha > fechaActual) {
                   return (
                     <Col
+                      key={i}
                       sm={12}
                       md={8}
                       xl={4}
@@ -146,9 +147,7 @@ const MisTurnos = () => {
             <strong>
               <em>
                 {" "}
-                <Link onClick={() => setHistorial(false)}>
-                  Ocultar historial
-                </Link>
+                <p onClick={() => setHistorial(false)}>Ocultar historial</p>
               </em>
             </strong>
             <p>
@@ -176,30 +175,26 @@ const MisTurnos = () => {
               ) : (
                 <>
                   <Col sm={12} md={6} xl={10}>
-                    {misTurnos.map((turno) => {
-                      if (turno.fecha < fechaActual) {
-                        return (
-                          <>
-                            <Table responsive striped bordered hover size="sm">
-                              <thead>
-                                <tr>
-                                  <th>Fecha</th>
-                                  <th>Hora</th>
-                                  <th>Motivo</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr key={turno._id}>
-                                  <td>{turno.fecha}</td>
-                                  <td>{turno.hora}</td>
-                                  <td>{turno.resumen}</td>
-                                </tr>
-                              </tbody>
-                            </Table>
-                          </>
-                        );
-                      }
-                    })}
+                    {misTurnos
+                      .filter((turnos) => turnos.fecha < fechaActual)
+                      .map((turno) => (
+                        <Table responsive striped bordered hover size="sm">
+                          <thead>
+                            <tr>
+                              <th>Fecha</th>
+                              <th>Hora</th>
+                              <th>Motivo</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr key={turno._id}>
+                              <td>{turno.fecha}</td>
+                              <td>{turno.hora}</td>
+                              <td>{turno.resumen}</td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                      ))}
                   </Col>
                 </>
               )}
@@ -209,9 +204,7 @@ const MisTurnos = () => {
           <strong>
             <em>
               {" "}
-              <Link onClick={() => setHistorial(true)}>
-                Historial de turnos
-              </Link>
+              <p onClick={() => setHistorial(true)}>Historial de turnos</p>
             </em>
           </strong>
         )}

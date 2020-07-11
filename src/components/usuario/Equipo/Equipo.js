@@ -82,7 +82,12 @@ const Equipo = () => {
       <Container className="my-5 py-3">
         <Row className=" col-12 m-auto">
           {equipo.map((persona) => (
-            <Col sm={12} md={4} className="d-flex justify-content-center p-3 ">
+            <Col
+              key={persona.id}
+              sm={12}
+              md={4}
+              className="d-flex justify-content-center p-3 "
+            >
               <Card
                 style={{ width: "18rem", high: "18rem" }}
                 className="text-center"
@@ -94,10 +99,8 @@ const Equipo = () => {
                 />
                 <Card.Body>
                   <Card.Title>{persona.nombre}</Card.Title>
-                  <Card.Text>
                     <h4>{persona.cargo}</h4>
-                    {persona.informacion}
-                  </Card.Text>
+                    <p>{persona.informacion}</p>
                 </Card.Body>
               </Card>
             </Col>

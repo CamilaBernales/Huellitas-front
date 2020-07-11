@@ -7,6 +7,7 @@ import {
   Button,
   Alert,
   Table,
+  Image,
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
@@ -41,6 +42,35 @@ const Productosadmin = () => {
       ...productoEditado,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const onChangeImagen = async (e) => {
+    setError(false);
+    if (e.target.files[0]) {
+      if (e.target.files[0].size > 4194304) {
+        // 5242880 = 5MB
+        // 4194304 = 4MB
+        e.target.value = null;
+        setProductoEditado({
+          ...productoEditado,
+          imagen: null,
+        });
+        return;
+      }
+      let reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onloadend = () => {
+        setProductoEditado({
+          ...productoEditado,
+          imagen: reader.result,
+        });
+      };
+    } else {
+      setProductoEditado({
+        ...productoEditado,
+        imagen: null,
+      });
+    }
   };
   const actualizarProducto = () => {
     if (
@@ -110,6 +140,16 @@ const Productosadmin = () => {
           <Row className="d-flex justify-content-center align-items-center my-5">
             <Col sm={12} md={8} xl={6}>
               <Form>
+                <Row className="d-flex justify-content-around align-items-center m-auto ">
+                  <Col sm={12} xs={6} md={6}>
+                    <Image
+                      fluid
+                      className="img-fluid my-4"
+                      src={productoEditado.imagen}
+                      thumbnail
+                    />
+                  </Col>
+                </Row>
                 <Row>
                   <Col className="my-3">
                     <Form.Label>Titulo del producto</Form.Label>
@@ -119,7 +159,6 @@ const Productosadmin = () => {
                       maxLength="40"
                       onChange={onChangeProducto}
                       value={productoEditado.nombre}
-                      maxLength="40"
                     />
                   </Col>
                 </Row>
@@ -156,7 +195,7 @@ const Productosadmin = () => {
                         id="imagen"
                         name="imagen"
                         accept="image/*"
-                        onChange={onChangeProducto}
+                        onChange={onChangeImagen}
                         className="w-100"
                       />
                     </Form.Group>
@@ -165,38 +204,44 @@ const Productosadmin = () => {
                 <Row>
                   <Col className="my-3">
                     <Form.Label>Tipo de Producto</Form.Label>
-                    <Form.Group>
-                      <select
-                        className="w-100"
+                    <Form.Group controlId="exampleForm.SelectCustom">
+                      <Form.Control
+                        as="select"
                         name="tipoproducto"
+                        className="w-100"
+                        custom
                         onChange={onChangeProducto}
                       >
                         <option value="" defaultValue>
-                          Elegi el tipo de producto
+                          Elige el tipo de producto
                         </option>
                         <option value="alimento">Alimento</option>
                         <option value="jueguete">Jueguete</option>
                         <option value="accesorios">Accesorios</option>
                         <option value="Higiene">Productos de Higiene</option>
-                      </select>
+                      </Form.Control>
                     </Form.Group>
                   </Col>
                 </Row>
                 <Row>
                   <Col className="my-3">
                     <Form.Label>Disponibilidad</Form.Label>
-                    <Form.Group>
-                      <select
-                        name="disponibilidad"
+                    <Form.Group controlId="exampleForm.SelectCustom">
+                      <Form.Control
+                        as="select"
                         className="w-100"
+                        custom
+                        name="disponibilidad"
                         onChange={onChangeProducto}
                       >
                         <option value="" defaultValue>
-                          Elegí la disponibilidad del producto
+                          Elige el tipo de producto
                         </option>
-                        <option value="Disponible">Disponible</option>
-                        <option value="No Disponible">No Disponible</option>
-                      </select>
+                        <option value="alimento">Alimentos</option>
+                        <option value="jueguete">Jueguetes</option>
+                        <option value="accesorios">Accesorios</option>
+                        <option value="Higiene">Productos de Higiene</option>
+                      </Form.Control>
                     </Form.Group>
                   </Col>
                 </Row>

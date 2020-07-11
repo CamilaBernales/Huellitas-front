@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 const RutaPrivada = ({ component: Component, ...props }) => {
-  console.log(props);
   const [permisoValido, setPermisoValido] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -23,7 +22,7 @@ const RutaPrivada = ({ component: Component, ...props }) => {
     <Route
       {...props}
       render={(routeProps) =>
-       { console.log(routeProps);
+       { 
          return !permisoValido ? <Redirect to="/login" /> : <Component {...routeProps} {...props} />}
       }
     />

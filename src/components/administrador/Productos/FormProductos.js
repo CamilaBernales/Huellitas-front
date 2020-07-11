@@ -15,7 +15,7 @@ function FormProductos() {
   const [msgError, setMsgError] = useState("");
 
   const onChangeProducto = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setError(false);
     setNuevoProducto({
       ...nuevoProducto,
@@ -156,10 +156,12 @@ function FormProductos() {
               <Row>
                 <Col className="my-3">
                   <Form.Label>Tipo de Producto</Form.Label>
-                  <Form.Group>
-                    <select
+                  <Form.Group controlId="exampleForm.SelectCustom">
+                    <Form.Control
+                      as="select"
                       name="tipoproducto"
                       className="w-100"
+                      custom
                       onChange={onChangeProducto}
                     >
                       <option value="" defaultValue>
@@ -169,25 +171,29 @@ function FormProductos() {
                       <option value="jueguete">Jueguete</option>
                       <option value="accesorios">Accesorios</option>
                       <option value="Higiene">Productos de Higiene</option>
-                    </select>
+                    </Form.Control>
                   </Form.Group>
                 </Col>
               </Row>
               <Row>
                 <Col className="my-3">
                   <Form.Label>Disponibilidad</Form.Label>
-                  <Form.Group>
-                    <select
+                  <Form.Group controlId="exampleForm.SelectCustom">
+                    <Form.Control
+                      as="select"
                       className="w-100"
+                      custom
                       name="disponibilidad"
                       onChange={onChangeProducto}
                     >
                       <option value="" defaultValue>
-                        Elige la disponibilidad del producto
+                        Elige el tipo de producto
                       </option>
-                      <option value="Disponible"> Disponible</option>
-                      <option value="No Disponible">No Disponible</option>
-                    </select>
+                      <option value="alimento">Alimentos</option>
+                      <option value="jueguete">Jueguetes</option>
+                      <option value="accesorios">Accesorios</option>
+                      <option value="Higiene">Productos de Higiene</option>
+                    </Form.Control>
                   </Form.Group>
                 </Col>
               </Row>
