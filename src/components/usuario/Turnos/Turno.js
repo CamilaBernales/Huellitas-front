@@ -172,24 +172,22 @@ const Turno = () => {
               </Row>
               <Row className="my-3">
                 <Col className="my-3">
-                  <Form>
-                    <Form.Group controlId="exampleForm.SelectCustom">
-                      <Form.Label>Elige un horario para tu turno</Form.Label>
-                      <Form.Control
-                        as="select"
-                        className="w-100"
-                        onChange={handleTurno}
-                        name="hora"
-                        custom
-                      >
-                        {horarios.map((cita, i) => (
-                          <option value={cita} key={i}>
-                            {cita}
-                          </option>
-                        ))}
-                      </Form.Control>
-                    </Form.Group>
-                  </Form>
+                  <Form.Group controlId="exampleForm.SelectCustom">
+                    <Form.Label>Elige un horario para tu turno</Form.Label>
+                    <Form.Control
+                      as="select"
+                      className="w-100"
+                      onChange={handleTurno}
+                      name="hora"
+                      custom
+                    >
+                      {horarios.map((cita, i) => (
+                        <option value={cita} key={i}>
+                          {cita}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
                 </Col>
               </Row>
               <Row className="my-3">

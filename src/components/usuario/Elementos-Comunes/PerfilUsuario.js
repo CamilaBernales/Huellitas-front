@@ -20,7 +20,6 @@ const PerfilUsuario = () => {
       .get(`/api/usuarios/usuarioactual`)
       .then((res) => {
         setUsuario(res.data.usuario);
-        console.log(res);
       })
       .catch((err) => console.log(err.response));
   };
@@ -29,7 +28,6 @@ const PerfilUsuario = () => {
       axiosConfig
         .put(`/api/usuarios/updateusuario/${usuario._id}`, usuario)
         .then((res) => {
-          console.log(res);
           setEdicionExitosa(true);
           window.scrollTo(0, 200);
           setTimeout(() => {
@@ -40,7 +38,6 @@ const PerfilUsuario = () => {
           setError(true);
           setMsgError(err.response.data.msg);
           window.scrollTo(0, 200);
-          console.log(err.response);
         });
     } else {
       setError(true);
@@ -144,7 +141,7 @@ const PerfilUsuario = () => {
                   placeholder="Ingrese su nombre"
                   name="nombre"
                   onChange={onChangeUsuario}
-                  value={usuario.nombre}
+                  defaultValue={usuario.nombre}
                 />
               </Form.Group>
 
@@ -158,7 +155,7 @@ const PerfilUsuario = () => {
                   placeholder="Ingrese su email"
                   name="email"
                   onChange={onChangeUsuario}
-                  value={usuario.email}
+                  defaultValue={usuario.email}
                 />
               </Form.Group>
               <Form.Group className="my-4" controlId="formTelefono">
@@ -171,7 +168,7 @@ const PerfilUsuario = () => {
                   placeholder="Ingrese su número de telefono"
                   name="telefono"
                   onChange={onChangeUsuario}
-                  value={usuario.telefono}
+                  defaultValue={usuario.telefono}
                 />
               </Form.Group>
             </Form>

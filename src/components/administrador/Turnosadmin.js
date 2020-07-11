@@ -26,7 +26,7 @@ const Turnosadmin = () => {
               </thead>
               <tbody>
                 {turnos.map((turno) => (
-                  <tr>
+                  <tr key={turno._id}>
                     <td>{turno.nombremascota}</td>
                     <td>{turno.fecha}</td>
                     <td>{turno.hora}</td>

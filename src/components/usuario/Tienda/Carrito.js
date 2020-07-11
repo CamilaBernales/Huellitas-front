@@ -70,11 +70,11 @@ const Carrito = (props) => {
   const pagarCompra = () => {
     const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
     if (comprasGuardada.length === 0) {
-      alert('No hay productos guadados');
+      alert("No hay productos guadados");
       window.location.href = "/";
-      return;   
+      return;
     }
-    const pedidoCompras = comprasGuardada.map(function(compra) {
+    const pedidoCompras = comprasGuardada.map(function (compra) {
       const compraModif = {
         producto: compra._id,
         precio: compra.precio,
@@ -95,7 +95,7 @@ const Carrito = (props) => {
 
   const solicitudCompra = () => {
     axiosConfig
-      .post('api/compra', compraPagada)
+      .post("api/compra", compraPagada)
       .then((res) => {
         console.log(res);
         Swal.fire({
@@ -107,19 +107,19 @@ const Carrito = (props) => {
         });
       })
       .then(() => {
-        localStorage.setItem('compras', JSON.stringify([]));
+        localStorage.setItem("compras", JSON.stringify([]));
         setDetallesEnvio({
-          nombre: '',
-          email: '',
-          direccion: '',
-          provincia: '',
-          localidad: '',
-          codigopostal: '',
-          telefono: ''
+          nombre: "",
+          email: "",
+          direccion: "",
+          provincia: "",
+          localidad: "",
+          codigopostal: "",
+          telefono: "",
         });
         window.location.href = "/";
       });
-  }
+  };
 
   return (
     <Fragment>
@@ -194,7 +194,7 @@ const Carrito = (props) => {
                         type="text"
                         maxLength="30"
                         placeholder="Nombre"
-                        value={nombre}
+                        defaultValue={nombre}
                         onChange={onChangeDetalle}
                       />
                     </Col>
@@ -206,7 +206,7 @@ const Carrito = (props) => {
                         type="email"
                         maxLength="20"
                         placeholder="Correo"
-                        value={email}
+                        defaultValue={email}
                         onChange={onChangeDetalle}
                       />
                     </Col>
@@ -218,7 +218,7 @@ const Carrito = (props) => {
                         type="text"
                         maxLength="20"
                         placeholder="Dirección"
-                        value={direccion}
+                        defaultValue={direccion}
                         onChange={onChangeDetalle}
                       />
                     </Col>
@@ -229,7 +229,7 @@ const Carrito = (props) => {
                         name="provincia"
                         type="text"
                         placeholder="Provincia"
-                        value={provincia}
+                        defaultValue={provincia}
                         onChange={onChangeDetalle}
                       />
                     </Col>
@@ -241,7 +241,7 @@ const Carrito = (props) => {
                         type="text"
                         maxLength="20"
                         placeholder="Localidad"
-                        value={localidad}
+                        defaultValue={localidad}
                         onChange={onChangeDetalle}
                       />
                     </Col>
@@ -253,7 +253,7 @@ const Carrito = (props) => {
                         type="text"
                         maxLength="8"
                         placeholder="Código Postal"
-                        value={codigopostal}
+                        defaultValue={codigopostal}
                         onChange={onChangeDetalle}
                       />
                     </Col>
@@ -265,7 +265,7 @@ const Carrito = (props) => {
                         type="tel"
                         maxLength="14"
                         placeholder="Télefono"
-                        value={telefono}
+                        defaultValue={telefono}
                         onChange={onChangeDetalle}
                       />
                     </Col>
@@ -376,9 +376,9 @@ const Carrito = (props) => {
                 </Row>
               </Col>
               <Col sm={12} md={8} xl={6}>
-              <ListadoCompras
+                <ListadoCompras
                   setComprasGuardadas={setComprasGuardadas}
-                  comp rasGuardadas={comprasGuardadas}
+                  comprasGuardadas={comprasGuardadas}
                 />
                 <div className="d-flex m-3 justify-content-center font-weight-bold">
                   <h3 className="text-uppercase text-monospace text-lg-left">

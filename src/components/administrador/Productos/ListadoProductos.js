@@ -158,7 +158,7 @@ const Productosadmin = () => {
                       name="nombre"
                       maxLength="40"
                       onChange={onChangeProducto}
-                      value={productoEditado.nombre}
+                      defaultValue={productoEditado.nombre}
                     />
                   </Col>
                 </Row>
@@ -169,7 +169,7 @@ const Productosadmin = () => {
                       placeholder="Descripción"
                       name="descripcion"
                       onChange={onChangeProducto}
-                      value={productoEditado.descripcion}
+                      defaultValue={productoEditado.descripcion}
                       maxLength="200"
                     />
                   </Col>
@@ -180,7 +180,7 @@ const Productosadmin = () => {
 
                     <Form.Control
                       name="precio"
-                      value={productoEditado.precio}
+                      defaultValue={productoEditado.precio}
                       onChange={onChangeProducto}
                       type="number"
                       min="100"

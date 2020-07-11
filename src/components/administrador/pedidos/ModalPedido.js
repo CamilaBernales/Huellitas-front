@@ -2,9 +2,6 @@ import React from 'react'
 import {Table, Modal, Button, Row, Col} from 'react-bootstrap'
 
 export default function ModalPedido({pedido, compra, modalShow, onHide}) {
-
-    console.log(pedido.map( p => p.precio));
-
     return (
 
         <Modal

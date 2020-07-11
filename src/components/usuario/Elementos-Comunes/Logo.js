@@ -15,7 +15,6 @@ const Logo = () => {
       .then((res) => {
         setUsuario(res.data.usuario);
       })
-      .catch((err) => console.log(err.response));
   };
   let loginLogo;
   const [isLogIn, setIsLogIn] = useState(false);

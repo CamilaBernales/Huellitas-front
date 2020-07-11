@@ -9,7 +9,6 @@ const ListadoMensajes = () => {
       .get("/api/mensajes/listadomensajes")
       .then((res) => {
         setMensajes(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         // console.log(err);

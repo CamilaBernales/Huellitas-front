@@ -77,7 +77,7 @@ export default function MyVerticallyCenteredModal(props) {
                         type="number"
                         max="5"
                         min="1"
-                        placeHolder="Cantidad"
+                        placeholder="Cantidad"
                       />
                     </Col>
                   </Row>
@@ -94,7 +94,7 @@ export default function MyVerticallyCenteredModal(props) {
                         size="sm"
                         type="number"
                         max="5"
-                        placeHolder="Cantidad"
+                        placeholder="Cantidad"
                       />
                     </Col>
                   </Row>
