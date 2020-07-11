@@ -24,7 +24,7 @@ export default class PaymentForm extends React.Component {
   
   render() {
     return (
-      <Fragment id="PaymentForm">
+      <Fragment>
         <Cards
           cvc={this.state.cvc}
           expiry={this.state.expiry}

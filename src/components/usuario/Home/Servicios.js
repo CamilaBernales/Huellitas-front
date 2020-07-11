@@ -8,7 +8,7 @@ const Servicio = () => {
     <Fragment>
       <Container className="my-5 py-3">
         <Row className="d-flex justify-content-around align-items-center">
-          <div class="cardServicios">
+          <div className="cardServicios">
             <Col>
               <div className="info">
                 <span className="icon">
@@ -23,7 +23,7 @@ const Servicio = () => {
               </div>
             </Col>
           </div>
-          <div class="cardServicios">
+          <div className="cardServicios">
             <Col>
               <div className="info">
                 <span className="icon">
@@ -39,7 +39,7 @@ const Servicio = () => {
               </div>
             </Col>
           </div>
-          <div class="cardServicios">
+          <div className="cardServicios">
             <Col>
               <div className="info">
                 <span className="icon">
@@ -57,7 +57,7 @@ const Servicio = () => {
         </Row>
 
         <Row className="d-flex justify-content-around align-items-center">
-          <div class="cardServicios">
+          <div className="cardServicios">
             <Col>
               <div className="info">
                 <span className="icon">
@@ -72,7 +72,7 @@ const Servicio = () => {
               </div>
             </Col>
           </div>
-          <div class="cardServicios">
+          <div className="cardServicios">
             <Col>
               <div className="info">
                 <span className="icon">
@@ -86,7 +86,7 @@ const Servicio = () => {
               </div>
             </Col>
           </div>
-          <div class="cardServicios">
+          <div className="cardServicios">
             <Col>
               <div className="d-flex justify-content-center">
                 <div className="img-fluid ">
