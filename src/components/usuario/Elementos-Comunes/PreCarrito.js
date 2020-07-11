@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from "react";
+import ListadoCompras from "../Tienda/ListadoCompras";
 import { Modal, Button, Table, Image, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../../../css/Precarrito.css";
-const PreCarrito = ({ modalShow, onHide }) => {
-  const [comprasLS, setComprasLS] = useState([]);
-  const [carroVacio, setCarroVacio] = useState(false);
-
-  const traerComprasLS = () => {
-    let compras = JSON.parse(localStorage.getItem("compras"));
-    if (compras === null) {
-      setCarroVacio(true);
-    }
-    setComprasLS(compras);
-  };
-  useEffect(() => {
-    traerComprasLS();
-  }, []);
+const PreCarrito = (props) => {
+  const { modalShow, onHide, setComprasGuardadas, comprasGuardadas } = props;
+  console.log(props);
   return (
     <Modal id="preCarrito" show={modalShow} onHide={onHide}>
       <Modal.Header closeButton className="text-align-center">
@@ -24,45 +14,11 @@ const PreCarrito = ({ modalShow, onHide }) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {
-          !carroVacio ? 
-          (
-            <>
-            <Table responsive>
-            <thead>
-              <tr>
-                <th>Producto</th>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-              </tr>
-            </thead>
-            <tbody>
-              {comprasLS.map((compra) => (
-                <tr>
-                  <td>
-                    <Col xs={6} md={8} className="p-0 m-0">
-                      <Image fluid src={compra.imagen} />
-                    </Col>
-                  </td>
-                  <td>{compra.nombre}</td>
-                  <td>{compra.cantidad}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-          <Button className="w-100 text-align-center">
-            <Link className="text-white" to="/carrito">
-              ver carrito
-            </Link>
-          </Button>
-          </>
-          )
-          : 
-          <>
-         <h5>Aún no tienes nada agregado a tu carrito de compras</h5>
-         </>
-        }
-
+        <ListadoCompras
+          setComprasGuardadas={setComprasGuardadas}
+          comprasGuardadas={comprasGuardadas}
+        />
+        <Link to="/carrito">ver carrito</Link>
       </Modal.Body>
     </Modal>
   );

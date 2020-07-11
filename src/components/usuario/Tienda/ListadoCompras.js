@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { Table, Button } from "react-bootstrap";
-const ListadoCompras = ({ setComprasGuardadas }) => {
+import React, { useState, useEffect } from "react";
+import { Table, Button, Col, Image } from "react-bootstrap";
+const ListadoCompras = (props) => {
+  const { setComprasGuardadas, comprasGuardadas } = props;
   const [compraGuardada, setCompraGuardada] = useState(
     JSON.parse(localStorage.getItem("compras")) || []
   );
-
   const eliminarUnProducto = (id) => {
-    let index = compraGuardada.findIndex((produc) => produc.id === id);
-    let producto = compraGuardada[index];
-    compraGuardada.splice(producto, 1);
-    localStorage.setItem("compras", JSON.stringify(compraGuardada));
-    setCompraGuardada(JSON.parse(localStorage.getItem("compras")));
-    setComprasGuardadas(JSON.parse(localStorage.getItem("compras")).length);
+    let filtradoCompras = compraGuardada.filter((produc) => produc._id !== id);
+    localStorage.setItem("compras", JSON.stringify(filtradoCompras));
+    setComprasGuardadas(filtradoCompras.length);
   };
-
+  useEffect(() => {
+    setCompraGuardada(JSON.parse(localStorage.getItem("compras")) || []);
+  }, [comprasGuardadas]);
   return (
     <div>
       <Table responsive>
         <thead>
           <tr>
-            <th>Nombre Producto</th>
+            <th>Producto</th>
+            <th>Nombre</th>
             <th>Cantidad</th>
             <th>Precio</th>
             <th>Eliminar</th>
@@ -28,6 +28,11 @@ const ListadoCompras = ({ setComprasGuardadas }) => {
         <tbody>
           {compraGuardada.map((compra) => (
             <tr key={compra._id}>
+              <td>
+                <Col xs={10} sm={8} className="p-0 m-0">
+                  <Image fluid src={compra.imagen} />
+                </Col>
+              </td>
               <td>{compra.nombre}</td>
               <td>{compra.cantidad}</td>
               <td>{compra.precio}</td>

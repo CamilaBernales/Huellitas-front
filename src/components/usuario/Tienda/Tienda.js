@@ -3,8 +3,9 @@ import { Row, Container, Col, Form, Button, Alert } from "react-bootstrap";
 import Producto from "./Producto";
 import axiosConfig from "../../../config/axios";
 
-const Tienda = ({setComprasGuardadas}) => {
-
+const Tienda = (props) => {
+  const {setComprasGuardadas} = props
+  console.log(props)
   const [productos, setProductos] = useState([]);
   const [productosFiltrados, setProductosFiltrados] = useState("");
   const OnChangeFiltrados = (e) => {

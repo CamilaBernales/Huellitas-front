@@ -2,7 +2,9 @@ import React, { Fragment } from "react";
 import { Col, Card, Button, Alert, Row } from "react-bootstrap";
 import ModalProducto from "./ModalProducto";
 import "./../../../css/Tienda.css";
-const Producto = ({ producto, setComprasGuardadas }) => {
+const Producto = (props) => {
+  const { producto, setComprasGuardadas } = props;
+  console.log(props)
   const { _id, nombre, precio, imagen, disponibilidad } = producto;
   const [modalShow, setModalShow] = React.useState(false);
   const onHide = () => {

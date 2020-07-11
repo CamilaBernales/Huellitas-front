@@ -38,11 +38,8 @@ function App() {
         tokenAuth(token);
         try {
           let res = await axiosConfig.get("/api/auth/uservalidation");
-          // console.log(res.data);
           setRespuesta(res.data);
-        } catch (err) {
-          // console.log(err.response.data);
-        }
+        } catch (err) {}
       }
       setLoading(false);
     };
@@ -56,7 +53,11 @@ function App() {
     <div className="App">
       <Router>
         <Logo />
-        <Navbar comprasGuardadas={comprasGuardadas} respuesta={respuesta} />
+        <Navbar
+          setComprasGuardadas={setComprasGuardadas}
+          comprasGuardadas={comprasGuardadas}
+          respuesta={respuesta}
+        />
         {!loading ? (
           <Switch>
             <RutaPrivAdmin
@@ -104,9 +105,9 @@ function App() {
             <RutaPrivada
               exact
               path="/carrito"
-              component={() => (
-                <Carrito setComprasGuardadas={setComprasGuardadas} />
-              )}
+              component={Carrito}
+              setComprasGuardadas={setComprasGuardadas}
+              comprasGuardadas = {comprasGuardadas}
               respuesta={respuesta}
             />
             <RutaPrivada
@@ -125,8 +126,8 @@ function App() {
             <Route
               exact
               path="/tienda"
-              component={() => (
-                <Tienda setComprasGuardadas={setComprasGuardadas} />
+              render={(props) => (
+                <Tienda {...props} setComprasGuardadas={setComprasGuardadas} />
               )}
             />
             <Route exact path="/servicios" />
@@ -143,8 +144,8 @@ function App() {
             <Route
               exact
               path="/tienda"
-              component={() => (
-                <Tienda setComprasGuardadas={setComprasGuardadas} />
+              render={(props) => (
+                <Tienda {...props} setComprasGuardadas={setComprasGuardadas} />
               )}
             />
             <Route exact path="/servicios" />

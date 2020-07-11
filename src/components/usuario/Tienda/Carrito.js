@@ -16,7 +16,9 @@ import ListadoCompras from "./ListadoCompras";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
 
-const Carrito = ({ setComprasGuardadas }) => {
+const Carrito = (props) => {
+  const { setComprasGuardadas, comprasGuardadas } = props;
+  console.log(props);
   const [key, setKey] = useState("iniciocompra");
   const [suma, setSuma] = useState(0);
   const [detallesEnvio, setDetallesEnvio] = useState(
@@ -55,7 +57,6 @@ const Carrito = ({ setComprasGuardadas }) => {
   };
 
   useEffect(() => {
-    sumaTotal();
     if (primerRender.current) {
       primerRender.current = false;
       return;
@@ -63,6 +64,9 @@ const Carrito = ({ setComprasGuardadas }) => {
     solicitudCompra();
     // eslint-disable-next-line
   }, [compraPagada]);
+  useEffect(() => {
+    sumaTotal();
+  }, [comprasGuardadas]);
 
   const pagarCompra = () => {
     const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
@@ -108,9 +112,9 @@ const Carrito = ({ setComprasGuardadas }) => {
         >
           <Tab eventKey="iniciocompra" title="Lista de compras">
             <h3>Lista de compras</h3>
+
             <Row className="d-flex">
               <Col sm={12} md={8} xl={6}>
-                <ListadoCompras setComprasGuardadas={setComprasGuardadas} />
                 <Row>
                   <Col className="my-3">
                     <Button
@@ -254,7 +258,6 @@ const Carrito = ({ setComprasGuardadas }) => {
                 </Row>
               </Col>
               <Col sm={12} md={8} xl={6}>
-                <ListadoCompras setComprasGuardadas={setComprasGuardadas} />
                 <div className="d-flex m-3 justify-content-center font-weight-bold">
                   <h3 className="text-uppercase text-monospace text-lg-left">
                     {" "}
@@ -272,6 +275,7 @@ const Carrito = ({ setComprasGuardadas }) => {
           </Tab>
           <Tab eventKey="pagocompra" title="Medio de pago">
             <h3>Medios de Pago</h3>
+
             <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
                 <Row>
@@ -340,7 +344,10 @@ const Carrito = ({ setComprasGuardadas }) => {
                 </Row>
               </Col>
               <Col sm={12} md={8} xl={6}>
-                <ListadoCompras setComprasGuardadas={setComprasGuardadas} />
+              <ListadoCompras
+                  setComprasGuardadas={setComprasGuardadas}
+                  comp rasGuardadas={comprasGuardadas}
+                />
                 <div className="d-flex m-3 justify-content-center font-weight-bold">
                   <h3 className="text-uppercase text-monospace text-lg-left">
                     {" "}

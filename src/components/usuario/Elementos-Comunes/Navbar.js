@@ -5,9 +5,8 @@ import "../../../css/Navbar.css";
 import tokenAuth from "../../../config/token";
 import PreCarrito from "./PreCarrito";
 
-const NavBar = ({ comprasGuardadas, respuesta }) => {
+const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
   const [isLogIn, setIsLogIn] = useState(false);
-
   const [modalShow, setModalShow] = React.useState(false);
   const onHide = () => {
     setModalShow(false);
@@ -100,6 +99,8 @@ const NavBar = ({ comprasGuardadas, respuesta }) => {
           modalShow={modalShow}
           setModalShow={setModalShow}
           onHide={onHide}
+          setComprasGuardadas={setComprasGuardadas}
+          comprasGuardadas={comprasGuardadas}
         />
       </Col>
     </>

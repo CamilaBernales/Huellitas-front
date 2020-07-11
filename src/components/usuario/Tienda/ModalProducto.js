@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Modal, Col, Row, Button, Form, Alert } from "react-bootstrap";
 import formasPagos from "../../../img/banner-mercadopago-producto.png";
 
-export default function MyVerticallyCenteredModal({
-  modalShow,
-  producto,
-  setModalShow,
-  onHide,
-  setComprasGuardadas
-}) {
+export default function MyVerticallyCenteredModal(props) {
+  const {
+    modalShow,
+    producto,
+    setComprasGuardadas,
+    onHide,
+  } = props
+  console.log(props)
   const [cantidad, setCantidad] = useState(1);
   const [productoAgregado, setProductoAgregado] = useState([]);
   const handleCantidad = (e) => {
@@ -16,14 +17,13 @@ export default function MyVerticallyCenteredModal({
   };
   const guardarProducto = () => {
     const compras = JSON.parse(localStorage.getItem("compras")) || [];
-    console.log(productoAgregado);
     if (productoAgregado.cantidad > 1) {
       productoAgregado.precio *= productoAgregado.cantidad;
     }
     compras.push(productoAgregado);
     localStorage.setItem("compras", JSON.stringify(compras));
     window.alert("Producto agregado al carrito");
-    setComprasGuardadas(JSON.parse(localStorage.getItem("compras")).length);
+    setComprasGuardadas(compras.length);
   };
   useEffect(() => {
     setProductoAgregado({ ...producto, cantidad });
