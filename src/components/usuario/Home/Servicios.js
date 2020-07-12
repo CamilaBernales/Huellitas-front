@@ -87,20 +87,18 @@ const Servicio = () => {
             </Col>
           </div>
           <div className="cardServicios">
-            <Col>
-              <div className="d-flex justify-content-center">
-                <div className="img-fluid ">
-                  <img className="imagenlastcard" alt="animales domesticos" />
-                </div>
-              </div>
-              <div className=" my-3 d-flex justify-content-center">
-                <Button variant="light" className="info">
-                  <Link className="text-secondary" to="/turnos">
-                    Quiero un turno!
-                  </Link>
-                </Button>
-              </div>
-            </Col>
+            <div className="info">
+              <span className="icon">
+                <i className="my-3 far fa-clock fa-2x d-flex justify-content-center bg-gradient-warning"></i>
+              </span>
+              <h4 className="font-weight-bold">24hs</h4>
+              <p>
+                Todos los días, entre las 9 y las 21 hs. funcionan la
+                atención y los consultorios de manera habitual. A partir de las
+               21 hs., y durante toda la noche, tenemos Servicio de
+                Guardia.
+              </p>
+            </div>
           </div>
         </Row>
       </Container>

@@ -27,6 +27,7 @@ import tokenAuth from "./config/token";
 import Navbar from "./components/usuario/Elementos-Comunes/Navbar";
 import Logo from "./components/usuario/Elementos-Comunes/Logo";
 import Footer from "./components/usuario/Elementos-Comunes/Footer";
+import Whatsapp from './components/usuario/Elementos-Comunes/Whatsapp'
 function App() {
   const [loading, setLoading] = useState(true);
   const [respuesta, setRespuesta] = useState({});
@@ -58,6 +59,7 @@ function App() {
           comprasGuardadas={comprasGuardadas}
           respuesta={respuesta}
         />
+        <Whatsapp/>
         {!loading ? (
           <Switch>
             <RutaPrivAdmin

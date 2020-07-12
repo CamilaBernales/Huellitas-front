@@ -1,0 +1,14 @@
+.whatsapp {
+  display: block;
+  right: 0;
+  bottom: 30px;
+  position: fixed;
+  z-index: 10000;
+}
+.wpimg {
+  color: seagreen;
+}
+.wpb, .wpb:hover{
+    background-color: rgb(250, 250, 250);
+    border-color: #000000;
+}
