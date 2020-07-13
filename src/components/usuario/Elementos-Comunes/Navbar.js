@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../../../css/Navbar.css";
 import tokenAuth from "../../../config/token";
 import PreCarrito from "./PreCarrito";
+import BotonInicioSesion from "./BotonInicioSesion"
 
 const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
   const [isLogIn, setIsLogIn] = useState(false);
@@ -24,6 +25,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
     };
     revisarSesion();
   }, []);
+
   return (
     <>
       <Navbar className="navbar navlink" collapseOnSelect expand="lg">
@@ -120,6 +122,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
             </Navbar.Collapse>
           </>
         )}
+        <BotonInicioSesion />
       </Navbar>
       <Col>
         <PreCarrito

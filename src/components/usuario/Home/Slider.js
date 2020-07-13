@@ -16,7 +16,11 @@ export default function Slider() {
             {" "}
             <h3>Profesionales de calidad</h3>
           </em>
-          <Button size="lg" variant="outline-info"><Link className="text-white" to="/equipo">Conocenos</Link></Button>
+          <Button size="lg"  className="btn-custom">
+            <Link className="color-texto" to="/equipo">
+              Conocenos
+            </Link>
+          </Button>
           {/* <Button variant="outline-primary">Conocenos</Button>{' '} */}
         </Carousel.Caption>
       </Carousel.Item>
@@ -31,7 +35,11 @@ export default function Slider() {
           <em>
             <h3>Atención personalizada</h3>
           </em>
-          <Button size="lg" variant="outline-info"><Link className="text-white" to="/turno">Solicitar turno</Link></Button>
+          <Button size="lg" className="btn-custom">
+            <Link className="color-texto" to="/turno">
+              Solicitar turno
+            </Link>
+          </Button>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -45,7 +53,11 @@ export default function Slider() {
           <em>
             <h3>Tienda con variedad de productos</h3>
           </em>
-          <Button size="lg" variant="outline-info"><Link className="text-white" to="/tienda">Comprar</Link></Button>
+          <Button size="lg" className="btn-custom">
+            <Link className="color-texto" to="/tienda">
+              Comprar
+            </Link>
+          </Button>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

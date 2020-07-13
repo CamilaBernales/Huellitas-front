@@ -25,9 +25,11 @@ import PerfilUsuario from "./components/usuario/Elementos-Comunes/PerfilUsuario"
 import axiosConfig from "./config/axios";
 import tokenAuth from "./config/token";
 import Navbar from "./components/usuario/Elementos-Comunes/Navbar";
-import Logo from "./components/usuario/Elementos-Comunes/Logo";
+// import Logo from "./components/usuario/Elementos-Comunes/Logo";
 import Footer from "./components/usuario/Elementos-Comunes/Footer";
 import Whatsapp from './components/usuario/Elementos-Comunes/Whatsapp'
+import ImagenHome from "./components/usuario/Elementos-Comunes/ImagenHome"
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [respuesta, setRespuesta] = useState({});
@@ -53,7 +55,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Logo />
+        <ImagenHome />
         <Navbar
           setComprasGuardadas={setComprasGuardadas}
           comprasGuardadas={comprasGuardadas}

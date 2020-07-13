@@ -156,7 +156,6 @@ const Productosadmin = () => {
                     <Form.Control
                       placeholder="Titulo del producto"
                       name="nombre"
-                      maxLength="40"
                       onChange={onChangeProducto}
                       defaultValue={productoEditado.nombre}
                     />

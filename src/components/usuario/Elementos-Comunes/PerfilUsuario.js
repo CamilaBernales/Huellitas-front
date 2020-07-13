@@ -10,6 +10,7 @@ import {
 } from "react-bootstrap";
 import "../../../css/Perfil.css";
 import axiosConfig from "../../../config/axios";
+
 const PerfilUsuario = () => {
   const [usuario, setUsuario] = useState({});
   const [error, setError] = useState(false);
