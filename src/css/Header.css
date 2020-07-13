@@ -7,3 +7,14 @@
     border-style: double;
     overflow: hidden;
 }
+
+.buttonIS {
+    background:  rgb(94, 194, 203);
+    border: 2px solid rgb(94, 194, 203);
+    font: inherit;
+  }
+
+.buttonIS:hover{
+    background: rgb(0, 166, 166);
+    border: 2px solid rgb(0, 166, 166);
+}

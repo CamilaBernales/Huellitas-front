@@ -16,8 +16,8 @@ export default function Slider() {
             {" "}
             <h3>Profesionales de calidad</h3>
           </em>
-          <Button size="lg" variant="outline-info" className="fill">
-            <Link className="text-white" to="/equipo">
+          <Button size="lg"  className="btn-custom">
+            <Link className="color-texto" to="/equipo">
               Conocenos
             </Link>
           </Button>
@@ -35,8 +35,8 @@ export default function Slider() {
           <em>
             <h3>Atención personalizada</h3>
           </em>
-          <Button size="lg" variant="outline-info">
-            <Link className="text-white" to="/turno">
+          <Button size="lg" className="btn-custom">
+            <Link className="color-texto" to="/turno">
               Solicitar turno
             </Link>
           </Button>
@@ -53,8 +53,8 @@ export default function Slider() {
           <em>
             <h3>Tienda con variedad de productos</h3>
           </em>
-          <Button size="lg" variant="outline-info">
-            <Link className="text-white" to="/tienda">
+          <Button size="lg" className="btn-custom">
+            <Link className="color-texto" to="/tienda">
               Comprar
             </Link>
           </Button>

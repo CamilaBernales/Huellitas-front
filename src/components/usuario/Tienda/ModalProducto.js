@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Col, Row, Button, Form, Alert } from "react-bootstrap";
 import formasPagos from "../../../img/banner-mercadopago-producto.png";
+import "./../../../css/Tienda.css";
 
 export default function MyVerticallyCenteredModal({
   modalShow,
@@ -38,7 +39,7 @@ export default function MyVerticallyCenteredModal({
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title id="contained-modal-title-vcenter" className="text-color">
           {producto.nombre}- ${producto.precio}
         </Modal.Title>
       </Modal.Header>
@@ -48,10 +49,10 @@ export default function MyVerticallyCenteredModal({
             <img className="img-fluid" alt="alimento" src={producto.imagen} />
           </Col>
           <Col lg={6}>
-            <Row>
+            <Row className="text-color">
               <h6>Detalles del producto</h6>
             </Row>
-            <Row>
+            <Row className="text-color">
               <p>{producto.descripcion}</p>
             </Row>
             <Row>
@@ -96,7 +97,12 @@ export default function MyVerticallyCenteredModal({
             </Row>
             <Row>
               {producto.disponibilidad === "Disponible" ? (
-                <Button onClick={() => guardarProducto()}>Comprar</Button>
+                <Button 
+                onClick={() => guardarProducto()}
+                className="boton"
+                >
+                  Comprar
+                </Button>
               ) : (
                 <Button disabled>Comprar</Button>
               )}
@@ -112,7 +118,10 @@ export default function MyVerticallyCenteredModal({
         </Row>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
+        <Button 
+        onClick={onHide}
+        className="boton"
+        >Close</Button>
       </Modal.Footer>
     </Modal>
   );

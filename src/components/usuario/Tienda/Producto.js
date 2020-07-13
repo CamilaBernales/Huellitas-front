@@ -2,6 +2,10 @@ import React, { Fragment } from "react";
 import { Col, Card, Button, Alert, Row } from "react-bootstrap";
 import ModalProducto from "./ModalProducto";
 import "./../../../css/Tienda.css";
+
+
+
+
 const Producto = ({ producto, setComprasGuardadas }) => {
   const { _id, nombre, precio, imagen, disponibilidad } = producto;
   const [modalShow, setModalShow] = React.useState(false);
@@ -18,6 +22,7 @@ const Producto = ({ producto, setComprasGuardadas }) => {
           style={{
             width: "18rem",
           }}
+          className="card-custom"
         >
           <Card.Img
             variant="top"
@@ -25,9 +30,9 @@ const Producto = ({ producto, setComprasGuardadas }) => {
             src={imagen}
           />
           <Card.Body>
-            <Card.Title>{nombre}</Card.Title>
-              <Row>Precio: ${precio}</Row>
-              <Row>
+            <Card.Title className="d-flex justify-content-center text-color">{nombre}</Card.Title>
+              <Row className="d-flex justify-content-center text-color">Precio: ${precio}</Row>
+              <Row className="d-flex justify-content-center">
                 {disponibilidad === "No Disponible" ? (
                   <Alert variant="danger">{disponibilidad}</Alert>
                 ) : (
@@ -39,7 +44,7 @@ const Producto = ({ producto, setComprasGuardadas }) => {
             <Button
               renderas="button"
               onClick={() => setModalShow(true)}
-              className="w-100"
+              className="w-100 boton"
               size="sm"
             >
               Detalles

@@ -1,3 +1,23 @@
 .imagentienda{
     height: 300px;
 }
+
+.card-custom{
+    box-shadow: 2px 2px 12px 3px rgba(0,0,0,0.25);
+}
+
+.boton {
+    background: rgb(0, 166, 166);
+    border: 2px solid rgb(0, 166, 166);
+    font: inherit;
+}
+
+.boton:hover{
+    background:  rgb(94, 194, 203);
+    border: 2px solid rgb(94, 194, 203);
+    box-shadow: 2px 2px 3px rgba(54, 54, 54, 0.418);
+}
+
+.text-color{
+    color:rgba(46, 55, 83, 0.897);
+}

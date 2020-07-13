@@ -39,16 +39,16 @@ const Logo = () => {
   };
 
   const inicioSesion = () => {
-    window.location.href="/login"
+    window.location.href = "/login"
   }
 
   if (isLogIn) {
     loginLogo = (
       <Row className="p-3 mr-2">
         <Dropdown>
-          <Dropdown.Toggle variant="secondary text-info" id="dropdown-custom-1">
+          <Dropdown.Toggle className="buttonIS" variant="text-info" id="dropdown-custom-1">
             Mi cuenta
-          </Dropdown.Toggle>
+            </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item disabled>
               <Row className="d-flex justify-content-center align-items-center">
@@ -82,9 +82,9 @@ const Logo = () => {
       <div className="img-fluid d-flex justify-content-end ">
         <div className="p-3">
           <Button
-          variant="secondary" 
-          onClick={() => inicioSesion()}>
-              <span className="p-2">Iniciar Sesión</span>
+            className="buttonIS"
+            onClick={() => inicioSesion()}>
+            <span className="p-2">Iniciar Sesión</span>
           </Button>
         </div>
       </div>

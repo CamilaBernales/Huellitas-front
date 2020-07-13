@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Row, Container, Col, Form, Button, Alert } from "react-bootstrap";
 import Producto from "./Producto";
 import axiosConfig from "../../../config/axios";
+import "./../../../css/Tienda.css";
+
 
 const Tienda = ({setComprasGuardadas}) => {
 
@@ -70,7 +72,11 @@ const Tienda = ({setComprasGuardadas}) => {
               </Form>
             </Col>
             <Col>
-              <Button onClick={filtrarProductos} type="submit">
+              <Button 
+              onClick={filtrarProductos} 
+              type="submit"
+              className="boton"
+              >
                 Buscar
               </Button>
             </Col>
