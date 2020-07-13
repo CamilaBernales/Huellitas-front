@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Container, Form, Col, Row, Button, Alert } from "react-bootstrap";
+import {
+  Container,
+  Form,
+  Col,
+  Row,
+  Button,
+  Alert,
+  Image,
+} from "react-bootstrap";
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
 function FormProductos() {
@@ -15,7 +23,6 @@ function FormProductos() {
   const [msgError, setMsgError] = useState("");
 
   const onChangeProducto = (e) => {
-    e.preventDefault();
     setError(false);
     setNuevoProducto({
       ...nuevoProducto,
@@ -32,7 +39,7 @@ function FormProductos() {
     ) {
       axiosConfig
         .post("/api/productos/altaproducto", nuevoProducto)
-        .then((res) => {
+        .then(() => {
           Swal.fire({
             position: "center",
             icon: "success",
@@ -51,23 +58,27 @@ function FormProductos() {
           setMsgError(err.response.data.msg);
         });
     } else {
-      setError(true);
       window.scrollTo(0, 200);
+      setError(true);
       setMsgError("Los campos deben estar completos.");
     }
   };
   const onChangeImagenProducto = async (e) => {
+    setError(false);
     if (e.target.files[0]) {
       if (e.target.files[0].size > 4194304) {
         // 5242880 = 5MB
         // 4194304 = 4MB
         setError(true);
-        setMsgError("La imagen es demasiado grande.");
+        setMsgError("La imágen es demasiado grande.");
+        window.scrollTo(0, 200);
+
         e.target.value = null;
         setNuevoProducto({
           ...nuevoProducto,
           imagen: null,
         });
+
         return;
       }
       let reader = new FileReader();
@@ -136,7 +147,17 @@ function FormProductos() {
                     type="number"
                     onChange={onChangeProducto}
                     min="100"
-                    value={nuevoProducto.precio}
+                    defaultValue={nuevoProducto.precio}
+                  />
+                </Col>
+              </Row>
+              <Row className="d-flex justify-content-around align-items-center m-auto ">
+                <Col sm={12} xs={6} md={6}>
+                  <Image
+                    fluid
+                    className="img-fluid my-4"
+                    src={nuevoProducto.imagen}
+                    thumbnail
                   />
                 </Col>
               </Row>
@@ -149,6 +170,7 @@ function FormProductos() {
                       name="imagen"
                       accept="image/*"
                       onChange={onChangeImagenProducto}
+                      className="w-100"
                     />
                   </Form.Group>
                 </Col>
@@ -196,7 +218,11 @@ function FormProductos() {
                 </Col>
               </Row>
             </Form>
-            <Button className="w-100" onClick={guardarProducto}>
+            <Button
+              disabled={error === true}
+              className="w-100"
+              onClick={guardarProducto}
+            >
               Guardar
             </Button>
           </Col>

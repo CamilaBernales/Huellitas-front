@@ -27,8 +27,8 @@ import tokenAuth from "./config/token";
 import Navbar from "./components/usuario/Elementos-Comunes/Navbar";
 // import Logo from "./components/usuario/Elementos-Comunes/Logo";
 import Footer from "./components/usuario/Elementos-Comunes/Footer";
-import Whatsapp from './components/usuario/Elementos-Comunes/Whatsapp'
-import ImagenHome from "./components/usuario/Elementos-Comunes/ImagenHome"
+import Whatsapp from "./components/usuario/Elementos-Comunes/Whatsapp";
+import ImagenHome from "./components/usuario/Elementos-Comunes/ImagenHome";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -61,7 +61,7 @@ function App() {
           comprasGuardadas={comprasGuardadas}
           respuesta={respuesta}
         />
-        <Whatsapp/>
+        <Whatsapp />
         {!loading ? (
           <Switch>
             <RutaPrivAdmin
@@ -111,7 +111,7 @@ function App() {
               path="/carrito"
               component={Carrito}
               setComprasGuardadas={setComprasGuardadas}
-              comprasGuardadas = {comprasGuardadas}
+              comprasGuardadas={comprasGuardadas}
               respuesta={respuesta}
             />
             <RutaPrivada

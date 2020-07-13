@@ -57,7 +57,7 @@ export default function Registro(props) {
       });
   };
   useEffect(() => {
-    window.scrollTo(0, 300);
+    window.scrollTo(0, 200);
   }, []);
   return (
     <Fragment>

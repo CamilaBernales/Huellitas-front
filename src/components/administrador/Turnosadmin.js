@@ -30,7 +30,7 @@ const Turnosadmin = () => {
                     <td>{turno.nombremascota}</td>
                     <td>{turno.fecha}</td>
                     <td>{turno.hora}</td>
-                    <td>{turno.contacto}</td>
+                    <td>{turno.telefono}</td>
                   </tr>
                 ))}
               </tbody>

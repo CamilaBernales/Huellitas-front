@@ -4,7 +4,13 @@ import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../../../css/Precarrito.css";
 const PreCarrito = (props) => {
-  const { modalShow, onHide, setComprasGuardadas, comprasGuardadas } = props;
+  const {
+    modalShow,
+    onHide,
+    setComprasGuardadas,
+    comprasGuardadas,
+    isLogIn,
+  } = props;
   return (
     <Modal id="preCarrito" show={modalShow} onHide={onHide}>
       <Modal.Header closeButton className="text-align-center">
@@ -16,11 +22,18 @@ const PreCarrito = (props) => {
         <ListadoCompras
           setComprasGuardadas={setComprasGuardadas}
           comprasGuardadas={comprasGuardadas}
-        />
-        <Button variant="info" className="w-100 text-center my-3">
-          {" "}
-          <Link className="text-white" to="/carrito">Ver proceso de compra</Link>
-        </Button>
+        />{" "}
+        <Link className="text-white" to="/carrito">
+          {isLogIn ? (
+            <Button variant="info" className="w-100 text-center my-3">
+              Iniciar compra
+            </Button>
+          ) : (
+            <Button disabled variant="info" className="w-100 text-center my-3">
+              Iniciar compra
+            </Button>
+          )}
+        </Link>
       </Modal.Body>
     </Modal>
   );

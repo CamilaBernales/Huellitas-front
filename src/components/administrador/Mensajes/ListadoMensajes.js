@@ -26,7 +26,7 @@ const ListadoMensajes = () => {
             <Table responsive striped bordered hover size="sm">
               <thead>
                 <tr>
-                  <th>Camila</th>
+                  <th>Nombre</th>
                   <th>Correo</th>
                   <th>Mensaje</th>
                   <th>Fecha</th>
@@ -47,9 +47,7 @@ const ListadoMensajes = () => {
                             href={`mailto:${mensaje.email}?subject=Equipo%20Veterinaria%20Huellitas`}
                             className="mx-2"
                           >
-                            <i
-                              className="fab far fa-envelope fa-1x "
-                            ></i>
+                            <i className="fab far fa-envelope fa-1x "></i>
                           </a>
                         </Button>
                       </td>

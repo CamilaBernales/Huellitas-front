@@ -32,7 +32,7 @@ const Tienda = (props) => {
       .catch((err) => console.log(err));
   };
   useEffect(() => {
-    window.scrollTo(0, 300);
+    window.scrollTo(0, 200);
     traerProductos();
   }, []);
 

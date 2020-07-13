@@ -41,6 +41,7 @@ const Turno = () => {
   };
 
   const submitTurno = (e) => {
+    e.preventDefault();
     if (
       nuevoTurno.nombremascota.trim() !== "" &&
       nuevoTurno.resumen.trim() !== "" &&
@@ -51,7 +52,7 @@ const Turno = () => {
       e.preventDefault();
       axiosConfig
         .post("/api/turnos/alta", nuevoTurno)
-        .then((res) => {
+        .then(() => {
           Swal.fire({
             position: "center",
             icon: "success",
@@ -80,7 +81,7 @@ const Turno = () => {
     //eslint-disable-next-line
   }, [nuevoTurno.fecha]);
   useEffect(() => {
-    window.scrollTo(0, 300);
+    window.scrollTo(0, 200);
   }, []);
   return (
     <>

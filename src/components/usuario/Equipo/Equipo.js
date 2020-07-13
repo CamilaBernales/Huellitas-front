@@ -75,7 +75,7 @@ export let equipo = [
 
 const Equipo = () => {
   useEffect(() => {
-    window.scrollTo(0, 300);
+    window.scrollTo(0, 200);
   }, []);
   return (
     <Fragment>

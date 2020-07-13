@@ -36,7 +36,6 @@ const Productosadmin = () => {
       .catch((err) => console.log(err));
   };
   const onChangeProducto = (e) => {
-    e.preventDefault();
     setError(false);
     setProductoEditado({
       ...productoEditado,
@@ -50,6 +49,9 @@ const Productosadmin = () => {
       if (e.target.files[0].size > 4194304) {
         // 5242880 = 5MB
         // 4194304 = 4MB
+        setError(true);
+        setMsgError("La imagen es demasiado grande.");
+        window.scrollTo(0, 200);
         e.target.value = null;
         setProductoEditado({
           ...productoEditado,
@@ -95,7 +97,7 @@ const Productosadmin = () => {
               `/api/productos/update/${productoEditado._id}`,
               productoEditado
             )
-            .then((res) => {
+            .then(() => {
               Swal.fire({
                 position: "center",
                 icon: "success",
@@ -110,6 +112,7 @@ const Productosadmin = () => {
             .catch((err) => {
               setError(true);
               setMsgError(err.response.data.msg);
+              window.scrollTo(0, 200);
               return;
             });
         }
@@ -140,16 +143,6 @@ const Productosadmin = () => {
           <Row className="d-flex justify-content-center align-items-center my-5">
             <Col sm={12} md={8} xl={6}>
               <Form>
-                <Row className="d-flex justify-content-around align-items-center m-auto ">
-                  <Col sm={12} xs={6} md={6}>
-                    <Image
-                      fluid
-                      className="img-fluid my-4"
-                      src={productoEditado.imagen}
-                      thumbnail
-                    />
-                  </Col>
-                </Row>
                 <Row>
                   <Col className="my-3">
                     <Form.Label>Titulo del producto</Form.Label>
@@ -183,6 +176,16 @@ const Productosadmin = () => {
                       onChange={onChangeProducto}
                       type="number"
                       min="100"
+                    />
+                  </Col>
+                </Row>
+                <Row className="d-flex justify-content-around align-items-center m-auto ">
+                  <Col sm={12} xs={6} md={6}>
+                    <Image
+                      fluid
+                      className="img-fluid my-4"
+                      src={productoEditado.imagen}
+                      thumbnail
                     />
                   </Col>
                 </Row>
@@ -248,6 +251,7 @@ const Productosadmin = () => {
                   variant="outline-primary"
                   size="lg"
                   onClick={actualizarProducto}
+                  disabled={error === true}
                 >
                   Guardar
                 </Button>

@@ -52,18 +52,11 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 <Nav.Link href="/equipo">Nuestro Equipo</Nav.Link>
               </Nav>
             </Navbar.Collapse>
-            {isLogIn ? (
-              <Navbar.Brand onClick={() => setModalShow(true)}>
-                {" "}
-                <i className="fas fa-cart-plus fa-1x" />
-                <span>{comprasGuardadas}</span>
-              </Navbar.Brand>
-            ) : (
-              <Navbar.Brand href="/carrito">
-                {" "}
-                <i className="fas fa-cart-plus fa-1x" />
-              </Navbar.Brand>
-            )}
+            <Navbar.Brand onClick={() => setModalShow(true)}>
+              {" "}
+              <i className="fas fa-cart-plus fa-1x" />
+              <span>{comprasGuardadas}</span>
+            </Navbar.Brand>
           </>
         ) : (
           <>
@@ -104,6 +97,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
           onHide={onHide}
           setComprasGuardadas={setComprasGuardadas}
           comprasGuardadas={comprasGuardadas}
+          isLogIn= {isLogIn}
         />
       </Col>
     </>
