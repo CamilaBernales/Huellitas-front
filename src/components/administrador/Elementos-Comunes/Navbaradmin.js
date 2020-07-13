@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from "react";
-import imagen from "../../../img/logoprueba.png";
-import { Navbar, Nav, Button, NavDropdown } from "react-bootstrap";
-import { Link, Redirect } from "react-router-dom";
-import Logo from "../../../components/usuario/Elementos-Comunes/Logo";
+import React, { Fragment } from "react";
+// import imagen from "../../../img/logoprueba.png";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import BotonInicioSesion from "../../usuario/Elementos-Comunes/BotonInicioSesion";
 const NavBar = () => {
   const salir = () => {
     localStorage.clear();
@@ -11,7 +11,6 @@ const NavBar = () => {
 
   return (
     <Fragment>
-      <Logo />
       <Navbar className="navbar" collapseOnSelect expand="lg">
         <Navbar.Brand href="/">Huellitas</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -42,6 +41,7 @@ const NavBar = () => {
             </Link>
           </Nav>
         </Navbar.Collapse>
+      <BotonInicioSesion />
       </Navbar>
     </Fragment>
   );

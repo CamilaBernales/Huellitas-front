@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Col, Row, Button, Form, Alert } from "react-bootstrap";
 import formasPagos from "../../../img/banner-mercadopago-producto.png";
+import "./../../../css/Tienda.css";
 
 export default function MyVerticallyCenteredModal(props) {
   const { modalShow, producto, setComprasGuardadas, onHide } = props;
@@ -39,7 +40,7 @@ export default function MyVerticallyCenteredModal(props) {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title id="contained-modal-title-vcenter" className="text-color">
           {producto.nombre}- ${producto.precio}
         </Modal.Title>
       </Modal.Header>
@@ -55,10 +56,10 @@ export default function MyVerticallyCenteredModal(props) {
             <img className="img-fluid" alt="alimento" src={producto.imagen} />
           </Col>
           <Col lg={6}>
-            <Row>
+            <Row className="text-color">
               <h6>Detalles del producto</h6>
             </Row>
-            <Row>
+            <Row className="text-color">
               <p>{producto.descripcion}</p>
             </Row>
             <Row>
@@ -103,7 +104,10 @@ export default function MyVerticallyCenteredModal(props) {
             </Row>
             <Row className="d-flex justify-content-end my-4 mx-2">
               {producto.disponibilidad === "Disponible" && !productoRepetido ? (
-                <Button onClick={() => guardarProducto(producto._id)}>
+                <Button 
+                onClick={() => guardarProducto(producto._id)}
+                className="boton"
+                >
                   Añadir al carrito
                 </Button>
               ) : (
@@ -121,7 +125,10 @@ export default function MyVerticallyCenteredModal(props) {
         </Row>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
+        <Button 
+        onClick={onHide}
+        className="boton"
+        >Close</Button>
       </Modal.Footer>
     </Modal>
   );

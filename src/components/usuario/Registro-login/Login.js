@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../../../css/Login.css";
 import imgLogin from "../../../img/login.svg";
 import axiosConfig from "../../../config/axios";
+
 export default function Login() {
   const [ingreso, setIngreso] = useState({
     email: "",

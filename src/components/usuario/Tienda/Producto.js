@@ -19,6 +19,7 @@ const Producto = (props) => {
           style={{
             width: "18rem",
           }}
+          className="card-custom"
         >
           <Card.Img
             variant="top"
@@ -26,11 +27,11 @@ const Producto = (props) => {
             src={imagen}
           />
           <Card.Body>
-            <Card.Title align="center" className="my-3">
+            <Card.Title className="d-flex justify-content-center text-color" align="center" className="my-3">
               {nombre}
             </Card.Title>
             <div>
-              <Row>
+              <Row className="d-flex justify-content-center text-color">
                 <Col>${precio}</Col>
                 <Col>
                   {disponibilidad === "No Disponible" ? (
@@ -42,10 +43,9 @@ const Producto = (props) => {
               </Row>
               <Row >
                 <Button
-                  variant="outline-info"
                   renderas="button"
                   onClick={() => setModalShow(true)}
-                  className="w-100 h-100"
+                  className="w-100 h-100 boton"
                   size="sm"
                 >
                   Ver producto

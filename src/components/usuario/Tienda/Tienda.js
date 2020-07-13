@@ -2,6 +2,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Row, Container, Col, Form, Button, Alert } from "react-bootstrap";
 import Producto from "./Producto";
 import axiosConfig from "../../../config/axios";
+import "./../../../css/Tienda.css";
+
 
 const Tienda = (props) => {
   const { setComprasGuardadas } = props;
@@ -71,7 +73,7 @@ const Tienda = (props) => {
             </Row>
             <Row>
               <Col className="mt-2 mb-4 d-flex justify-content-end">
-                <Button variant="outline-info" onClick={filtrarProductos}>Buscar</Button>
+                <Button onClick={filtrarProductos} className="boton">Buscar</Button>
               </Col>
             </Row>
           </Form>
