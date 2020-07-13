@@ -3,6 +3,8 @@ import React, { Fragment } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import BotonInicioSesion from "../../usuario/Elementos-Comunes/BotonInicioSesion";
+import ImagenHome from "../../usuario/Elementos-Comunes/ImagenHome"
+
 const NavBar = () => {
   const salir = () => {
     localStorage.clear();
@@ -18,30 +20,30 @@ const NavBar = () => {
           <Nav className=" navlink ml-auto ">
             <Link to="/admin/pedidos" className="nav-link">
               Pedidos
-            </Link>
+              </Link>
             <NavDropdown title="Turnos" id="basic-nav-dropdown">
               <NavDropdown.Item href="/admin/turnos">
                 Listado de turnos
-              </NavDropdown.Item>
+                </NavDropdown.Item>
               <NavDropdown.Item href="/turno">Crear un turno</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Productos" id="basic-nav-dropdown">
               <NavDropdown.Item href="/admin/altaproducto">
                 Alta de Producto
-              </NavDropdown.Item>
+                </NavDropdown.Item>
               <NavDropdown.Item href="/admin/productos">
                 Listado de Productos
-              </NavDropdown.Item>
+                </NavDropdown.Item>
             </NavDropdown>
             <Link to="/admin/listadousuarios" className="nav-link">
               Usuarios
-            </Link>
+              </Link>
             <Link to="/admin/listadomensajes" className="nav-link">
               Mensajes
-            </Link>
+              </Link>
           </Nav>
         </Navbar.Collapse>
-      <BotonInicioSesion />
+        <BotonInicioSesion />
       </Navbar>
     </Fragment>
   );
