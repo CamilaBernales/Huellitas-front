@@ -61,8 +61,8 @@ const Tienda = (props) => {
                     <option value="" defaultValue>
                       Elige el tipo de producto
                     </option>
-                    <option value="alimento">Alimento</option>
-                    <option value="jueguete">Jueguete</option>
+                    <option value="alimento">Alimentos</option>
+                    <option value="jueguete">Jueguetes</option>
                     <option value="accesorios">Accesorios</option>
                     <option value="Higiene">Productos de Higiene</option>
                   </Form.Control>
@@ -81,7 +81,7 @@ const Tienda = (props) => {
                 <Alert className="text-center" variant="warning">
                   <h6>
                     {" "}
-                    No hay resultados para tu búsqueda{" "}
+                    No hay resultados para mostrate{" "}
                     <span role="img" aria-label="cara triste">
                       &#128546;
                     </span>{" "}

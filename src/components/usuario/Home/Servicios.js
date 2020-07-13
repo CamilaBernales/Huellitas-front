@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
-import { Container, Button, Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import "../../../css/Servicios.css";
-import { Link } from "react-router-dom";
 
 const Servicio = () => {
   return (
@@ -102,30 +101,6 @@ const Servicio = () => {
           </div>
         </Row>
       </Container>
-
-      {/* <div className="m-4 servicios">
-        <Row className="d-flex justify-content-around align-items-center">
-          <Col>
-            <i class="fas fa-7x fa-ambulance img-fluid  d-flex justify-content-center"></i>
-          </Col>
-          <Col>
-            <p>Atención las 24h</p>
-          </Col>
-        </Row>
-        <Row className="d-flex justify-content-around align-items-center">
-          <Col>
-            <p>Recibimos todas las formas de pago</p>
-          </Col>
-          <Col>
-            <img
-              src={formaspago}
-              alt="tarjetas de crédito"
-              className="img-fluid"
-  
-              />
-          </Col>
-        </Row>
-      </div> */}
     </Fragment>
   );
 };

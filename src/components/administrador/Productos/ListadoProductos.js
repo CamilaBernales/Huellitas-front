@@ -215,8 +215,8 @@ const Productosadmin = () => {
                         <option value="" defaultValue>
                           Elige el tipo de producto
                         </option>
-                        <option value="alimento">Alimento</option>
-                        <option value="jueguete">Jueguete</option>
+                        <option value="alimento">Alimentos</option>
+                        <option value="jueguete">Jueguetes</option>
                         <option value="accesorios">Accesorios</option>
                         <option value="Higiene">Productos de Higiene</option>
                       </Form.Control>
@@ -235,12 +235,10 @@ const Productosadmin = () => {
                         onChange={onChangeProducto}
                       >
                         <option value="" defaultValue>
-                          Elige el tipo de producto
+                          Elige la disponibilidad de producto
                         </option>
-                        <option value="alimento">Alimentos</option>
-                        <option value="jueguete">Jueguetes</option>
-                        <option value="accesorios">Accesorios</option>
-                        <option value="Higiene">Productos de Higiene</option>
+                        <option value="Disponible">Disponible</option>
+                        <option value="No Disponible">No Disponible</option>
                       </Form.Control>
                     </Form.Group>
                   </Col>

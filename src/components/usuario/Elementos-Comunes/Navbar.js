@@ -36,18 +36,27 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 <Nav.Link href="/">Inicio</Nav.Link>
                 {isLogIn ? (
                   <NavDropdown title="Turnos" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/turno">
+                    <NavDropdown.Item activeClassName="selected" href="/turno">
                       Solicitar Turno
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="/misturnos">
+                    <NavDropdown.Item
+                      activeClassName="selected"
+                      href="/misturnos"
+                    >
                       Mis Turnos
                     </NavDropdown.Item>
                   </NavDropdown>
                 ) : (
-                  <Nav.Link href="/login">Turnos</Nav.Link>
+                  <Nav.Link href="/login" activeClassName="selected">
+                    Turnos
+                  </Nav.Link>
                 )}
-                <Nav.Link href="/tienda">Tienda</Nav.Link>
-                <Nav.Link href="/equipo">Nuestro Equipo</Nav.Link>
+                <Nav.Link href="/tienda" activeClassName="selected">
+                  Tienda
+                </Nav.Link>
+                <Nav.Link href="/equipo" activeClassName="selected">
+                  Nuestro Equipo
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
             {isLogIn ? (
@@ -57,7 +66,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 <span>{comprasGuardadas}</span>
               </Navbar.Brand>
             ) : (
-              <Navbar.Brand href="/carrito">
+              <Navbar.Brand activeClassName="selected" href="/carrito">
                 {" "}
                 <i className="fas fa-cart-plus fa-1x" />
               </Navbar.Brand>
@@ -67,7 +76,11 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
           <>
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className=" navlink ml-auto ">
-                <Link to="/admin/pedidos" className="nav-link">
+                <Link
+                  activeClassName="selected"
+                  to="/admin/pedidos"
+                  className="nav-link"
+                >
                   Pedidos
                 </Link>
                 <NavDropdown title="Turnos" id="basic-nav-dropdown">
@@ -76,17 +89,31 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                   </NavDropdown.Item>
                 </NavDropdown>
                 <NavDropdown title="Productos" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/admin/altaproducto">
+                  <NavDropdown.Item
+                    activeClassName="selected"
+                    href="/admin/altaproducto"
+                  >
                     Alta de Producto
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="/admin/productos">
+                  <NavDropdown.Item
+                    activeClassName="selected"
+                    href="/admin/productos"
+                  >
                     Listado de Productos
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Link to="/admin/listadousuarios" className="nav-link">
+                <Link
+                  activeClassName="selected"
+                  to="/admin/listadousuarios"
+                  className="nav-link"
+                >
                   Usuarios
                 </Link>
-                <Link to="/admin/listadomensajes" className="nav-link">
+                <Link
+                  activeClassName="selected"
+                  to="/admin/listadomensajes"
+                  className="nav-link"
+                >
                   Mensajes
                 </Link>
               </Nav>

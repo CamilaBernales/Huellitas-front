@@ -6,19 +6,17 @@
   z-index: 20;
 }
 .navlink,
-.navbar-light .navbar-nav .nav-link {
+.navbar-light .navbar-nav .nav-link{
   color: white !important;
   text-transform: uppercase;
   font-weight: 600;
 }
-
-/* .dropdown-item {
-  text-transform: uppercase;
-  font-weight: 600;
-} */
 .navbar-brand {
   color: white !important;
   text-transform: uppercase;
   font-weight: 800;
   letter-spacing: 4px;
+}
+.active{
+  color: orange !important;
 }
