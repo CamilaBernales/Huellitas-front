@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../../../css/Navbar.css";
 import tokenAuth from "../../../config/token";
 import PreCarrito from "./PreCarrito";
-import BotonInicioSesion from "./BotonInicioSesion"
+import BotonInicioSesion from "./BotonInicioSesion";
 
 const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
   const [isLogIn, setIsLogIn] = useState(false);
@@ -38,27 +38,18 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 <Nav.Link href="/">Inicio</Nav.Link>
                 {isLogIn ? (
                   <NavDropdown title="Turnos" id="basic-nav-dropdown">
-                    <NavDropdown.Item activeClassName="selected" href="/turno">
+                    <NavDropdown.Item href="/turno">
                       Solicitar Turno
                     </NavDropdown.Item>
-                    <NavDropdown.Item
-                      activeClassName="selected"
-                      href="/misturnos"
-                    >
+                    <NavDropdown.Item href="/misturnos">
                       Mis Turnos
                     </NavDropdown.Item>
                   </NavDropdown>
                 ) : (
-                  <Nav.Link href="/login" activeClassName="selected">
-                    Turnos
-                  </Nav.Link>
+                  <Nav.Link href="/login">Turnos</Nav.Link>
                 )}
-                <Nav.Link href="/tienda" activeClassName="selected">
-                  Tienda
-                </Nav.Link>
-                <Nav.Link href="/equipo" activeClassName="selected">
-                  Nuestro Equipo
-                </Nav.Link>
+                <Nav.Link href="/tienda">Tienda</Nav.Link>
+                <Nav.Link href="/equipo">Nuestro Equipo</Nav.Link>
               </Nav>
             </Navbar.Collapse>
             {isLogIn ? (
@@ -68,7 +59,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 <span>{comprasGuardadas}</span>
               </Navbar.Brand>
             ) : (
-              <Navbar.Brand activeClassName="selected" href="/carrito">
+              <Navbar.Brand href="/carrito">
                 {" "}
                 <i className="fas fa-cart-plus fa-1x" />
               </Navbar.Brand>
@@ -78,11 +69,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
           <>
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className=" navlink ml-auto ">
-                <Link
-                  activeClassName="selected"
-                  to="/admin/pedidos"
-                  className="nav-link"
-                >
+                <Link to="/admin/pedidos" className="nav-link">
                   Pedidos
                 </Link>
                 <NavDropdown title="Turnos" id="basic-nav-dropdown">
@@ -91,31 +78,17 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                   </NavDropdown.Item>
                 </NavDropdown>
                 <NavDropdown title="Productos" id="basic-nav-dropdown">
-                  <NavDropdown.Item
-                    activeClassName="selected"
-                    href="/admin/altaproducto"
-                  >
+                  <NavDropdown.Item href="/admin/altaproducto">
                     Alta de Producto
                   </NavDropdown.Item>
-                  <NavDropdown.Item
-                    activeClassName="selected"
-                    href="/admin/productos"
-                  >
+                  <NavDropdown.Item href="/admin/productos">
                     Listado de Productos
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Link
-                  activeClassName="selected"
-                  to="/admin/listadousuarios"
-                  className="nav-link"
-                >
+                <Link to="/admin/listadousuarios" className="nav-link">
                   Usuarios
                 </Link>
-                <Link
-                  activeClassName="selected"
-                  to="/admin/listadomensajes"
-                  className="nav-link"
-                >
+                <Link to="/admin/listadomensajes" className="nav-link">
                   Mensajes
                 </Link>
               </Nav>
