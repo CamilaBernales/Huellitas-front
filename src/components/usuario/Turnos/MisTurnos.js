@@ -59,9 +59,11 @@ const MisTurnos = () => {
   return (
     <>
       <Container className="my-5 py-3">
-        <em>
-          <p>Tus próximos turnos</p>
-        </em>
+        <strong>
+          <em>
+            <p>Tus próximos turnos</p>
+          </em>
+        </strong>
         <Row className="d-flex justify-content-center align-items-center text-start my-3">
           {misTurnos.length === 0 ? (
             <>
@@ -147,7 +149,13 @@ const MisTurnos = () => {
             <strong>
               <em>
                 {" "}
-                <p onClick={() => setHistorial(false)}>Ocultar historial</p>
+                <Link
+                  to="#"
+                  className="text-dark"
+                  onClick={() => setHistorial(false)}
+                >
+                  Ocultar historial
+                </Link>
               </em>
             </strong>
             <p>
@@ -204,7 +212,13 @@ const MisTurnos = () => {
           <strong>
             <em>
               {" "}
-              <p onClick={() => setHistorial(true)}>Historial de turnos</p>
+              <Link
+                to="#"
+                className="text-dark"
+                onClick={() => setHistorial(true)}
+              >
+                Historial de turnos
+              </Link>
             </em>
           </strong>
         )}

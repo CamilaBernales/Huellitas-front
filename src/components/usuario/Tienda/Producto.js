@@ -27,7 +27,10 @@ const Producto = (props) => {
             src={imagen}
           />
           <Card.Body>
-            <Card.Title className="d-flex justify-content-center text-color" align="center" className="my-3">
+            <Card.Title
+              className=" my-3 d-flex justify-content-center text-color"
+              align="center"
+            >
               {nombre}
             </Card.Title>
             <div>
@@ -41,7 +44,7 @@ const Producto = (props) => {
                   )}
                 </Col>
               </Row>
-              <Row >
+              <Row>
                 <Button
                   renderas="button"
                   onClick={() => setModalShow(true)}

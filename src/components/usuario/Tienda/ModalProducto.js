@@ -102,7 +102,7 @@ export default function MyVerticallyCenteredModal(props) {
                 )}
               </Col>
             </Row>
-            <Row>
+            <Row className="d-flex justify-content-end my-4 mx-2">
               {producto.disponibilidad === "Disponible" && !productoRepetido ? (
                 <Button 
                 onClick={() => guardarProducto(producto._id)}
@@ -111,7 +111,7 @@ export default function MyVerticallyCenteredModal(props) {
                   Añadir al carrito
                 </Button>
               ) : (
-                <Button disabled>Añadir al carrito</Button>
+                <Button  disabled>Añadir al carrito</Button>
               )}
             </Row>
             <Row>
