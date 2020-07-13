@@ -35,8 +35,19 @@ const Carrito = (props) => {
   } = detallesEnvio;
 
   const primerRender = useRef(true);
-
-  const [compraPagada, setCompraPagada] = useState({});
+  const [medioDePago, setMedioDePago] = useState({
+    tarjeta: false,
+    efectivo: false
+  });
+  const [compraPagada, setCompraPagada] = useState({
+    nombre: '',
+    apellido: '',
+    telefono: '',
+    direccion: '',
+    codigoPostal: '',
+    total: 0,
+    pedido: []
+  });
 
   const onChangeDetalle = (e) => {
     setDetallesEnvio({
@@ -55,23 +66,43 @@ const Carrito = (props) => {
     setSuma(total);
   };
 
+ 
   useEffect(() => {
     if (primerRender.current) {
       primerRender.current = false;
       return;
     }
     solicitudCompra();
-    // eslint-disable-next-line
+     // eslint-disable-next-line
   }, [compraPagada]);
   useEffect(() => {
     sumaTotal();
   }, [comprasGuardadas]);
 
+  const onChangeMedioDePago = (e) => {
+    setMedioDePago({
+      ...medioDePago,
+      [e.target.name]: e.target.checked
+    })
+  }
+  
+  const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
   const pagarCompra = () => {
-    const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
-    if (comprasGuardada.length === 0) {
-      alert("No hay productos guadados");
-      window.location.href = "/";
+   
+    if (nombre === undefined ||
+        email === undefined ||
+        direccion === undefined ||
+        provincia === undefined ||
+        localidad === undefined ||
+        codigopostal === undefined ||
+        telefono === undefined) 
+    {
+      alert("Debe completar todos los campos");
+      return;
+    }
+    if (!medioDePago.tarjeta || !medioDePago.efectivo) {
+      
+      alert('Debe seleccionar una formade pago');
       return;
     }
     const pedidoCompras = comprasGuardada.map(function (compra) {
@@ -129,20 +160,30 @@ const Carrito = (props) => {
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-          <Tab eventKey="iniciocompra" title="Lista de compras">
+          <Tab eventKey="iniciocompra" title="Lista de compras" disabled>
             <h3>Lista de compras</h3>
 
             <Row className="d-flex">
               <Col sm={12} md={8} xl={6}>
                 <Row>
                   <Col className="my-3">
-                    <Button
+                    {comprasGuardada.length === 0 ?
+                      <Button
                       className="mx-2"
                       variant="secondary"
-                      onClick={() => setKey("datoscomprador")}
-                    >
-                      Continuar
-                    </Button>
+                      disabled
+                      >
+                        Continuar
+                      </Button>
+                      :
+                      <Button
+                        className="mx-2"
+                        variant="secondary"
+                        onClick={() => setKey("datoscomprador")}
+                      >
+                        Continuar
+                      </Button>
+                    }
                   </Col>
                 </Row>
               </Col>
@@ -182,7 +223,7 @@ const Carrito = (props) => {
               </Col>
             </Row>
           </Tab>
-          <Tab eventKey="datoscomprador" title="Detalles de envio">
+          <Tab eventKey="datoscomprador" title="Detalles de envio" disabled>
             <h3>Detalles de envio</h3>
             <Row className="">
               <Col sm={12} md={8} xl={6}>
@@ -305,14 +346,14 @@ const Carrito = (props) => {
               </Col>
             </Row>
           </Tab>
-          <Tab eventKey="pagocompra" title="Medio de pago">
+          <Tab eventKey="pagocompra" title="Medio de pago" disabled>
             <h3>Medios de Pago</h3>
 
             <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
-                <Row>
-                  <Col>
-                    <Accordion>
+                <Accordion>
+                  <Row>
+                    <Col>
                       <Card>
                         <Card.Header>
                           <Accordion.Toggle
@@ -322,9 +363,10 @@ const Carrito = (props) => {
                           >
                             <Form.Check
                               type="radio"
-                              name="formHorizontalRadios"
-                              id="formHorizontalRadios2"
-                              label="Tárjeta de crédito o débito"
+                              name="tarjeta"
+                              id="tarjeta"
+                              label="Tarjeta de crédito o débito"
+                              onChange={onChangeMedioDePago}
                             />
                           </Accordion.Toggle>
                         </Card.Header>
@@ -334,36 +376,35 @@ const Carrito = (props) => {
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
-                    </Accordion>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Accordion>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
                       <Card>
                         <Card.Header>
                           <Accordion.Toggle
                             as={Button}
                             variant="Text"
-                            eventKey="0"
+                            eventKey="1"
                           >
                             <Form.Check
                               type="radio"
-                              name="formHorizontalRadios"
-                              id="formHorizontalRadios2"
-                              label="Efectivo (SÓLO TUCUMAN)"
+                              name="efectivo"
+                              id="efectivo"
+                              label="Efectivo"
+                              onChange={onChangeMedioDePago}
                             />
                           </Accordion.Toggle>
                         </Card.Header>
-                        <Accordion.Collapse eventKey="0">
+                        <Accordion.Collapse eventKey="1">
                           <Card.Body>
                             Pronto nos contactaremos para confirmar tu compra
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
-                    </Accordion>
-                  </Col>
-                </Row>
+                    </Col>
+                  </Row>
+                </Accordion>
                 <Row>
                   <Col className="my-3">
                     <Button

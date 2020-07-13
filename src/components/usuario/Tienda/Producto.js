@@ -27,7 +27,7 @@ const Producto = (props) => {
             src={imagen}
           />
           <Card.Body>
-            <Card.Title className="d-flex justify-content-center text-color" align="center" className="my-3">
+            <Card.Title className="d-flex justify-content-center text-color my-3" align="center">
               {nombre}
             </Card.Title>
             <div>
