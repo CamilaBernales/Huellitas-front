@@ -13,6 +13,7 @@ import {
 } from "react-bootstrap";
 import PaymentForm from "./PaymentForm";
 import ListadoCompras from "./ListadoCompras";
+import "../../../css/Carrito.css";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
 
@@ -122,8 +123,8 @@ const Carrito = (props) => {
   };
 
   return (
-    <Fragment>
-      <Container className="mt-5 mb-5">
+    <Fragment className="carrito">
+      <Container className="mt-5 mb-5 carrito">
         <Tabs
           className="d-flex justify-content-center align-items-center"
           activeKey={key}
@@ -131,15 +132,18 @@ const Carrito = (props) => {
         >
           <Tab eventKey="iniciocompra" title="Lista de compras">
             <h3>Lista de compras</h3>
-
             <Row className="d-flex">
               <Col sm={12} md={8} xl={6}>
                 <Row>
+                  <ListadoCompras
+                    setComprasGuardadas={setComprasGuardadas}
+                    comprasGuardadas={comprasGuardadas}
+                  />
                   <Col className="my-3">
                     <Button
-                      className="mx-2"
                       variant="secondary"
                       onClick={() => setKey("datoscomprador")}
+                      className="mx-2 d-flex justify-content-end align-items-end"
                     >
                       Continuar
                     </Button>
@@ -183,9 +187,9 @@ const Carrito = (props) => {
             </Row>
           </Tab>
           <Tab eventKey="datoscomprador" title="Detalles de envio">
-            <h3>Detalles de envio</h3>
-            <Row className="">
+            <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
+                <h3 className="my-3">Detalles de envio</h3>
                 <Form>
                   <Row>
                     <Col className="my-3">
@@ -271,8 +275,8 @@ const Carrito = (props) => {
                     </Col>
                   </Row>
                 </Form>
-                <Row>
-                  <Col className="my-3">
+                <Row className="d-flex justify-content-end align-items-end">
+                  <Col className="my-3 d-flex justify-content-end align-items-end">
                     <Button
                       className="mx-2"
                       onClick={() => setKey("iniciocompra")}
@@ -280,7 +284,7 @@ const Carrito = (props) => {
                       Volver
                     </Button>
                     <Button
-                      className="mx-2"
+                      className="mx-2 d-flex justify-content-end align-items-end"
                       variant="secondary"
                       onClick={() => setKey("pagocompra")}
                     >
@@ -289,27 +293,12 @@ const Carrito = (props) => {
                   </Col>
                 </Row>
               </Col>
-              <Col sm={12} md={8} xl={6}>
-                <div className="d-flex m-3 justify-content-center font-weight-bold">
-                  <h3 className="text-uppercase text-monospace text-lg-left">
-                    {" "}
-                    Total a pagar:{" "}
-                  </h3>
-                  <h3
-                    className="text-uppercase text-monospace text-lg-left"
-                    id="total"
-                  >
-                    {suma}
-                  </h3>
-                </div>
-              </Col>
             </Row>
           </Tab>
           <Tab eventKey="pagocompra" title="Medio de pago">
             <h3>Medios de Pago</h3>
-
-            <Row className="d-flex justify-content-center align-items-center">
-              <Col sm={12} md={8} xl={6}>
+            <Row className="d-flex justify-content-between">
+              <Col sm={12} md={8}>
                 <Row>
                   <Col>
                     <Accordion>
@@ -375,22 +364,22 @@ const Carrito = (props) => {
                   </Col>
                 </Row>
               </Col>
-              <Col sm={12} md={8} xl={6}>
+              <Col sm={12} md={4}>
                 <ListadoCompras
                   setComprasGuardadas={setComprasGuardadas}
                   comprasGuardadas={comprasGuardadas}
                 />
                 <div className="d-flex m-3 justify-content-center font-weight-bold">
-                  <h3 className="text-uppercase text-monospace text-lg-left">
+                  <h4 className="text-uppercase text-monospace text-lg-left">
                     {" "}
                     Total a pagar:{" "}
-                  </h3>
-                  <h3
+                  </h4>
+                  <h4
                     className="text-uppercase text-monospace text-lg-left"
                     id="total"
                   >
                     {suma}
-                  </h3>
+                  </h4>
                 </div>
                 <Button
                   className="btn btn-success my-2 w-100  text-uppercase font-weight-bold"
