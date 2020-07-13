@@ -4,7 +4,6 @@ import Producto from "./Producto";
 import axiosConfig from "../../../config/axios";
 import "./../../../css/Tienda.css";
 
-
 const Tienda = (props) => {
   const { setComprasGuardadas } = props;
   const [productos, setProductos] = useState([]);
@@ -24,12 +23,20 @@ const Tienda = (props) => {
       .catch((err) => console.log(err));
   };
   const filtrarProductos = () => {
-    axiosConfig
-      .get(
-        `/api/productos/productosfiltrados?nombre=${productosFiltrados}&&tipoproducto=${filtrarTipo}`
-      )
-      .then((res) => setProductos(res.data))
-      .catch((err) => console.log(err));
+    if (
+      (productosFiltrados === "" && filtrarTipo !== "") ||
+      (productosFiltrados !== "" && filtrarTipo === "") ||
+      (productosFiltrados !== "" && filtrarTipo !== "")
+    ) {
+      axiosConfig
+        .get(
+          `/api/productos/productosfiltrados?nombre=${productosFiltrados}&&tipoproducto=${filtrarTipo}`
+        )
+        .then((res) => setProductos(res.data))
+        .catch((err) => console.log(err));
+    } else {
+      traerProductos();
+    }
   };
   useEffect(() => {
     window.scrollTo(0, 200);
@@ -67,13 +74,16 @@ const Tienda = (props) => {
                     <option value="jueguete">Jueguetes</option>
                     <option value="accesorios">Accesorios</option>
                     <option value="Higiene">Productos de Higiene</option>
+                    <option value="">Todos los productos</option>
                   </Form.Control>
                 </Form.Group>
               </Col>
             </Row>
             <Row>
               <Col className="mt-2 mb-4 d-flex justify-content-end">
-                <Button onClick={filtrarProductos} className="boton">Buscar</Button>
+                <Button onClick={filtrarProductos} className="boton">
+                  Buscar
+                </Button>
               </Col>
             </Row>
           </Form>
