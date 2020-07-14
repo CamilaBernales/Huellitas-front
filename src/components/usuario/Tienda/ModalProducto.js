@@ -106,7 +106,7 @@ export default function MyVerticallyCenteredModal(props) {
               {producto.disponibilidad === "Disponible" && !productoRepetido ? (
                 <Button 
                 onClick={() => guardarProducto(producto._id)}
-                className="boton"
+                className="boton-modal"
                 >
                   Añadir al carrito
                 </Button>
@@ -127,7 +127,7 @@ export default function MyVerticallyCenteredModal(props) {
       <Modal.Footer>
         <Button 
         onClick={onHide}
-        className="boton"
+        className="boton-modal"
         >Close</Button>
       </Modal.Footer>
     </Modal>

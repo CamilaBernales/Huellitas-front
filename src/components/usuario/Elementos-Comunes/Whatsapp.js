@@ -10,7 +10,7 @@ const Whatsapp = () => {
           rel="noopener noreferrer"
         >
             <Col md={4}>
-              <i className="fab fa-whatsapp my-float"></i>{" "}
+              <i className="fab fa-whatsapp my-float ml-1"></i>{" "}
             </Col>
         </a>
     </div>

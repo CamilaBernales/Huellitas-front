@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { Col, Card, Button, Alert, Row } from "react-bootstrap";
 import ModalProducto from "./ModalProducto";
 import "./../../../css/Tienda.css";
+
+
 const Producto = (props) => {
   const { producto, setComprasGuardadas } = props;
   const { _id, nombre, precio, imagen, disponibilidad } = producto;
@@ -48,7 +50,7 @@ const Producto = (props) => {
                 <Button
                   renderas="button"
                   onClick={() => setModalShow(true)}
-                  className="w-100 h-100 boton"
+                  className="mx-4 boton-card flecha" 
                   size="sm"
                 >
                   Ver producto
