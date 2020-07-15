@@ -16,7 +16,7 @@ export default function Login() {
   const [msgError, setMsgError] = useState("");
 
   const onChangeForm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setError(false);
     setIngreso({
       ...ingreso,

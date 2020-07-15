@@ -10,13 +10,14 @@ import {
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
+import imgDefault from "../../../img/default-producto.gif";
 function FormProductos() {
   const [nuevoProducto, setNuevoProducto] = useState({
     nombre: "",
     descripcion: "",
     precio: "100",
     disponibilidad: "",
-    imagen: "",
+    imagen: imgDefault,
     tipoproducto: "",
   });
   const [error, setError] = useState(false);

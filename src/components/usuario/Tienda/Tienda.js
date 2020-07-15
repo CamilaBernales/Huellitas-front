@@ -15,6 +15,7 @@ import "./../../../css/Tienda.css";
 const Tienda = (props) => {
   const { setComprasGuardadas } = props;
   const [productos, setProductos] = useState([]);
+  const [filtrar, setFiltrar] = useState(false);
   const [productosFiltrados, setProductosFiltrados] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -33,6 +34,7 @@ const Tienda = (props) => {
       .catch((err) => console.log(err));
   };
   const filtrarProductos = () => {
+    setFiltrar(true);
     if (
       (productosFiltrados === "" && filtrarTipo !== "") ||
       (productosFiltrados !== "" && filtrarTipo === "") ||
@@ -111,7 +113,7 @@ const Tienda = (props) => {
             ) : null}
           </Row>
           <Row className="col-12 m-auto">
-            {productos.length === 0 && loading === false ? (
+            {productos.length === 0 && loading === false && filtrar === true ? (
               <Row className="m-auto my-4">
                 <Alert className="text-center" variant="warning">
                   <h6>

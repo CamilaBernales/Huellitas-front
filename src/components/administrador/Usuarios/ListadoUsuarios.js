@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../../config/axios";
-import { Container, Table, Row, Col } from "react-bootstrap";
+import { Container, Table, Row, Col} from "react-bootstrap";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
 const ListadoUsuarios = () => {
@@ -73,7 +73,6 @@ const ListadoUsuarios = () => {
   return (
     <>
       <Container className="my-5">
-        {/* {loading ? <p>Obtniendo...</p> : null} */}
         <Row className="d-flex justify-content-center align-items-center text-start my-5">
           <Col sm={12} md={8} xl={10}>
             <Table responsive striped bordered hover size="sm">

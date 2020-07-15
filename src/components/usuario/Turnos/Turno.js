@@ -3,7 +3,7 @@ import { Col, Form, Row, Container, Button, Alert } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
 import "../../../css/Turno.css";
-// import moment from "moment";
+import moment from "moment";
 
 const Turno = () => {
   const [nuevoTurno, setNuevoTurno] = useState({
@@ -11,7 +11,7 @@ const Turno = () => {
     edad: "",
     raza: "",
     particularidades: "",
-    fecha: new Date(),
+    fecha: moment().format("YYYY-MM-DD"),
     hora: "",
     resumen: "",
     telefono: "",
@@ -20,7 +20,6 @@ const Turno = () => {
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
   const handleTurno = (e) => {
-    e.preventDefault();
     setError(false);
     setNuevoTurno({
       ...nuevoTurno,

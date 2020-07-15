@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import imagen from "../../../img/logoprueba.png";
 import {Link} from "react-router-dom";
 import {Button} from "react-bootstrap";
