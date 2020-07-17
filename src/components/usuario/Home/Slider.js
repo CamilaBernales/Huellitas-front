@@ -1,7 +1,8 @@
 import React from "react";
-import {Link} from 'react-router-dom'
 import { Carousel, Button } from "react-bootstrap";
 import "../../../css/Home.css";
+
+
 export default function Slider() {
   return (
     <Carousel className="carousel">
@@ -16,10 +17,8 @@ export default function Slider() {
             {" "}
             <h3>Profesionales de calidad</h3>
           </em>
-          <Button size="lg"  className="btn-custom">
-            <Link className="color-texto" to="/equipo">
+          <Button href="/equipo" size="lg"  className="btn-custom">
               Conocenos
-            </Link>
           </Button>
           {/* <Button variant="outline-primary">Conocenos</Button>{' '} */}
         </Carousel.Caption>
@@ -35,10 +34,8 @@ export default function Slider() {
           <em>
             <h3>Atención personalizada</h3>
           </em>
-          <Button size="lg" className="btn-custom">
-            <Link className="color-texto" to="/turno">
+          <Button href="/turno" size="lg" className="btn-custom">
               Solicitar turno
-            </Link>
           </Button>
         </Carousel.Caption>
       </Carousel.Item>
@@ -53,10 +50,8 @@ export default function Slider() {
           <em>
             <h3>Tienda con variedad de productos</h3>
           </em>
-          <Button size="lg" className="btn-custom">
-            <Link className="color-texto" to="/tienda">
+          <Button href="/tienda" size="lg" className="btn-custom">
               Comprar
-            </Link>
           </Button>
         </Carousel.Caption>
       </Carousel.Item>
