@@ -42,7 +42,7 @@ const Tienda = (props) => {
         <Container className="my-5 py-3">
           <Form onSubmit={filtrarProductos}>
             <Row className="d-flex justify-content-around align-items-center">
-              <Col sm={12} md={6} className="my-2">
+              <Col sm={12} md={4} className="my-2">
                 <Form.Group>
                   <Form.Control
                     onChange={OnChangeFiltrados}
@@ -51,7 +51,7 @@ const Tienda = (props) => {
                   />
                 </Form.Group>
               </Col>
-              <Col sm={12} md={6} className="my-2">
+              <Col sm={12} md={4} className="my-2">
                 <Form.Group controlId="exampleForm.SelectCustom">
                   <Form.Control
                     as="select"
@@ -70,9 +70,7 @@ const Tienda = (props) => {
                   </Form.Control>
                 </Form.Group>
               </Col>
-            </Row>
-            <Row>
-              <Col className="mt-2 mb-4 d-flex justify-content-end">
+              <Col sm={12} md={4} className="mt-2 mb-4 d-flex">
                 <Button onClick={filtrarProductos} className="boton-search buscar">Buscar</Button>
               </Col>
             </Row>

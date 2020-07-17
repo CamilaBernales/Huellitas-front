@@ -35,9 +35,11 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
           <>
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="navlink m-auto ">
-                <Nav.Link href="/">Inicio</Nav.Link>
+                <Nav.Link className="btn-navbar" href="/">
+                  Inicio
+                </Nav.Link>
                 {isLogIn ? (
-                  <NavDropdown title="Turnos" id="basic-nav-dropdown">
+                  <NavDropdown className="btn-navbar" title="Turnos" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/turno">
                       Solicitar Turno
                     </NavDropdown.Item>
@@ -46,10 +48,16 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                     </NavDropdown.Item>
                   </NavDropdown>
                 ) : (
-                  <Nav.Link href="/login">Turnos</Nav.Link>
+                  <Nav.Link className="btn-navbar" href="/login">
+                    Turnos
+                  </Nav.Link>
                 )}
-                <Nav.Link href="/tienda">Tienda</Nav.Link>
-                <Nav.Link href="/equipo">Nuestro Equipo</Nav.Link>
+                <Nav.Link className="btn-navbar" href="/tienda">
+                  Tienda
+                </Nav.Link>
+                <Nav.Link className="btn-navbar" href="/equipo">
+                  Nuestro Equipo
+                </Nav.Link>
               </Nav>
             </Navbar.Collapse>
             {isLogIn ? (

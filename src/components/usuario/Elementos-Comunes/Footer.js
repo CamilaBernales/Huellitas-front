@@ -59,7 +59,7 @@ function Footer() {
           </Col>
         </Row>
         <hr />
-        <Row className="d-flex justify-content-center align-self-center ">
+        <Row className="d-flex justify-content-left ml-2">
           <h6>&copy; 2020 Huellitas. Todos los derechos reservados</h6>
         </Row>
       </Jumbotron>
