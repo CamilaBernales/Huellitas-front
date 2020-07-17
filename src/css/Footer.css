@@ -6,7 +6,7 @@
   color: #95b2b0;
   border-radius: 0;
   height: 100%;
-  padding: 2rem;
+  padding: 1rem;
 }
 .footer h4 {
   color: #ffffff;
@@ -31,4 +31,9 @@
 }
 .linkfooter:hover{
 color: #c6ebbe;
+}
+
+.col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 100%;
 }
