@@ -97,7 +97,7 @@ const Tienda = (props) => {
             </Row>
             <Row>
               <Col className="mt-2 mb-4 d-flex justify-content-end">
-                <Button onClick={filtrarProductos} className="boton">
+                <Button onClick={filtrarProductos} className="boton-search buscar">
                   Buscar
                 </Button>
               </Col>
