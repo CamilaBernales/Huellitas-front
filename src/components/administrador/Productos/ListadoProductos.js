@@ -8,22 +8,30 @@ import {
   Alert,
   Table,
   Image,
+  Spinner,
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
 
 const Productosadmin = () => {
+  const [loading, setLoading] = useState(true);
   const [productos, setProductos] = useState([]);
   const [editar, setEditar] = useState(false);
   const [productoEditado, setProductoEditado] = useState({});
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const listarProductos = () => {
     axiosConfig
-      .get("/api/productos/listado")
-      .then((res) => setProductos(res.data))
-      .catch((err) => console.log(err));
+      .get(`/api/productos/listado?pagina=${currentPage}`)
+      .then((res) => {
+        setProductos(res.data.docs);
+        setTotalPages(res.data.totalPages);
+        setCurrentPage(res.data.page);
+      })
+      .catch((err) => setMsgError(err.response.data.msg));
   };
   const obtenerUnProducto = (id) => {
     axiosConfig
@@ -33,7 +41,7 @@ const Productosadmin = () => {
         setProductoEditado(res.data.producto);
         window.scrollTo(0, 200);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setMsgError(err.response.data.msg));
   };
   const onChangeProducto = (e) => {
     setError(false);
@@ -125,9 +133,41 @@ const Productosadmin = () => {
     }
   };
 
+  const verMas = () =>
+    totalPages > currentPage &&
+    !loading && (
+      <button
+        className="btn btn-info"
+        onClick={() => {
+          setCurrentPage(currentPage + 1);
+        }}
+      >
+        Ver más
+      </button>
+    );
+  const volver = () =>
+    totalPages === currentPage &&
+    !loading && (
+      <button
+        className="btn btn-info"
+        onClick={() => {
+          setCurrentPage(currentPage - 1);
+        }}
+      >
+        Volver
+      </button>
+    );
+
   useEffect(() => {
-    listarProductos();
-  }, []);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setEditar(false);
+      listarProductos();
+      window.scrollTo(0, 200);
+    }, 3000);
+    // eslint-disable-next-line
+  }, [currentPage]);
   return (
     <div>
       <Container className="my-5">
@@ -139,7 +179,16 @@ const Productosadmin = () => {
             {msgError}
           </Alert>
         ) : null}
-        {editar ? (
+        <Row className="my-4 d-flex justify-content-center align-items-center">
+          {loading ? (
+            <>
+              <Spinner animation="grow" variant="info" />
+              <Spinner animation="grow" variant="info" />
+              <Spinner animation="grow" variant="info" />
+            </>
+          ) : null}
+        </Row>
+        {editar && !loading ? (
           <Row className="d-flex justify-content-center align-items-center my-5">
             <Col sm={12} md={8} xl={6}>
               <Form>
@@ -169,7 +218,6 @@ const Productosadmin = () => {
                 <Row>
                   <Col className="my-3">
                     <Form.Label>Precio</Form.Label>
-
                     <Form.Control
                       name="precio"
                       defaultValue={productoEditado.precio}
@@ -259,40 +307,46 @@ const Productosadmin = () => {
             </Col>
           </Row>
         ) : null}
-        <Row className="d-flex justify-content-center align-items-center  text-start my-5">
-          <Col sm={12} md={8} xl={10}>
-            <Table responsive striped bordered hover size="sm">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Detalles del producto</th>
-                  <th>Precio</th>
-                  <th>Stock</th>
-                  <th>Producto</th>
-                  <th>Editar</th>
-                </tr>
-              </thead>
-              <tbody>
-                {productos.map((producto) => {
-                  return (
-                    <tr key={producto._id}>
-                      <td>{producto.nombre}</td>
-                      <td>{producto.descripcion}</td>
-                      <td>{producto.precio}</td>
-                      <td>{producto.disponibilidad}</td>
-                      <td>{producto.tipoproducto}</td>
-                      <td className="text-center">
-                        <Button onClick={() => obtenerUnProducto(producto._id)}>
-                          <i className="fas fa-edit" />
-                        </Button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </Table>
-          </Col>
-        </Row>
+        {!loading ? (
+          <Row className="d-flex justify-content-center align-items-center text-start my-5">
+            <Col sm={12} md={8} xl={10}>
+              <Table responsive striped bordered hover size="sm">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Detalles del producto</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Producto</th>
+                    <th>Editar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {productos.map((producto) => {
+                    return (
+                      <tr key={producto._id}>
+                        <td>{producto.nombre}</td>
+                        <td>{producto.descripcion}</td>
+                        <td>{producto.precio}</td>
+                        <td>{producto.disponibilidad}</td>
+                        <td>{producto.tipoproducto}</td>
+                        <td className="text-center">
+                          <Button
+                            onClick={() => obtenerUnProducto(producto._id)}
+                          >
+                            <i className="fas fa-edit" />
+                          </Button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </Table>
+            </Col>
+          </Row>
+        ) : null}
+        <div className="text-center my-4">{verMas()}</div>
+        <div className="text-center my-4">{volver()}</div>
       </Container>
     </div>
   );

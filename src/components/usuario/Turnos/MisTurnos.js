@@ -10,19 +10,23 @@ import {
   Container,
   Alert,
 } from "react-bootstrap";
-import moment from "moment";
+// import moment from "moment";
 import Swal from "sweetalert2";
 import "../../../css/Turno.css";
 
 const MisTurnos = () => {
   const [historial, setHistorial] = useState(false);
-  let fecha = new Date();
-  let fechaActual = moment(fecha).format("YYYY-MM-DD");
-  const [misTurnos, setMisTurnos] = useState([]);
+  const [misTurnosPasados, setmisTurnosPasados] = useState([]);
+  const [misTurnosProximos, setmisTurnosProximos] = useState([]);
+
   const listarMisTurnos = () => {
     axiosConfig
       .get(`/api/turnos/listadoturno`)
-      .then((res) => setMisTurnos(res.data.turnos))
+      .then((res) => {
+        console.log(res.data);
+        setmisTurnosProximos(res.data.turnosProximos);
+        setmisTurnosPasados(res.data.turnosPasados);
+      })
 
       .catch((err) => console.log(err.response));
   };
@@ -60,12 +64,10 @@ const MisTurnos = () => {
     <>
       <Container className="my-5 py-3">
         <strong>
-          <em>
-            <p>Tus próximos turnos</p>
-          </em>
+          <em>Tus próximos turnos</em>
         </strong>
         <Row className="d-flex justify-content-center align-items-center text-start my-3">
-          {misTurnos.length === 0 ? (
+          {misTurnosProximos.length === 0 ? (
             <>
               <Alert className="text-center" variant="info">
                 <h6>
@@ -85,61 +87,34 @@ const MisTurnos = () => {
             </>
           ) : (
             <>
-              {misTurnos.map((turno, i) => {
-                if (turno.fecha > fechaActual) {
-                  return (
-                    <Col
-                      key={i}
-                      sm={12}
-                      md={8}
-                      xl={4}
-                      className="d-flex justify-content-center my-3"
-                    >
-                      <Card
-                        className="font-weight-bold cardTurno"
-                        key={turno._id}
-                        style={{ width: "18rem" }}
+              {misTurnosProximos.map((turno) => (
+                <Col
+                  key={turno._id}
+                  sm={12}
+                  md={8}
+                  xl={4}
+                  className="d-flex justify-content-center my-3"
+                >
+                  <Card
+                    className="font-weight-bold cardTurno"
+                    style={{ width: "18rem" }}
+                  >
+                    <Card.Body>
+                      <Row> Fecha: {turno.fecha}</Row>
+                      <Row> Hora: {turno.hora}</Row>
+                    </Card.Body>
+                    <Card.Footer>
+                      <Button
+                        className="btn btn-primary w-100  justify-content-center align-items-center font-weight-bold"
+                        onClick={() => cancelarTurno(turno._id)}
                       >
-                        <Card.Body>
-                          <Row> Fecha: {turno.fecha}</Row>
-                          <Row> Hora: {turno.hora}</Row>
-                        </Card.Body>
-                        <Card.Footer>
-                          <Button
-                            className="btn btn-primary w-100  justify-content-center align-items-center font-weight-bold"
-                            onClick={() => cancelarTurno(turno._id)}
-                          >
-                            cancelar turno {"   "}
-                            <i className="fas fa-trash" />
-                          </Button>
-                        </Card.Footer>
-                      </Card>
-                    </Col>
-                  );
-                } else {
-                  return (
-                    <>
-                      <Col>
-                        <Alert className="text-center" variant="info">
-                          <h6>
-                            {" "}
-                            No tienes ningún turno próximamente{" "}
-                            <span role="img" aria-label="cara triste">
-                              &#128546;
-                            </span>{" "}
-                            <Link to="/turno">
-                              Solicita un turno{" "}
-                              <span role="img" aria-label="cara triste">
-                                &#128522;
-                              </span>{" "}
-                            </Link>{" "}
-                          </h6>
-                        </Alert>
-                      </Col>
-                    </>
-                  );
-                }
-              })}
+                        cancelar turno {"   "}
+                        <i className="fas fa-trash" />
+                      </Button>
+                    </Card.Footer>
+                  </Card>
+                </Col>
+              ))}
             </>
           )}
         </Row>
@@ -162,7 +137,7 @@ const MisTurnos = () => {
               <em>Tus turnos anteriores</em>
             </p>
             <Row className="d-flex justify-content-center align-items-center text-start my-3">
-              {misTurnos.length === 0 ? (
+              {misTurnosPasados.length === 0 ? (
                 <>
                   <Alert className="text-center" variant="info">
                     <h6>
@@ -181,30 +156,26 @@ const MisTurnos = () => {
                   </Alert>
                 </>
               ) : (
-                <>
-                  <Col sm={12} md={6} xl={10}>
-                    {misTurnos
-                      .filter((turnos) => turnos.fecha < fechaActual)
-                      .map((turno) => (
-                        <Table responsive striped bordered hover size="sm">
-                          <thead>
-                            <tr>
-                              <th>Fecha</th>
-                              <th>Hora</th>
-                              <th>Motivo</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr key={turno._id}>
-                              <td>{turno.fecha}</td>
-                              <td>{turno.hora}</td>
-                              <td>{turno.resumen}</td>
-                            </tr>
-                          </tbody>
-                        </Table>
-                      ))}
-                  </Col>
-                </>
+                <Col sm={12} md={6} xl={10}>
+                  {misTurnosPasados.map((turno) => (
+                    <Table responsive striped bordered hover size="sm">
+                      <thead>
+                        <tr>
+                          <th>Fecha</th>
+                          <th>Hora</th>
+                          <th>Motivo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr key={turno._id}>
+                          <td>{turno.fecha}</td>
+                          <td>{turno.hora}</td>
+                          <td>{turno.resumen}</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  ))}
+                </Col>
               )}
             </Row>
           </>

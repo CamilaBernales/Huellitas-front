@@ -16,40 +16,78 @@ const Tienda = (props) => {
   const { setComprasGuardadas } = props;
   const [productos, setProductos] = useState([]);
   const [filtrar, setFiltrar] = useState(false);
-  const [productosFiltrados, setProductosFiltrados] = useState("");
+  const [filtrarNombre, setFiltrarNombre] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const OnChangeFiltrados = (e) => {
-    setProductosFiltrados(e.target.value);
-  };
   const [filtrarTipo, setFiltrarTipo] = useState("");
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const onChangeFiltroNombre = (e) => {
+    setFiltrarNombre(e.target.value);
+  };
   const onChangeFiltroTipos = (e) => {
     setFiltrarTipo(e.target.value);
   };
 
   const traerProductos = () => {
     axiosConfig
-      .get("/api/productos/listado")
-      .then((res) => setProductos(res.data))
+      .get(`/api/productos/listado?pagina=${currentPage}`)
+      .then((res) => {
+        setProductos(res.data.docs);
+        setTotalPages(res.data.totalPages);
+        setCurrentPage(res.data.page);
+      })
       .catch((err) => console.log(err));
   };
-  const filtrarProductos = () => {
+  const filtrarProductos = (e) => {
+    e.preventDefault();
     setFiltrar(true);
     if (
-      (productosFiltrados === "" && filtrarTipo !== "") ||
-      (productosFiltrados !== "" && filtrarTipo === "") ||
-      (productosFiltrados !== "" && filtrarTipo !== "")
+      (filtrarNombre === "" && filtrarTipo !== "") ||
+      // (filtrarNombre !== "" && filtrarTipo === "") ||
+      (filtrarNombre !== "" && filtrarTipo !== "")
     ) {
       axiosConfig
         .get(
-          `/api/productos/productosfiltrados?nombre=${productosFiltrados}&&tipoproducto=${filtrarTipo}`
+          `/api/productos/productosfiltrados?nombre=${filtrarNombre}&&tipoproducto=${filtrarTipo}&&pagina=${currentPage}`
         )
-        .then((res) => setProductos(res.data))
+        .then((res) => {
+          setProductos(res.data.docs);
+          setTotalPages(res.data.totalPages);
+          setCurrentPage(res.data.page);
+        })
         .catch((err) => console.log(err));
     } else {
+      setCurrentPage(1);
       traerProductos();
     }
   };
+  const verMas = () =>
+    totalPages > currentPage &&
+    !loading && (
+      <button
+        className="btn btn-info"
+        onClick={() => {
+          setCurrentPage(currentPage + 1);
+        }}
+      >
+        Ver más
+      </button>
+    );
+  const volver = () =>
+    totalPages >= currentPage &&
+    currentPage !== 1 &&
+    !loading && (
+      <button
+        className="btn btn-info"
+        onClick={() => {
+          setCurrentPage(currentPage - 1);
+        }}
+      >
+        Volver
+      </button>
+    );
+
   useEffect(() => {
     window.scrollTo(0, 200);
     setLoading(true);
@@ -57,7 +95,8 @@ const Tienda = (props) => {
       setLoading(false);
       traerProductos();
     }, 3000);
-  }, []);
+    // eslint-disable-next-line
+  }, [currentPage]);
 
   return (
     <div>
@@ -68,7 +107,7 @@ const Tienda = (props) => {
               <Col sm={12} md={6} className="my-2">
                 <Form.Group>
                   <Form.Control
-                    onChange={OnChangeFiltrados}
+                    onChange={onChangeFiltroNombre}
                     type="text"
                     placeholder="Busca algo"
                   />
@@ -103,7 +142,7 @@ const Tienda = (props) => {
               </Col>
             </Row>
           </Form>
-          <Row className="mt-2 mb-4 d-flex justify-content-center align-items-center">
+          <Row className="mt-4 mb-4 d-flex justify-content-center align-items-center">
             {loading ? (
               <>
                 <Spinner animation="grow" variant="info" />
@@ -113,7 +152,7 @@ const Tienda = (props) => {
             ) : null}
           </Row>
           <Row className="col-12 m-auto">
-            {productos.length === 0 && loading === false && filtrar === true ? (
+            {productos.length === 0 && !loading && filtrar ? (
               <Row className="m-auto my-4">
                 <Alert className="text-center" variant="warning">
                   <h6>
@@ -136,6 +175,10 @@ const Tienda = (props) => {
                 ))}
               </>
             )}
+          </Row>
+          <Row className="d-flex justify-content-center align-items-center">
+            <div className="text-center my-4 mx-1">{volver()}</div>
+            <div className="text-center my-4 mx-1">{verMas()}</div>
           </Row>
         </Container>
       </Fragment>

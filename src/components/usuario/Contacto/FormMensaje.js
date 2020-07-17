@@ -55,7 +55,7 @@ export default function FormMensaje() {
             mensaje: "",
           });
         })
-        .catch((err) => {
+        .catch(() => {
           setError(true);
           setMsgError(
             "Hubo un error al intentar enviar tu mensaje. Asegurate de ingresar un email válido"
