@@ -1,9 +1,10 @@
 import React, { Fragment } from "react";
 // import imagen from "../../../img/logoprueba.png";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import BotonInicioSesion from "../../usuario/Elementos-Comunes/BotonInicioSesion";
-import ImagenHome from "../../usuario/Elementos-Comunes/ImagenHome"
+import "../../../css/Navbar.css"
+// import ImagenHome from "../../usuario/Elementos-Comunes/ImagenHome"
 
 const NavBar = () => {
   const salir = () => {
@@ -18,9 +19,9 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className=" navlink ml-auto ">
-            <Link to="/admin/pedidos" className="nav-link">
+            <Nav.Link to="/admin/pedidos">
               Pedidos
-              </Link>
+              </Nav.Link>
             <NavDropdown title="Turnos" id="basic-nav-dropdown">
               <NavDropdown.Item href="/admin/turnos">
                 Listado de turnos
@@ -35,12 +36,12 @@ const NavBar = () => {
                 Listado de Productos
                 </NavDropdown.Item>
             </NavDropdown>
-            <Link to="/admin/listadousuarios" className="nav-link">
+            <Nav.Link to="/admin/listadousuarios">
               Usuarios
-              </Link>
-            <Link to="/admin/listadomensajes" className="nav-link">
+              </Nav.Link>
+            <Nav.Link to="/admin/listadomensajes">
               Mensajes
-              </Link>
+              </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <BotonInicioSesion />

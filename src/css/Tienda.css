@@ -58,11 +58,11 @@
 		background: fadeout(#000, 90%);
 	}
 	.boton-card:hover {
-		background: darken(rgb(94, 194, 203), 10%);
+		background:  rgb(94, 194, 203) ;
 	}
 	.boton-card:active,
   .boton-card:focus {
-		background: darken(rgb(94, 194, 203), 30%);
+		background:  rgb(94, 194, 203);
 		outline: none;
 	}
 

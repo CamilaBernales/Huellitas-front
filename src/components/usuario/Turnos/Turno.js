@@ -95,59 +95,61 @@ const Turno = () => {
         ) : null}
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
-            <h3>Datos de tu Mascota</h3>
+            <h3 className="text-center">Datos de tu Mascota</h3>
             <Form onSubmit={submitTurno}>
-              <Row className="my-3">
-                <Col className="my-3">
-                  <Form.Label>Nombre de tu mascota</Form.Label>
+              <Row className="my-2">
+                <Col className="my-2">
+                  <Form.Label className="texto-input">Nombre de tu mascota</Form.Label>
                   <Form.Control
                     required
                     placeholder="Nombre de tu mascota"
                     name="nombremascota"
                     onChange={handleTurno}
                     maxLength="40"
+                    className="border border-primary redondeado"
                   />
                 </Col>
               </Row>
-              <Row className="my-3">
-                <Col className="my-3">
+              <Row className="my-2">
+                <Col className="my-2">
                   <Form.Label>Edad de tu mascota</Form.Label>
                   <Form.Control
                     placeholder="Edad"
                     name="edad"
                     onChange={handleTurno}
                     type="number"
+                    className="border border-primary redondeado"
                   />
                 </Col>
               </Row>
-              <Row className="my-3">
-                <Col className="my-3">
+              <Row className="my-2">
+                <Col className="my-2">
                   <Form.Label>Raza de tu mascota</Form.Label>
-
                   <Form.Control
                     placeholder="Raza"
                     name="raza"
                     onChange={handleTurno}
                     maxLength="40"
+                    className="border border-primary redondeado"
                   />
                 </Col>
               </Row>
-              <Row className="my-3">
-                <Col className="my-3">
+              <Row className="my-2">
+                <Col className="my-2">
                   <Form.Label>Alergias y otras particularidades</Form.Label>
-
                   <Form.Control
                     placeholder="Alergias y otras particularidades"
                     name="particularidades"
                     onChange={handleTurno}
                     maxLength="120"
+                    className="border border-primary redondeado"
                   />
                 </Col>
               </Row>
               <hr />
-              <h3>Información de tu turno</h3>
-              <Row className="my-3">
-                <Col className="my-3">
+              <h3 className="text-center">Información de tu turno</h3>
+              <Row className="my-2">
+                <Col className="my-2">
                   <Form.Label>Tu número de teléfono</Form.Label>
                   <Form.Control
                     required
@@ -156,27 +158,29 @@ const Turno = () => {
                     onChange={handleTurno}
                     type="number"
                     maxLength="10"
+                    className="border border-primary redondeado"
                   />
                 </Col>
               </Row>
-              <Row className="my-3">
-                <Col className="my-3">
+              <Row className="my-2">
+                <Col className="my-2">
                   <Form.Label>Elige una fecha para tu turno</Form.Label>
                   <Form.Control
                     required
                     type="date"
                     name="fecha"
                     onChange={handleTurno}
+                    className="border border-primary redondeado"
                   />
                 </Col>
               </Row>
-              <Row className="my-3">
-                <Col className="my-3">
+              <Row className="my-2">
+                <Col className="my-2">
                   <Form.Group controlId="exampleForm.SelectCustom">
                     <Form.Label>Elige un horario para tu turno</Form.Label>
                     <Form.Control
                       as="select"
-                      className="w-100"
+                      className="border border-primary w-100 redondeado"
                       onChange={handleTurno}
                       name="hora"
                       custom
@@ -190,14 +194,14 @@ const Turno = () => {
                   </Form.Group>
                 </Col>
               </Row>
-              <Row className="my-3">
-                <Col className="my-3">
+              <Row className="my-2">
+                <Col className="my-2">
                   <Form.Label>
                     Escribe un breve resumen de lo que le pasa tu mascota
                   </Form.Label>
                   <textarea
                     required
-                    className="p-4 w-100"
+                    className="p-4 w-100 border border-primary redondeado"
                     id="resumen"
                     name="resumen"
                     onChange={handleTurno}
@@ -208,7 +212,7 @@ const Turno = () => {
               <Button
                 type="submit"
                 onClick={submitTurno}
-                className="btn btn-primary my-2 w-100 mt-4 text-uppercase font-weight-bold"
+                className="boton-turno my-2 w-100 mt-4 text-uppercase font-weight-bold"
               >
                 Confirmar Turno
               </Button>

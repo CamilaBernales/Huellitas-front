@@ -1,5 +1,6 @@
 import React from 'react'
 import {Col, Form,Button} from 'react-bootstrap'
+import "../../../css/Tienda.css"
 
 export default function NavBarSearch() {
 
@@ -12,7 +13,7 @@ export default function NavBarSearch() {
                 </Form.Group>
             </Col>
             <Col>
-                <Button variant='outline-info'>Buscar</Button>
+                <Button className="boton-search buscar">Buscar</Button>
             </Col>
         </Form.Row>
     )

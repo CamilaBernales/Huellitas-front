@@ -4,3 +4,25 @@
     border-style: dashed;
     color: #333333;
 }
+
+.texto-input{
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+.boton-turno {
+    background: rgb(0, 166, 166);
+    border: 2px solid rgb(0, 166, 166);
+    font: inherit;
+}
+
+.boton-turno:hover{
+    background:  rgb(94, 194, 203);
+    border: 2px solid rgb(94, 194, 203);
+    box-shadow: 2px 2px 3px rgba(54, 54, 54, 0.418);
+}
+
+.redondeado {
+    border-radius: 20px;
+}
