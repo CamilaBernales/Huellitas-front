@@ -35,7 +35,6 @@ const Tienda = (props) => {
       .then((res) => {
         setProductos(res.data.docs);
         setTotalPages(res.data.totalPages);
-        setCurrentPage(res.data.page);
       })
       .catch((err) => console.log(err));
   };
@@ -58,8 +57,8 @@ const Tienda = (props) => {
         })
         .catch((err) => console.log(err));
     } else {
-      setCurrentPage(1);
       traerProductos();
+      setCurrentPage(1);
     }
   };
   const verMas = () =>
@@ -133,12 +132,7 @@ const Tienda = (props) => {
                   </Form.Control>
                 </Form.Group>
               </Col>
-              <Col
-                sm={12}
-                md={4}
-               
-                className="mt-2 mb-4 d-flex"
-              >
+              <Col sm={12} md={4} className="mt-2 mb-4 d-flex">
                 <Button
                   onClick={filtrarProductos}
                   className="boton-search buscar"

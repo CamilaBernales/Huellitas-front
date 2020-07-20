@@ -25,7 +25,6 @@ const Turnosadmin = () => {
       .then((res) => {
         setTurnos(res.data.docs);
         setTotalPages(res.data.totalPages);
-        setCurrentPage(res.data.page);
       })
       .catch(() => loading(false));
   };
@@ -107,7 +106,7 @@ const Turnosadmin = () => {
                   </option>
                   <option value="hoy">Hoy</option>
                   <option value="proximasemana">Próxima Semana</option>
-                  <option value="todos">Todos los turnos</option>
+                  <option value="">Todos los turnos</option>
                 </Form.Control>
               </Form.Group>
             </Col>

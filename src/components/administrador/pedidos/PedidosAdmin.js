@@ -21,7 +21,6 @@ export default function PedidosAdmin() {
       .then((res) => {
         setCompras(res.data.docs);
         setTotalPages(res.data.totalPages);
-        setCurrentPage(res.data.page);
       })
       .catch((err) => console.log(err.response));
   };
