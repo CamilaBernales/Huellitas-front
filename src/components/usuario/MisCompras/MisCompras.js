@@ -1,0 +1,121 @@
+import React, { useState, useEffect } from "react";
+import axiosConfig from "../../../config/axios";
+import { Link } from "react-router-dom";
+import { Table, Container, Button, Col, Row, Alert, Spinner } from "react-bootstrap";
+import ModalPedido from "../../administrador/pedidos/ModalPedido";
+import moment from "moment";
+
+const MisCompras = () => {
+  const [loading, setLoading] = useState(false);
+  const [misCompras, setMisCompras] = useState([]);
+  const [pedido, setPedido] = useState([]);
+  const [compra, setCompra] = useState({});
+  const [modalShow, setModalShow] = React.useState(false);
+  const onHide = () => {
+    setModalShow(false);
+  };
+
+  const traerCompras = () => {
+    axiosConfig
+      .get(`/api/compra/miscompras`)
+      .then((res) => {
+        setMisCompras(res.data);
+        setLoading(false);
+      })
+      .catch((err) => console.log(err.response));
+  };
+
+  const verDetalle = (pedido, compra) => {
+    setModalShow(true);
+    setPedido(pedido);
+    setCompra(compra);
+  };
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      traerCompras();
+    }, 3000);
+  }, []);
+  return (
+    <>
+      <Container className="my-5 py-3">
+        {loading ? (
+          <Row className="mt-4 mb-4 d-flex justify-content-center align-items-center">
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="info" />
+          </Row>
+        ) : (
+          <>
+            <Row className="d-flex justify-content-center align-items-center text-start my-3">
+              <Col sm={12} md={6} xl={10}>
+                {misCompras.length !== 0 ? (
+                  <>
+                    <Table responsive striped bordered hover size="sm">
+                      <thead>
+                        <tr>
+                          <th>Fecha</th>
+                          <th>Direccion</th>
+                          <th>Total</th>
+                          <th>Detalle</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {misCompras.map((compra) => (
+                          <tr key={compra._id}>
+                            <td>{moment(compra.fecha).format("DD-MM-YYYY")}</td>
+                            <td>{compra.direccion}</td>
+                            <td>{compra.total}</td>
+                            <td>
+                              <Button
+                                size="sm"
+                                variant="success"
+                                className="ml-1"
+                                onClick={() =>
+                                  verDetalle(compra.pedido, compra)
+                                }
+                              >
+                                Ver detalle
+                              </Button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                    <ModalPedido
+                      pedido={pedido}
+                      compra={compra}
+                      modalShow={modalShow}
+                      setModalShow={setModalShow}
+                      onHide={onHide}
+                    />
+                  </>
+                ) : (
+                  <Row className="d-flex justify-content-center align-items-center text-start my-3">
+                    <Alert className="text-center" variant="info">
+                      <h6>
+                        {" "}
+                        Aún no tienes un historial de compras para mostrar{" "}
+                        <span role="img" aria-label="cara triste">
+                          &#128546;
+                        </span>{" "}
+                        <Link to="/tienda">
+                          Mira nuestros productos{" "}
+                          <span role="img" aria-label="cara triste">
+                            &#128522;
+                          </span>{" "}
+                        </Link>{" "}
+                      </h6>
+                    </Alert>
+                  </Row>
+                )}
+              </Col>
+            </Row>
+          </>
+        )}
+      </Container>
+    </>
+  );
+};
+
+export default MisCompras;

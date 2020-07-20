@@ -6,13 +6,9 @@ import axiosConfig from "../../../config/axios";
 export default function PedidosAdmin() {
   const [loading, setLoading] = useState(true);
   const [compras, setCompras] = useState([]);
-  // const [fechaFiltro, setFechaFiltro] = useState("");
   const [clienteFiltro, setClienteFiltro] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  // const handleFechaFiltro = (e) => {
-  //   setFechaFiltro(e.target.value);
-  // };
 
   const handleClienteFiltro = (e) => {
     setClienteFiltro(e.target.value);
@@ -32,7 +28,7 @@ export default function PedidosAdmin() {
   const listarPedidos = () => {
     axiosConfig
       .get("/api/compra/listado")
-      .then((res) => setCompras(res.data))
+      .then((res) => setCompras(res.data.docs))
       .catch((err) => console.log(err.response));
   };
 
@@ -45,7 +41,7 @@ export default function PedidosAdmin() {
           setCurrentPage(currentPage + 1);
         }}
       >
-        Ver más
+        Ver más{" "}
       </button>
     );
   const volver = () =>
@@ -58,7 +54,7 @@ export default function PedidosAdmin() {
           setCurrentPage(currentPage - 1);
         }}
       >
-        Volver
+        Volver{" "}
       </button>
     );
   useEffect(() => {
@@ -70,46 +66,33 @@ export default function PedidosAdmin() {
 
   return (
     <Fragment>
-      <Container className="d-flex flex-column justify-center py-3">
+      <Container className="my-5">
+        {" "}
         {!loading ? (
           <>
-            <Form.Row>
+            <Form.Row  className="my-3">
               <Col sm={12} md={6}>
                 <Form.Group>
                   <Form.Control
-                    type="text"
+                    type="search"
                     placeholder="Nombre del cliente"
                     onChange={handleClienteFiltro}
-                  />
-                </Form.Group>
-              </Col>
-              <Col sm={12} md={4}>
-                <Form.Group controlId="exampleForm.SelectCustom">
-                  <Form.Control
-                    as="select"
-                    name="tipoproducto"
-                    className="w-100"
-                    custom
-                    // onChange={handleFechaFiltro}
-                  >
-                    <option value="" defaultValue>
-                      Buscar pedidos por fecha
-                    </option>
-                    <option value="hoy">Hoy</option>
-                    <option value="proximasemana">Próxima semana</option>
-                    <option value="">Todos los pedidos</option>
-                  </Form.Control>
-                </Form.Group>
-              </Col>
-              <Col className="mb-3 d-flex justify-content-end ">
-                <Button onClick={filtrarPedidos} variant="outline-info">
-                  Buscar
-                </Button>
-              </Col>
-            </Form.Row>
+                  />{" "}
+                </Form.Group>{" "}
+              </Col>{" "}
+              <Col className="mb-3 d-flex">
+                <Button
+                  className="mx-2"
+                  onClick={filtrarPedidos}
+                  variant="outline-info"
+                >
+                  Buscar{" "}
+                </Button>{" "}
+              </Col>{" "}
+            </Form.Row>{" "}
             <Row>
-              <TablaPedidos compras={compras} />
-            </Row>
+              <TablaPedidos compras={compras} />{" "}
+            </Row>{" "}
           </>
         ) : (
           <Row className="mt-4 mb-4 d-flex justify-content-center align-items-center">
@@ -117,12 +100,12 @@ export default function PedidosAdmin() {
             <Spinner animation="grow" variant="info" />
             <Spinner animation="grow" variant="info" />
           </Row>
-        )}
+        )}{" "}
         <Row className="d-flex justify-content-center align-items-center">
-          <div className="text-center my-4 mx-1">{volver()}</div>
-          <div className="text-center my-4 mx-1">{verMas()}</div>
-        </Row>
-      </Container>
+          <div className="text-center my-4 mx-1"> {volver()} </div>{" "}
+          <div className="text-center my-4 mx-1"> {verMas()} </div>{" "}
+        </Row>{" "}
+      </Container>{" "}
     </Fragment>
   );
 }

@@ -9,13 +9,15 @@ import {
   Col,
   Container,
   Alert,
+  Spinner,
 } from "react-bootstrap";
-// import moment from "moment";
+import moment from "moment";
 import Swal from "sweetalert2";
 import "../../../css/Turno.css";
 
 const MisTurnos = () => {
   const [historial, setHistorial] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [misTurnosPasados, setmisTurnosPasados] = useState([]);
   const [misTurnosProximos, setmisTurnosProximos] = useState([]);
 
@@ -23,12 +25,13 @@ const MisTurnos = () => {
     axiosConfig
       .get(`/api/turnos/listadoturno`)
       .then((res) => {
-        console.log(res.data);
         setmisTurnosProximos(res.data.turnosProximos);
         setmisTurnosPasados(res.data.turnosPasados);
+        setLoading(false);
       })
-
-      .catch((err) => console.log(err.response));
+      .catch((err) => {
+        setLoading(false);
+      });
   };
   const cancelarTurno = (id) => {
     Swal.fire({
@@ -57,92 +60,33 @@ const MisTurnos = () => {
     });
   };
   useEffect(() => {
+    setLoading(true);
     window.scrollTo(0, 200);
-    listarMisTurnos();
+    setTimeout(() => {
+      listarMisTurnos();
+    }, 3000);
   }, []);
   return (
     <>
       <Container className="my-5 py-3">
-        <strong>
-          <em>Tus próximos turnos</em>
-        </strong>
-        <Row className="d-flex justify-content-center align-items-center text-start my-3">
-          {misTurnosProximos.length === 0 ? (
-            <>
-              <Alert className="text-center" variant="info">
-                <h6>
-                  {" "}
-                  No tienes ningún turno próximamente{" "}
-                  <span role="img" aria-label="cara triste">
-                    &#128546;
-                  </span>{" "}
-                  <Link to="/turno">
-                    Solicita un turno{" "}
-                    <span role="img" aria-label="cara triste">
-                      &#128522;
-                    </span>{" "}
-                  </Link>{" "}
-                </h6>
-              </Alert>
-            </>
-          ) : (
-            <>
-              {misTurnosProximos.map((turno) => (
-                <Col
-                  key={turno._id}
-                  sm={12}
-                  md={8}
-                  xl={4}
-                  className="d-flex justify-content-center my-3"
-                >
-                  <Card
-                    className="font-weight-bold cardTurno"
-                    style={{ width: "18rem" }}
-                  >
-                    <Card.Body>
-                      <Row> Fecha: {turno.fecha}</Row>
-                      <Row> Hora: {turno.hora}</Row>
-                    </Card.Body>
-                    <Card.Footer>
-                      <Button
-                        className="btn btn-primary w-100  justify-content-center align-items-center font-weight-bold"
-                        onClick={() => cancelarTurno(turno._id)}
-                      >
-                        cancelar turno {"   "}
-                        <i className="fas fa-trash" />
-                      </Button>
-                    </Card.Footer>
-                  </Card>
-                </Col>
-              ))}
-            </>
-          )}
-        </Row>
-
-        {historial ? (
+        {loading ? (
+          <Row className="mt-4 mb-4 d-flex justify-content-center align-items-center">
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="info" />
+          </Row>
+        ) : (
           <>
             <strong>
-              <em>
-                {" "}
-                <Link
-                  to="#"
-                  className="text-dark"
-                  onClick={() => setHistorial(false)}
-                >
-                  Ocultar historial
-                </Link>
-              </em>
+              <em>Tus próximos turnos</em>
             </strong>
-            <p>
-              <em>Tus turnos anteriores</em>
-            </p>
             <Row className="d-flex justify-content-center align-items-center text-start my-3">
-              {misTurnosPasados.length === 0 ? (
+              {misTurnosProximos.length === 0 ? (
                 <>
                   <Alert className="text-center" variant="info">
                     <h6>
                       {" "}
-                      Aún no tienes un historial para mostrar{" "}
+                      No tienes ningún turno próximamente{" "}
                       <span role="img" aria-label="cara triste">
                         &#128546;
                       </span>{" "}
@@ -156,42 +100,119 @@ const MisTurnos = () => {
                   </Alert>
                 </>
               ) : (
-                <Col sm={12} md={6} xl={10}>
-                  {misTurnosPasados.map((turno) => (
-                    <Table responsive striped bordered hover size="sm">
-                      <thead>
-                        <tr>
-                          <th>Fecha</th>
-                          <th>Hora</th>
-                          <th>Motivo</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr key={turno._id}>
-                          <td>{turno.fecha}</td>
-                          <td>{turno.hora}</td>
-                          <td>{turno.resumen}</td>
-                        </tr>
-                      </tbody>
-                    </Table>
+                <>
+                  {misTurnosProximos.map((turno) => (
+                    <Col
+                      key={turno._id}
+                      sm={12}
+                      md={8}
+                      xl={4}
+                      className="d-flex justify-content-center my-3"
+                    >
+                      <Card
+                        className="font-weight-bold cardTurno"
+                        style={{ width: "18rem" }}
+                      >
+                        <Card.Body>
+                          <Row>
+                            {" "}
+                            Fecha: {moment(turno.fecha).format("DD/MM/YYYY")}
+                          </Row>
+                          <Row> Hora: {turno.hora}</Row>
+                        </Card.Body>
+                        <Card.Footer>
+                          <Button
+                            className="btn btn-primary w-100  justify-content-center align-items-center font-weight-bold"
+                            onClick={() => cancelarTurno(turno._id)}
+                          >
+                            cancelar turno {"   "}
+                            <i className="fas fa-trash" />
+                          </Button>
+                        </Card.Footer>
+                      </Card>
+                    </Col>
                   ))}
-                </Col>
+                </>
               )}
             </Row>
+
+            {historial ? (
+              <>
+                <strong>
+                  <em>
+                    {" "}
+                    <Link
+                      to="#"
+                      className="text-dark"
+                      onClick={() => setHistorial(false)}
+                    >
+                      Ocultar historial
+                    </Link>
+                  </em>
+                </strong>
+                <p>
+                  <em>Tus turnos anteriores</em>
+                </p>
+                <Row className="d-flex justify-content-center align-items-center text-start my-3">
+                  {misTurnosPasados.length === 0 ? (
+                    <>
+                      <Alert className="text-center" variant="info">
+                        <h6>
+                          {" "}
+                          Aún no tienes un historial para mostrar{" "}
+                          <span role="img" aria-label="cara triste">
+                            &#128546;
+                          </span>{" "}
+                          <Link to="/turno">
+                            Solicita un turno{" "}
+                            <span role="img" aria-label="cara triste">
+                              &#128522;
+                            </span>{" "}
+                          </Link>{" "}
+                        </h6>
+                      </Alert>
+                    </>
+                  ) : (
+                    <Col sm={12} md={6} xl={10}>
+                      <Table responsive striped bordered hover size="sm">
+                        <thead>
+                          <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Motivo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {misTurnosPasados.map((turno) => (
+                            <tr key={turno._id}>
+                              <td>
+                                {moment(turno.fecha).format("DD/MM/YYYY")}
+                              </td>
+                              <td>{turno.hora}</td>
+                              <td>{turno.resumen}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </Table>
+                    </Col>
+                  )}
+                </Row>
+              </>
+            ) : (
+              <strong>
+                <em>
+                  {" "}
+                  <Link
+                    to="#"
+                    className="text-dark"
+                    onClick={() => setHistorial(true)}
+                  >
+                    Historial de turnos
+                  </Link>
+                </em>
+              </strong>
+            )}
           </>
-        ) : (
-          <strong>
-            <em>
-              {" "}
-              <Link
-                to="#"
-                className="text-dark"
-                onClick={() => setHistorial(true)}
-              >
-                Historial de turnos
-              </Link>
-            </em>
-          </strong>
         )}
       </Container>
     </>

@@ -21,7 +21,7 @@ const ListadoCompras = (props) => {
     <div>
       {carroVacio ? (
         <Alert variant="primary">
-          Aún no tienes nada agregado a tu carrito
+          <h6> Aún no tienes nada agregado a tu carrito</h6>
         </Alert>
       ) : (
         <Table responsive>

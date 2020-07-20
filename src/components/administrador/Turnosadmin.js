@@ -32,17 +32,23 @@ const Turnosadmin = () => {
   const onChangeFiltroTurnos = (e) => {
     setFiltro(e.target.value);
   };
-  const filtrarProductos = () => {
-    axiosConfig
-      .get(`/api/turnos/turnosfiltrados?fecha=${filtro}&&pagina=${currentPage}`)
-      .then((res) => {
-        setTurnos(res.data.docs);
-        setTotalPages(res.data.totalPages);
-        setCurrentPage(res.data.page);
-        setFiltrando(false);
-        console.log(res.data);
-      })
-      .catch(() => setFiltrando(false));
+  const filtrarTurnos = () => {
+    if (filtro !== "") {
+      axiosConfig
+        .get(
+          `/api/turnos/turnosfiltrados?fecha=${filtro}&&pagina=${currentPage}`
+        )
+        .then((res) => {
+          setTurnos(res.data.docs);
+          setTotalPages(res.data.totalPages);
+          setCurrentPage(res.data.page);
+          setFiltrando(false);
+        })
+        .catch(() => setFiltrando(false));
+    } else {
+      setCurrentPage(1);
+      traerTurnos();
+    }
   };
   const verMas = () =>
     totalPages > currentPage &&
@@ -106,8 +112,8 @@ const Turnosadmin = () => {
               </Form.Group>
             </Col>
             <Col sm={12} md={4} className="my-2">
-              <Button onClick={filtrarProductos} className="boton">
-                filtrar turnos
+              <Button onClick={filtrarTurnos} className="boton">
+                Buscar
               </Button>
             </Col>
           </Row>

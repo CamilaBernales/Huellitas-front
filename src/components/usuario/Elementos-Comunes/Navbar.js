@@ -39,7 +39,11 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                   Inicio
                 </Nav.Link>
                 {isLogIn ? (
-                  <NavDropdown className="btn-navbar" title="Turnos" id="basic-nav-dropdown">
+                  <NavDropdown
+                    className="btn-navbar"
+                    title="Turnos"
+                    id="basic-nav-dropdown"
+                  >
                     <NavDropdown.Item href="/turno">
                       Solicitar Turno
                     </NavDropdown.Item>
@@ -55,6 +59,11 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 <Nav.Link className="btn-navbar" href="/tienda">
                   Tienda
                 </Nav.Link>
+                {isLogIn ? (
+                  <Nav.Link className="btn-navbar" href="/miscompras">
+                    Tus Compras
+                  </Nav.Link>
+                ) : null}
                 <Nav.Link className="btn-navbar" href="/equipo">
                   Nuestro Equipo
                 </Nav.Link>
@@ -105,7 +114,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
           onHide={onHide}
           setComprasGuardadas={setComprasGuardadas}
           comprasGuardadas={comprasGuardadas}
-          isLogIn= {isLogIn}
+          isLogIn={isLogIn}
         />
       </Col>
     </>
