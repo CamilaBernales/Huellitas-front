@@ -146,7 +146,11 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <hr />
+            </Form>
+          </Col>
+
+          <Col  sm={12} md={8} xl={6}>
+            <Form className="mt-5" onSubmit={submitTurno}>
               <h3 className="text-center">Información de tu turno</h3>
               <Row className="my-2">
                 <Col className="my-2">
