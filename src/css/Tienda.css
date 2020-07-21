@@ -25,7 +25,7 @@
 
 /*Estilo para botones de las cards */
 
-.boton-card {
+.boton-card-tienda {
 	display: inline-block;
 	font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -38,8 +38,8 @@
     transition: .2s;
 }
   
-.boton-card:before,
-.boton-card:after {
+.boton-card-tienda:before,
+.boton-card-tienda:after {
 		position: absolute;
 		top: 0;
 		bottom: 0;
@@ -54,19 +54,19 @@
 		transition: .2s;
 		transform-origin: 50% 60%;
 	}
-	.boton-card:before {
+	.boton-card-tienda:before {
 		background: fadeout(#000, 90%);
 	}
-	.boton-card:hover {
+	.boton-card-tienda:hover {
 		background:  rgb(94, 194, 203) ;
 	}
-	.boton-card:active,
-  .boton-card:focus {
+	.boton-card-tienda:active,
+  .boton-card-tienda:focus {
 		background:  rgb(94, 194, 203);
 		outline: none;
 	}
 
-.boton-card {
+.boton-card-tienda {
 	min-width: 15em;
 }
 

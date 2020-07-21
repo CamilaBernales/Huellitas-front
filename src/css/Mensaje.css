@@ -1,3 +1,17 @@
 .formulariosMensaje{
-    background-color: #eeeeee;
+    background-color: rgba(255, 255, 255, 0.966);
+}
+
+.btn-mensaje {
+    color: rgb(0, 166, 166);
+    background: none;
+    border: 1px solid rgb(0, 166, 166);
+    font: "Open Sans" , Arial, sans-serif;
+    transition:all .5s ease-in-out;
+  }
+  
+.btn-mensaje:hover{
+    background: rgb(0, 166, 166);
+    border: 2px solid rgb(0, 166, 166);
+    transition:all .5s ease-in-out;
 }
