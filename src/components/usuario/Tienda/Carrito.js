@@ -36,8 +36,8 @@ const Carrito = (props) => {
 
   const primerRender = useRef(true);
   const [medioDePago, setMedioDePago] = useState({
-    tarjeta: false,
-    efectivo: false
+    tarjetaChecked: false,
+    efectivoChecked: false
   });
   const [compraPagada, setCompraPagada] = useState({
     nombre: '',
@@ -79,13 +79,18 @@ const Carrito = (props) => {
     sumaTotal();
   }, [comprasGuardadas]);
 
-  const onChangeMedioDePago = (e) => {
+  const onClickTarjeta = () => {
     setMedioDePago({
-      ...medioDePago,
-      [e.target.name]: e.target.checked
-    })
+      tarjetaChecked: !medioDePago.tarjetaChecked,
+      efectivoChecked: false
+      });
   }
-  
+  const onClickEfectivo = () => {
+    setMedioDePago({
+      tarjetaChecked: false,
+      efectivoChecked: !medioDePago.efectivoChecked
+    });
+  }
   const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
   const pagarCompra = () => {
    
@@ -100,7 +105,7 @@ const Carrito = (props) => {
       alert("Debe completar todos los campos");
       return;
     }
-    if (!medioDePago.tarjeta || !medioDePago.efectivo) {
+    if (!(medioDePago.efectivoChecked || medioDePago.tarjetaChecked)) {
       
       alert('Debe seleccionar una formade pago');
       return;
@@ -360,13 +365,15 @@ const Carrito = (props) => {
                             as={Button}
                             variant="Text"
                             eventKey="0"
+                            
                           >
                             <Form.Check
                               type="radio"
                               name="tarjeta"
                               id="tarjeta"
                               label="Tarjeta de crédito o débito"
-                              onChange={onChangeMedioDePago}
+                              checked={medioDePago.tarjetaChecked}
+                              onClick={onClickTarjeta}
                             />
                           </Accordion.Toggle>
                         </Card.Header>
@@ -386,13 +393,15 @@ const Carrito = (props) => {
                             as={Button}
                             variant="Text"
                             eventKey="1"
+                            
                           >
                             <Form.Check
                               type="radio"
                               name="efectivo"
                               id="efectivo"
                               label="Efectivo"
-                              onChange={onChangeMedioDePago}
+                              checked={medioDePago.efectivoChecked}
+                              onClick={onClickEfectivo}
                             />
                           </Accordion.Toggle>
                         </Card.Header>
