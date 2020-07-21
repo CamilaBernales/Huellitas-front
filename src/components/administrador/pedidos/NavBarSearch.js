@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Col, Form, Button, Row, Container } from "react-bootstrap";
 import axiosConfig from "../../../config/axios";
 import TablaPedidos from "./TablaPedidos";
+import "../../../css/Tienda.css"
 
 export default function NavBarSearch() {
   const [compras, setCompras] = useState([]);
@@ -18,8 +19,15 @@ export default function NavBarSearch() {
       .catch((err) => console.log(err.response));
   };
   return (
-    <Container>
-
-    </Container>
-  );
+      <Form.Row>
+        <Col>
+          <Form.Group>
+            <Form.Control type="text" placeholder="Cliente / N° Pedido / Fecha / Etc" />
+          </Form.Group>
+        </Col>
+        <Col>
+          <Button className="boton-search buscar">Buscar</Button>
+        </Col>
+      </Form.Row>
+    )
 }

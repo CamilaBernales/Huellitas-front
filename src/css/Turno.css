@@ -1,6 +1,88 @@
+
 .cardTurno{
     background: #ffffff;
-    border: 5px solid #c6ebbe;
-    border-style: dashed;
+    border: solid #b5b2b873;
     color: #333333;
+    box-shadow: 2px 2px 12px 3px rgba(0,0,0,0.25);
+}
+
+.boton-card {
+    margin: auto;
+    padding: .8rem;
+    text-transform: uppercase;
+    color: #fafafa;
+    background-color: rgb(0, 166, 166);
+    border: none;
+    border-radius: 3px;
+    box-shadow: 1px 1px 10px rgba(50,50,50,.4);
+    transition: .3s all ease;
+    letter-spacing: .1rem;
+    font-size: .7rem;
+    position: relative;
+    top: 0;
+    right: 0;
+    padding-left: 1rem;
+}
+
+.boton-card:after,
+.boton-card:before {
+    position: absolute;
+    font-family: 'Barrio', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    color: darken(rgb(0, 166, 166), 20%);
+    transition: .3s all ease;
+}
+    
+.boton-card:before {
+    position: absolute;
+    left: 1.4rem;
+    top: .9rem;
+}
+    
+.boton-card:after {
+    position: absolute;
+    left: .8rem;
+    top: 1rem;
+}
+    
+.boton-card:hover {
+    box-shadow: 1px 1px 20px rgba(150,150,150,.2);
+    top: -.1rem;
+    right: -.1rem;
+    cursor: pointer;
+}
+      
+.boton-card:before {
+    position: absolute;
+    left: .8rem;
+    top: .7rem;
+    transform: translateY(-1px);
+}
+    
+.boton-card:after {
+    position: absolute;
+    left: 1.1rem;
+    top: 1rem;
+}
+    
+
+.texto-input{
+    font-family: 'Roboto', sans-serif;
+}
+
+.boton-turno {
+    background: rgb(0, 166, 166);
+    border: 2px solid rgb(0, 166, 166);
+    font: inherit;
+}
+
+.boton-turno:hover{
+    background:  rgb(94, 194, 203);
+    border: 2px solid rgb(94, 194, 203);
+    box-shadow: 2px 2px 3px rgba(54, 54, 54, 0.418);
+}
+
+.redondeado {
+    border-radius: 20px;
 }

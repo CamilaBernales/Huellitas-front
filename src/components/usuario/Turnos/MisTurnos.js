@@ -113,7 +113,7 @@ const MisTurnos = () => {
                         className="font-weight-bold cardTurno"
                         style={{ width: "18rem" }}
                       >
-                        <Card.Body>
+                        <Card.Body className="mx-auto">
                           <Row>
                             {" "}
                             Fecha: {moment(turno.fecha).format("DD/MM/YYYY")}
@@ -122,7 +122,7 @@ const MisTurnos = () => {
                         </Card.Body>
                         <Card.Footer>
                           <Button
-                            className="btn btn-primary w-100  justify-content-center align-items-center font-weight-bold"
+                            className="btn boton-card w-100  justify-content-center align-items-center font-weight-bold"
                             onClick={() => cancelarTurno(turno._id)}
                           >
                             cancelar turno {"   "}
