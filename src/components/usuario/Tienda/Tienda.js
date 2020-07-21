@@ -42,8 +42,8 @@ const Tienda = (props) => {
     e.preventDefault();
     setFiltrar(true);
     if (
-      (filtrarNombre === "" && filtrarTipo !== "") ||
-      // (filtrarNombre !== "" && filtrarTipo === "") ||
+      // (filtrarNombre === "" && filtrarTipo !== "") ||
+      (filtrarNombre !== "" && filtrarTipo === "") ||
       (filtrarNombre !== "" && filtrarTipo !== "")
     ) {
       axiosConfig
@@ -53,7 +53,6 @@ const Tienda = (props) => {
         .then((res) => {
           setProductos(res.data.docs);
           setTotalPages(res.data.totalPages);
-          setCurrentPage(res.data.page);
         })
         .catch((err) => console.log(err));
     } else {
@@ -107,7 +106,7 @@ const Tienda = (props) => {
                 <Form.Group>
                   <Form.Control
                     onChange={onChangeFiltroNombre}
-                    type="text"
+                    type="search"
                     placeholder="Busca algo"
                   />
                 </Form.Group>
