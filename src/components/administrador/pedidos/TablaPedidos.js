@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import { Table, Button, Col } from "react-bootstrap";
 import ModalPedido from "./ModalPedido";
 import moment from "moment";
 import PropTypes from "prop-types";
@@ -21,7 +21,8 @@ export default function TablaPedidos({ compras }) {
 
   return (
     <Fragment>
-      <Table responsive striped bordered hover>
+      <Col sm={12} md={8} lg={10}>
+      <Table size="sm" striped bordered hover>
         <thead>
           <tr>
             <th>Fecha</th>
@@ -52,6 +53,7 @@ export default function TablaPedidos({ compras }) {
           ))}
         </tbody>
       </Table>
+      </Col>
       <ModalPedido
         pedido={pedido}
         compra={compra}

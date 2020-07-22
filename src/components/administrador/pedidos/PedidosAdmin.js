@@ -74,8 +74,8 @@ export default function PedidosAdmin() {
     <Fragment>
       <Container className="my-5">
         {" "}
-        <Form.Row className="my-3">
-          <Col sm={12} md={6}>
+        <Form.Row className="d-flex justify-content-center align-items-center text-start my-5">
+          <Col sm={12} md={6} className="my-2">
             <Form.Group>
               <Form.Control
                 type="search"
@@ -84,19 +84,15 @@ export default function PedidosAdmin() {
               />{" "}
             </Form.Group>{" "}
           </Col>{" "}
-          <Col className="mb-3 d-flex">
-            <Button
-              className="mx-2"
-              onClick={filtrarPedidos}
-              variant="outline-info"
-            >
+          <Col sm={12} md={4} className="my-2">
+            <Button className="mx-2" onClick={filtrarPedidos} variant="info">
               Buscar{" "}
             </Button>{" "}
           </Col>{" "}
         </Form.Row>{" "}
         {!loading ? (
           <>
-            <Row>
+            <Row className="d-flex justify-content-center align-items-center text-start my-5">
               <TablaPedidos compras={compras} />{" "}
             </Row>{" "}
           </>

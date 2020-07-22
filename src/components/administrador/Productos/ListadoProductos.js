@@ -308,8 +308,8 @@ const Productosadmin = () => {
         ) : null}
         {!loading ? (
           <Row className="d-flex justify-content-center align-items-center text-start my-5">
-            <Col sm={12} md={8} xl={10}>
-              <Table responsive striped bordered hover size="sm">
+            <Col sm={12} md={8} lg={10}>
+              <Table responsive striped bordered hover responsive="sm">
                 <thead>
                   <tr>
                     <th>Nombre</th>
