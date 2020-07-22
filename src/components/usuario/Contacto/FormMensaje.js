@@ -77,18 +77,20 @@ export default function FormMensaje() {
             {msgError}
           </Alert>
         ) : null}
-        <h3 className="text-center my-4 py-3 ">Contactanos</h3>
-        <p className="text-center my-3 py-2 text-secondary">
-          San Miguel de Tucumán. Provincia de Tucumán. Argentina +54 9 381
-          094-4312 | +54 984609234
+        <h3 className="text-center py-3 ">Contactanos</h3>
+        <p className="text-center  text-secondary">
+          <b>Ubicación:</b> San Miguel de Tucumán. Provincia de Tucumán. Argentina
         </p>
+          <p className="text-center text-secondary">
+          <b>Telefonos:</b> +54 9 381094-4312 | +54 984609234
+          </p>
         <Form onSubmit={onSubmitConsulta}>
           <Row className="d-flex justify-content-around align-items-center">
             <Col sm={12} md={6} className="my-2">
               <Form.Group controlId="formName">
                 <Form.Control
                   placeholder="Nombre"
-                  className="formulariosMensaje"
+                  className="formulariosMensaje border border-primary redondeado"
                   type="name"
                   name="nombre"
                   value={nombre}
@@ -100,7 +102,7 @@ export default function FormMensaje() {
               <Form.Group controlId="formEmail">
                 <Form.Control
                   placeholder="Email"
-                  className="formulariosMensaje"
+                  className="formulariosMensaje border border-primary redondeado"
                   rows="3"
                   type="email"
                   name="email"
@@ -118,7 +120,7 @@ export default function FormMensaje() {
               >
                 <Form.Control
                   placeholder="Mensaje"
-                  className="formulariosMensaje"
+                  className="formulariosMensaje border border-primary redondeado"
                   as="textarea"
                   rows="3"
                   name="mensaje"
@@ -131,7 +133,7 @@ export default function FormMensaje() {
           </Row>
           <Row>
             <Col className="my-2 d-flex justify-content-end">
-              <Button size="md" variant="outline-info" type="submit">
+              <Button size="md" variant="outline-info" className="btn-mensaje" type="submit">
                 Enviar
               </Button>
             </Col>

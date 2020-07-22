@@ -1,3 +1,9 @@
+body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: rgb(240, 240, 240);
+}
+
 .carousel  img{
     filter: grayscale(100%);
     height: 500px;
@@ -18,11 +24,13 @@ h3{
   background: none;
   border: 2px solid rgb(0, 166, 166);
   font: "Open Sans" , Arial, sans-serif;
+  transition:all .5s ease-in-out;
 }
 
 .btn-custom:hover{
   background: rgb(0, 166, 166);
   border: 2px solid rgb(0, 166, 166);
+  transition:all .5s ease-in-out;
 }
 
 .color-texto{

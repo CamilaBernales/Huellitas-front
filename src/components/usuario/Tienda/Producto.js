@@ -50,7 +50,7 @@ const Producto = (props) => {
                 <Button
                   renderas="button"
                   onClick={() => setModalShow(true)}
-                  className="mx-4 boton-card flecha"
+                  className="mx-4 boton-card-tienda flecha" 
                   size="sm"
                 >
                   Ver producto

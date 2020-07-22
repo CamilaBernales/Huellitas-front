@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "../../../config/axios";
 import { Container, Table, Row, Col, Button, Spinner } from "react-bootstrap";
 import moment from "moment";
+import "../../../css/Tabla.css"
 
 const ListadoMensajes = () => {
   const [mensajes, setMensajes] = useState([]);

@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import "../../../css/Equipo.css"
 
 export let equipo = [
   {
@@ -90,7 +91,7 @@ const Equipo = () => {
             >
               <Card
                 style={{ width: "18rem", high: "18rem" }}
-                className="text-center"
+                className="text-center card-equipo"
               >
                 <Card.Img
                   alt="equipo de trabajo"
