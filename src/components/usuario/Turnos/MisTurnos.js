@@ -83,7 +83,7 @@ const MisTurnos = () => {
               <em>Tus próximos turnos</em>
             </strong>
             <Row className="d-flex justify-content-center align-items-center text-start my-3">
-              {misTurnosProximos.length === 0 && !fetchTurnos ? (
+              {misTurnosProximos.length === 0 && !fetchTurnos && !loading ? (
                 <>
                   <Alert className="text-center" variant="info">
                     <h6>
@@ -101,7 +101,7 @@ const MisTurnos = () => {
                     </h6>
                   </Alert>
                 </>
-              ) : (
+              ) : (!loading && !fetchTurnos) &&(
                 <>
                   {misTurnosProximos.map((turno) => (
                     <Col
@@ -156,7 +156,7 @@ const MisTurnos = () => {
                   <em>Tus turnos anteriores</em>
                 </p>
                 <Row className="d-flex justify-content-center align-items-center text-start my-3">
-                  {misTurnosPasados.length === 0 && !fetchTurnos ? (
+                  {misTurnosPasados.length === 0 && !fetchTurnos  && !loading ? (
                     <>
                       <Alert className="text-center" variant="info">
                         <h6>
@@ -174,9 +174,9 @@ const MisTurnos = () => {
                         </h6>
                       </Alert>
                     </>
-                  ) : (
-                    <Col sm={12} md={6} xl={10}>
-                      <Table responsive striped bordered hover size="sm">
+                  ) : (!loading && !fetchTurnos) && (
+                    <Col sm={12} md={8} lg={8}>
+                      <Table striped bordered hover>
                         <thead>
                           <tr>
                             <th>Fecha</th>

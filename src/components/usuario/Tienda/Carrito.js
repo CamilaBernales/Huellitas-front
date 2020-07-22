@@ -118,8 +118,10 @@ const Carrito = (props) => {
           codigopostal: "",
           telefono: "",
         });
+        window.location.href="/miscompras"
       })
       .catch((err) => console.log(err));
+    axiosConfig.post("/api/compra/email", detallesEnvio);
   };
 
   return (

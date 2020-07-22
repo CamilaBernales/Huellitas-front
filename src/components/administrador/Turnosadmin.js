@@ -140,8 +140,8 @@ const Turnosadmin = () => {
         ) : null}
         <Row className="d-flex justify-content-center align-items-center text-start my-3">
           {turnos.length !== 0 && !loading ? (
-            <Col sm={12} md={8} xl={10}>
-              <Table responsive striped bordered hover size="sm">
+            <Col sm={12} md={8} lg={10}>
+              <Table size="sm" striped bordered hover >
                 <thead>
                   <tr>
                     <th>Nombre Mascota</th>
