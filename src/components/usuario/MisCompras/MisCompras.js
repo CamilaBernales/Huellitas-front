@@ -29,8 +29,8 @@ const MisCompras = () => {
       .get(`/api/compra/miscompras`)
       .then((res) => {
         setMisCompras(res.data);
-        setFetchCompras(false);
         setLoading(false);
+        setFetchCompras(false);
       })
       .catch((err) => console.log(err.response));
   };
@@ -59,10 +59,10 @@ const MisCompras = () => {
         ) : (
           <>
             <Row className="d-flex justify-content-center align-items-center text-start my-3">
-              <Col sm={12} md={6} xl={10}>
+              <Col sm={12} md={8} lg={8}>
                 {misCompras.length !== 0 && !fetchCompras ? (
                   <>
-                    <Table responsive striped bordered hover size="sm">
+                    <Table striped bordered hover size="sm">
                       <thead>
                         <tr>
                           <th>Fecha</th>
@@ -101,7 +101,7 @@ const MisCompras = () => {
                       onHide={onHide}
                     />
                   </>
-                ) : (
+                ) : !fetchCompras && (
                   <Row className="d-flex justify-content-center align-items-center text-start my-3">
                     <Alert className="text-center" variant="info">
                       <h6>

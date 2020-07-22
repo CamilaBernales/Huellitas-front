@@ -60,7 +60,7 @@ const Turno = () => {
             timer: 1500,
           });
           setTimeout(() => {
-            window.location.reload(true);
+            window.location.href = "/misturnos";
           }, 2000);
         })
         .catch((err) => {

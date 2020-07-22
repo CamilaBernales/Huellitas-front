@@ -26,7 +26,8 @@ const ListadoCompras = (props) => {
           <h6> Aún no tienes nada agregado a tu carrito</h6>
         </Alert>
       ) : (
-        <Table responsive>
+        <Col sm={12} md={8} lg={10}>
+        <Table responsive="sm">
           <thead>
             <tr>
               <th>Producto</th>
@@ -56,6 +57,7 @@ const ListadoCompras = (props) => {
             ))}
           </tbody>
         </Table>
+        </Col>
       )}
     </div>
   );

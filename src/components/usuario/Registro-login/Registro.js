@@ -18,7 +18,7 @@ export default function Registro() {
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
   const onChangeForm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setError(false);
     setUsuario({
       ...usuario,
@@ -46,15 +46,16 @@ export default function Registro() {
     }
     axiosConfig
       .post("/api/usuarios/registro", usuario)
-      .then((res) => {
+      .then(() => {
         window.location.href = "/login";
       })
       .catch((error) => {
         console.log(error.response);
+        window.scrollTo(0, 200);
         setError(true);
         setMsgError(error.response.data.msg);
-        window.scrollTo(0, 200);
       });
+    axiosConfig.post("/api/usuarios/email", usuario);
   };
   useEffect(() => {
     window.scrollTo(0, 200);
