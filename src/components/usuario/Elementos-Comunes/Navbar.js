@@ -5,6 +5,7 @@ import "../../../css/Navbar.css";
 import tokenAuth from "../../../config/token";
 import PreCarrito from "./PreCarrito";
 import BotonInicioSesion from "./BotonInicioSesion";
+// import imagenHome from "../Elementos-Comunes/ImagenHome"
 
 const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
   const [isLogIn, setIsLogIn] = useState(false);
