@@ -18,6 +18,7 @@ import "../../../css/Turno.css";
 const MisTurnos = () => {
   const [historial, setHistorial] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [fetchTurnos, setFetchTurnos] = useState(true);
   const [misTurnosPasados, setmisTurnosPasados] = useState([]);
   const [misTurnosProximos, setmisTurnosProximos] = useState([]);
 
@@ -27,10 +28,10 @@ const MisTurnos = () => {
       .then((res) => {
         setmisTurnosProximos(res.data.turnosProximos);
         setmisTurnosPasados(res.data.turnosPasados);
-        setLoading(false);
+        setFetchTurnos(false);
       })
       .catch((err) => {
-        setLoading(false);
+        setFetchTurnos(false);
       });
   };
   const cancelarTurno = (id) => {
@@ -63,6 +64,7 @@ const MisTurnos = () => {
     setLoading(true);
     window.scrollTo(0, 200);
     setTimeout(() => {
+      setLoading(false);
       listarMisTurnos();
     }, 3000);
   }, []);
@@ -81,7 +83,7 @@ const MisTurnos = () => {
               <em>Tus próximos turnos</em>
             </strong>
             <Row className="d-flex justify-content-center align-items-center text-start my-3">
-              {misTurnosProximos.length === 0 ? (
+              {misTurnosProximos.length === 0 && !fetchTurnos ? (
                 <>
                   <Alert className="text-center" variant="info">
                     <h6>
@@ -154,7 +156,7 @@ const MisTurnos = () => {
                   <em>Tus turnos anteriores</em>
                 </p>
                 <Row className="d-flex justify-content-center align-items-center text-start my-3">
-                  {misTurnosPasados.length === 0 ? (
+                  {misTurnosPasados.length === 0 && !fetchTurnos ? (
                     <>
                       <Alert className="text-center" variant="info">
                         <h6>

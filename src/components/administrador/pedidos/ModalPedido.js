@@ -1,5 +1,6 @@
 import React from "react";
 import { Table, Modal, Button, Row, Col } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
   return (
@@ -73,3 +74,9 @@ export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
     </Modal>
   );
 }
+ModalPedido.propTypes = {
+  modalShow: PropTypes.bool,
+  onHide: PropTypes.func,
+  compra: PropTypes.object,
+  pedido: PropTypes.object,
+};

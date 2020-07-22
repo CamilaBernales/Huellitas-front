@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Table, Button } from "react-bootstrap";
 import ModalPedido from "./ModalPedido";
 import moment from "moment";
+import PropTypes from "prop-types";
 
 export default function TablaPedidos({ compras }) {
   const [modalShow, setModalShow] = React.useState(false);
@@ -61,3 +62,6 @@ export default function TablaPedidos({ compras }) {
     </Fragment>
   );
 }
+TablaPedidos.propTypes = {
+  compras: PropTypes.object,
+};

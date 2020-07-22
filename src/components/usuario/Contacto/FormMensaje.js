@@ -19,7 +19,6 @@ export default function FormMensaje() {
 
   //Cuando hay cambios en el formulario
   const onChangeConsulta = (e) => {
-    e.preventDefault();
     setError(false);
     setConsulta({
       ...consulta,

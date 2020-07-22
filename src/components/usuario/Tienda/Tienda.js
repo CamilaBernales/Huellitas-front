@@ -11,6 +11,8 @@ import {
 import Producto from "./Producto";
 import axiosConfig from "../../../config/axios";
 import "./../../../css/Tienda.css";
+import PropTypes from "prop-types";
+
 
 const Tienda = (props) => {
   const { setComprasGuardadas } = props;
@@ -39,10 +41,9 @@ const Tienda = (props) => {
       .catch((err) => console.log(err));
   };
   const filtrarProductos = (e) => {
-    e.preventDefault();
     setFiltrar(true);
     if (
-      // (filtrarNombre === "" && filtrarTipo !== "") ||
+      (filtrarNombre === "" && filtrarTipo !== "") ||
       (filtrarNombre !== "" && filtrarTipo === "") ||
       (filtrarNombre !== "" && filtrarTipo !== "")
     ) {
@@ -184,5 +185,7 @@ const Tienda = (props) => {
     </div>
   );
 };
-
+Tienda.propTypes = {
+  setComprasGuardadas: PropTypes.func,
+};
 export default Tienda;

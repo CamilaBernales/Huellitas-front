@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Col, Row, Button, Form, Alert } from "react-bootstrap";
 import formasPagos from "../../../img/banner-mercadopago-producto.png";
 import "./../../../css/Tienda.css";
+import PropTypes from "prop-types";
 
 export default function MyVerticallyCenteredModal(props) {
   const { modalShow, producto, setComprasGuardadas, onHide } = props;
@@ -104,14 +105,14 @@ export default function MyVerticallyCenteredModal(props) {
             </Row>
             <Row className="d-flex justify-content-end my-4 mx-2">
               {producto.disponibilidad === "Disponible" && !productoRepetido ? (
-                <Button 
-                onClick={() => guardarProducto(producto._id)}
-                className="boton-modal"
+                <Button
+                  onClick={() => guardarProducto(producto._id)}
+                  className="boton-modal"
                 >
                   Añadir al carrito
                 </Button>
               ) : (
-                <Button  disabled>Añadir al carrito</Button>
+                <Button disabled>Añadir al carrito</Button>
               )}
             </Row>
             <Row>
@@ -125,11 +126,16 @@ export default function MyVerticallyCenteredModal(props) {
         </Row>
       </Modal.Body>
       <Modal.Footer>
-        <Button 
-        onClick={onHide}
-        className="boton-modal"
-        >Close</Button>
+        <Button onClick={onHide} className="boton-modal">
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );
 }
+MyVerticallyCenteredModal.propTypes = {
+  modalShow: PropTypes.bool,
+  onHide: PropTypes.func,
+  setComprasGuardadas: PropTypes.func,
+  producto: PropTypes.object,
+};

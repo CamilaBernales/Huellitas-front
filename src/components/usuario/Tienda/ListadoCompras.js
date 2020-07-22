@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Col, Image, Alert } from "react-bootstrap";
+import PropTypes from "prop-types";
+
 const ListadoCompras = (props) => {
   const { setComprasGuardadas, comprasGuardadas } = props;
   const [comprasLS, setComprasLS] = useState(
@@ -57,6 +59,10 @@ const ListadoCompras = (props) => {
       )}
     </div>
   );
+};
+ListadoCompras.propTypes = {
+  setComprasGuardadas: PropTypes.func,
+  comprasGuardadas: PropTypes.number,
 };
 
 export default ListadoCompras;

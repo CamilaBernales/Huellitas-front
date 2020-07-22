@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axiosConfig from "../../../config/axios";
 import { Link } from "react-router-dom";
-import { Table, Container, Button, Col, Row, Alert, Spinner } from "react-bootstrap";
+import {
+  Table,
+  Container,
+  Button,
+  Col,
+  Row,
+  Alert,
+  Spinner,
+} from "react-bootstrap";
 import ModalPedido from "../../administrador/pedidos/ModalPedido";
 import moment from "moment";
 
 const MisCompras = () => {
   const [loading, setLoading] = useState(false);
+  const [fetchCompras, setFetchCompras] = useState(true);
   const [misCompras, setMisCompras] = useState([]);
   const [pedido, setPedido] = useState([]);
   const [compra, setCompra] = useState({});
@@ -20,6 +29,7 @@ const MisCompras = () => {
       .get(`/api/compra/miscompras`)
       .then((res) => {
         setMisCompras(res.data);
+        setFetchCompras(false);
         setLoading(false);
       })
       .catch((err) => console.log(err.response));
@@ -31,6 +41,7 @@ const MisCompras = () => {
     setCompra(compra);
   };
   useEffect(() => {
+    window.scrollTo(0, 200);
     setLoading(true);
     setTimeout(() => {
       traerCompras();
@@ -49,7 +60,7 @@ const MisCompras = () => {
           <>
             <Row className="d-flex justify-content-center align-items-center text-start my-3">
               <Col sm={12} md={6} xl={10}>
-                {misCompras.length !== 0 ? (
+                {misCompras.length !== 0 && !fetchCompras ? (
                   <>
                     <Table responsive striped bordered hover size="sm">
                       <thead>
