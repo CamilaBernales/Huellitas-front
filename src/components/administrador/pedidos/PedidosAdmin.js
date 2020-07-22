@@ -4,7 +4,7 @@ import TablaPedidos from "./TablaPedidos";
 import axiosConfig from "../../../config/axios";
 
 export default function PedidosAdmin() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [compras, setCompras] = useState([]);
   const [clienteFiltro, setClienteFiltro] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,8 +26,12 @@ export default function PedidosAdmin() {
   };
   const listarPedidos = () => {
     axiosConfig
-      .get("/api/compra/listado")
-      .then((res) => setCompras(res.data.docs))
+      .get(`/api/compra/listado?pagina=${currentPage}`)
+      .then((res) => {
+        console.log(res);
+        setCompras(res.data.docs);
+        setTotalPages(res.data.totalPages);
+      })
       .catch((err) => console.log(err.response));
   };
 
@@ -57,38 +61,41 @@ export default function PedidosAdmin() {
       </button>
     );
   useEffect(() => {
+    window.scrollTo(0, 200);
+    setLoading(true);
     setTimeout(() => {
       setLoading(false);
       listarPedidos();
     }, 3000);
+    // eslint-disable-next-line
   }, [currentPage]);
 
   return (
     <Fragment>
       <Container className="my-5">
         {" "}
+        <Form.Row className="my-3">
+          <Col sm={12} md={6}>
+            <Form.Group>
+              <Form.Control
+                type="search"
+                placeholder="Nombre del cliente"
+                onChange={handleClienteFiltro}
+              />{" "}
+            </Form.Group>{" "}
+          </Col>{" "}
+          <Col className="mb-3 d-flex">
+            <Button
+              className="mx-2"
+              onClick={filtrarPedidos}
+              variant="outline-info"
+            >
+              Buscar{" "}
+            </Button>{" "}
+          </Col>{" "}
+        </Form.Row>{" "}
         {!loading ? (
           <>
-            <Form.Row  className="my-3">
-              <Col sm={12} md={6}>
-                <Form.Group>
-                  <Form.Control
-                    type="search"
-                    placeholder="Nombre del cliente"
-                    onChange={handleClienteFiltro}
-                  />{" "}
-                </Form.Group>{" "}
-              </Col>{" "}
-              <Col className="mb-3 d-flex">
-                <Button
-                  className="mx-2"
-                  onClick={filtrarPedidos}
-                  variant="outline-info"
-                >
-                  Buscar{" "}
-                </Button>{" "}
-              </Col>{" "}
-            </Form.Row>{" "}
             <Row>
               <TablaPedidos compras={compras} />{" "}
             </Row>{" "}

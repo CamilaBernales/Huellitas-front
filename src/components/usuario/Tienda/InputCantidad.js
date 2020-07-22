@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Form, Col, Alert, Row } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 export default function InputCantidad({ producto }) {
   const [cantidad, setCantidad] = useState(1);
@@ -53,3 +54,6 @@ export default function InputCantidad({ producto }) {
     </>
   );
 }
+InputCantidad.propTypes = {
+  producto: PropTypes.object,
+};

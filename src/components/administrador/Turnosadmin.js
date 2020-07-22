@@ -10,6 +10,8 @@ import {
   Spinner,
 } from "react-bootstrap";
 import axiosConfig from "../../config/axios";
+import moment from "moment";
+
 
 const Turnosadmin = () => {
   const [turnos, setTurnos] = useState([]);
@@ -40,7 +42,6 @@ const Turnosadmin = () => {
         .then((res) => {
           setTurnos(res.data.docs);
           setTotalPages(res.data.totalPages);
-          setCurrentPage(res.data.page);
           setFiltrando(false);
         })
         .catch(() => setFiltrando(false));
@@ -153,7 +154,7 @@ const Turnosadmin = () => {
                   {turnos.map((turno) => (
                     <tr key={turno._id}>
                       <td>{turno.nombremascota}</td>
-                      <td>{turno.fecha}</td>
+                      <td>{moment(turno.fecha).format("DD-MM-YYYY")}</td>
                       <td>{turno.hora}</td>
                       <td>{turno.telefono}</td>
                     </tr>

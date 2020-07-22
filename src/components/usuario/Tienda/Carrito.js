@@ -16,6 +16,7 @@ import ListadoCompras from "./ListadoCompras";
 import "../../../css/Carrito.css";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
+import PropTypes from "prop-types";
 
 const Carrito = (props) => {
   const { setComprasGuardadas, comprasGuardadas } = props;
@@ -76,7 +77,7 @@ const Carrito = (props) => {
       return;
     }
     const pedidoCompras = comprasGuardada.map(function (compra) {
-      const compraModif = {
+      let compraModif = {
         producto: compra._id,
         precio: compra.precio,
         cantidad: compra.cantidad,
@@ -93,7 +94,6 @@ const Carrito = (props) => {
       pedido: pedidoCompras,
     });
   };
-
   const solicitudCompra = () => {
     axiosConfig
       .post("api/compra", compraPagada)
@@ -118,12 +118,12 @@ const Carrito = (props) => {
           codigopostal: "",
           telefono: "",
         });
-        window.location.href = "/";
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
-    <Fragment className="carrito">
+    <Fragment>
       <Container className="mt-5 mb-5 carrito">
         <Tabs
           className="d-flex justify-content-center align-items-center"
@@ -395,5 +395,8 @@ const Carrito = (props) => {
     </Fragment>
   );
 };
-
+Carrito.propTypes = {
+  comprasGuardadas: PropTypes.number,
+  setComprasGuardadas: PropTypes.func,
+};
 export default Carrito;

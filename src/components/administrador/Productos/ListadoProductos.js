@@ -29,7 +29,6 @@ const Productosadmin = () => {
       .then((res) => {
         setProductos(res.data.docs);
         setTotalPages(res.data.totalPages);
-        setCurrentPage(res.data.page);
       })
       .catch((err) => setMsgError(err.response.data.msg));
   };

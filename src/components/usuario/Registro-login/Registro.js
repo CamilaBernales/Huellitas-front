@@ -5,7 +5,7 @@ import registroimg from "../../../img/registro.svg";
 import "../../../css/Login.css";
 import axiosConfig from "../../../config/axios";
 
-export default function Registro(props) {
+export default function Registro() {
   const [usuario, setUsuario] = useState({
     nombre: "",
     email: "",

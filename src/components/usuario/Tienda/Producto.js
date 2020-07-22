@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Col, Card, Button, Alert, Row } from "react-bootstrap";
 import ModalProducto from "./ModalProducto";
 import "./../../../css/Tienda.css";
-
+import PropTypes from "prop-types";
 
 const Producto = (props) => {
   const { producto, setComprasGuardadas } = props;
@@ -72,4 +72,8 @@ const Producto = (props) => {
   );
 };
 
+Producto.propTypes = {
+  setComprasGuardadas: PropTypes.func,
+  producto: PropTypes.object,
+};
 export default Producto;

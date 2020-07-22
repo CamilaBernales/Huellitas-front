@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../../config/axios";
 import { Container, Table, Row, Col, Button, Spinner } from "react-bootstrap";
+import moment from "moment";
 import "../../../css/Tabla.css"
 
 const ListadoMensajes = () => {
@@ -48,7 +49,7 @@ const ListadoMensajes = () => {
                         <td>{mensaje.nombre}</td>
                         <td>{mensaje.email}</td>
                         <td>{mensaje.mensaje}</td>
-                        <td>{mensaje.created_at}</td>
+                        <td>{moment(mensaje.created_at).format("DD-MM-YYYY")}</td>
                         <td className="text-center">
                           <Button variant="info">
                             <a

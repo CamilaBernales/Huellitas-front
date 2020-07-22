@@ -29,7 +29,7 @@ const Logo = () => {
                     </Link>
                 </div>
                 <div className="p-3">
-                    <em className="mr-3">
+                    <em className="m-auto">
                         <b>{usuario}</b>
                     </em>
                     <Button onClick={salir}>Salir</Button>
@@ -42,7 +42,7 @@ const Logo = () => {
             <div className="img-fluid d-flex justify-content-end ">
                 
                 <div className="p-3">
-                    <em className="mr-3">
+                    <em className="mr-4">
                         <b>{usuario}</b>
                     </em>
                     <Button onClick={salir}>Salir</Button>

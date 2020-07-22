@@ -3,6 +3,7 @@ import ListadoCompras from "../Tienda/ListadoCompras";
 import { Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../../../css/Precarrito.css";
+import PropTypes from "prop-types";
 const PreCarrito = (props) => {
   const {
     modalShow,
@@ -23,20 +24,28 @@ const PreCarrito = (props) => {
           setComprasGuardadas={setComprasGuardadas}
           comprasGuardadas={comprasGuardadas}
         />{" "}
-        <Link className="text-white" to="/carrito">
-          {isLogIn ? (
+        {isLogIn ? (
+          <Link className="text-white" to="/carrito">
             <Button variant="info" className="w-100 text-center my-3">
               Iniciar compra
             </Button>
-          ) : (
-            <Button disabled variant="info" className="w-100 text-center my-3">
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Button variant="info" className="w-100 text-center my-3">
               Iniciar compra
             </Button>
-          )}
-        </Link>
+          </Link>
+        )}
       </Modal.Body>
     </Modal>
   );
 };
-
+PreCarrito.propTypes = {
+  modalShow: PropTypes.bool,
+  onHide: PropTypes.func,
+  setComprasGuardadas: PropTypes.func,
+  comprasGuardadas: PropTypes.number,
+  isLogIn: PropTypes.bool,
+};
 export default PreCarrito;
