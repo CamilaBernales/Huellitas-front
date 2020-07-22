@@ -30,7 +30,6 @@ const Carrito = (props) => {
     direccion,
     provincia,
     localidad,
-    codigopostal,
     telefono,
   } = detallesEnvio;
 
@@ -38,6 +37,13 @@ const Carrito = (props) => {
   const [medioDePago, setMedioDePago] = useState({
     tarjetaChecked: false,
     efectivoChecked: false
+  });
+  const [datosTarjeta, setDatosTarjeta] = useState({
+    cvc: '',
+    expiry: '',
+    focus: '',
+    name: '',
+    number: ''
   });
   const [compraPagada, setCompraPagada] = useState({
     nombre: '',
@@ -48,6 +54,19 @@ const Carrito = (props) => {
     total: 0,
     pedido: []
   });
+
+  const onChangeDatosTarjeta = (e) => {
+    console.log(datosTarjeta);
+    setDatosTarjeta({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  const onFocusDatosTarjeta = (e) => {
+    setDatosTarjeta({
+      focus: e.target.name
+    });
+  }
 
   const onChangeDetalle = (e) => {
     setDetallesEnvio({
@@ -99,15 +118,22 @@ const Carrito = (props) => {
         direccion === undefined ||
         provincia === undefined ||
         localidad === undefined ||
-        codigopostal === undefined ||
         telefono === undefined) 
     {
-      alert("Debe completar todos los campos");
+      alert("Debe completar todos los detalles de envio");
       return;
     }
     if (!(medioDePago.efectivoChecked || medioDePago.tarjetaChecked)) {
       
       alert('Debe seleccionar una formade pago');
+      return;
+    }
+    if (datosTarjeta.number === '' ||
+        datosTarjeta.name === '' ||
+        datosTarjeta.expiry === '' ||
+        datosTarjeta.cvc === '') 
+    {
+      alert('Debe completar todos los datos de la tarjeta');
       return;
     }
     const pedidoCompras = comprasGuardada.map(function (compra) {
@@ -123,7 +149,7 @@ const Carrito = (props) => {
       apellido: detallesEnvio.nombre,
       telefono: detallesEnvio.telefono,
       direccion: detallesEnvio.direccion,
-      codigoPostal: detallesEnvio.codigopostal,
+      codigoPostal: '4000',
       total: suma,
       pedido: pedidoCompras,
     });
@@ -148,9 +174,8 @@ const Carrito = (props) => {
           nombre: "",
           email: "",
           direccion: "",
-          provincia: "",
+          provincia: "Tucumán",
           localidad: "",
-          codigopostal: "",
           telefono: "",
         });
         window.location.href = "/";
@@ -260,6 +285,18 @@ const Carrito = (props) => {
                   <Row>
                     <Col className="my-3">
                       <Form.Control
+                        name="telefono"
+                        type="tel"
+                        maxLength="14"
+                        placeholder="Télefono"
+                        defaultValue={telefono}
+                        onChange={onChangeDetalle}
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control
                         name="direccion"
                         type="text"
                         maxLength="20"
@@ -272,47 +309,29 @@ const Carrito = (props) => {
                   <Row>
                     <Col className="my-3">
                       <Form.Control
-                        name="provincia"
-                        type="text"
-                        placeholder="Provincia"
-                        defaultValue={provincia}
-                        onChange={onChangeDetalle}
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="my-3">
-                      <Form.Control
+                        as="select"
                         name="localidad"
                         type="text"
                         maxLength="20"
-                        placeholder="Localidad"
                         defaultValue={localidad}
                         onChange={onChangeDetalle}
-                      />
+                      >
+                        <option>Seleccione una localidad</option>
+                        <option>San Miguel de Tucumán</option>
+                        <option>Yerba Buena</option>
+                        <option>Tafí Viejo</option>
+                        <option>Banda del Rio Salí</option>
+                      </Form.Control>
                     </Col>
                   </Row>
                   <Row>
                     <Col className="my-3">
                       <Form.Control
-                        name="codigopostal"
+                        name="provincia"
                         type="text"
-                        maxLength="8"
-                        placeholder="Código Postal"
-                        defaultValue={codigopostal}
-                        onChange={onChangeDetalle}
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="my-3">
-                      <Form.Control
-                        name="telefono"
-                        type="tel"
-                        maxLength="14"
-                        placeholder="Télefono"
-                        defaultValue={telefono}
-                        onChange={onChangeDetalle}
+                        placeholder="Tucumán"
+                        defaultValue="Tucumán"
+                        disabled
                       />
                     </Col>
                   </Row>
@@ -373,13 +392,17 @@ const Carrito = (props) => {
                               id="tarjeta"
                               label="Tarjeta de crédito o débito"
                               checked={medioDePago.tarjetaChecked}
-                              onClick={onClickTarjeta}
+                              onChange={onClickTarjeta}
                             />
                           </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
-                            <PaymentForm />
+                            <PaymentForm 
+                              datosTarjeta={datosTarjeta}
+                              onChange={onChangeDatosTarjeta}
+                              onFocus={onFocusDatosTarjeta}
+                            />
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
@@ -401,7 +424,7 @@ const Carrito = (props) => {
                               id="efectivo"
                               label="Efectivo"
                               checked={medioDePago.efectivoChecked}
-                              onClick={onClickEfectivo}
+                              onChange={onClickEfectivo}
                             />
                           </Accordion.Toggle>
                         </Card.Header>

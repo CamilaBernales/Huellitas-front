@@ -38,25 +38,25 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 <Nav.Link href="/">Inicio</Nav.Link>
                 {isLogIn ? (
                   <NavDropdown title="Turnos" id="basic-nav-dropdown">
-                    <NavDropdown.Item activeClassName="selected" href="/turno">
+                    <NavDropdown.Item activeclassname="selected" href="/turno">
                       Solicitar Turno
                     </NavDropdown.Item>
                     <NavDropdown.Item
-                      activeClassName="selected"
+                      activeclassname="selected"
                       href="/misturnos"
                     >
                       Mis Turnos
                     </NavDropdown.Item>
                   </NavDropdown>
                 ) : (
-                  <Nav.Link href="/login" activeClassName="selected">
+                  <Nav.Link href="/login" activeclassname="selected">
                     Turnos
                   </Nav.Link>
                 )}
-                <Nav.Link href="/tienda" activeClassName="selected">
+                <Nav.Link href="/tienda" activeclassname="selected">
                   Tienda
                 </Nav.Link>
-                <Nav.Link href="/equipo" activeClassName="selected">
+                <Nav.Link href="/equipo" activeclassname="selected">
                   Nuestro Equipo
                 </Nav.Link>
               </Nav>
@@ -68,7 +68,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 <span>{comprasGuardadas}</span>
               </Navbar.Brand>
             ) : (
-              <Navbar.Brand activeClassName="selected" href="/carrito">
+              <Navbar.Brand activeclassname="selected" href="/carrito">
                 {" "}
                 <i className="fas fa-cart-plus fa-1x" />
               </Navbar.Brand>
@@ -79,7 +79,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className=" navlink ml-auto ">
                 <Link
-                  activeClassName="selected"
+                  activeclassname="selected"
                   to="/admin/pedidos"
                   className="nav-link"
                 >
@@ -92,27 +92,27 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                 </NavDropdown>
                 <NavDropdown title="Productos" id="basic-nav-dropdown">
                   <NavDropdown.Item
-                    activeClassName="selected"
+                    activeclassname="selected"
                     href="/admin/altaproducto"
                   >
                     Alta de Producto
                   </NavDropdown.Item>
                   <NavDropdown.Item
-                    activeClassName="selected"
+                    activeclassname="selected"
                     href="/admin/productos"
                   >
                     Listado de Productos
                   </NavDropdown.Item>
                 </NavDropdown>
                 <Link
-                  activeClassName="selected"
+                  activeclassname="selected"
                   to="/admin/listadousuarios"
                   className="nav-link"
                 >
                   Usuarios
                 </Link>
                 <Link
-                  activeClassName="selected"
+                  activeclassname="selected"
                   to="/admin/listadomensajes"
                   className="nav-link"
                 >
