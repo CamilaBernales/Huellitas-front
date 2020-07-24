@@ -30,15 +30,16 @@ const Tienda = (props) => {
   const onChangeFiltroTipos = (e) => {
     setFiltrarTipo(e.target.value);
   };
-
+  
+  // console.log(setComprasGuardadas)
   const traerProductos = () => {
     axiosConfig
-      .get(`/api/productos/listado?pagina=${currentPage}`)
-      .then((res) => {
-        setProductos(res.data.docs);
-        setTotalPages(res.data.totalPages);
-      })
-      .catch((err) => console.log(err));
+    .get(`/api/productos/listado?pagina=${currentPage}`)
+    .then((res) => {
+      setProductos(res.data.docs);
+      setTotalPages(res.data.totalPages);
+    })
+      .catch((err) => console.log(err.response));
   };
   const filtrarProductos = (e) => {
     setFiltrar(true);
