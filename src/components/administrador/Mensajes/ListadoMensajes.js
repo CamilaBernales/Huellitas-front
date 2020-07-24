@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../../config/axios";
-import { Container, Table, Row, Col, Button, Spinner } from "react-bootstrap";
+import {
+  Container,
+  Table,
+  Row,
+  Col,
+  Button,
+  Spinner,
+  Alert,
+} from "react-bootstrap";
 import moment from "moment";
-import "../../../css/Tabla.css"
+import "../../../css/Tabla.css";
 
 const ListadoMensajes = () => {
   const [mensajes, setMensajes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const listarMensajes = () => {
     axios
       .get("/api/mensajes/listadomensajes")
       .then((res) => {
         setMensajes(res.data);
       })
-      .catch((err) => {
-        // console.log(err);
+      .catch(() => {
+        setError(true);
+        setErrorMsg("Hubo un error.");
       });
   };
   useEffect(() => {
@@ -24,12 +35,26 @@ const ListadoMensajes = () => {
       setLoading(false);
       listarMensajes();
     }, 3000);
+    // eslint-disable-next-line
   }, []);
   return (
     <>
       <Container className="my-5">
-        {/* {loading ? <p>Obtniendo...</p> : null} */}
-        {!loading ? (
+        {loading ? (
+          <Row className="mt-4 mb-4  my-4  d-flex justify-content-center align-items-center">
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="info" />
+          </Row>
+        ) : null}
+        {error && !loading ? (
+          <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
+            <Alert className="text-center" variant="danger">
+              <h6>{errorMsg}</h6>
+            </Alert>
+          </Row>
+        ) : null}
+        {!loading && mensajes.length !== 0 ? (
           <Row className="d-flex justify-content-center align-items-center text-start my-5">
             <Col sm={12} md={8} lg={8}>
               <Table striped bordered hover responsive="sm">
@@ -49,7 +74,9 @@ const ListadoMensajes = () => {
                         <td>{mensaje.nombre}</td>
                         <td>{mensaje.email}</td>
                         <td>{mensaje.mensaje}</td>
-                        <td>{moment(mensaje.created_at).format("DD-MM-YYYY")}</td>
+                        <td>
+                          {moment(mensaje.created_at).format("DD-MM-YYYY")}
+                        </td>
                         <td className="text-center">
                           <Button variant="info">
                             <a
@@ -68,11 +95,19 @@ const ListadoMensajes = () => {
             </Col>
           </Row>
         ) : (
-          <Row className="mt-4 mb-4  my-4  d-flex justify-content-center align-items-center">
-            <Spinner animation="grow" variant="info" />
-            <Spinner animation="grow" variant="info" />
-            <Spinner animation="grow" variant="info" />
-          </Row>
+          !loading &&
+          mensajes.length === 0 && (
+            <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
+              <Alert className="text-center" variant="warning">
+                <h6>
+                  No hay mensajes para mostrarte
+                  <span role="img" aria-label="cara triste">
+                    &#128546;
+                  </span>
+                </h6>
+              </Alert>
+            </Row>
+          )
         )}
       </Container>
     </>

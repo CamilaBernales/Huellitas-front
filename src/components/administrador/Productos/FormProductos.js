@@ -179,7 +179,7 @@ function FormProductos() {
               <Row>
                 <Col className="my-3">
                   <Form.Label>Tipo de Producto</Form.Label>
-                  <Form.Group controlId="exampleForm.SelectCustom">
+                  <Form.Group>
                     <Form.Control
                       as="select"
                       name="tipoproducto"
@@ -201,7 +201,7 @@ function FormProductos() {
               <Row>
                 <Col className="my-3">
                   <Form.Label>Disponibilidad</Form.Label>
-                  <Form.Group controlId="exampleForm.SelectCustom">
+                  <Form.Group>
                     <Form.Control
                       as="select"
                       className="w-100"

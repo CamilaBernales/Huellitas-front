@@ -18,7 +18,6 @@ export default function Registro() {
   const [error, setError] = useState(false);
   const [msgError, setMsgError] = useState("");
   const onChangeForm = (e) => {
-    e.preventDefault();
     setError(false);
     setUsuario({
       ...usuario,
@@ -77,15 +76,15 @@ export default function Registro() {
           </Col>
           <Col sm={12} md={8} xl={4} className="col-12 mx-3 my-2">
             <Form className="formulario" onSubmit={onSubmitForm}>
-              <h2 className="text-center text-uppercase mx-4">
+              <h3 className="text-center text-uppercase mx-4">
                 Crear una cuenta
-              </h2>
+              </h3>
               <Form.Group controlId="formName">
                 <Form.Label className=" justify-content-start">
                   Nombre:
                 </Form.Label>
                 <Form.Control
-                  className="border border-primary rounded-left"
+                  className="border border-info rounded-left"
                   type="text"
                   placeholder="Ingrese su nombre"
                   name="nombre"
@@ -99,7 +98,7 @@ export default function Registro() {
                   Email:
                 </Form.Label>
                 <Form.Control
-                  className="border border-primary rounded-left"
+                  className="border border-info rounded-left"
                   type="email"
                   placeholder="Ingrese su email"
                   name="email"
@@ -113,7 +112,7 @@ export default function Registro() {
                   Contraseña:
                 </Form.Label>
                 <Form.Control
-                  className="border border-primary rounded-left"
+                  className="border border-info rounded-left"
                   type="password"
                   placeholder="Ingrese su contraseña"
                   name="password"
@@ -127,7 +126,7 @@ export default function Registro() {
                   Confirmar contraseña:
                 </Form.Label>
                 <Form.Control
-                  className="border border-primary rounded-left"
+                  className="border border-info rounded-left"
                   type="password"
                   placeholder="Ingrese su contraseña nuevamente"
                   name="passwordConfirm"
@@ -141,7 +140,7 @@ export default function Registro() {
                   Teléfono (opciona):
                 </Form.Label>
                 <Form.Control
-                  className="border border-primary rounded-left"
+                  className="border border-info rounded-left"
                   type="number"
                   placeholder="Ingrese su telefono (opcional)"
                   name="telefono"
@@ -153,7 +152,8 @@ export default function Registro() {
               <Row>
                 <Col className="justify-content-between">
                   <Button
-                    className="text-white text-uppercase font-weight-bold rounded-pill btn btnauth btn-button w-100"
+                    variant="info"
+                    className="text-white mt-3 btn btn-button w-100"
                     type="submit"
                   >
                     Enviar

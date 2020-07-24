@@ -5,7 +5,7 @@ import Contacto from '../../usuario/Contacto/Contacto'
 
 export default function Home() {
   return (
-    <Fragment>
+    <Fragment >
       <div className="m-auto">
         <Slider />
       </div>

@@ -69,7 +69,8 @@ const Carrito = (props) => {
     sumaTotal();
   }, [comprasGuardadas]);
 
-  const pagarCompra = () => {
+  const pagarCompra = (e) => {
+    e.preventDefault();
     const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
     if (comprasGuardada.length === 0) {
       alert("No hay productos guadados");
@@ -118,7 +119,7 @@ const Carrito = (props) => {
           codigopostal: "",
           telefono: "",
         });
-        window.location.href="/miscompras"
+        window.location.href = "/miscompras";
       })
       .catch((err) => console.log(err));
     axiosConfig.post("/api/compra/email", detallesEnvio);

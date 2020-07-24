@@ -12,7 +12,6 @@ import {
 import axiosConfig from "../../config/axios";
 import moment from "moment";
 
-
 const Turnosadmin = () => {
   const [turnos, setTurnos] = useState([]);
   const [filtro, setFiltro] = useState("");
@@ -20,6 +19,7 @@ const Turnosadmin = () => {
   const [filtrando, setFiltrando] = useState(true);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState(false);
 
   const traerTurnos = () => {
     axiosConfig
@@ -28,7 +28,10 @@ const Turnosadmin = () => {
         setTurnos(res.data.docs);
         setTotalPages(res.data.totalPages);
       })
-      .catch(() => loading(false));
+      .catch(() => {
+        setError(true);
+        loading(false);
+      });
   };
   const onChangeFiltroTurnos = (e) => {
     setFiltro(e.target.value);
@@ -44,7 +47,11 @@ const Turnosadmin = () => {
           setTotalPages(res.data.totalPages);
           setFiltrando(false);
         })
-        .catch(() => setFiltrando(false));
+        .catch(() => {
+          setFiltrando(false);
+          setError(true);
+          loading(false);
+        });
     } else {
       setCurrentPage(1);
       traerTurnos();
@@ -125,6 +132,13 @@ const Turnosadmin = () => {
             <Spinner animation="grow" variant="info" />
           </Row>
         ) : null}
+        {loading && error ? (
+          <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
+            <Alert className="text-center" variant="danger">
+              <h6>Hubo un error</h6>
+            </Alert>
+          </Row>
+        ) : null}
         {turnos.length === 0 && !filtrando ? (
           <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
             <Alert className="text-center" variant="warning">
@@ -141,7 +155,7 @@ const Turnosadmin = () => {
         <Row className="d-flex justify-content-center align-items-center text-start my-3">
           {turnos.length !== 0 && !loading ? (
             <Col sm={12} md={8} lg={10}>
-              <Table size="sm" striped bordered hover >
+              <Table size="sm" striped bordered hover>
                 <thead>
                   <tr>
                     <th>Nombre Mascota</th>
@@ -162,7 +176,21 @@ const Turnosadmin = () => {
                 </tbody>
               </Table>
             </Col>
-          ) : null}
+          ) : (
+            !loading && (
+              <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
+                <Alert className="text-center" variant="warning">
+                  <h6>
+                    {" "}
+                    No hay turnos solicitados{" "}
+                    <span role="img" aria-label="cara triste">
+                      &#128546;
+                    </span>{" "}
+                  </h6>
+                </Alert>
+              </Row>
+            )
+          )}
         </Row>
         <Row className="d-flex justify-content-center align-items-center">
           <div className="text-center my-4 mx-1">{volver()}</div>
