@@ -28,7 +28,6 @@ const Carrito = (props) => {
     nombre,
     email,
     direccion,
-    provincia,
     localidad,
     telefono,
   } = detallesEnvio;
@@ -55,19 +54,6 @@ const Carrito = (props) => {
     pedido: []
   });
 
-  const onChangeDatosTarjeta = (e) => {
-    console.log(datosTarjeta);
-    setDatosTarjeta({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  const onFocusDatosTarjeta = (e) => {
-    setDatosTarjeta({
-      focus: e.target.name
-    });
-  }
-
   const onChangeDetalle = (e) => {
     setDetallesEnvio({
       ...detallesEnvio,
@@ -85,7 +71,6 @@ const Carrito = (props) => {
     setSuma(total);
   };
 
- 
   useEffect(() => {
     if (primerRender.current) {
       primerRender.current = false;
@@ -94,6 +79,7 @@ const Carrito = (props) => {
     solicitudCompra();
      // eslint-disable-next-line
   }, [compraPagada]);
+
   useEffect(() => {
     sumaTotal();
   }, [comprasGuardadas]);
@@ -111,12 +97,12 @@ const Carrito = (props) => {
     });
   }
   const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
+  
   const pagarCompra = () => {
-   
+    
     if (nombre === undefined ||
         email === undefined ||
         direccion === undefined ||
-        provincia === undefined ||
         localidad === undefined ||
         telefono === undefined) 
     {
@@ -136,6 +122,17 @@ const Carrito = (props) => {
       alert('Debe completar todos los datos de la tarjeta');
       return;
     }
+    let reNumber = /\d{16}/;
+    let reExpiry = /\d{4}/;
+    let reCvc = /\d{3, 4}/;
+    if (!reNumber.test(datosTarjeta.number) ||
+        !reExpiry.test(datosTarjeta.expiry) ||
+        !reCvc.test(datosTarjeta.cvc)) 
+    {
+      alert('Por favor verifique que los datos de la tarjeta sean correctos');
+      return;
+    }
+
     const pedidoCompras = comprasGuardada.map(function (compra) {
       const compraModif = {
         producto: compra._id,
@@ -399,9 +396,7 @@ const Carrito = (props) => {
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
                             <PaymentForm 
-                              datosTarjeta={datosTarjeta}
-                              onChange={onChangeDatosTarjeta}
-                              onFocus={onFocusDatosTarjeta}
+                             handleOnInput={setDatosTarjeta}
                             />
                           </Card.Body>
                         </Accordion.Collapse>
