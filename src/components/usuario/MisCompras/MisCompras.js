@@ -14,6 +14,8 @@ import ModalPedido from "../../administrador/pedidos/ModalPedido";
 import moment from "moment";
 
 const MisCompras = () => {
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
   const [fetchCompras, setFetchCompras] = useState(true);
   const [misCompras, setMisCompras] = useState([]);
@@ -32,7 +34,10 @@ const MisCompras = () => {
         setLoading(false);
         setFetchCompras(false);
       })
-      .catch((err) => console.log(err.response));
+      .catch(() => {
+        setError(true);
+        setErrorMsg("Hubo un error.");
+      });
   };
 
   const verDetalle = (pedido, compra) => {
@@ -50,6 +55,13 @@ const MisCompras = () => {
   return (
     <>
       <Container className="my-5 py-3">
+      <Row className="px-5 my-3 d-flex justify-content-center align-items-center ">
+        {error ? (
+          <Alert variant="danger">
+            <h6>{errorMsg}</h6>
+          </Alert>
+        ) : null}
+      </Row>
         {loading ? (
           <Row className="mt-4 mb-4 d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />

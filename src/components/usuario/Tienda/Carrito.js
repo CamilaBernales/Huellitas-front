@@ -30,20 +30,37 @@ const Carrito = (props) => {
     nombre,
     email,
     direccion,
-    provincia,
     localidad,
-    codigopostal,
-    telefono,
+    telefono
   } = detallesEnvio;
 
   const primerRender = useRef(true);
-
-  const [compraPagada, setCompraPagada] = useState({});
+  const [medioDePago, setMedioDePago] = useState({
+    tarjetaChecked: false,
+    efectivoChecked: false
+  });
+  const [datosTarjeta, setDatosTarjeta] = useState({
+    cvc: '',
+    expiry: '',
+    focus: '',
+    name: '',
+    number: ''
+  });
+  const [compraPagada, setCompraPagada] = useState({
+    nombre: '',
+    apellido: '',
+    telefono: '',
+    direccion: '',
+    codigoPostal: '',
+    total: 0,
+    pedido: []
+  });
 
   const onChangeDetalle = (e) => {
     setDetallesEnvio({
       ...detallesEnvio,
       [e.target.name]: e.target.value,
+      provincia: 'Tucumán'
     });
   };
 
@@ -63,19 +80,64 @@ const Carrito = (props) => {
       return;
     }
     solicitudCompra();
-    // eslint-disable-next-line
+     // eslint-disable-next-line
   }, [compraPagada]);
+
   useEffect(() => {
     sumaTotal();
   }, [comprasGuardadas]);
 
+  const onClickTarjeta = () => {
+    setMedioDePago({
+      tarjetaChecked: !medioDePago.tarjetaChecked,
+      efectivoChecked: false
+      });
+  }
+  const onClickEfectivo = () => {
+    setMedioDePago({
+      tarjetaChecked: false,
+      efectivoChecked: !medioDePago.efectivoChecked
+    });
+  }
+  const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
+  
   const pagarCompra = () => {
-    const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
-    if (comprasGuardada.length === 0) {
-      alert("No hay productos guadados");
-      window.location.href = "/";
+    
+    if (nombre === undefined ||
+        email === undefined ||
+        direccion === undefined ||
+        localidad === undefined ||
+        telefono === undefined) 
+    {
+      alert("Debe completar todos los detalles de envio");
       return;
     }
+    if (!(medioDePago.efectivoChecked || medioDePago.tarjetaChecked)) {
+      
+      alert('Debe seleccionar una formade pago');
+      return;
+    }
+    if ((datosTarjeta.number === '' ||
+        datosTarjeta.name === '' ||
+        datosTarjeta.expiry === '' ||
+        datosTarjeta.cvc === '') &&
+        medioDePago.tarjetaChecked) 
+    {
+      alert('Debe completar todos los datos de la tarjeta');
+      return;
+    }
+    let reNumber = /\d{16}/;
+    let reExpiry = /\d{4}/;
+    let reCvc = /\d{3, 4}/;
+    if ((!reNumber.test(datosTarjeta.number) ||
+        !reExpiry.test(datosTarjeta.expiry) ||
+        !reCvc.test(datosTarjeta.cvc)) &&
+        medioDePago.tarjetaChecked) 
+    {
+      alert('Por favor verifique que los datos de la tarjeta sean correctos');
+      return;
+    }
+
     const pedidoCompras = comprasGuardada.map(function (compra) {
       let compraModif = {
         producto: compra._id,
@@ -88,8 +150,10 @@ const Carrito = (props) => {
       nombre: detallesEnvio.nombre,
       apellido: detallesEnvio.nombre,
       telefono: detallesEnvio.telefono,
-      direccion: detallesEnvio.direccion,
-      codigoPostal: detallesEnvio.codigopostal,
+      direccion: [detallesEnvio.direccion, 
+        detallesEnvio.localidad, 
+        "Tucumán"].join(' - '),
+      codigoPostal: '4000',
       total: suma,
       pedido: pedidoCompras,
     });
@@ -113,12 +177,11 @@ const Carrito = (props) => {
           nombre: "",
           email: "",
           direccion: "",
-          provincia: "",
+          provincia: "Tucumán",
           localidad: "",
-          codigopostal: "",
           telefono: "",
         });
-        window.location.href="/miscompras"
+        window.location.href = "/miscompras";
       })
       .catch((err) => console.log(err));
     axiosConfig.post("/api/compra/email", detallesEnvio);
@@ -132,7 +195,7 @@ const Carrito = (props) => {
           activeKey={key}
           onSelect={(k) => setKey(k)}
         >
-          <Tab eventKey="iniciocompra" title="Lista de compras">
+          <Tab eventKey="iniciocompra" title="Lista de compras" disabled>
             <h3>Lista de compras</h3>
             <Row className="d-flex">
               <Col sm={12} md={8} xl={6}>
@@ -142,13 +205,23 @@ const Carrito = (props) => {
                     comprasGuardadas={comprasGuardadas}
                   />
                   <Col className="my-3">
-                    <Button
+                    {comprasGuardada.length === 0 ?
+                      <Button
+                      className="mx-2"
                       variant="secondary"
-                      onClick={() => setKey("datoscomprador")}
-                      className="mx-2 d-flex justify-content-end align-items-end"
-                    >
-                      Continuar
-                    </Button>
+                      disabled
+                      >
+                        Continuar
+                      </Button>
+                      :
+                      <Button
+                        className="mx-2"
+                        variant="secondary"
+                        onClick={() => setKey("datoscomprador")}
+                      >
+                        Continuar
+                      </Button>
+                    }
                   </Col>
                 </Row>
               </Col>
@@ -188,7 +261,7 @@ const Carrito = (props) => {
               </Col>
             </Row>
           </Tab>
-          <Tab eventKey="datoscomprador" title="Detalles de envio">
+          <Tab eventKey="datoscomprador" title="Detalles de envio" disabled>
             <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
                 <h3 className="my-3">Detalles de envio</h3>
@@ -220,6 +293,18 @@ const Carrito = (props) => {
                   <Row>
                     <Col className="my-3">
                       <Form.Control
+                        name="telefono"
+                        type="tel"
+                        maxLength="14"
+                        placeholder="Télefono"
+                        defaultValue={telefono}
+                        onChange={onChangeDetalle}
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col className="my-3">
+                      <Form.Control
                         name="direccion"
                         type="text"
                         maxLength="20"
@@ -232,47 +317,29 @@ const Carrito = (props) => {
                   <Row>
                     <Col className="my-3">
                       <Form.Control
-                        name="provincia"
-                        type="text"
-                        placeholder="Provincia"
-                        defaultValue={provincia}
-                        onChange={onChangeDetalle}
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="my-3">
-                      <Form.Control
+                        as="select"
                         name="localidad"
                         type="text"
                         maxLength="20"
-                        placeholder="Localidad"
                         defaultValue={localidad}
                         onChange={onChangeDetalle}
-                      />
+                      >
+                        <option>Seleccione una localidad</option>
+                        <option>San Miguel de Tucumán</option>
+                        <option>Yerba Buena</option>
+                        <option>Tafí Viejo</option>
+                        <option>Banda del Rio Salí</option>
+                      </Form.Control>
                     </Col>
                   </Row>
                   <Row>
                     <Col className="my-3">
                       <Form.Control
-                        name="codigopostal"
+                        name="provincia"
                         type="text"
-                        maxLength="8"
-                        placeholder="Código Postal"
-                        defaultValue={codigopostal}
-                        onChange={onChangeDetalle}
-                      />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="my-3">
-                      <Form.Control
-                        name="telefono"
-                        type="tel"
-                        maxLength="14"
-                        placeholder="Télefono"
-                        defaultValue={telefono}
-                        onChange={onChangeDetalle}
+                        placeholder="Tucumán"
+                        defaultValue="Tucumán"
+                        disabled
                       />
                     </Col>
                   </Row>
@@ -297,13 +364,14 @@ const Carrito = (props) => {
               </Col>
             </Row>
           </Tab>
-          <Tab eventKey="pagocompra" title="Medio de pago">
+          <Tab eventKey="pagocompra" title="Medio de pago" disabled>
             <h3>Medios de Pago</h3>
-            <Row className="d-flex justify-content-between">
-              <Col sm={12} md={8}>
-                <Row>
-                  <Col>
-                    <Accordion>
+
+            <Row className="d-flex justify-content-center align-items-center">
+              <Col sm={12} md={8} xl={6}>
+                <Accordion>
+                  <Row>
+                    <Col>
                       <Card>
                         <Card.Header>
                           <Accordion.Toggle
@@ -313,48 +381,52 @@ const Carrito = (props) => {
                           >
                             <Form.Check
                               type="radio"
-                              name="formHorizontalRadios"
-                              id="formHorizontalRadios2"
-                              label="Tárjeta de crédito o débito"
+                              name="tarjeta"
+                              id="tarjeta"
+                              label="Tarjeta de crédito o débito"
+                              checked={medioDePago.tarjetaChecked}
+                              onChange={onClickTarjeta}
                             />
                           </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
-                            <PaymentForm />
+                            <PaymentForm 
+                             handleOnInput={setDatosTarjeta}
+                            />
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
-                    </Accordion>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <Accordion>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
                       <Card>
                         <Card.Header>
                           <Accordion.Toggle
                             as={Button}
                             variant="Text"
-                            eventKey="0"
+                            eventKey="1"
                           >
                             <Form.Check
                               type="radio"
-                              name="formHorizontalRadios"
-                              id="formHorizontalRadios2"
-                              label="Efectivo (SÓLO TUCUMAN)"
+                              name="efectivo"
+                              id="efectivo"
+                              label="Efectivo"
+                              checked={medioDePago.efectivoChecked}
+                              onChange={onClickEfectivo}
                             />
                           </Accordion.Toggle>
                         </Card.Header>
-                        <Accordion.Collapse eventKey="0">
+                        <Accordion.Collapse eventKey="1">
                           <Card.Body>
                             Pronto nos contactaremos para confirmar tu compra
                           </Card.Body>
                         </Accordion.Collapse>
                       </Card>
-                    </Accordion>
-                  </Col>
-                </Row>
+                    </Col>
+                  </Row>
+                </Accordion>
                 <Row>
                   <Col className="my-3">
                     <Button

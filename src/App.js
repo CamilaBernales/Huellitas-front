@@ -16,7 +16,6 @@ import ModalProducto from "./components/usuario/Tienda/ModalProducto";
 import Turnosadmin from "./components/administrador/Turnosadmin";
 import ListadoProductos from "./components/administrador/Productos/ListadoProductos";
 import FormProductos from "./components/administrador/Productos/FormProductos";
-import Turnos from "./components/usuario/Turnos/Turnos";
 import MisTurnos from "./components/usuario/Turnos/MisTurnos";
 import Turno from "./components/usuario/Turnos/Turno";
 import PedidosAdmin from "./components/administrador/pedidos/PedidosAdmin";
@@ -29,6 +28,8 @@ import Footer from "./components/usuario/Elementos-Comunes/Footer";
 import Whatsapp from "./components/usuario/Elementos-Comunes/Whatsapp";
 import ImagenHome from "./components/usuario/Elementos-Comunes/ImagenHome";
 import MisCompras from "./components/usuario/MisCompras/MisCompras";
+import CambioContraseña from "./components/usuario/Registro-login/CambioContraseña";
+import RestablecerContraseña from "./components/usuario/Registro-login/RestablecerContraseña";
 function App() {
   const [loading, setLoading] = useState(true);
   const [respuesta, setRespuesta] = useState({});
@@ -139,12 +140,17 @@ function App() {
                 <Tienda {...props} setComprasGuardadas={setComprasGuardadas} />
               )}
             />
+            <Route
+              exact
+              path="/resettingpassword/:id"
+              component={RestablecerContraseña}
+            />
             <Route exact path="/servicios" />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/registro" component={Registro} />
-            <Route exact path="/turnos" component={Turnos} />
+            <Route exact path="/resetpassword" component={CambioContraseña} />
             <Route exact path="/perfilusuario" component={PerfilUsuario} />
           </Switch>
         ) : (
@@ -157,12 +163,18 @@ function App() {
                 <Tienda {...props} setComprasGuardadas={setComprasGuardadas} />
               )}
             />
+            <Route
+              exact
+              path="/resettingpassword/:id"
+              component={RestablecerContraseña}
+            />
+
             <Route exact path="/servicios" />
             <Route exact path="/m" component={ModalProducto} />
             <Route exact path="/equipo" component={Equipo} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/registro" component={Registro} />
-            <Route exact path="/turnos" component={Turnos} />
+            <Route exact path="/resetpassword" component={CambioContraseña} />
           </Switch>
         )}
         <Footer />

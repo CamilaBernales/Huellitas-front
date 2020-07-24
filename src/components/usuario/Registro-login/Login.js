@@ -16,7 +16,6 @@ export default function Login() {
   const [msgError, setMsgError] = useState("");
 
   const onChangeForm = (e) => {
-    e.preventDefault();
     setError(false);
     setIngreso({
       ...ingreso,
@@ -56,7 +55,7 @@ export default function Login() {
   }, []);
   return (
     <Fragment>
-      <Container className="my-4">
+      <Container className="my-5 py-3">
         {error ? (
           <Alert
             className="p-3 text-center text-uppercase font-weight-bold"
@@ -72,7 +71,7 @@ export default function Login() {
           <Col sm={12} md={8} xl={4} className="col-12 mx-3 my-2">
             <div className="formulario">
               <Form onSubmit={onSubmitForm}>
-                <h2 className="text-center mx-4 ">LOGIN</h2>
+                <h3 className="text-center mx-4 ">LOGIN</h3>
                 <Form.Group controlId="formEmail">
                   <Form.Label className=" d-flex justify-content-start">
                     Email:
@@ -80,7 +79,7 @@ export default function Login() {
                   <Form.Control
                     type="email"
                     placeholder="Ingrese su email"
-                    className="border border-primary rounded-left"
+                    className="border border-info rounded-left"
                     name="email"
                     value={email}
                     onChange={onChangeForm}
@@ -91,7 +90,7 @@ export default function Login() {
                     Contraseña:
                   </Form.Label>
                   <Form.Control
-                    className="border border-primary rounded-left"
+                    className="border border-info rounded-left"
                     type="password"
                     placeholder="Ingrese su contraseña"
                     name="password"
@@ -102,16 +101,27 @@ export default function Login() {
                 <Row>
                   <Col className="justify-content-center mb-3">
                     <Button
-                      className="text-white text-uppercase font-weight-bold btnauth rounded-pill btn btn-button w-100"
+                      variant="info"
+                      className="text-white btnauth  btn btn-button w-100"
                       type="submit"
                     >
                       Ingresar
                     </Button>
                   </Col>
                 </Row>
-                <Link className="justify-content-start p-2 " to={"/registro"}>
-                  No tienes una cuenta? Registrate!
-                </Link>
+                <Row>
+                  <Link
+                    className="justify-content-start p-2 text-info "
+                    to={"/resetpassword"}
+                  >
+                    No recuerdo mi contraseña
+                  </Link>
+                </Row>
+                <Row>
+                  <Link className="justify-content-start p-2 text-info" to={"/registro"}>
+                    No tienes una cuenta? Registrate!
+                  </Link>
+                </Row>
               </Form>
             </div>
           </Col>

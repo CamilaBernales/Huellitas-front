@@ -4,24 +4,3 @@
   border-radius: 3%;
   color: #43464b;
 }
-.btnauth {
-  background-color: #34558b;
-}
-.btnauth:hover {
-  animation-name: botoncito;
-  animation-duration: 3s;
-  animation-iteration-count: infinite;
-}
-@keyframes botoncito {
-  0% {
-    background-color: #3f72af;
-    border: 2px solid #fff;
-  }
-  50% {
-    background-color: #34558b;
-  }
-  100% {
-    background-color: #112d4e;
-    border: 2px solid #fff;
-  }
-}

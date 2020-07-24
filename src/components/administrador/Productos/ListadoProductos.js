@@ -30,7 +30,10 @@ const Productosadmin = () => {
         setProductos(res.data.docs);
         setTotalPages(res.data.totalPages);
       })
-      .catch((err) => setMsgError(err.response.data.msg));
+      .catch((err) => {
+        setError(true);
+        setMsgError(err.response.data.msg);
+      });
   };
   const obtenerUnProducto = (id) => {
     axiosConfig
@@ -40,7 +43,10 @@ const Productosadmin = () => {
         setProductoEditado(res.data.producto);
         window.scrollTo(0, 200);
       })
-      .catch((err) => setMsgError(err.response.data.msg));
+      .catch((err) => {
+        setError(true);
+        setMsgError(err.response.data.msg);
+      });
   };
   const onChangeProducto = (e) => {
     setError(false);
@@ -133,7 +139,9 @@ const Productosadmin = () => {
   };
 
   const verMas = () =>
-    totalPages > currentPage &&
+    totalPages >= currentPage &&
+    currentPage !== 1 &&
+    !error &&
     !loading && (
       <button
         className="btn btn-info"
@@ -145,7 +153,9 @@ const Productosadmin = () => {
       </button>
     );
   const volver = () =>
-    totalPages === currentPage &&
+    totalPages >= currentPage &&
+    currentPage !== 1 &&
+    !error &&
     !loading && (
       <button
         className="btn btn-info"
@@ -170,13 +180,12 @@ const Productosadmin = () => {
   return (
     <div>
       <Container className="my-5">
-        {error ? (
-          <Alert
-            className="p-3 text-center text-uppercase font-weight-bold"
-            variant="danger"
-          >
-            {msgError}
-          </Alert>
+        {error && !loading ? (
+          <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
+            <Alert className="text-center" variant="danger">
+              <h6> {msgError} </h6>
+            </Alert>
+          </Row>
         ) : null}
         <Row className="my-4 d-flex justify-content-center align-items-center">
           {loading ? (
@@ -253,7 +262,7 @@ const Productosadmin = () => {
                 <Row>
                   <Col className="my-3">
                     <Form.Label>Tipo de Producto</Form.Label>
-                    <Form.Group controlId="exampleForm.SelectCustom">
+                    <Form.Group>
                       <Form.Control
                         as="select"
                         name="tipoproducto"
@@ -275,7 +284,7 @@ const Productosadmin = () => {
                 <Row>
                   <Col className="my-3">
                     <Form.Label>Disponibilidad</Form.Label>
-                    <Form.Group controlId="exampleForm.SelectCustom">
+                    <Form.Group>
                       <Form.Control
                         as="select"
                         className="w-100"
@@ -306,7 +315,8 @@ const Productosadmin = () => {
             </Col>
           </Row>
         ) : null}
-        {!loading ? (
+
+        {!loading && productos.length !== 0 ? (
           <Row className="d-flex justify-content-center align-items-center text-start my-5">
             <Col sm={12} md={8} lg={10}>
               <Table striped bordered hover responsive="sm">
@@ -344,6 +354,7 @@ const Productosadmin = () => {
             </Col>
           </Row>
         ) : null}
+
         <div className="text-center my-4">{verMas()}</div>
         <div className="text-center my-4">{volver()}</div>
       </Container>

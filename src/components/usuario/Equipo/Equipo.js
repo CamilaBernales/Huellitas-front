@@ -81,7 +81,7 @@ const Equipo = () => {
   return (
     <Fragment>
       <Container className="my-5 py-3">
-        <Row className=" col-12 m-auto">
+        <Row  className="d-flex justify-content-around align-items-center">
           {equipo.map((persona) => (
             <Col
               key={persona.id}

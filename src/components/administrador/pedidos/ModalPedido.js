@@ -1,6 +1,7 @@
 import React from "react";
 import { Table, Modal, Button, Row, Col } from "react-bootstrap";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
   return (
@@ -14,7 +15,7 @@ export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Id Pedido: {compra._id}
+          Pedido {moment(compra.fecha).format("DD-MM-YYYY")}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -77,6 +78,6 @@ export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
 ModalPedido.propTypes = {
   modalShow: PropTypes.bool,
   onHide: PropTypes.func,
-  compra: PropTypes.object,
-  pedido: PropTypes.object,
+  compra: PropTypes.array,
+  pedido: PropTypes.array,
 };

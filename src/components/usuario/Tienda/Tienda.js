@@ -13,7 +13,6 @@ import axiosConfig from "../../../config/axios";
 import "./../../../css/Tienda.css";
 import PropTypes from "prop-types";
 
-
 const Tienda = (props) => {
   const { setComprasGuardadas } = props;
   const [productos, setProductos] = useState([]);
@@ -23,6 +22,8 @@ const Tienda = (props) => {
   const [filtrarTipo, setFiltrarTipo] = useState("");
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const [error, setError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const onChangeFiltroNombre = (e) => {
     setFiltrarNombre(e.target.value);
@@ -31,17 +32,20 @@ const Tienda = (props) => {
     setFiltrarTipo(e.target.value);
   };
   
-  // console.log(setComprasGuardadas)
   const traerProductos = () => {
     axiosConfig
-    .get(`/api/productos/listado?pagina=${currentPage}`)
-    .then((res) => {
-      setProductos(res.data.docs);
-      setTotalPages(res.data.totalPages);
-    })
-      .catch((err) => console.log(err.response));
+      .get(`/api/productos/listado?pagina=${currentPage}`)
+      .then((res) => {
+        setProductos(res.data.docs);
+        setTotalPages(res.data.totalPages);
+      })
+      .catch((err) => {
+        setError(true);
+        setErrorMsg(err.response.data.msg);
+      });
   };
   const filtrarProductos = (e) => {
+    e.preventDefault();
     setFiltrar(true);
     if (
       (filtrarNombre === "" && filtrarTipo !== "") ||
@@ -56,7 +60,10 @@ const Tienda = (props) => {
           setProductos(res.data.docs);
           setTotalPages(res.data.totalPages);
         })
-        .catch((err) => console.log(err));
+        .catch(() => {
+          setError(true);
+          setErrorMsg("Hubo un error.");
+        });
     } else {
       traerProductos();
       setCurrentPage(1);
@@ -102,6 +109,13 @@ const Tienda = (props) => {
     <div>
       <Fragment>
         <Container className="my-5 py-3">
+          <Row className="px-5 my-3 d-flex justify-content-center align-items-center ">
+            {error ? (
+              <Alert variant="danger">
+                <h6>{errorMsg}</h6>
+              </Alert>
+            ) : null}
+          </Row>
           <Form onSubmit={filtrarProductos}>
             <Row className="d-flex justify-content-around align-items-center">
               <Col sm={12} md={6} xl={4} lg={6} className="my-2">
