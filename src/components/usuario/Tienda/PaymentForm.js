@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import Cards from 'react-credit-cards';
-import { Form } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import 'react-credit-cards/es/styles-compiled.css';
+import PropTypes from 'prop-types';
 
-export default class PaymentForm extends React.Component {
+class PaymentForm extends React.Component {
+  
   state = {
     cvc: '',
     expiry: '',
@@ -18,11 +20,11 @@ export default class PaymentForm extends React.Component {
   
   handleInputChange = (e) => {
     const { name, value } = e.target;
-    
     this.setState({ [name]: value });
   }
   
   render() {
+    
     return (
       <Fragment>
         <Cards
@@ -33,40 +35,69 @@ export default class PaymentForm extends React.Component {
           number={this.state.number}
         />
         <Form>
-        	<Form.Control
-            className="m-3"
-            type="tel"
-            name="number"
-            placeholder="Número de Tarjeta"
-            onChange={this.handleInputChange}
-            onFocus={this.handleInputFocus}
-          />
-          <Form.Control
-            className="m-3"
-            type="tel"
-            name="name"
-            placeholder="Nombre"
-            onChange={this.handleInputChange}
-            onFocus={this.handleInputFocus}
-          />
-          <Form.Control
-            className="m-3"
-            type="tel"
-            name="expiry"
-            placeholder="Vencimiento"
-            onChange={this.handleInputChange}
-            onFocus={this.handleInputFocus}
-          />
-          <Form.Control
-            className="m-3"
-            type="tel"
-            name="cvc"
-            placeholder="CVC"
-            onChange={this.handleInputChange}
-            onFocus={this.handleInputFocus}
-          />
+          <Row>
+            <Col>
+              <Form.Control
+                maxLength="16"
+                className="m-3"
+                type="tel"
+                name="number"
+                placeholder="Número de Tarjeta"
+                onChange={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+                onInput={() => this.props.handleOnInput(this.state)}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Control
+                className="m-3"
+                type="text"
+                name="name"
+                maxLength="25"
+                placeholder="Nombre"
+                onChange={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+                onInput={() => this.props.handleOnInput(this.state)}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form.Control
+                className="m-3"
+                type="tel"
+                name="expiry"
+                maxLength="4"
+                placeholder="Vencimiento"
+                onChange={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+                onInput={() => this.props.handleOnInput(this.state)}
+              />
+            </Col>
+            <Col>
+              <Form.Control
+                className="m-3"
+                type="tel"
+                name="cvc"
+                minLength="3"
+                maxLength="4"
+                placeholder="CVC"
+                onChange={this.handleInputChange}
+                onFocus={this.handleInputFocus}
+                onInput={() => this.props.handleOnInput(this.state)}
+              />
+            </Col>
+          </Row>
         </Form>
       </Fragment>
     );
   }
 }
+
+PaymentForm.propTypes = {
+  handleOnInput: PropTypes.func
+}
+
+export default PaymentForm;
