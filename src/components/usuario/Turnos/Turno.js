@@ -48,7 +48,6 @@ const Turno = () => {
       nuevoTurno.hora.trim() !== "" &&
       nuevoTurno.telefono.trim() !== ""
     ) {
-      e.preventDefault();
       axiosConfig
         .post("/api/turnos/alta", nuevoTurno)
         .then(() => {
@@ -95,7 +94,7 @@ const Turno = () => {
         ) : null}
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
-            <h3 className="text-center">Datos de tu Mascota</h3>
+            <h3 className="text-center">Datos de tu mascota</h3>
             <Form onSubmit={submitTurno}>
               <Row className="my-2">
                 <Col className="my-2">
@@ -106,7 +105,7 @@ const Turno = () => {
                     name="nombremascota"
                     onChange={handleTurno}
                     maxLength="40"
-                    className="border border-primary redondeado"
+                    className="border border-info "
                   />
                 </Col>
               </Row>
@@ -118,7 +117,7 @@ const Turno = () => {
                     name="edad"
                     onChange={handleTurno}
                     type="number"
-                    className="border border-primary redondeado"
+                    className="border border-info "
                   />
                 </Col>
               </Row>
@@ -130,7 +129,7 @@ const Turno = () => {
                     name="raza"
                     onChange={handleTurno}
                     maxLength="40"
-                    className="border border-primary redondeado"
+                    className="border border-info "
                   />
                 </Col>
               </Row>
@@ -142,14 +141,12 @@ const Turno = () => {
                     name="particularidades"
                     onChange={handleTurno}
                     maxLength="120"
-                    className="border border-primary redondeado"
+                    className="border border-info "
                   />
                 </Col>
               </Row>
             </Form>
-          </Col>
-
-          <Col  sm={12} md={8} xl={6}>
+          
             <Form className="mt-5" onSubmit={submitTurno}>
               <h3 className="text-center">Información de tu turno</h3>
               <Row className="my-2">
@@ -162,7 +159,7 @@ const Turno = () => {
                     onChange={handleTurno}
                     type="number"
                     maxLength="10"
-                    className="border border-primary redondeado"
+                    className="border border-info "
                   />
                 </Col>
               </Row>
@@ -174,7 +171,7 @@ const Turno = () => {
                     type="date"
                     name="fecha"
                     onChange={handleTurno}
-                    className="border border-primary redondeado"
+                    className="border border-info "
                   />
                 </Col>
               </Row>
@@ -184,7 +181,7 @@ const Turno = () => {
                     <Form.Label>Elige un horario para tu turno</Form.Label>
                     <Form.Control
                       as="select"
-                      className="border border-primary w-100 redondeado"
+                      className="border border-info w-100 "
                       onChange={handleTurno}
                       name="hora"
                       custom
@@ -205,7 +202,7 @@ const Turno = () => {
                   </Form.Label>
                   <textarea
                     required
-                    className="p-4 w-100 border border-primary redondeado"
+                    className="p-4 w-100 border border-info "
                     id="resumen"
                     name="resumen"
                     onChange={handleTurno}

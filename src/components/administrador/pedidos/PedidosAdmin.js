@@ -102,7 +102,7 @@ export default function PedidosAdmin() {
           </Button>
         </Col>
       </Form.Row>
-      {(!loading && compras.length === 0) || (!loading && error) ? (
+      {(!loading && error) ? (
         <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
           <Alert className="text-center" variant="warning">
             <h6>

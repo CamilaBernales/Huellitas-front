@@ -22,9 +22,13 @@ const RutaPrivAdmin = ({ component: Component, ...props }) => {
   return loading ? null : (
     <Route
       {...props}
-      render={(props) =>
-        !permisoValido ? <Redirect to="/" /> : <Component {...props} />
-      }
+      render={(routeProps) => {
+        return !permisoValido ? (
+          <Redirect to="/login" />
+        ) : (
+          <Component {...routeProps} {...props} />
+        );
+      }}
     />
   );
 };

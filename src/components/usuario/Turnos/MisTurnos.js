@@ -149,6 +149,8 @@ const MisTurnos = () => {
                       onClick={() => setHistorial(false)}
                     >
                       Ocultar historial
+                      {" "}
+                      <i class="fas fa-arrow-up"></i>
                     </Link>
                   </em>
                 </strong>
@@ -209,7 +211,9 @@ const MisTurnos = () => {
                     className="text-dark"
                     onClick={() => setHistorial(true)}
                   >
-                    Historial de turnos
+                    Historial de turnos{" "}
+                    <i class="fas fa-arrow-down"></i>
+
                   </Link>
                 </em>
               </strong>

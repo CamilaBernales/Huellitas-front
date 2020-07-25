@@ -91,11 +91,10 @@ const Servicio = () => {
                 <i className="my-3 far fa-clock fa-2x d-flex justify-content-center bg-gradient-warning"></i>
               </span>
               <h4 className="font-weight-bold">24hs</h4>
-              <p>
-                Todos los días, entre las 9 y las 21 hs. funcionan la
-                atención y los consultorios de manera habitual. A partir de las
-               21 hs., y durante toda la noche, tenemos Servicio de
-                Guardia.
+              <p className="px-2">
+                Todos los días, entre las 9 y las 21 hs. funcionan la atención y
+                los consultorios de manera habitual. A partir de las 21 hs., y
+                durante toda la noche, tenemos Servicio de Guardia.
               </p>
             </div>
           </div>

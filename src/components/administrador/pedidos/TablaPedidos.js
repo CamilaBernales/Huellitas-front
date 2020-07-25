@@ -65,5 +65,5 @@ export default function TablaPedidos({ compras }) {
   );
 }
 TablaPedidos.propTypes = {
-  compras: PropTypes.object,
+  compras: PropTypes.array,
 };

@@ -176,21 +176,7 @@ const Turnosadmin = () => {
                 </tbody>
               </Table>
             </Col>
-          ) : (
-            !loading && (
-              <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
-                <Alert className="text-center" variant="warning">
-                  <h6>
-                    {" "}
-                    No hay turnos solicitados{" "}
-                    <span role="img" aria-label="cara triste">
-                      &#128546;
-                    </span>{" "}
-                  </h6>
-                </Alert>
-              </Row>
-            )
-          )}
+          ) : null}
         </Row>
         <Row className="d-flex justify-content-center align-items-center">
           <div className="text-center my-4 mx-1">{volver()}</div>

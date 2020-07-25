@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, NavLink  } from "react-router-dom";
 import "../../../css/Navbar.css";
 import tokenAuth from "../../../config/token";
 import PreCarrito from "./PreCarrito";
@@ -36,38 +36,39 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
           <>
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="navlink m-auto ">
-                <Nav.Link className="btn-navbar" href="/">
+                <NavLink  activeClassName="selected" className="btn-navbar" exact to="/">
                   Inicio
-                </Nav.Link>
+                </NavLink >
                 {isLogIn ? (
                   <NavDropdown
                     className="btn-navbar"
                     title="Turnos"
                     id="basic-nav-dropdown"
-                  >
-                    <NavDropdown.Item href="/turno">
+                    activeClassName="selected"
+z                  >
+                    <NavLink className="dropdown-item" activeClassName="selected" exact to="/turno">
                       Solicitar Turno
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="/misturnos">
+                    </NavLink>
+                    <NavLink  className="dropdown-item" activeClassName="selected" exact to="/misturnos">
                       Mis Turnos
-                    </NavDropdown.Item>
+                    </NavLink>
                   </NavDropdown>
                 ) : (
-                  <Nav.Link className="btn-navbar" href="/login">
+                  <NavLink activeClassName="selected" className="btn-navbar" exact to="/login">
                     Turnos
-                  </Nav.Link>
+                  </NavLink>
                 )}
-                <Nav.Link className="btn-navbar" href="/tienda">
+                <NavLink activeClassName="selected" className="btn-navbar" exact to="/tienda">
                   Tienda
-                </Nav.Link>
+                </NavLink>
                 {isLogIn ? (
-                  <Nav.Link className="btn-navbar" href="/miscompras">
+                  <NavLink activeClassName="selected" className="btn-navbar" exact to="/miscompras">
                     Tus Compras
-                  </Nav.Link>
+                  </NavLink>
                 ) : null}
-                <Nav.Link className="btn-navbar" href="/equipo">
+                <NavLink activeClassName="selected" className="btn-navbar" exact to="/equipo">
                   Nuestro Equipo
-                </Nav.Link>
+                </NavLink>
               </Nav>
             </Navbar.Collapse>
             <Navbar.Brand onClick={() => setModalShow(true)}>

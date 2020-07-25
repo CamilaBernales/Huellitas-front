@@ -27,7 +27,8 @@ const CambioContraseña = () => {
       });
   };
   const enviarMail = () => {
-    axiosConfig.post("/api/usuarios/emailresetpassword", email).then(() => {
+    axiosConfig.post("/api/usuarios/emailresetpassword", email)
+    .then(() => {
       setSendingEmail(true);
     });
   };

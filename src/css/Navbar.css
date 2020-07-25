@@ -36,6 +36,10 @@
 } */
 
 .btn-navbar {
+  margin: auto 4px auto 4px;
+  color: white !important;
+  text-transform: uppercase;
+  font-weight: 600;
   display: inline-block;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
@@ -46,6 +50,9 @@
   transition-property: color;
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
+}
+.selected{
+  font-weight: 900;
 }
 .btn-navbar:before {
   content: "";

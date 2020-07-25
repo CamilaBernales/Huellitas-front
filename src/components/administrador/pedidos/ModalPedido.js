@@ -78,6 +78,6 @@ export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
 ModalPedido.propTypes = {
   modalShow: PropTypes.bool,
   onHide: PropTypes.func,
-  compra: PropTypes.array,
+  compra: PropTypes.object,
   pedido: PropTypes.array,
 };

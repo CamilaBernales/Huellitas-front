@@ -89,10 +89,10 @@ const Productosadmin = () => {
   };
   const actualizarProducto = () => {
     if (
-      productoEditado.nombre.trim() !== "" &&
-      productoEditado.tipoproducto.trim() !== "" &&
-      productoEditado.disponibilidad.trim() !== "" &&
-      productoEditado.descripcion.trim() !== "" &&
+      productoEditado.nombre !== "" &&
+      productoEditado.tipoproducto !== "" &&
+      productoEditado.disponibilidad !== "" &&
+      productoEditado.descripcion !== "" &&
       productoEditado.precio !== "" &&
       productoEditado.imagen !== ""
     ) {
@@ -139,8 +139,7 @@ const Productosadmin = () => {
   };
 
   const verMas = () =>
-    totalPages >= currentPage &&
-    currentPage !== 1 &&
+    totalPages > currentPage &&
     !error &&
     !loading && (
       <button
@@ -154,8 +153,8 @@ const Productosadmin = () => {
     );
   const volver = () =>
     totalPages >= currentPage &&
-    currentPage !== 1 &&
     !error &&
+    currentPage !== 1 &&
     !loading && (
       <button
         className="btn btn-info"
@@ -355,8 +354,10 @@ const Productosadmin = () => {
           </Row>
         ) : null}
 
-        <div className="text-center my-4">{verMas()}</div>
-        <div className="text-center my-4">{volver()}</div>
+        <Row className="d-flex justify-content-center align-items-center">
+          <div className="text-center my-4 mx-1">{volver()}</div>
+          <div className="text-center my-4 mx-1">{verMas()}</div>
+        </Row>
       </Container>
     </div>
   );

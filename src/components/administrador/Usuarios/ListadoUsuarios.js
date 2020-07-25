@@ -145,7 +145,12 @@ const ListadoUsuarios = () => {
                           <td>{usuario.email}</td>
                           <td>{usuario.rol}</td>
                           <td>
-                            <button onClick={() => quitarPermisos(usuario)}>
+                            <button
+                              type="button"
+                              className="btn btn-info"
+                              onClick={() => quitarPermisos(usuario)}
+                            >
+                              {" "}
                               Hacer usuario general
                             </button>
                           </td>
@@ -158,7 +163,12 @@ const ListadoUsuarios = () => {
                           <td>{usuario.email}</td>
                           <td>{usuario.rol}</td>
                           <td>
-                            <button onClick={() => otorgarPermisos(usuario)}>
+                            <button
+                              type="button"
+                              className="btn btn-info"
+                              onClick={() => otorgarPermisos(usuario)}
+                            >
+                              {" "}
                               Hacer admin
                             </button>
                           </td>

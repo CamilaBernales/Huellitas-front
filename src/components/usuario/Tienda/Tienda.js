@@ -101,7 +101,7 @@ const Tienda = (props) => {
     setTimeout(() => {
       setLoading(false);
       traerProductos();
-    }, 3000);
+    }, 2000);
     // eslint-disable-next-line
   }, [currentPage]);
 

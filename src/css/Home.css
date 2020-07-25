@@ -14,9 +14,9 @@ body{
 
 h3{
     color: #00a6a6;
-    text-transform: uppercase;
     font-weight: 700 ;
-    font-family: "Open Sans" , Arial, sans-serif;;
+    font-family: "Montserrat";
+    margin: 2rem;
 }
 
 .btn-custom {

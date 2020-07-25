@@ -45,7 +45,7 @@ const Logo = () => {
     loginLogo = (
       <Row className="p-3 mr-2">
         <Dropdown>
-          <Dropdown.Toggle className="buttonIS" id="dropdown-custom-1">
+          <Dropdown.Toggle className="buttonIS mr-3" id="dropdown-custom-1">
             Mi cuenta
             </Dropdown.Toggle>
           <Dropdown.Menu>

@@ -21,7 +21,7 @@ const Logo = () => {
 
     if (rol === "usuario") {
         loginLogo = (
-            <div className="img-fluid d-flex justify-content-end ">
+            <div className="img-fluid d-flex justify-content-end mr-5 ">
                 <div className="p-3 ml-5">
                     <Link to="/carrito">
                         <span className="p-2">(0)</span>
@@ -39,7 +39,7 @@ const Logo = () => {
         
     } else if (rol === 'admin') {
         loginLogo = (
-            <div className="img-fluid d-flex justify-content-end ">
+            <div className="img-fluid d-flex justify-content-end mr-2 ">
                 
                 <div className="p-3">
                     <em className="mr-4">

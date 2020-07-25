@@ -90,7 +90,7 @@ export default function FormMensaje() {
               <Form.Group controlId="formName">
                 <Form.Control
                   placeholder="Nombre"
-                  className="formulariosMensaje border border-primary redondeado"
+                  className="formulariosMensaje border border-info"
                   type="name"
                   name="nombre"
                   value={nombre}
@@ -102,7 +102,7 @@ export default function FormMensaje() {
               <Form.Group controlId="formEmail">
                 <Form.Control
                   placeholder="Email"
-                  className="formulariosMensaje border border-primary redondeado"
+                  className="formulariosMensaje border border-info"
                   rows="3"
                   type="email"
                   name="email"
@@ -120,7 +120,7 @@ export default function FormMensaje() {
               >
                 <Form.Control
                   placeholder="Mensaje"
-                  className="formulariosMensaje border border-primary redondeado"
+                  className="formulariosMensaje border border-info"
                   as="textarea"
                   rows="3"
                   name="mensaje"

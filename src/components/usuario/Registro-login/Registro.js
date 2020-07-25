@@ -76,7 +76,7 @@ export default function Registro() {
           </Col>
           <Col sm={12} md={8} xl={4} className="col-12 mx-3 my-2">
             <Form className="formulario" onSubmit={onSubmitForm}>
-              <h3 className="text-center text-uppercase mx-4">
+              <h3 className="text-center mx-4">
                 Crear una cuenta
               </h3>
               <Form.Group controlId="formName">

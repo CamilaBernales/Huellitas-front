@@ -161,7 +161,7 @@ const Carrito = (props) => {
   const solicitudCompra = () => {
     axiosConfig
       .post("api/compra", compraPagada)
-      .then((res) => {
+      .then(() => {
         Swal.fire({
           position: "center",
           icon: "success",
