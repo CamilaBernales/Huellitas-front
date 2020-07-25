@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Col } from "react-bootstrap";
-import { NavLink  } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../../../css/Navbar.css";
 import "../../../css/NavbarAdmin.css"
 import tokenAuth from "../../../config/token";
 import PreCarrito from "./PreCarrito";
 import BotonInicioSesion from "./BotonInicioSesion";
 import PropTypes from "prop-types";
-import NavbarAdmin from "../../administrador/Elementos-Comunes/NavbarAdmin"
 import ImagenHome from "./ImagenHome"
 // import Footer from "./Footer"
 
@@ -34,6 +33,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
   return (
     <>
       {!respuesta.isAdmin ? (
+        //NAVBAR DE USUARIO
         <>
           <ImagenHome />
           <Navbar className="navbar navlink" collapseOnSelect expand="lg">
@@ -41,7 +41,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
             <Navbar.Brand href="/">Huellitas</Navbar.Brand>
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="navlink m-auto ">
-                <NavLink  activeClassName="selected" className="btn-navbar" exact to="/">
+                <NavLink activeClassName="selected" className="btn-navbar" exact to="/">
                   Inicio
                 </NavLink >
                 {isLogIn ? (
@@ -50,19 +50,19 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                     title="Turnos"
                     id="basic-nav-dropdown"
                     activeClassName="selected"
-z                  >
+                    z                  >
                     <NavLink className="dropdown-item" activeClassName="selected" exact to="/turno">
                       Solicitar Turno
                     </NavLink>
-                    <NavLink  className="dropdown-item" activeClassName="selected" exact to="/misturnos">
+                    <NavLink className="dropdown-item" activeClassName="selected" exact to="/misturnos">
                       Mis Turnos
                     </NavLink>
                   </NavDropdown>
                 ) : (
-                  <NavLink activeClassName="selected" className="btn-navbar" exact to="/login">
-                    Turnos
-                  </NavLink>
-                )}
+                    <NavLink activeClassName="selected" className="btn-navbar" exact to="/login">
+                      Turnos
+                    </NavLink>
+                  )}
                 <NavLink activeClassName="selected" className="btn-navbar" exact to="/tienda">
                   Tienda
                 </NavLink>
@@ -85,10 +85,38 @@ z                  >
           </Navbar>
         </>
       ) : (
+        //NAVBAR DEL ADMIN
           <>
-            <Navbar className="navbar navlink" collapseOnSelect expand="lg">
+            <Navbar className="navbar-admin navlink" collapseOnSelect expand="lg">
               <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <NavbarAdmin />
+              {/* <NavbarAdmin /> */}
+              <Navbar.Brand href="/">Huellitas <h5>Admin</h5></Navbar.Brand>
+              <Navbar.Collapse id="responsive-navbar-nav">
+                <Nav className=" navlink mx-auto ">
+                  <Link to="/admin/pedidos" className="nav-link btn-navbar-admin">
+                    Pedidos
+                </Link>
+                  <NavDropdown title="Turnos" id="basic-nav-dropdown" className="btn-navbar-admin">
+                    <NavDropdown.Item href="/admin/turnos">
+                      Listado de turnos
+                  </NavDropdown.Item>
+                  </NavDropdown>
+                  <NavDropdown title="Productos" id="basic-nav-dropdown" className="btn-navbar-admin">
+                    <NavDropdown.Item href="/admin/altaproducto">
+                      Alta de Producto
+                  </NavDropdown.Item>
+                    <NavDropdown.Item href="/admin/productos">
+                      Listado de Productos
+                  </NavDropdown.Item>
+                  </NavDropdown>
+                  <Link to="/admin/listadousuarios" className="nav-link btn-navbar-admin">
+                    Usuarios
+                </Link>
+                  <Link to="/admin/listadomensajes" className="nav-link btn-navbar-admin">
+                    Mensajes
+                </Link>
+                </Nav>
+              </Navbar.Collapse>
               <BotonInicioSesion />
             </Navbar>
           </>

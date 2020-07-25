@@ -78,7 +78,7 @@ const ListadoMensajes = () => {
                           {moment(mensaje.created_at).format("DD-MM-YYYY")}
                         </td>
                         <td className="text-center">
-                          <Button variant="info">
+                          <Button variant="info" className="boton-email">
                             <a
                               href={`mailto:${mensaje.email}?subject=Equipo%20Veterinaria%20Huellitas`}
                               className="mx-2"
