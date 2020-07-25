@@ -3,6 +3,8 @@ import axios from "../../../config/axios";
 import { Container, Table, Row, Col, Spinner, Alert } from "react-bootstrap";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
+import "../../../css/ListadoUsuarios.css"
+
 const ListadoUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
   const [usuarioEditado, setUsuarioEditado] = useState(false);
@@ -130,10 +132,10 @@ const ListadoUsuarios = () => {
               <Table striped bordered hover responsive="sm">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Rol</th>
-                    <th>Cambiar rol</th>
+                    <th className="th-admin">Nombre</th>
+                    <th className="th-admin">Correo</th>
+                    <th className="th-admin">Rol</th>
+                    <th className="th-admin">Cambiar rol</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -147,7 +149,7 @@ const ListadoUsuarios = () => {
                           <td>
                             <button
                               type="button"
-                              className="btn btn-info"
+                              className="btn boton-permisos"
                               onClick={() => quitarPermisos(usuario)}
                             >
                               {" "}
@@ -165,7 +167,7 @@ const ListadoUsuarios = () => {
                           <td>
                             <button
                               type="button"
-                              className="btn btn-info"
+                              className="btn boton-permisos"
                               onClick={() => otorgarPermisos(usuario)}
                             >
                               {" "}

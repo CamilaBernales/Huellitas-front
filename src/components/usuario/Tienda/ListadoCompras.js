@@ -29,7 +29,7 @@ const ListadoCompras = (props) => {
         <Col sm={12} md={8} lg={10}>
         <Table responsive="sm">
           <thead>
-            <tr>
+            <tr className="th-usuario">
               <th>Producto</th>
               <th>Nombre</th>
               <th>Cantidad</th>
@@ -49,7 +49,9 @@ const ListadoCompras = (props) => {
                 <td>{compra.cantidad}</td>
                 <td>{compra.precio}</td>
                 <td>
-                  <Button onClick={() => eliminarUnProducto(compra._id)}>
+                  <Button
+                    className="btn btn-danger"
+                    onClick={() => eliminarUnProducto(compra._id)}>
                     <i className="fas fa-trash fa-1x"></i>
                   </Button>
                 </td>

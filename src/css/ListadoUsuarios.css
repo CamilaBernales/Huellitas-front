@@ -1,0 +1,13 @@
+.boton-permisos{
+    background: #806db6;
+    color: #fff;
+    border:#806db6 ;
+}
+
+.boton-permisos:hover,
+.boton-permisos:focus{
+    background: #5534af;
+    color:#fff;
+    border:#5534af;
+}
+

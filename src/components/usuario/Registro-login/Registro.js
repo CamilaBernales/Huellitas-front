@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 // import { Redirect } from "react-router-dom";
 import registroimg from "../../../img/registro.svg";
+import Footer from "../Elementos-Comunes/Footer"
 import "../../../css/Login.css";
 import axiosConfig from "../../../config/axios";
 
@@ -164,6 +165,7 @@ export default function Registro() {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </Fragment>
   );
 }

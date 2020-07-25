@@ -1,3 +1,9 @@
 .carrito .card-header{
     background-color: #ffffff;
 }
+
+.th-usuario{
+    background: #4287ad;
+    color: white;
+    border-style : hidden!important
+}

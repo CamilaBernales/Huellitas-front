@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import Footer from "../Elementos-Comunes/Footer"
 import "../../../css/Equipo.css"
 
 export let equipo = [
@@ -108,6 +109,7 @@ const Equipo = () => {
           ))}
         </Row>
       </Container>
+      <Footer />
     </Fragment>
   );
 };

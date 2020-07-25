@@ -13,6 +13,7 @@ import {
 } from "react-bootstrap";
 import PaymentForm from "./PaymentForm";
 import ListadoCompras from "./ListadoCompras";
+import Footer from "../Elementos-Comunes/Footer"
 import "../../../css/Carrito.css";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
@@ -466,6 +467,7 @@ const Carrito = (props) => {
           </Tab>
         </Tabs>
       </Container>
+      <Footer />
     </Fragment>
   );
 };

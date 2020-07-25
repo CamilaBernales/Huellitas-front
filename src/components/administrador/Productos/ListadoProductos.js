@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
+import "../../../css/ListadoUsuarios.css"
 
 const Productosadmin = () => {
   const [loading, setLoading] = useState(true);
@@ -303,7 +304,7 @@ const Productosadmin = () => {
               </Form>
               <Row className="d-flex justify-content-end align-items-end">
                 <Button
-                  variant="outline-primary"
+                  className="boton-permisos"
                   size="lg"
                   onClick={actualizarProducto}
                   disabled={error === true}
@@ -321,12 +322,12 @@ const Productosadmin = () => {
               <Table striped bordered hover responsive="sm">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Detalles del producto</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Producto</th>
-                    <th>Editar</th>
+                    <th  className="th-admin">Nombre</th>
+                    <th className="th-admin">Detalles del producto</th>
+                    <th className="th-admin">Precio</th>
+                    <th className="th-admin">Stock</th>
+                    <th className="th-admin">Producto</th>
+                    <th className="th-admin">Editar</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -340,6 +341,7 @@ const Productosadmin = () => {
                         <td>{producto.tipoproducto}</td>
                         <td className="text-center">
                           <Button
+                            className="boton-permisos"
                             onClick={() => obtenerUnProducto(producto._id)}
                           >
                             <i className="fas fa-edit" />

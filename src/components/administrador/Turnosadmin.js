@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import axiosConfig from "../../config/axios";
 import moment from "moment";
+import "../../css/Turno.css"
 
 const Turnosadmin = () => {
   const [turnos, setTurnos] = useState([]);
@@ -119,7 +120,7 @@ const Turnosadmin = () => {
               </Form.Group>
             </Col>
             <Col sm={12} md={4} className="my-2">
-              <Button onClick={filtrarTurnos} className="boton">
+              <Button onClick={filtrarTurnos} className="boton-search-admin buscar-admin">
                 Buscar
               </Button>
             </Col>
@@ -158,10 +159,10 @@ const Turnosadmin = () => {
               <Table size="sm" striped bordered hover>
                 <thead>
                   <tr>
-                    <th>Nombre Mascota</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Contacto</th>
+                    <th className="th-admin">Nombre Mascota</th>
+                    <th className="th-admin">Fecha</th>
+                    <th className="th-admin">Hora</th>
+                    <th className="th-admin">Contacto</th>
                   </tr>
                 </thead>
                 <tbody>

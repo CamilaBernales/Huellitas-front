@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from "react";
 import FormContacto from "./FormMensaje";
+import Footer from "../Elementos-Comunes/Footer"
 
 export default function Contacto() {
   const [consulta, setConsulta] = useState([]);
@@ -22,6 +23,7 @@ export default function Contacto() {
         aria-hidden="false"
         tabIndex="0"
       ></iframe>
+      <Footer/>
     </Fragment>
   );
 }

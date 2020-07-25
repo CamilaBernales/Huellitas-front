@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
 import "../../../css/Turno.css";
 import moment from "moment";
+import Footer from "../Elementos-Comunes/Footer"
 
 const Turno = () => {
   const [nuevoTurno, setNuevoTurno] = useState({
@@ -221,6 +222,7 @@ const Turno = () => {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </>
   );
 };

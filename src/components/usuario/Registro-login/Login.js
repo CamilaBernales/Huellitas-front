@@ -3,6 +3,7 @@ import { Container, Form, Button, Col, Row, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "../../../css/Login.css";
 import imgLogin from "../../../img/login.svg";
+import Footer from "../Elementos-Comunes/Footer"
 import axiosConfig from "../../../config/axios";
 
 export default function Login() {
@@ -127,6 +128,7 @@ export default function Login() {
           </Col>
         </Row>
       </Container>
+      <Footer />
     </Fragment>
   );
 }

@@ -25,10 +25,10 @@ export default function TablaPedidos({ compras }) {
       <Table size="sm" striped bordered hover>
         <thead>
           <tr>
-            <th>Fecha</th>
-            <th>Cliente</th>
-            <th>Direccion</th>
-            <th>Acciones</th>
+            <th className="th-admin">Fecha</th>
+            <th className="th-admin">Cliente</th>
+            <th className="th-admin">Direccion</th>
+            <th className="th-admin">Acciones</th>
           </tr>
         </thead>
         <tbody>

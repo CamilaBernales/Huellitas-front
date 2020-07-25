@@ -9,6 +9,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import Producto from "./Producto";
+import Footer from "../Elementos-Comunes/Footer"
 import axiosConfig from "../../../config/axios";
 import "./../../../css/Tienda.css";
 import PropTypes from "prop-types";
@@ -196,6 +197,7 @@ const Tienda = (props) => {
             <div className="text-center my-4 mx-1">{verMas()}</div>
           </Row>
         </Container>
+        <Footer />
       </Fragment>
     </div>
   );

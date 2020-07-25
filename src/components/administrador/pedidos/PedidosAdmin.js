@@ -96,8 +96,8 @@ export default function PedidosAdmin() {
             />
           </Form.Group>
         </Col>
-        <Col sm={12} md={4} className="my-2">
-          <Button className="mx-2" onClick={filtrarPedidos} variant="info">
+        <Col sm={12} md={4}>
+          <Button className="mx-2 boton-search-admin buscar-admin" onClick={filtrarPedidos} variant="info">
             Buscar
           </Button>
         </Col>

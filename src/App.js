@@ -24,9 +24,8 @@ import PerfilUsuario from "./components/usuario/Elementos-Comunes/PerfilUsuario"
 import axiosConfig from "./config/axios";
 import tokenAuth from "./config/token";
 import Navbar from "./components/usuario/Elementos-Comunes/Navbar";
-import Footer from "./components/usuario/Elementos-Comunes/Footer";
+// import Footer from "./components/usuario/Elementos-Comunes/Footer";
 import Whatsapp from "./components/usuario/Elementos-Comunes/Whatsapp";
-// import ImagenHome from "./components/usuario/Elementos-Comunes/ImagenHome";
 import MisCompras from "./components/usuario/MisCompras/MisCompras";
 import CambioContraseña from "./components/usuario/Registro-login/CambioContraseña";
 import RestablecerContraseña from "./components/usuario/Registro-login/RestablecerContraseña";
@@ -177,7 +176,7 @@ function App() {
             <Route exact path="/resetpassword" component={CambioContraseña} />
           </Switch>
         )}
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </div>
   );

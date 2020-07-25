@@ -11,6 +11,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import ModalPedido from "../../administrador/pedidos/ModalPedido";
+import Footer from "../Elementos-Comunes/Footer"
 import moment from "moment";
 
 const MisCompras = () => {
@@ -137,6 +138,7 @@ const MisCompras = () => {
           </>
         )}
       </Container>
+      <Footer />
     </>
   );
 };

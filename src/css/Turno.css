@@ -86,3 +86,60 @@
 .redondeado {
     border-radius: 20px;
 }
+
+
+/*LISTADO DE TURNOS ADMIN*/
+.boton-search-admin {
+	display: inline-block;
+	font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	position: relative;
+	padding: .5em .8em;
+	padding-right: 2em;
+	background: #806db6;
+	border: none;
+	color: white;
+    transition: .2s;
+    }  
+
+.boton-search-admin:before,
+.boton-search-admin:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    width: 2.8em;
+    content: "\00a0";
+    font-family: 'FontAwesome', sans-serif;
+    font-size: 1.2em;
+    text-align: center;
+    transition: .2s;
+    transform-origin: 50% 60%;
+    }
+.boton-search-admin:before {
+    background: fadeout(#000, 90%);
+    }
+.boton-search-admin:hover {
+    background: #5534af;
+    }
+.boton-search-admin:active,
+.boton-search-admin:focus {
+    background-color: #806db6;
+    outline: none;
+    }
+    
+.boton-search-admin {
+    min-width: 8em;
+    }
+
+.buscar-admin:after {
+	content:"\f002";
+	}
+.buscar-admin:hover:after {
+	-webkit-animation: none;
+	-webkit-transform: scale(1.4);
+	animation: none;
+	transform: scale(1.4);
+	}

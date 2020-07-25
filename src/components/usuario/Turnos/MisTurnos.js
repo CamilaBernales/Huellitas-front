@@ -14,6 +14,7 @@ import {
 import moment from "moment";
 import Swal from "sweetalert2";
 import "../../../css/Turno.css";
+import Footer from "../Elementos-Comunes/Footer"
 
 const MisTurnos = () => {
   const [historial, setHistorial] = useState(false);
@@ -221,6 +222,7 @@ const MisTurnos = () => {
           </>
         )}
       </Container>
+      <Footer />
     </>
   );
 };

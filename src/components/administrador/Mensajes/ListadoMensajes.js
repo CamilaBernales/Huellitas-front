@@ -60,11 +60,11 @@ const ListadoMensajes = () => {
               <Table striped bordered hover responsive="sm">
                 <thead>
                   <tr>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Mensaje</th>
-                    <th>Fecha</th>
-                    <th>Responder</th>
+                    <th className="th-admin">Nombre</th>
+                    <th className="th-admin">Correo</th>
+                    <th className="th-admin">Mensaje</th>
+                    <th className="th-admin">Fecha</th>
+                    <th className="th-admin">Responder</th>
                   </tr>
                 </thead>
                 <tbody>

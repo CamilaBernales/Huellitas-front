@@ -78,7 +78,7 @@ const Logo = () => {
     );
   } else {
     loginLogo = (
-      <div className="img-fluid d-flex justify-content-end ">
+      <div className="img-fluid mr-4 d-flex justify-content-end ">
         <div className="p-3">
           <Button
             className="buttonIS"

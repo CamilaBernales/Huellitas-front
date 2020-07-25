@@ -11,6 +11,8 @@ import {
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
 import imgDefault from "../../../img/default-producto.gif";
+import "../../../css/ListadoUsuarios.css"
+
 function FormProductos() {
   const [nuevoProducto, setNuevoProducto] = useState({
     nombre: "",
@@ -221,7 +223,7 @@ function FormProductos() {
             </Form>
             <Button
               disabled={error === true}
-              className="w-100"
+              className="w-100 boton-permisos"
               onClick={guardarProducto}
             >
               Guardar
