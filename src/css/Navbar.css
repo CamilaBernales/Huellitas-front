@@ -73,6 +73,7 @@
 .btn-navbar:hover:before, .btn-navbar:focus:before, .btn-navbar:active:before {
   -webkit-transform: scaleY(1);
   transform: scaleY(1);
+  /* background: rgb(0, 166, 166); */
 }
 
 .bg-dropdown{

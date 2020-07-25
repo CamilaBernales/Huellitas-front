@@ -31,7 +31,7 @@ const Tienda = (props) => {
   const onChangeFiltroTipos = (e) => {
     setFiltrarTipo(e.target.value);
   };
-
+  
   const traerProductos = () => {
     axiosConfig
       .get(`/api/productos/listado?pagina=${currentPage}`)
