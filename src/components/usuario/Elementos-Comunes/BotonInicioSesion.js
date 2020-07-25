@@ -43,7 +43,7 @@ const Logo = () => {
 
   if (isLogIn) {
     loginLogo = (
-      <Row className="p-3 mr-2">
+      <Row className="p-3 mr-4">
         <Dropdown>
           <Dropdown.Toggle className="buttonIS mr-3" id="dropdown-custom-1">
             Mi cuenta

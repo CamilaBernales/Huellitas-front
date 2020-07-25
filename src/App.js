@@ -26,7 +26,7 @@ import tokenAuth from "./config/token";
 import Navbar from "./components/usuario/Elementos-Comunes/Navbar";
 import Footer from "./components/usuario/Elementos-Comunes/Footer";
 import Whatsapp from "./components/usuario/Elementos-Comunes/Whatsapp";
-import ImagenHome from "./components/usuario/Elementos-Comunes/ImagenHome";
+// import ImagenHome from "./components/usuario/Elementos-Comunes/ImagenHome";
 import MisCompras from "./components/usuario/MisCompras/MisCompras";
 import CambioContraseña from "./components/usuario/Registro-login/CambioContraseña";
 import RestablecerContraseña from "./components/usuario/Registro-login/RestablecerContraseña";
@@ -55,7 +55,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <ImagenHome />
+        {/* <ImagenHome /> */}
         <Navbar
           setComprasGuardadas={setComprasGuardadas}
           comprasGuardadas={comprasGuardadas}
