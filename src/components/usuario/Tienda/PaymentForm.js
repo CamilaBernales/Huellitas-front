@@ -2,25 +2,20 @@ import React, { Fragment } from 'react';
 import Cards from 'react-credit-cards';
 import { Form, Row, Col } from 'react-bootstrap';
 import 'react-credit-cards/es/styles-compiled.css';
-import PropTypes from 'prop-types';
 
 class PaymentForm extends React.Component {
-  
-  state = {
-    cvc: '',
-    expiry: '',
-    focus: '',
-    name: '',
-    number: '',
-  };
 
   handleInputFocus = (e) => {
-    this.setState({ focus: e.target.name });
+    this.props.setDatosTarjeta({ 
+      ...this.props.datosTarjeta,
+      focus: e.target.name });
   }
   
   handleInputChange = (e) => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    this.props.setDatosTarjeta({ 
+      ...this.props.datosTarjeta,
+      [name]: value });
   }
   
   render() {
@@ -28,11 +23,11 @@ class PaymentForm extends React.Component {
     return (
       <Fragment>
         <Cards
-          cvc={this.state.cvc}
-          expiry={this.state.expiry}
-          focused={this.state.focus}
-          name={this.state.name}
-          number={this.state.number}
+          cvc={this.props.datosTarjeta.cvc}
+          expiry={this.props.datosTarjeta.expiry}
+          focused={this.props.datosTarjeta.focus}
+          name={this.props.datosTarjeta.name}
+          number={this.props.datosTarjeta.number}
         />
         <Form>
           <Row>
@@ -45,7 +40,6 @@ class PaymentForm extends React.Component {
                 placeholder="Número de Tarjeta"
                 onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
-                onInput={() => this.props.handleOnInput(this.state)}
               />
             </Col>
           </Row>
@@ -59,7 +53,6 @@ class PaymentForm extends React.Component {
                 placeholder="Nombre"
                 onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
-                onInput={() => this.props.handleOnInput(this.state)}
               />
             </Col>
           </Row>
@@ -73,7 +66,6 @@ class PaymentForm extends React.Component {
                 placeholder="Vencimiento"
                 onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
-                onInput={() => this.props.handleOnInput(this.state)}
               />
             </Col>
             <Col>
@@ -86,7 +78,6 @@ class PaymentForm extends React.Component {
                 placeholder="CVC"
                 onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
-                onInput={() => this.props.handleOnInput(this.state)}
               />
             </Col>
           </Row>
@@ -94,10 +85,6 @@ class PaymentForm extends React.Component {
       </Fragment>
     );
   }
-}
-
-PaymentForm.propTypes = {
-  handleOnInput: PropTypes.func
 }
 
 export default PaymentForm;

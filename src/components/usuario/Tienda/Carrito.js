@@ -128,7 +128,7 @@ const Carrito = (props) => {
     }
     let reNumber = /\d{16}/;
     let reExpiry = /\d{4}/;
-    let reCvc = /\d{3, 4}/;
+    let reCvc = /\d{3,4}/;
     if ((!reNumber.test(datosTarjeta.number) ||
         !reExpiry.test(datosTarjeta.expiry) ||
         !reCvc.test(datosTarjeta.cvc)) &&
@@ -148,7 +148,7 @@ const Carrito = (props) => {
     });
     setCompraPagada({
       nombre: detallesEnvio.nombre,
-      apellido: detallesEnvio.nombre,
+      apellido: '',
       telefono: detallesEnvio.telefono,
       direccion: [detallesEnvio.direccion, 
         detallesEnvio.localidad, 
@@ -162,13 +162,12 @@ const Carrito = (props) => {
     axiosConfig
       .post("api/compra", compraPagada)
       .then((res) => {
-        console.log(res);
         Swal.fire({
           position: "center",
           icon: "success",
           title: "Tu compra fue exitosa",
-          showConfirmButton: false,
-          timer: 1500,
+          showConfirmButton: true,
+          confirmButtonText: 'Gracias!'
         });
       })
       .then(() => {
@@ -378,6 +377,7 @@ const Carrito = (props) => {
                             as={Button}
                             variant="Text"
                             eventKey="0"
+                            onClick={onClickTarjeta}
                           >
                             <Form.Check
                               type="radio"
@@ -385,14 +385,14 @@ const Carrito = (props) => {
                               id="tarjeta"
                               label="Tarjeta de crédito o débito"
                               checked={medioDePago.tarjetaChecked}
-                              onChange={onClickTarjeta}
                             />
                           </Accordion.Toggle>
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
                             <PaymentForm 
-                             handleOnInput={setDatosTarjeta}
+                             setDatosTarjeta={setDatosTarjeta}
+                             datosTarjeta={datosTarjeta}
                             />
                           </Card.Body>
                         </Accordion.Collapse>
@@ -407,6 +407,7 @@ const Carrito = (props) => {
                             as={Button}
                             variant="Text"
                             eventKey="1"
+                            onClick={onClickEfectivo}
                           >
                             <Form.Check
                               type="radio"
@@ -414,7 +415,6 @@ const Carrito = (props) => {
                               id="efectivo"
                               label="Efectivo"
                               checked={medioDePago.efectivoChecked}
-                              onChange={onClickEfectivo}
                             />
                           </Accordion.Toggle>
                         </Card.Header>
