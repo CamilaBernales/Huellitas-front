@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../../../css/Navbar.css";
+import "../../../css/NavbarAdmin.css"
 import tokenAuth from "../../../config/token";
 import PreCarrito from "./PreCarrito";
 import BotonInicioSesion from "./BotonInicioSesion";
 import PropTypes from "prop-types";
+import NavbarAdmin from "../../administrador/Elementos-Comunes/NavbarAdmin"
+import ImagenHome from "./ImagenHome"
+// import Footer from "./Footer"
 
 const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
   const [isLogIn, setIsLogIn] = useState(false);
@@ -29,11 +33,12 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
 
   return (
     <>
-      <Navbar className="navbar navlink" collapseOnSelect expand="lg">
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Brand href="/">Huellitas</Navbar.Brand>
-        {!respuesta.isAdmin ? (
-          <>
+      {!respuesta.isAdmin ? (
+        <>
+          <ImagenHome />
+          <Navbar className="navbar navlink" collapseOnSelect expand="lg">
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Brand href="/">Huellitas</Navbar.Brand>
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="navlink m-auto ">
                 <Nav.Link className="btn-navbar" href="/">
@@ -53,10 +58,10 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                     </NavDropdown.Item>
                   </NavDropdown>
                 ) : (
-                  <Nav.Link className="btn-navbar" href="/login">
-                    Turnos
-                  </Nav.Link>
-                )}
+                    <Nav.Link className="btn-navbar" href="/login">
+                      Turnos
+                    </Nav.Link>
+                  )}
                 <Nav.Link className="btn-navbar" href="/tienda">
                   Tienda
                 </Nav.Link>
@@ -75,39 +80,18 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
               <i className="fas fa-cart-plus fa-1x" />
               <span>{comprasGuardadas}</span>
             </Navbar.Brand>
-          </>
-        ) : (
+            <BotonInicioSesion />
+          </Navbar>
+        </>
+      ) : (
           <>
-            <Navbar.Collapse id="responsive-navbar-nav">
-              <Nav className=" navlink ml-auto ">
-                <Link to="/admin/pedidos" className="nav-link">
-                  Pedidos
-                </Link>
-                <NavDropdown title="Turnos" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/admin/turnos">
-                    Listado de turnos
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Productos" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/admin/altaproducto">
-                    Alta de Producto
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="/admin/productos">
-                    Listado de Productos
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <Link to="/admin/listadousuarios" className="nav-link">
-                  Usuarios
-                </Link>
-                <Link to="/admin/listadomensajes" className="nav-link">
-                  Mensajes
-                </Link>
-              </Nav>
-            </Navbar.Collapse>
+            <Navbar className="navbar navlink" collapseOnSelect expand="lg">
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <NavbarAdmin />
+              <BotonInicioSesion />
+            </Navbar>
           </>
         )}
-        <BotonInicioSesion />
-      </Navbar>
       <Col>
         <PreCarrito
           modalShow={modalShow}
@@ -123,7 +107,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
 };
 NavBar.propTypes = {
   setComprasGuardadas: PropTypes.func,
-  comprasGuardadas:PropTypes.number,
-  respuesta:PropTypes.object
+  comprasGuardadas: PropTypes.number,
+  respuesta: PropTypes.object
 };
 export default NavBar;
