@@ -85,8 +85,8 @@ export default function PedidosAdmin() {
   }, [currentPage]);
 
   return (
-    <Container className="my-5">
-      <Form.Row className="d-flex justify-content-center align-items-center text-start my-5">
+    <Container className="my-5 py-3">
+      <Form.Row className="d-flex justify-content-center align-items-center text-start ">
         <Col sm={12} md={6} className="my-2">
           <Form.Group>
             <Form.Control
@@ -97,7 +97,7 @@ export default function PedidosAdmin() {
           </Form.Group>
         </Col>
         <Col sm={12} md={4} className="my-2">
-          <Button className="mx-2" onClick={filtrarPedidos} variant="info">
+          <Button className="mx-2 mb-3" onClick={filtrarPedidos} variant="info">
             Buscar
           </Button>
         </Col>

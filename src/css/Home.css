@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+
 body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,18 +13,26 @@ body{
     overflow: hidden;
     background-size: contain;
 }
+.carousel h3{
+  background-color: #4950575e;
+  color:hsl(180 99% 35% / 10);
+  font-weight: 700 ;
+  font-family: "Karla", sans-serif;
+  margin: 2rem;
+  text-shadow: 1px 1px 1px white;
 
+
+}
 
 h3{
     color: #00a6a6;
     font-weight: 700 ;
-    font-family: "Montserrat";
+    font-family: "Karla", sans-serif;
     margin: 2rem;
 }
 
 .btn-custom {
-  color: #083396;
-  background: none;
+  background: #00a6a6;
   border: 2px solid rgb(0, 166, 166);
   font: "Open Sans" , Arial, sans-serif;
   transition:all .5s ease-in-out;

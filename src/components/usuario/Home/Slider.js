@@ -34,7 +34,7 @@ export default function Slider() {
           <em>
             <h3>Atención personalizada</h3>
           </em>
-          <Button href="/turno" size="lg" className="btn-custom">
+          <Button href="/turno" size="lg"  className="btn-custom">
               Solicitar turno
           </Button>
         </Carousel.Caption>
@@ -50,7 +50,7 @@ export default function Slider() {
           <em>
             <h3>Tienda con variedad de productos</h3>
           </em>
-          <Button href="/tienda" size="lg" className="btn-custom">
+          <Button href="/tienda" size="lg"  className="btn-custom">
               Comprar
           </Button>
         </Carousel.Caption>

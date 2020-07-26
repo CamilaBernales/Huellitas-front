@@ -47,8 +47,7 @@ const MisTurnos = () => {
       if (result.value) {
         axiosConfig
           .delete(`api/turnos/delete/${id}`)
-          .then((res) => {
-            console.log(res);
+          .then(() => {
             Swal.fire(
               "Cancelado!",
               "El turno fue cancelado con éxito.",
@@ -101,40 +100,43 @@ const MisTurnos = () => {
                     </h6>
                   </Alert>
                 </>
-              ) : (!loading && !fetchTurnos) &&(
-                <>
-                  {misTurnosProximos.map((turno) => (
-                    <Col
-                      key={turno._id}
-                      sm={12}
-                      md={8}
-                      xl={4}
-                      className="d-flex justify-content-center my-3"
-                    >
-                      <Card
-                        className="font-weight-bold cardTurno"
-                        style={{ width: "18rem" }}
+              ) : (
+                !loading &&
+                !fetchTurnos && (
+                  <>
+                    {misTurnosProximos.map((turno) => (
+                      <Col
+                        key={turno._id}
+                        sm={12}
+                        md={8}
+                        xl={4}
+                        className="d-flex justify-content-center my-3"
                       >
-                        <Card.Body className="mx-auto">
-                          <Row>
-                            {" "}
-                            Fecha: {moment(turno.fecha).format("DD/MM/YYYY")}
-                          </Row>
-                          <Row> Hora: {turno.hora}</Row>
-                        </Card.Body>
-                        <Card.Footer>
-                          <Button
-                            className="btn boton-card w-100  justify-content-center align-items-center font-weight-bold"
-                            onClick={() => cancelarTurno(turno._id)}
-                          >
-                            cancelar turno {"   "}
-                            <i className="fas fa-trash" />
-                          </Button>
-                        </Card.Footer>
-                      </Card>
-                    </Col>
-                  ))}
-                </>
+                        <Card
+                          className="font-weight-bold cardTurno"
+                          style={{ width: "18rem" }}
+                        >
+                          <Card.Body className="mx-auto">
+                            <Row>
+                              {" "}
+                              Fecha: {moment(turno.fecha).format("DD/MM/YYYY")}
+                            </Row>
+                            <Row> Hora: {turno.hora}</Row>
+                          </Card.Body>
+                          <Card.Footer>
+                            <Button
+                              className="btn boton-card w-100  justify-content-center align-items-center font-weight-bold"
+                              onClick={() => cancelarTurno(turno._id)}
+                            >
+                              cancelar turno {"   "}
+                              <i className="fas fa-trash" />
+                            </Button>
+                          </Card.Footer>
+                        </Card>
+                      </Col>
+                    ))}
+                  </>
+                )
               )}
             </Row>
 
@@ -148,9 +150,7 @@ const MisTurnos = () => {
                       className="text-dark"
                       onClick={() => setHistorial(false)}
                     >
-                      Ocultar historial
-                      {" "}
-                      <i class="fas fa-arrow-up"></i>
+                      Ocultar historial <i className="fas fa-arrow-up"></i>
                     </Link>
                   </em>
                 </strong>
@@ -158,7 +158,7 @@ const MisTurnos = () => {
                   <em>Tus turnos anteriores</em>
                 </p>
                 <Row className="d-flex justify-content-center align-items-center text-start my-3">
-                  {misTurnosPasados.length === 0 && !fetchTurnos  && !loading ? (
+                  {misTurnosPasados.length === 0 && !fetchTurnos && !loading ? (
                     <>
                       <Alert className="text-center" variant="info">
                         <h6>
@@ -176,29 +176,32 @@ const MisTurnos = () => {
                         </h6>
                       </Alert>
                     </>
-                  ) : (!loading && !fetchTurnos) && (
-                    <Col sm={12} md={8} lg={8}>
-                      <Table striped bordered hover>
-                        <thead>
-                          <tr>
-                            <th>Fecha</th>
-                            <th>Hora</th>
-                            <th>Motivo</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {misTurnosPasados.map((turno) => (
-                            <tr key={turno._id}>
-                              <td>
-                                {moment(turno.fecha).format("DD/MM/YYYY")}
-                              </td>
-                              <td>{turno.hora}</td>
-                              <td>{turno.resumen}</td>
+                  ) : (
+                    !loading &&
+                    !fetchTurnos && (
+                      <Col sm={12} md={8} lg={8}>
+                        <Table striped bordered hover>
+                          <thead>
+                            <tr>
+                              <th>Fecha</th>
+                              <th>Hora</th>
+                              <th>Motivo</th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </Table>
-                    </Col>
+                          </thead>
+                          <tbody>
+                            {misTurnosPasados.map((turno) => (
+                              <tr key={turno._id}>
+                                <td>
+                                  {moment(turno.fecha).format("DD/MM/YYYY")}
+                                </td>
+                                <td>{turno.hora}</td>
+                                <td>{turno.resumen}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </Table>
+                      </Col>
+                    )
                   )}
                 </Row>
               </>
@@ -211,9 +214,7 @@ const MisTurnos = () => {
                     className="text-dark"
                     onClick={() => setHistorial(true)}
                   >
-                    Historial de turnos{" "}
-                    <i class="fas fa-arrow-down"></i>
-
+                    Historial de turnos <i className="fas fa-arrow-down"></i>
                   </Link>
                 </em>
               </strong>

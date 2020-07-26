@@ -39,7 +39,7 @@ const ListadoMensajes = () => {
   }, []);
   return (
     <>
-      <Container className="my-5">
+      <Container className="my-5 py-3">
         {loading ? (
           <Row className="mt-4 mb-4  my-4  d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />

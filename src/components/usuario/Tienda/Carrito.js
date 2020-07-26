@@ -17,6 +17,7 @@ import "../../../css/Carrito.css";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
 import PropTypes from "prop-types";
+// import mercadoPagoIntegracion from './mercadoPagoIntegracion'
 
 const Carrito = (props) => {
   const { setComprasGuardadas, comprasGuardadas } = props;
@@ -26,41 +27,102 @@ const Carrito = (props) => {
     JSON.parse(localStorage.getItem("usuario")) || null
   );
 
-  const {
-    nombre,
-    email,
-    direccion,
-    localidad,
-    telefono
-  } = detallesEnvio;
+  const { nombre, email, direccion, localidad, telefono } = detallesEnvio;
 
+  const installmentRef = useRef();
+  const formRef = useRef();
   const primerRender = useRef(true);
   const [medioDePago, setMedioDePago] = useState({
     tarjetaChecked: false,
-    efectivoChecked: false
+    efectivoChecked: false,
   });
   const [datosTarjeta, setDatosTarjeta] = useState({
-    cvc: '',
-    expiry: '',
-    focus: '',
-    name: '',
-    number: ''
+    cvc: "",
+    expiry: "",
+    focus: "",
+    name: "",
+    number: "",
+    dni: "",
+    month: "",
+    installments: 1,
   });
   const [compraPagada, setCompraPagada] = useState({
-    nombre: '',
-    apellido: '',
-    telefono: '',
-    direccion: '',
-    codigoPostal: '',
+    nombre: "",
+    telefono: "",
+    direccion: "",
     total: 0,
-    pedido: []
+    pedido: [],
   });
+
+  useEffect(() => {
+    console.log("linea 57", compraPagada);
+    if (primerRender.current) {
+      primerRender.current = false;
+      return;
+    }
+    crearToken();
+    // eslint-disable-next-line
+  }, [compraPagada]);
+
+  useEffect(() => {
+    window.Mercadopago.setPublishableKey(
+      "TEST-e2bfcd64-f846-4033-9a9e-9ab4c0e87ea8"
+    );
+  }, []);
+
+  useEffect(() => {
+    function guessPaymentMethod() {
+      if (datosTarjeta.number.length >= 6) {
+        let bin = datosTarjeta.number.substring(0, 6);
+        window.Mercadopago.getPaymentMethod({ bin }, setPaymentMethod);
+      }
+    }
+
+    let paymentMethodId = "";
+    function setPaymentMethod(status, response) {
+      if (status === 200) {
+        paymentMethodId = response[0].id;
+        setDatosTarjeta({ ...datosTarjeta, paymentMethodId });
+        getInstallments();
+      } else {
+        alert(`payment method info error: ${response}`);
+      }
+    }
+
+    function getInstallments() {
+      window.Mercadopago.getInstallments(
+        {
+          payment_method_id: paymentMethodId,
+          amount: parseFloat(suma),
+        },
+        function (status, response) {
+          if (status === 200) {
+            response[0].payer_costs.forEach((installment) => {
+              let opt = document.createElement("option");
+              opt.text = installment.recommended_message;
+              opt.value = parseInt(installment.installments);
+              installmentRef.current.appendChild(opt);
+            });
+          } else {
+            alert(`installments method info error: ${response}`);
+          }
+        }
+      );
+    }
+    guessPaymentMethod();
+    // eslint-disable-next-line
+  }, [datosTarjeta.number]);
+
+  useEffect(() => {
+    sumaTotal();
+  }, [comprasGuardadas]);
 
   const onChangeDetalle = (e) => {
     setDetallesEnvio({
       ...detallesEnvio,
       [e.target.name]: e.target.value,
-      provincia: 'Tucumán'
+      provincia: "Tucumán",
+      codigoPostal: "4000",
     });
   };
 
@@ -74,67 +136,55 @@ const Carrito = (props) => {
     setSuma(total);
   };
 
-  useEffect(() => {
-    if (primerRender.current) {
-      primerRender.current = false;
-      return;
-    }
-    solicitudCompra();
-     // eslint-disable-next-line
-  }, [compraPagada]);
-
-  useEffect(() => {
-    sumaTotal();
-  }, [comprasGuardadas]);
-
   const onClickTarjeta = () => {
     setMedioDePago({
       tarjetaChecked: !medioDePago.tarjetaChecked,
-      efectivoChecked: false
-      });
-  }
+      efectivoChecked: false,
+    });
+  };
   const onClickEfectivo = () => {
     setMedioDePago({
       tarjetaChecked: false,
-      efectivoChecked: !medioDePago.efectivoChecked
+      efectivoChecked: !medioDePago.efectivoChecked,
     });
-  }
+  };
   const comprasGuardada = JSON.parse(localStorage.getItem("compras"));
-  
+
   const pagarCompra = () => {
-    
-    if (nombre === undefined ||
-        email === undefined ||
-        direccion === undefined ||
-        localidad === undefined ||
-        telefono === undefined) 
-    {
+    if (
+      nombre === undefined ||
+      email === undefined ||
+      direccion === undefined ||
+      localidad === undefined ||
+      telefono === undefined
+    ) {
       alert("Debe completar todos los detalles de envio");
       return;
     }
     if (!(medioDePago.efectivoChecked || medioDePago.tarjetaChecked)) {
-      
-      alert('Debe seleccionar una formade pago');
+      alert("Debe seleccionar una formade pago");
       return;
     }
-    if ((datosTarjeta.number === '' ||
-        datosTarjeta.name === '' ||
-        datosTarjeta.expiry === '' ||
-        datosTarjeta.cvc === '') &&
-        medioDePago.tarjetaChecked) 
-    {
-      alert('Debe completar todos los datos de la tarjeta');
+    if (
+      (datosTarjeta.number === "" ||
+        datosTarjeta.name === "" ||
+        datosTarjeta.expiry === "" ||
+        datosTarjeta.cvc === "") &&
+      medioDePago.tarjetaChecked
+    ) {
+      alert("Debe completar todos los datos de la tarjeta");
       return;
     }
     let reNumber = /\d{16}/;
-    let reExpiry = /\d{4}/;
+    let reExpiry = /\d{2}/;
     let reCvc = /\d{3,4}/;
-    if ((!reNumber.test(datosTarjeta.number) ||
+    if (
+      (!reNumber.test(datosTarjeta.number) ||
         !reExpiry.test(datosTarjeta.expiry) ||
         !reCvc.test(datosTarjeta.cvc)) &&
-        medioDePago.tarjetaChecked) 
-    {
-      alert('Por favor verifique que los datos de la tarjeta sean correctos');
+      medioDePago.tarjetaChecked
+    ) {
+      alert("Por favor verifique que los datos de la tarjeta sean correctos");
       return;
     }
 
@@ -148,26 +198,44 @@ const Carrito = (props) => {
     });
     setCompraPagada({
       nombre: detallesEnvio.nombre,
-      apellido: '',
       telefono: detallesEnvio.telefono,
-      direccion: [detallesEnvio.direccion, 
-        detallesEnvio.localidad, 
-        "Tucumán"].join(' - '),
-      codigoPostal: '4000',
+      direccion: [
+        detallesEnvio.direccion,
+        detallesEnvio.localidad,
+        "Tucumán",
+      ].join(" - "),
       total: suma,
       pedido: pedidoCompras,
     });
   };
-  const solicitudCompra = () => {
+
+  const crearToken = () => {
+    var $form = formRef.current;
+    window.Mercadopago.createToken($form, sdkResponseHandler);
+    function sdkResponseHandler(status, response) {
+      if (status !== 200 && status !== 201) {
+        alert("verify filled data")
+      } else {
+        solicitudCompra(response.id);
+      }
+    }
+  };
+
+  const solicitudCompra = (token) => {
     axiosConfig
-      .post("api/compra", compraPagada)
+      .post("api/compra", {
+        ...compraPagada,
+        token,
+        datosTarjeta,
+        detallesEnvio,
+      })
       .then(() => {
         Swal.fire({
           position: "center",
           icon: "success",
           title: "Tu compra fue exitosa",
           showConfirmButton: true,
-          confirmButtonText: 'Gracias!'
+          confirmButtonText: "Gracias!",
         });
       })
       .then(() => {
@@ -180,10 +248,10 @@ const Carrito = (props) => {
           localidad: "",
           telefono: "",
         });
+        // axiosConfig.post("/api/compra/email", detallesEnvio);
         window.location.href = "/miscompras";
       })
       .catch((err) => console.log(err));
-    axiosConfig.post("/api/compra/email", detallesEnvio);
   };
 
   return (
@@ -204,15 +272,11 @@ const Carrito = (props) => {
                     comprasGuardadas={comprasGuardadas}
                   />
                   <Col className="my-3">
-                    {comprasGuardada.length === 0 ?
-                      <Button
-                      className="mx-2"
-                      variant="secondary"
-                      disabled
-                      >
+                    {comprasGuardada.length === 0 ? (
+                      <Button className="mx-2" variant="secondary" disabled>
                         Continuar
                       </Button>
-                      :
+                    ) : (
                       <Button
                         className="mx-2"
                         variant="secondary"
@@ -220,7 +284,7 @@ const Carrito = (props) => {
                       >
                         Continuar
                       </Button>
-                    }
+                    )}
                   </Col>
                 </Row>
               </Col>
@@ -282,7 +346,7 @@ const Carrito = (props) => {
                       <Form.Control
                         name="email"
                         type="email"
-                        maxLength="20"
+                        maxLength="100"
                         placeholder="Correo"
                         defaultValue={email}
                         onChange={onChangeDetalle}
@@ -306,7 +370,7 @@ const Carrito = (props) => {
                       <Form.Control
                         name="direccion"
                         type="text"
-                        maxLength="20"
+                        maxLength="100"
                         placeholder="Dirección"
                         defaultValue={direccion}
                         onChange={onChangeDetalle}
@@ -380,6 +444,7 @@ const Carrito = (props) => {
                             onClick={onClickTarjeta}
                           >
                             <Form.Check
+                              readOnly
                               type="radio"
                               name="tarjeta"
                               id="tarjeta"
@@ -390,9 +455,12 @@ const Carrito = (props) => {
                         </Card.Header>
                         <Accordion.Collapse eventKey="0">
                           <Card.Body>
-                            <PaymentForm 
-                             setDatosTarjeta={setDatosTarjeta}
-                             datosTarjeta={datosTarjeta}
+                            <PaymentForm
+                              setDatosTarjeta={setDatosTarjeta}
+                              datosTarjeta={datosTarjeta}
+                              installmentRef={installmentRef}
+                              suma={suma}
+                              formRef={formRef}
                             />
                           </Card.Body>
                         </Accordion.Collapse>
@@ -410,6 +478,7 @@ const Carrito = (props) => {
                             onClick={onClickEfectivo}
                           >
                             <Form.Check
+                              readOnly
                               type="radio"
                               name="efectivo"
                               id="efectivo"

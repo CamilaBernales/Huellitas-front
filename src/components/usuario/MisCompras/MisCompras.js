@@ -40,10 +40,11 @@ const MisCompras = () => {
       });
   };
 
-  const verDetalle = (pedido, compra) => {
+  const verDetalle = (pedido, compra, detallesEnvio) => {
     setModalShow(true);
     setPedido(pedido);
-    setCompra(compra);
+    setCompra(detallesEnvio);
+
   };
   useEffect(() => {
     window.scrollTo(0, 200);
@@ -85,9 +86,11 @@ const MisCompras = () => {
                       </thead>
                       <tbody>
                         {misCompras.map((compra) => (
+                          
                           <tr key={compra._id}>
-                            <td>{moment(compra.fecha).format("DD-MM-YYYY")}</td>
-                            <td>{compra.direccion}</td>
+                            <td>{moment(compra.fecha ? compra.fecha : compra.detallesEnvio.fecha).format("DD-MM-YYYY HH:mm")  }</td>
+                            <td>{compra.direccion ? compra.direccion : compra.detallesEnvio.direccion}</td>
+                            
                             <td>{compra.total}</td>
                             <td>
                               <Button
@@ -95,7 +98,7 @@ const MisCompras = () => {
                                 variant="success"
                                 className="ml-1"
                                 onClick={() =>
-                                  verDetalle(compra.pedido, compra)
+                                  verDetalle(compra.pedido, compra, compra.detallesEnvio)
                                 }
                               >
                                 Ver detalle
@@ -111,6 +114,7 @@ const MisCompras = () => {
                       modalShow={modalShow}
                       setModalShow={setModalShow}
                       onHide={onHide}
+                      misCompras={misCompras}
                     />
                   </>
                 ) : !fetchCompras && (

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Col } from "react-bootstrap";
-import { Link, NavLink  } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../../../css/Navbar.css";
 import tokenAuth from "../../../config/token";
 import PreCarrito from "./PreCarrito";
@@ -36,37 +36,72 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
           <>
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="navlink m-auto ">
-                <NavLink  activeClassName="selected" className="btn-navbar" exact to="/">
+                <NavLink
+                  activeclassname="selected"
+                  className="btn-navbar"
+                  exact
+                  to="/"
+                >
                   Inicio
-                </NavLink >
+                </NavLink>
                 {isLogIn ? (
                   <NavDropdown
                     className="btn-navbar"
                     title="Turnos"
                     id="basic-nav-dropdown"
-                    activeClassName="selected"
-z                  >
-                    <NavLink className="dropdown-item" activeClassName="selected" exact to="/turno">
+                    activeclassname="selected"
+                  >
+                    <NavLink
+                      className="dropdown-item"
+                      activeclassname="selected"
+                      exact
+                      to="/turno"
+                    >
                       Solicitar Turno
                     </NavLink>
-                    <NavLink  className="dropdown-item" activeClassName="selected" exact to="/misturnos">
+                    <NavLink
+                      className="dropdown-item"
+                      activeclassname="selected"
+                      exact
+                      to="/misturnos"
+                    >
                       Mis Turnos
                     </NavLink>
                   </NavDropdown>
                 ) : (
-                  <NavLink activeClassName="selected" className="btn-navbar" exact to="/login">
+                  <NavLink
+                    activeclassname="selected"
+                    className="btn-navbar"
+                    exact
+                    to="/login"
+                  >
                     Turnos
                   </NavLink>
                 )}
-                <NavLink activeClassName="selected" className="btn-navbar" exact to="/tienda">
+                <NavLink
+                  activeclassname="selected"
+                  className="btn-navbar"
+                  exact
+                  to="/tienda"
+                >
                   Tienda
                 </NavLink>
                 {isLogIn ? (
-                  <NavLink activeClassName="selected" className="btn-navbar" exact to="/miscompras">
+                  <NavLink
+                    activeclassname="selected"
+                    className="btn-navbar"
+                    exact
+                    to="/miscompras"
+                  >
                     Tus Compras
                   </NavLink>
                 ) : null}
-                <NavLink activeClassName="selected" className="btn-navbar" exact to="/equipo">
+                <NavLink
+                  activeclassname="selected"
+                  className="btn-navbar"
+                  exact
+                  to="/equipo"
+                >
                   Nuestro Equipo
                 </NavLink>
               </Nav>
@@ -124,7 +159,7 @@ z                  >
 };
 NavBar.propTypes = {
   setComprasGuardadas: PropTypes.func,
-  comprasGuardadas:PropTypes.number,
-  respuesta:PropTypes.object
+  comprasGuardadas: PropTypes.number,
+  respuesta: PropTypes.object,
 };
 export default NavBar;

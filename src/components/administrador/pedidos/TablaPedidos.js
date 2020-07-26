@@ -13,10 +13,10 @@ export default function TablaPedidos({ compras }) {
   const [pedido, setPedido] = useState([]);
 
   const [compra, setCompra] = useState({});
-  const mostrar = (c, p) => {
+  const mostrar = (detallesEnvio, pedidos) => {
     setModalShow(true);
-    setPedido(p);
-    setCompra(c);
+    setPedido(pedidos);
+    setCompra(detallesEnvio);
   };
 
   return (
@@ -36,14 +36,14 @@ export default function TablaPedidos({ compras }) {
             <tr key={c._id}>
               <td>{moment(c.fecha).format("DD/MM/YYYY")}</td>
               <td>
-                {c.nombre} {c.apellido}
+                {c.nombre ? c.nombre: c.detallesEnvio.nombre}
               </td>
               <td>{c.direccion}</td>
               <td>
                 <Button
                   size="sm"
                   variant="success"
-                  onClick={() => mostrar(c, c.pedido)}
+                  onClick={() => mostrar( c.detallesEnvio,  c.pedido)}
                   className="ml-1"
                 >
                   Detalle
