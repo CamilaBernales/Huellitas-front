@@ -42,9 +42,9 @@ export default function TablaPedidos({ compras }) {
               <td>
                 <Button
                   size="sm"
-                  variant="success"
+                  
                   onClick={() => mostrar(c, c.pedido)}
-                  className="ml-1"
+                  className="ml-1 btn boton-permisos"
                 >
                   Detalle
                 </Button>

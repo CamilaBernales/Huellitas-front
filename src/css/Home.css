@@ -1,7 +1,11 @@
 body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background: rgb(240, 240, 240); */
+  background: rgb(243, 243, 243);
+}
+
+Table{
+  box-shadow: 1px 1px 10px 1.5px rgba(0,0,0,0.25);
 }
 
 .carousel  img{
@@ -13,14 +17,36 @@ body{
 
 
 h3{
-    color: #00a6a6;
-    font-weight: 700 ;
-    font-family: "Montserrat";
-    margin: 2rem;
+  color: #4287ad;
+  font-weight: 700 ;
+  font-family: "Open Sans" , Arial, sans-serif;
+  margin: 2rem;
 }
 
+.h3-slider{
+  color: #08131d;
+  font-weight: 700 ;
+  font-family: "Open Sans" , Arial, sans-serif;
+  margin: 2rem;
+}
+
+.btn-custom-slider {
+  color: #08131d;
+  background: none;
+  border: 2px solid #08131d;
+  font: "Open Sans" , Arial, sans-serif;
+  transition:all .5s ease-in-out;
+}
+
+.btn-custom-slider:hover{
+  background: #08131d;
+  border: 2px solid #08131d;
+  transition:all .5s ease-in-out;
+}
+
+
 .btn-custom {
-  color: #083396;
+  color: #4287ad;
   background: none;
   border: 2px solid rgb(0, 166, 166);
   font: "Open Sans" , Arial, sans-serif;

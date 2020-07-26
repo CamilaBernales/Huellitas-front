@@ -60,7 +60,7 @@ const CambioContraseña = () => {
                     <Form.Control
                       type="email"
                       placeholder="Ingrese su email"
-                      className="border border-info rounded-left"
+                      className="formulariosMensaje rounded-left"
                       name="email"
                       onChange={handleEmailForm}
                     />

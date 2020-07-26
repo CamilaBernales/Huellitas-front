@@ -7,3 +7,15 @@
     color: white;
     border-style : hidden!important
 }
+
+.boton-continuar {
+    background-color: rgb(1, 108, 158);
+    border-color: rgb(1, 108, 158);
+    font-weight: 700;
+  
+  }
+.boton-continuar:hover {
+    background-color: rgb(23, 160, 223);
+    border-color: rgb(23, 160, 223);
+    font-weight: 700;
+}

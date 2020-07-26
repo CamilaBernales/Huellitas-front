@@ -41,9 +41,9 @@ export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
+              <th className="th-admin">Producto</th>
+              <th className="th-admin">Cantidad</th>
+              <th className="th-admin">Precio</th>
             </tr>
           </thead>
           <tbody>
@@ -70,7 +70,7 @@ export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
         </Table>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
+        <Button className="btn boton-permisos" onClick={onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   );

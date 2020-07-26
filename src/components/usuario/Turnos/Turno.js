@@ -106,7 +106,7 @@ const Turno = () => {
                     name="nombremascota"
                     onChange={handleTurno}
                     maxLength="40"
-                    className="border border-info "
+                    className="formulariosMensaje "
                   />
                 </Col>
               </Row>
@@ -118,7 +118,7 @@ const Turno = () => {
                     name="edad"
                     onChange={handleTurno}
                     type="number"
-                    className="border border-info "
+                    className="formulariosMensaje "
                   />
                 </Col>
               </Row>
@@ -130,7 +130,7 @@ const Turno = () => {
                     name="raza"
                     onChange={handleTurno}
                     maxLength="40"
-                    className="border border-info "
+                    className="formulariosMensaje "
                   />
                 </Col>
               </Row>
@@ -142,7 +142,7 @@ const Turno = () => {
                     name="particularidades"
                     onChange={handleTurno}
                     maxLength="120"
-                    className="border border-info "
+                    className="formulariosMensaje "
                   />
                 </Col>
               </Row>
@@ -160,7 +160,7 @@ const Turno = () => {
                     onChange={handleTurno}
                     type="number"
                     maxLength="10"
-                    className="border border-info "
+                    className="formulariosMensaje "
                   />
                 </Col>
               </Row>
@@ -172,7 +172,7 @@ const Turno = () => {
                     type="date"
                     name="fecha"
                     onChange={handleTurno}
-                    className="border border-info "
+                    className="formulariosMensaje "
                   />
                 </Col>
               </Row>
@@ -182,7 +182,7 @@ const Turno = () => {
                     <Form.Label>Elige un horario para tu turno</Form.Label>
                     <Form.Control
                       as="select"
-                      className="border border-info w-100 "
+                      className="formulariosMensaje w-100 "
                       onChange={handleTurno}
                       name="hora"
                       custom
@@ -203,7 +203,7 @@ const Turno = () => {
                   </Form.Label>
                   <textarea
                     required
-                    className="p-4 w-100 border border-info "
+                    className="p-4 w-100 formulariosMensaje "
                     id="resumen"
                     name="resumen"
                     onChange={handleTurno}

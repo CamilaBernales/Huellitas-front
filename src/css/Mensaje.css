@@ -1,5 +1,6 @@
 .formulariosMensaje{
     background-color: rgba(250, 250, 250);
+    border: solid 1px rgb(143, 172, 173);
 }
 
 .btn-mensaje {

@@ -215,7 +215,7 @@ const Carrito = (props) => {
                       </Button>
                       :
                       <Button
-                        className="mx-2"
+                        className="mx-2 boton-continuar"
                         variant="secondary"
                         onClick={() => setKey("datoscomprador")}
                       >
@@ -264,7 +264,7 @@ const Carrito = (props) => {
           <Tab eventKey="datoscomprador" title="Detalles de envio" disabled>
             <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
-                <h3 className="my-3">Detalles de envio</h3>
+                <h3 className="my-3 text-center">Detalles de envio</h3>
                 <Form>
                   <Row>
                     <Col className="my-3">
@@ -347,13 +347,13 @@ const Carrito = (props) => {
                 <Row className="d-flex justify-content-end align-items-end">
                   <Col className="my-3 d-flex justify-content-end align-items-end">
                     <Button
-                      className="mx-2"
+                      className="mx-2 btn btn-secondary"
                       onClick={() => setKey("iniciocompra")}
                     >
                       Volver
                     </Button>
                     <Button
-                      className="mx-2 d-flex justify-content-end align-items-end"
+                      className="mx-2 d-flex justify-content-end align-items-end boton-continuar"
                       variant="secondary"
                       onClick={() => setKey("pagocompra")}
                     >
@@ -431,7 +431,7 @@ const Carrito = (props) => {
                 <Row>
                   <Col className="my-3">
                     <Button
-                      className="mx-2"
+                      className="mx-2 btn btn-secondary"
                       onClick={() => setKey("datoscomprador")}
                     >
                       Volver

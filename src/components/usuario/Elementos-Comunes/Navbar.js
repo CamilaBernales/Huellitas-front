@@ -97,15 +97,15 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                     Pedidos
                 </Link>
                   <NavDropdown title="Turnos" id="basic-nav-dropdown" className="btn-navbar-admin">
-                    <NavDropdown.Item href="/admin/turnos">
+                    <NavDropdown.Item className="btn-navbar-admin" href="/admin/turnos">
                       Listado de turnos
                   </NavDropdown.Item>
                   </NavDropdown>
                   <NavDropdown title="Productos" id="basic-nav-dropdown" className="btn-navbar-admin">
-                    <NavDropdown.Item href="/admin/altaproducto">
+                    <NavDropdown.Item className="btn-navbar-admin" href="/admin/altaproducto">
                       Alta de Producto
                   </NavDropdown.Item>
-                    <NavDropdown.Item href="/admin/productos">
+                    <NavDropdown.Item className="btn-navbar-admin" href="/admin/productos">
                       Listado de Productos
                   </NavDropdown.Item>
                   </NavDropdown>

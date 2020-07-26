@@ -72,7 +72,7 @@ export default function Login() {
           <Col sm={12} md={8} xl={4} className="col-12 mx-3 my-2">
             <div className="formulario">
               <Form onSubmit={onSubmitForm}>
-                <h3 className="text-center mx-4 ">LOGIN</h3>
+                <h3 className="text-center ">LOGIN</h3>
                 <Form.Group controlId="formEmail">
                   <Form.Label className=" d-flex justify-content-start">
                     Email:
@@ -80,7 +80,7 @@ export default function Login() {
                   <Form.Control
                     type="email"
                     placeholder="Ingrese su email"
-                    className="border border-info rounded-left"
+                    className="formulariosMensaje rounded-left"
                     name="email"
                     value={email}
                     onChange={onChangeForm}
@@ -91,7 +91,7 @@ export default function Login() {
                     Contraseña:
                   </Form.Label>
                   <Form.Control
-                    className="border border-info rounded-left"
+                    className="formulariosMensaje rounded-left"
                     type="password"
                     placeholder="Ingrese su contraseña"
                     name="password"

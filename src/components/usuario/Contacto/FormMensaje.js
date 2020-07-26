@@ -77,7 +77,7 @@ export default function FormMensaje() {
             {msgError}
           </Alert>
         ) : null}
-        <h3 className="text-center py-3 ">Contactanos</h3>
+        <h3 className="text-center py-3">Contactanos</h3>
         <p className="text-center  text-secondary">
           <b>Ubicación:</b> San Miguel de Tucumán. Provincia de Tucumán. Argentina
         </p>
@@ -90,7 +90,7 @@ export default function FormMensaje() {
               <Form.Group controlId="formName">
                 <Form.Control
                   placeholder="Nombre"
-                  className="formulariosMensaje border border-info"
+                  className="formulariosMensaje"
                   type="name"
                   name="nombre"
                   value={nombre}
@@ -102,7 +102,7 @@ export default function FormMensaje() {
               <Form.Group controlId="formEmail">
                 <Form.Control
                   placeholder="Email"
-                  className="formulariosMensaje border border-info"
+                  className="formulariosMensaje"
                   rows="3"
                   type="email"
                   name="email"
@@ -120,7 +120,7 @@ export default function FormMensaje() {
               >
                 <Form.Control
                   placeholder="Mensaje"
-                  className="formulariosMensaje border border-info"
+                  className="formulariosMensaje"
                   as="textarea"
                   rows="3"
                   name="mensaje"

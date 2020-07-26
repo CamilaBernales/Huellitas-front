@@ -77,7 +77,7 @@ export default function Registro() {
           </Col>
           <Col sm={12} md={8} xl={4} className="col-12 mx-3 my-2">
             <Form className="formulario" onSubmit={onSubmitForm}>
-              <h3 className="text-center mx-4">
+              <h3 className="text-center">
                 Crear una cuenta
               </h3>
               <Form.Group controlId="formName">
@@ -85,7 +85,7 @@ export default function Registro() {
                   Nombre:
                 </Form.Label>
                 <Form.Control
-                  className="border border-info rounded-left"
+                  className="formulariosMensaje rounded-left"
                   type="text"
                   placeholder="Ingrese su nombre"
                   name="nombre"
@@ -99,7 +99,7 @@ export default function Registro() {
                   Email:
                 </Form.Label>
                 <Form.Control
-                  className="border border-info rounded-left"
+                  className="formulariosMensaje rounded-left"
                   type="email"
                   placeholder="Ingrese su email"
                   name="email"
@@ -113,7 +113,7 @@ export default function Registro() {
                   Contraseña:
                 </Form.Label>
                 <Form.Control
-                  className="border border-info rounded-left"
+                  className="formulariosMensaje rounded-left"
                   type="password"
                   placeholder="Ingrese su contraseña"
                   name="password"
@@ -127,7 +127,7 @@ export default function Registro() {
                   Confirmar contraseña:
                 </Form.Label>
                 <Form.Control
-                  className="border border-info rounded-left"
+                  className="formulariosMensaje rounded-left"
                   type="password"
                   placeholder="Ingrese su contraseña nuevamente"
                   name="passwordConfirm"
@@ -141,7 +141,7 @@ export default function Registro() {
                   Teléfono (opciona):
                 </Form.Label>
                 <Form.Control
-                  className="border border-info rounded-left"
+                  className="formulariosMensaje rounded-left"
                   type="number"
                   placeholder="Ingrese su telefono (opcional)"
                   name="telefono"

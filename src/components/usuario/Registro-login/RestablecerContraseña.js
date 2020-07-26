@@ -56,7 +56,7 @@ const RestablecerContraseña = () => {
                       Contraseña:
                 </Form.Label>
                     <Form.Control
-                      className="border border-info rounded-left"
+                      className="formulariosMensaje rounded-left"
                       type="password"
                       placeholder="Ingrese su contraseña"
                       name="password"
@@ -70,7 +70,7 @@ const RestablecerContraseña = () => {
                       Confirmar contraseña:
                 </Form.Label>
                     <Form.Control
-                      className="border border-info rounded-left"
+                      className="formulariosMensaje rounded-left"
                       type="password"
                       placeholder="Ingrese su contraseña nuevamente"
                       name="passwordConfirm"
