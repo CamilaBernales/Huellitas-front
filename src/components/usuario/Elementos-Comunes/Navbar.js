@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Nav, NavDropdown, Col } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import "../../../css/Navbar.css";
 import "../../../css/NavbarAdmin.css"
@@ -121,7 +121,6 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
             </Navbar>
           </>
         )}
-      <Col>
         <PreCarrito
           modalShow={modalShow}
           setModalShow={setModalShow}
@@ -130,7 +129,6 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
           comprasGuardadas={comprasGuardadas}
           isLogIn={isLogIn}
         />
-      </Col>
     </>
   );
 };
