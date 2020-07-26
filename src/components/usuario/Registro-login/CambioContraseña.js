@@ -50,7 +50,6 @@ const CambioContraseña = () => {
               <h6>Revisa la casilla de tu correo électronico</h6>
             </Alert>
           ) : (
-<<<<<<< HEAD
               <Col sm={12} md={8} xl={4} className="col-12 mx-3 my-2">
                 <Form className="formulario">
                   <Form.Group controlId="formEmail">
@@ -81,38 +80,6 @@ const CambioContraseña = () => {
                 </Form>
               </Col>
             )}
-=======
-            <Col sm={12} md={8} xl={4}>
-              <Form className="formulario">
-                <Form.Group controlId="formEmail">
-                  <Form.Label className=" d-flex justify-content-start">
-                    Email:
-                  </Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Ingrese su email"
-                    className="border border-info rounded-left"
-                    name="email"
-                    onChange={handleEmailForm}
-                  />
-                </Form.Group>
-                <Row>
-                  <Col className="justify-content-center mb-3">
-                    <Button
-                      variant="info"
-                      className="text-white btn btn-button w-100 mt-3"
-                      type="submit"
-                      onClick={authEmail}
-                      disabled={error === true}
-                    >
-                      Enviar
-                    </Button>
-                  </Col>
-                </Row>
-              </Form>
-            </Col>
-          )}
->>>>>>> bf5915eda7fc915c51f2529651e1b71be8bc29b9
         </Row>
       </Container>
       <Footer />
