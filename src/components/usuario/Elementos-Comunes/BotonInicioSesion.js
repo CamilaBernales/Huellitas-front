@@ -70,8 +70,8 @@ const Logo = () => {
                 </Col>
               </Row>
             </Dropdown.Item>
-            <Dropdown.Item href="/perfilusuario">Mi perfil</Dropdown.Item>
-            <Dropdown.Item onClick={() => salir()}>Cerrar sesión</Dropdown.Item>
+            <Dropdown.Item className="btn-IS" href="/perfilusuario">Mi perfil</Dropdown.Item>
+            <Dropdown.Item className="btn-IS" onClick={() => salir()}>Cerrar sesión</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Row>

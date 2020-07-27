@@ -132,7 +132,7 @@ const PerfilUsuario = () => {
               </Form.Group>
               <Form.Group className="my-4" controlId="formName">
                 <Form.Label className="justify-content-start">
-                  Nombre:
+                  Nombre y Apellido:
                 </Form.Label>
                 <Form.Control
                   className="border border-primary rounded-left"

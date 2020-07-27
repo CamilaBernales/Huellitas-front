@@ -82,7 +82,7 @@ export default function Registro() {
               </h3>
               <Form.Group controlId="formName">
                 <Form.Label className=" justify-content-start">
-                  Nombre:
+                  Nombre y Apellido:
                 </Form.Label>
                 <Form.Control
                   className="formulariosMensaje rounded-left"

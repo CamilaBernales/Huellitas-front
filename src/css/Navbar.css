@@ -87,8 +87,8 @@
 
 
 .btn-navbar-dropdown {
-  padding: 10px 0;
-  margin: auto 4px auto 4px;
+  /* padding: 10px 0; */
+  /* margin: auto 4px auto 4px; */
   color: rgb(31, 29, 29) !important;
   text-transform: uppercase;
   font-weight: 600;
