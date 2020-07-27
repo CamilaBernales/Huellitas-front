@@ -13,10 +13,10 @@ export default function TablaPedidos({ compras }) {
   const [pedido, setPedido] = useState([]);
 
   const [compra, setCompra] = useState({});
-  const mostrar = (c, p) => {
+  const mostrar = (detallesEnvio, pedidos) => {
     setModalShow(true);
-    setPedido(p);
-    setCompra(c);
+    setPedido(pedidos);
+    setCompra(detallesEnvio);
   };
 
   return (
@@ -25,10 +25,11 @@ export default function TablaPedidos({ compras }) {
       <Table size="sm" striped bordered hover>
         <thead>
           <tr>
-            <th className="th-admin">Fecha</th>
-            <th className="th-admin">Cliente</th>
-            <th className="th-admin">Direccion</th>
-            <th className="th-admin">Acciones</th>
+            <th>Fecha</th>
+            <th>Cliente</th>
+            <th>Direccion</th>
+            <th>Total</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -36,14 +37,15 @@ export default function TablaPedidos({ compras }) {
             <tr key={c._id}>
               <td>{moment(c.fecha).format("DD/MM/YYYY")}</td>
               <td>
-                {c.nombre} {c.apellido}
+                {c.nombre ? c.nombre: c.detallesEnvio.nombre}
               </td>
               <td>{c.direccion}</td>
+               <td>{c.total}</td>
               <td>
                 <Button
                   size="sm"
                   
-                  onClick={() => mostrar(c, c.pedido)}
+                  onClick={() => mostrar(c.detallesEnvio, c.pedido)}
                   className="ml-1 btn boton-permisos"
                 >
                   Detalle

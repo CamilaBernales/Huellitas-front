@@ -25,12 +25,12 @@ export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
               Nombre:
               <strong>
                 {" "}
-                {compra.nombre} {compra.apellido}
+                {compra.nombre}
               </strong>
             </p>
             <p>
               Direccion:
-              <strong> {compra.direccion}</strong>
+              <strong> {compra.direccion }</strong>
             </p>
             <p>
               Telefono:

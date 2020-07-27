@@ -107,18 +107,18 @@ const ListadoUsuarios = () => {
       </button>
     );
   useEffect(() => {
-    window.scrollTo(0, 200);
+      window.scrollTo(0, 0);
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       listarUsuarios();
-      window.scrollTo(0, 200);
+        window.scrollTo(0, 0);
     }, 3000);
     // eslint-disable-next-line
   }, [usuarioEditado, currentPage]);
   return (
     <>
-      <Container className="my-5">
+      <Container className="m-auto">
         {loading && !error ? (
           <Row className="mt-4 mb-4 d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />

@@ -20,17 +20,12 @@ const CambioContraseña = () => {
     axiosConfig
       .post("/api/usuarios/resetpassword", email)
       .then(() => {
-        enviarMail();
+        setSendingEmail(true);
       })
       .catch((err) => {
         setError(true);
         setErrorMsg(err.response.data.msg);
       });
-  };
-  const enviarMail = () => {
-    axiosConfig.post("/api/usuarios/emailresetpassword", email).then(() => {
-      setSendingEmail(true);
-    });
   };
 
   return (

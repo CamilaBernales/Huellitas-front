@@ -18,7 +18,7 @@ const RestablecerContraseña = () => {
   };
   const restablecerContraseña = (e) => {
     e.preventDefault();
-    if (password === passwordConfirm && password.length >= 6) {
+    if (password === passwordConfirm && password.length >= 6 && passwordConfirm.length>=6) {
       axiosConfig.put("/api/usuarios/resettingpassword", { id, password });
       setSuccess(true);
       setTimeout(() => {

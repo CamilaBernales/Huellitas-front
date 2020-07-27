@@ -22,7 +22,6 @@ const PerfilUsuario = () => {
       .then((res) => {
         setUsuario(res.data.usuario);
       })
-      .catch((err) => console.log(err.response));
   };
   const editarUsuario = () => {
     if (usuario.nombre.trim() !== "" && usuario.email.trim() !== "") {

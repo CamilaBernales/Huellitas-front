@@ -29,7 +29,7 @@ const ListadoMensajes = () => {
       });
   };
   useEffect(() => {
-    window.scrollTo(0, 200);
+    window.scrollTo(0, 0);
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -39,7 +39,7 @@ const ListadoMensajes = () => {
   }, []);
   return (
     <>
-      <Container className="my-5">
+      <Container className="m-auto">
         {loading ? (
           <Row className="mt-4 mb-4  my-4  d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />
@@ -47,7 +47,7 @@ const ListadoMensajes = () => {
             <Spinner animation="grow" variant="info" />
           </Row>
         ) : null}
-        {error && !loading ? (
+        {error ? (
           <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
             <Alert className="text-center" variant="danger">
               <h6>{errorMsg}</h6>
@@ -94,21 +94,7 @@ const ListadoMensajes = () => {
               </Table>
             </Col>
           </Row>
-        ) : (
-          !loading &&
-          mensajes.length === 0 && (
-            <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
-              <Alert className="text-center" variant="warning">
-                <h6>
-                  No hay mensajes para mostrarte
-                  <span role="img" aria-label="cara triste">
-                    &#128546;
-                  </span>
-                </h6>
-              </Alert>
-            </Row>
-          )
-        )}
+        ) : null }
       </Container>
     </>
   );

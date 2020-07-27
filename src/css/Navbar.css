@@ -9,7 +9,7 @@
 .navbar-light .navbar-nav .nav-link{
   color: white !important;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .navbar-brand {
@@ -17,9 +17,6 @@
   text-transform: uppercase;
   font-weight: 800;
   letter-spacing: 4px;
-}
-.active{
-  color: orange !important;
 }
 
 
@@ -36,6 +33,7 @@
 } */
 
 .btn-navbar {
+  padding: 10px 0;
   margin: auto 4px auto 4px;
   color: white !important;
   text-transform: uppercase;
@@ -52,7 +50,7 @@
   transition-duration: 0.3s;
 }
 .selected{
-  font-weight: 900;
+  font-weight: 700;
 }
 .btn-navbar:before {
   content: "";

@@ -32,19 +32,21 @@ const MisCompras = () => {
       .get(`/api/compra/miscompras`)
       .then((res) => {
         setMisCompras(res.data);
+        console.log(res)
         setLoading(false);
         setFetchCompras(false);
       })
-      .catch(() => {
+      .catch((error) => {
         setError(true);
         setErrorMsg("Hubo un error.");
       });
   };
 
-  const verDetalle = (pedido, compra) => {
+  const verDetalle = (pedido, compra, detallesEnvio) => {
     setModalShow(true);
     setPedido(pedido);
-    setCompra(compra);
+    setCompra(detallesEnvio);
+
   };
   useEffect(() => {
     window.scrollTo(0, 200);
@@ -86,9 +88,11 @@ const MisCompras = () => {
                       </thead>
                       <tbody>
                         {misCompras.map((compra) => (
+                          
                           <tr key={compra._id}>
-                            <td>{moment(compra.fecha).format("DD-MM-YYYY")}</td>
-                            <td>{compra.direccion}</td>
+                            <td>{moment(compra.fecha ? compra.fecha : compra.detallesEnvio.fecha).format("DD-MM-YYYY HH:mm")  }</td>
+                            <td>{compra.direccion ? compra.direccion : compra.detallesEnvio.direccion}</td>
+                            
                             <td>{compra.total}</td>
                             <td>
                               <Button
@@ -96,7 +100,7 @@ const MisCompras = () => {
                                 variant="success"
                                 className="ml-1"
                                 onClick={() =>
-                                  verDetalle(compra.pedido, compra)
+                                  verDetalle(compra.pedido, compra, compra.detallesEnvio)
                                 }
                               >
                                 Ver detalle
@@ -112,9 +116,10 @@ const MisCompras = () => {
                       modalShow={modalShow}
                       setModalShow={setModalShow}
                       onHide={onHide}
+                      misCompras={misCompras}
                     />
                   </>
-                ) : !fetchCompras && (
+                ) : !fetchCompras && misCompras.length===0 && (
                   <Row className="d-flex justify-content-center align-items-center text-start my-3">
                     <Alert className="text-center" variant="info">
                       <h6>

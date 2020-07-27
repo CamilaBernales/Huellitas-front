@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
-import "../../../css/ListadoUsuarios.css"
+import "../../../css/ListadoUsuarios.css";
 
 const Productosadmin = () => {
   const [loading, setLoading] = useState(true);
@@ -42,7 +42,7 @@ const Productosadmin = () => {
       .then((res) => {
         setEditar(true);
         setProductoEditado(res.data.producto);
-        window.scrollTo(0, 200);
+        window.scrollTo(0, 0);
       })
       .catch((err) => {
         setError(true);
@@ -65,7 +65,7 @@ const Productosadmin = () => {
         // 4194304 = 4MB
         setError(true);
         setMsgError("La imagen es demasiado grande.");
-        window.scrollTo(0, 200);
+        window.scrollTo(0, 0);
         e.target.value = null;
         setProductoEditado({
           ...productoEditado,
@@ -92,8 +92,8 @@ const Productosadmin = () => {
     if (
       productoEditado.nombre !== "" &&
       productoEditado.tipoproducto !== "" &&
+      productoEditado.descripcion.trim() !== "" &&
       productoEditado.disponibilidad !== "" &&
-      productoEditado.descripcion !== "" &&
       productoEditado.precio !== "" &&
       productoEditado.imagen !== ""
     ) {
@@ -126,7 +126,7 @@ const Productosadmin = () => {
             .catch((err) => {
               setError(true);
               setMsgError(err.response.data.msg);
-              window.scrollTo(0, 200);
+              window.scrollTo(0, 0);
               return;
             });
         }
@@ -134,7 +134,7 @@ const Productosadmin = () => {
     } else {
       setError(true);
       setMsgError("Todos los campos deben ser completados.");
-      window.scrollTo(0, 200);
+      window.scrollTo(0, 0);
       return;
     }
   };
@@ -173,31 +173,29 @@ const Productosadmin = () => {
       setLoading(false);
       setEditar(false);
       listarProductos();
-      window.scrollTo(0, 200);
-    }, 3000);
+      window.scrollTo(0, 0);
+    }, 2000);
     // eslint-disable-next-line
   }, [currentPage]);
   return (
-    <div>
-      <Container className="my-5">
-        {error && !loading ? (
+    <>
+      <Container className="m-auto">
+        {loading && !error ? (
+          <Row className="my-4 d-flex justify-content-center align-items-center">
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="info" />
+            <Spinner animation="grow" variant="info" />
+          </Row>
+        ) : null}
+        {error ? (
           <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
             <Alert className="text-center" variant="danger">
               <h6> {msgError} </h6>
             </Alert>
           </Row>
         ) : null}
-        <Row className="my-4 d-flex justify-content-center align-items-center">
-          {loading ? (
-            <>
-              <Spinner animation="grow" variant="info" />
-              <Spinner animation="grow" variant="info" />
-              <Spinner animation="grow" variant="info" />
-            </>
-          ) : null}
-        </Row>
         {editar && !loading ? (
-          <Row className="d-flex justify-content-center align-items-center my-5">
+          <Row className="d-flex justify-content-center align-items-center text-start my-5">
             <Col sm={12} md={8} xl={6}>
               <Form>
                 <Row>
@@ -315,14 +313,13 @@ const Productosadmin = () => {
             </Col>
           </Row>
         ) : null}
-
         {!loading && productos.length !== 0 ? (
           <Row className="d-flex justify-content-center align-items-center text-start my-5">
             <Col sm={12} md={8} lg={10}>
               <Table striped bordered hover responsive="sm">
                 <thead>
                   <tr>
-                    <th  className="th-admin">Nombre</th>
+                    <th className="th-admin">Nombre</th>
                     <th className="th-admin">Detalles del producto</th>
                     <th className="th-admin">Precio</th>
                     <th className="th-admin">Stock</th>
@@ -361,7 +358,7 @@ const Productosadmin = () => {
           <div className="text-center my-4 mx-1">{verMas()}</div>
         </Row>
       </Container>
-    </div>
+    </>
   );
 };
 
