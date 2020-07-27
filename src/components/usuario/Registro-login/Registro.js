@@ -87,7 +87,7 @@ export default function Registro() {
                 <Form.Control
                   className="formulariosMensaje rounded-left"
                   type="text"
-                  placeholder="Ingrese su nombre"
+                  placeholder="Ingrese su nombre y apellido"
                   name="nombre"
                   value={nombre}
                   onChange={onChangeForm}

@@ -137,7 +137,7 @@ const PerfilUsuario = () => {
                 <Form.Control
                   className="border border-primary rounded-left"
                   type="text"
-                  placeholder="Ingrese su nombre"
+                  placeholder="Ingrese su nombre y apellido"
                   name="nombre"
                   onChange={onChangeUsuario}
                   defaultValue={usuario.nombre}

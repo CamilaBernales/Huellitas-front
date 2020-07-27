@@ -31,7 +31,7 @@ const Turnosadmin = () => {
       })
       .catch(() => {
         setError(true);
-        loading(false);
+        setLoading(false);
       });
   };
   const onChangeFiltroTurnos = (e) => {
@@ -41,17 +41,16 @@ const Turnosadmin = () => {
     if (filtro !== "") {
       axiosConfig
         .get(
-          `/api/turnos/turnosfiltrados?fecha=${filtro}&&pagina=${currentPage}`
+          `/api/turnos/turnosfiltrados?fecha=${filtro}`
         )
         .then((res) => {
-          setTurnos(res.data.docs);
-          setTotalPages(res.data.totalPages);
+          setTurnos(res.data);
           setFiltrando(false);
         })
         .catch(() => {
           setFiltrando(false);
           setError(true);
-          loading(false);
+          setLoading(false);
         });
     } else {
       setCurrentPage(1);

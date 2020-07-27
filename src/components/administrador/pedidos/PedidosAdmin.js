@@ -24,14 +24,11 @@ export default function PedidosAdmin() {
   };
   const filtrarPedidos = () => {
     axiosConfig
-      .get(
-        `/api/compra/filtrocompras?nombre=${clienteFiltro}&&pagina=${currentPage}`
-      )
+      .get(`/api/compra/filtrocompras?nombre=${clienteFiltro}`)
       .then((res) => {
-        setCompras(res.data.docs);
-        setTotalPages(res.data.totalPages);
+        setCompras(res.data);
       })
-      .catch((err) => {
+      .catch(() => {
         setLoading(false);
         setError(true);
       });
@@ -100,12 +97,16 @@ export default function PedidosAdmin() {
           </Form.Group>
         </Col>
         <Col sm={12} md={4}>
-          <Button className="mx-2 mb-3 boton-search-admin buscar-admin" onClick={filtrarPedidos} variant="info">
+          <Button
+            className="mx-2 mb-3 boton-search-admin buscar-admin"
+            onClick={filtrarPedidos}
+            variant="info"
+          >
             Buscar
           </Button>
         </Col>
       </Form.Row>
-      {(!loading && error) ? (
+      {!loading && error ? (
         <Row className="mt-4 mb-4 my-4 d-flex justify-content-center align-items-center">
           <Alert className="text-center" variant="warning">
             <h6>
