@@ -13,7 +13,7 @@ import {
 } from "react-bootstrap";
 import PaymentForm from "./PaymentForm";
 import ListadoCompras from "./ListadoCompras";
-import Footer from "../Elementos-Comunes/Footer"
+import Footer from "../Elementos-Comunes/Footer";
 import "../../../css/Carrito.css";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
@@ -56,7 +56,6 @@ const Carrito = (props) => {
   });
 
   useEffect(() => {
-    console.log("linea 57", compraPagada);
     if (primerRender.current) {
       primerRender.current = false;
       return;
@@ -87,7 +86,7 @@ const Carrito = (props) => {
         getInstallments();
       } else {
         alert(`Número no válido.`);
-        window.location.reload(true); 
+        window.location.reload(true);
       }
     }
 
@@ -167,6 +166,7 @@ const Carrito = (props) => {
       alert("Debe seleccionar una formade pago");
       return;
     }
+
     if (
       (datosTarjeta.number === "" ||
         datosTarjeta.name === "" ||
@@ -212,15 +212,18 @@ const Carrito = (props) => {
   };
 
   const crearToken = () => {
-    var $form = formRef.current;
-    window.Mercadopago.createToken($form, sdkResponseHandler);
-    function sdkResponseHandler(status, response) {
-      if (status !== 200 && status !== 201) {
-        alert("Verifica los datos de tu tarjeta")
-      } else {
-        solicitudCompra(response.id);
+    if (medioDePago.efectivoChecked !== true) {
+      var $form = formRef.current;
+      window.Mercadopago.createToken($form, sdkResponseHandler);
+      function sdkResponseHandler(status, response) {
+        if (status !== 200 && status !== 201) {
+          alert("Verifica los datos de tu tarjeta");
+        } else {
+          solicitudCompra(response.id);
+        }
       }
     }
+    solicitudCompra();
   };
 
   const solicitudCompra = (token) => {
@@ -230,6 +233,7 @@ const Carrito = (props) => {
         token,
         datosTarjeta,
         detallesEnvio,
+        medioDePago,
       })
       .then(() => {
         Swal.fire({
@@ -266,7 +270,7 @@ const Carrito = (props) => {
         >
           <Tab eventKey="iniciocompra" title="Lista de compras" disabled>
             <h3>Lista de compras</h3>
-            <Row className="d-flex">
+            <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
                 <Row>
                   <ListadoCompras
