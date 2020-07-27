@@ -57,7 +57,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                     activeclassname="selected"
                   >
                     <NavLink
-                      className="dropdown-item"
+                      className="dropdown-item btn-navbar-dropdown"
                       activeclassname="selected"
                       exact
                       to="/turno"
@@ -65,7 +65,7 @@ const NavBar = ({ comprasGuardadas, setComprasGuardadas, respuesta }) => {
                       Solicitar Turno
                     </NavLink>
                     <NavLink
-                      className="dropdown-item"
+                      className="dropdown-item btn-navbar-dropdown"
                       activeclassname="selected"
                       exact
                       to="/misturnos"

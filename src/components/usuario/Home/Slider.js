@@ -4,7 +4,7 @@ import "../../../css/Home.css";
 // import Gato from "../../../img/imagenes-slider/Gato.jpg"
 import PerroCorriendo from "../../../img/imagenes-slider/Perro-Corriendo.jpg";
 import BirdShop from "../../../img/imagenes-slider/pajaro-comprando.jpg";
-import Veterinario from "../../../img/imagenes-slider/veterinario.jpg";
+import Veterinario from "../../../img/imagenes-slider/medicos.jpg";
 
 export default function Slider() {
   return (
@@ -47,7 +47,7 @@ export default function Slider() {
 
         <Carousel.Caption>
           <em>
-            <h3 className="pb-2 h3-slider">Tienda con variedad de productos</h3>
+            <h3 className="pb-2">Tienda con variedad de productos</h3>
           </em>
           <Button href="/tienda" size="lg" className="btn-custom">
             Comprar
