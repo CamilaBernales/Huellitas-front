@@ -55,7 +55,7 @@ const Tienda = (props) => {
     ) {
       axiosConfig
         .get(
-          `/api/productos/productosfiltrados?nombre=${filtrarNombre}&&tipoproducto=${filtrarTipo}&&pagina=${currentPage}`
+          `/api/productos/productosfiltrados?nombre=${filtrarNombre}&&tipoproducto=${filtrarTipo}`
         )
         .then((res) => {
           setProductos(res.data.docs);
