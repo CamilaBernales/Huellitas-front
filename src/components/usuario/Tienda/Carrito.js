@@ -86,7 +86,8 @@ const Carrito = (props) => {
         setDatosTarjeta({ ...datosTarjeta, paymentMethodId });
         getInstallments();
       } else {
-        alert(`payment method info error: ${response}`);
+        alert(`Número no válido.`);
+        window.location.reload(true); 
       }
     }
 
@@ -215,7 +216,7 @@ const Carrito = (props) => {
     window.Mercadopago.createToken($form, sdkResponseHandler);
     function sdkResponseHandler(status, response) {
       if (status !== 200 && status !== 201) {
-        alert("verify filled data")
+        alert("Verifica los datos de tu tarjeta")
       } else {
         solicitudCompra(response.id);
       }
