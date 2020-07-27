@@ -118,7 +118,10 @@ const ListadoUsuarios = () => {
   }, [usuarioEditado, currentPage]);
   return (
     <>
-      <Container className="m-auto">
+      <Container className="mb-auto">
+      <Row className="d-flex justify-content-center align-items-center">
+        <h3 className="h3-admin">Listado de Usuarios</h3>
+      </Row>
         {loading && !error ? (
           <Row className="mt-4 mb-4 d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />

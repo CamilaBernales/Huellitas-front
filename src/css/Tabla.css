@@ -30,3 +30,10 @@
     position: relative;
     top:0px;
 }
+
+.h3-admin{
+    color: #806db6;
+    font-weight: 700 ;
+    font-family: "Open Sans" , Arial, sans-serif;
+    margin: 2rem;
+  }

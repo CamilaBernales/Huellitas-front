@@ -104,7 +104,7 @@ function FormProductos() {
     <div>
       <Container className="my-5">
       <Row className="d-flex justify-content-center align-items-center">
-        <h3>Alta de producto</h3>
+        <h3 className="h3-admin">Carga un nuevo producto</h3>
       </Row>
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
