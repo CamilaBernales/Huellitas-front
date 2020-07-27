@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
 import "../../../css/Turno.css";
 import moment from "moment";
-import Footer from "../Elementos-Comunes/Footer"
+import Footer from "../Elementos-Comunes/Footer";
 
 const Turno = () => {
   const [nuevoTurno, setNuevoTurno] = useState({
@@ -13,7 +13,7 @@ const Turno = () => {
     raza: "",
     particularidades: "",
     fecha: moment().format("YYYY-MM-DD"),
-    hora: "",
+    hora: "9:00",
     resumen: "",
     telefono: "",
   });
@@ -99,7 +99,9 @@ const Turno = () => {
             <Form onSubmit={submitTurno}>
               <Row className="my-2">
                 <Col className="my-2">
-                  <Form.Label className="texto-input">Nombre de tu mascota</Form.Label>
+                  <Form.Label className="texto-input">
+                    Nombre de tu mascota
+                  </Form.Label>
                   <Form.Control
                     required
                     placeholder="Nombre de tu mascota"
@@ -147,7 +149,7 @@ const Turno = () => {
                 </Col>
               </Row>
             </Form>
-          
+
             <Form className="mt-5" onSubmit={submitTurno}>
               <h3 className="text-center">Información de tu turno</h3>
               <Row className="my-2">
