@@ -179,9 +179,9 @@ const Productosadmin = () => {
   }, [currentPage]);
   return (
     <>
-      <Container className="m-auto">
+      <Container className="mb-auto">
       <Row className="d-flex justify-content-center align-items-center">
-        <h3>Listado de Productos</h3>
+        <h3 className="h3-admin">Listado de Productos</h3>
       </Row>
         {loading && !error ? (
           <Row className="my-4 d-flex justify-content-center align-items-center">
