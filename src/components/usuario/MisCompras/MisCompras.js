@@ -32,7 +32,6 @@ const MisCompras = () => {
       .get(`/api/compra/miscompras`)
       .then((res) => {
         setMisCompras(res.data);
-        console.log(res)
         setLoading(false);
         setFetchCompras(false);
       })

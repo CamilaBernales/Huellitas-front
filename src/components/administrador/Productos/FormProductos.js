@@ -17,7 +17,7 @@ function FormProductos() {
   const [nuevoProducto, setNuevoProducto] = useState({
     nombre: "",
     descripcion: "",
-    precio: "100",
+    precio: "",
     disponibilidad: "",
     imagen: imgDefault,
     tipoproducto: "",
@@ -103,6 +103,9 @@ function FormProductos() {
   return (
     <div>
       <Container className="my-5">
+      <Row className="d-flex justify-content-center align-items-center">
+        <h3>Alta de producto</h3>
+      </Row>
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
             {error ? (
@@ -145,7 +148,7 @@ function FormProductos() {
                   <Form.Label>Precio</Form.Label>
                   <Form.Control
                     required
-                    placeholder="precio"
+                    placeholder="Precio"
                     name="precio"
                     type="number"
                     onChange={onChangeProducto}

@@ -180,6 +180,9 @@ const Productosadmin = () => {
   return (
     <>
       <Container className="m-auto">
+      <Row className="d-flex justify-content-center align-items-center">
+        <h3>Listado de Productos</h3>
+      </Row>
         {loading && !error ? (
           <Row className="my-4 d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />
