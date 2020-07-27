@@ -99,6 +99,9 @@ const Turnosadmin = () => {
   return (
     <>
       <Container className="m-auto">
+      <Row className="d-flex justify-content-center align-items-center">
+        <h3>Listado de Turnos</h3>
+      </Row>
         <Form>
           <Row className="d-flex justify-content-center my-3">
             <Col sm={12} md={6} className="my-2">

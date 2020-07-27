@@ -86,6 +86,9 @@ export default function PedidosAdmin() {
 
   return (
     <Container className="m-auto">
+      <Row className="d-flex justify-content-center align-items-center">
+        <h3>Sección Pedidos</h3>
+      </Row>
       <Form.Row className="d-flex justify-content-center align-items-center text-start ">
         <Col sm={12} md={6} className="my-2">
           <Form.Group>

@@ -11,7 +11,7 @@ function Footer() {
           <Col sm={12} md={4} className="my-2">
             <h4 className="ml-3">Información</h4>
             <Col sm={12} md={4} className="my-2">
-              <Link className="linkfooter" to="/contacto">
+              <Link className="linkfooter" to="#">
                 Contacto
               </Link>
             </Col>
