@@ -41,7 +41,7 @@ export default function Login() {
         if (res.data.usuario.rol !== "admin") {
           window.location.href = "/";
         } else {
-          window.location.href = "/admin/turnos";
+          window.location.href = "/";
         }
       })
       .catch((err) => {

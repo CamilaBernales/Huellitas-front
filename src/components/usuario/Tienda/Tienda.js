@@ -117,7 +117,7 @@ const Tienda = (props) => {
             ) : null}
           </Row>
           <Form onSubmit={filtrarProductos}>
-            <Row className="d-flex justify-content-around align-items-center">
+            <Row className="d-flex ml-3 justify-content-around align-items-center">
               <Col sm={12} md={6} xl={4} lg={6} className="my-2">
                 <Form.Group>
                   <Form.Control

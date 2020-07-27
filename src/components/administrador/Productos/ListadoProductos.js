@@ -91,8 +91,8 @@ const Productosadmin = () => {
     if (
       productoEditado.nombre !== "" &&
       productoEditado.tipoproducto !== "" &&
+      productoEditado.descripcion.trim() !== "" &&
       productoEditado.disponibilidad !== "" &&
-      productoEditado.descripcion !== "" &&
       productoEditado.precio !== "" &&
       productoEditado.imagen !== ""
     ) {

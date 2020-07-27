@@ -28,6 +28,7 @@ export default function TablaPedidos({ compras }) {
             <th>Fecha</th>
             <th>Cliente</th>
             <th>Direccion</th>
+            <th>Total</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -39,6 +40,7 @@ export default function TablaPedidos({ compras }) {
                 {c.nombre ? c.nombre: c.detallesEnvio.nombre}
               </td>
               <td>{c.direccion}</td>
+               <td>{c.total}</td>
               <td>
                 <Button
                   size="sm"
