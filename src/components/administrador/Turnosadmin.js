@@ -98,7 +98,7 @@ const Turnosadmin = () => {
   }, [currentPage]);
   return (
     <>
-      <Container className="m-auto">
+      <Container className="m-auto tabla-arriba">
         <Form>
           <Row className="d-flex justify-content-center my-3">
             <Col sm={12} md={6} className="my-2">

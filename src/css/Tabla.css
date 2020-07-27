@@ -25,3 +25,8 @@
     border: solid 1px #5a3daa;
     box-shadow: none;
 }
+
+.tabla-arriba{
+    position: relative;
+    top:0px;
+}
