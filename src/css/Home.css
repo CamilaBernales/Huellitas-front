@@ -35,7 +35,7 @@ h3{
   margin: 2rem;
 }
 
-.h3-slider{
+/* .h3-slider{
   color: #08131d;
   font-weight: 700 ;
   font-family: "Open Sans" , Arial, sans-serif;
@@ -44,9 +44,9 @@ h3{
     font-weight: 700 ;
     font-family: "Karla", sans-serif;
     margin: 2rem;
-}
+} */
 
-.btn-custom-slider {
+/* .btn-custom-slider {
   color: #08131d;
   background: none;
   border: 2px solid #08131d;
@@ -58,19 +58,19 @@ h3{
   background: #08131d;
   border: 2px solid #08131d;
   transition:all .5s ease-in-out;
-}
+} */
 
 
 .btn-custom {
-  background: #00a6a6;
-  border: 2px solid rgb(0, 166, 166);
+  background: #4287ad;
+  border: 2px solid #4287ad;
   font: "Open Sans" , Arial, sans-serif;
   transition:all .5s ease-in-out;
 }
 
 .btn-custom:hover{
-  background: rgb(0, 166, 166);
-  border: 2px solid rgb(0, 166, 166);
+  background: #138ab9;
+  border: 2px solid #138ab9;
   transition:all .5s ease-in-out;
 }
 
