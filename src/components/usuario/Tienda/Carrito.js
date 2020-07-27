@@ -266,7 +266,7 @@ const Carrito = (props) => {
         >
           <Tab eventKey="iniciocompra" title="Lista de compras" disabled>
             <h3>Lista de compras</h3>
-            <Row className="d-flex">
+            <Row className="d-flex justify-content-center align-items-center">
               <Col sm={12} md={8} xl={6}>
                 <Row>
                   <ListadoCompras
