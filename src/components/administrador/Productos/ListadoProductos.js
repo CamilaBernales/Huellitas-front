@@ -138,7 +138,39 @@ const Productosadmin = () => {
       return;
     }
   };
-
+  const eliminarUnProducto = (id) => {
+    Swal.fire({
+      title: "Estas seguro de que quieres elminar este producto?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar!",
+    }).then((result) => {
+      if (result.value) {
+        axiosConfig
+          .delete(`api/productos/delete/${id}`)
+          .then(() => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "El producto fue eliminado con éxito.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            setTimeout(() => {
+              window.location.reload(true);
+            }, 2000);
+          })
+          .catch((err) => {
+            setError(true);
+            setMsgError(err.response.data.msg);
+            window.scrollTo(0, 0);
+            return;
+          });
+      }
+    });
+  };
   const verMas = () =>
     totalPages > currentPage &&
     !error &&
@@ -180,9 +212,9 @@ const Productosadmin = () => {
   return (
     <>
       <Container className="mb-auto">
-      <Row className="d-flex justify-content-center align-items-center">
-        <h3 className="h3-admin">Listado de Productos</h3>
-      </Row>
+        <Row className="d-flex justify-content-center align-items-center">
+          <h3 className="h3-admin">Listado de Productos</h3>
+        </Row>
         {loading && !error ? (
           <Row className="my-4 d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />
@@ -328,6 +360,8 @@ const Productosadmin = () => {
                     <th className="th-admin">Stock</th>
                     <th className="th-admin">Producto</th>
                     <th className="th-admin">Editar</th>
+                    <th className="th-admin">Eliminar</th>
+
                   </tr>
                 </thead>
                 <tbody>
@@ -345,6 +379,14 @@ const Productosadmin = () => {
                             onClick={() => obtenerUnProducto(producto._id)}
                           >
                             <i className="fas fa-edit" />
+                          </Button>
+                        </td>
+                        <td className="text-center">
+                          <Button
+                            className="boton-permisos"
+                            onClick={() => eliminarUnProducto(producto._id)}
+                          >
+                            <i className="fas fa-trash" />
                           </Button>
                         </td>
                       </tr>
