@@ -1,0 +1,39 @@
+.th-admin{
+    background: #806db6;
+    color: white;
+    border-style : hidden!important
+}
+
+.boton-email{
+    background: #806db6;
+    border: solid 1px #806db6;
+}
+
+.boton-email:hover{
+    background:#5a3daa ;
+    border: solid 1px #5a3daa;
+}
+
+.boton-email:active{
+    background-color: #5a3daa;
+    border: solid 1px #5a3daa;
+    box-shadow: none;
+}
+
+.boton-email:focus{
+    background-color: #5a3daa;
+    border: solid 1px #5a3daa;
+    box-shadow: none;
+}
+
+/* .tabla-arriba{
+    position: relative;
+    top:0px;
+} */
+
+.h3-admin{
+    color: #806db6;
+    font-weight: 700 ;
+    font-family: "Open Sans" , Arial, sans-serif;
+    margin: 2rem;
+  }

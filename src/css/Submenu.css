@@ -1,0 +1,11 @@
+.sidebar {
+    position: fixed;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    float: left;
+    min-height: 100%;
+    right: 0;
+    top: 0;
+    width: 30%;
+}

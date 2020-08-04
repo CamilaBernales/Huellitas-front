@@ -1,0 +1,167 @@
+.imagentienda{
+    height: 300px;
+}
+
+.card-custom{
+    box-shadow: 2px 2px 12px 3px rgba(0,0,0,0.25);
+    border: black !important;
+}
+
+.boton-modal {
+    background: rgb(0, 166, 166);
+    border: 2px solid rgb(0, 166, 166);
+    font: inherit;
+}
+
+.boton-modal:hover{
+    background:  rgb(94, 194, 203);
+    border: 2px solid rgb(94, 194, 203);
+    box-shadow: 2px 2px 3px rgba(54, 54, 54, 0.418);
+}
+
+.text-color{
+    color:rgba(46, 55, 83, 0.897);
+}
+
+/*Estilo para botones de las cards */
+
+.boton-card-tienda {
+	display: inline-block;
+	font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	position: relative;
+	padding: .8em 1em;
+	padding-right: 2em;
+	background: rgb(0, 166, 166);
+	border: none;
+	color: white;
+    transition: .2s;
+}
+  
+.boton-card-tienda:before,
+.boton-card-tienda:after {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		padding-top: inherit;
+		padding-bottom: inherit;
+		width: 2.8em;
+		content: "\00a0";
+		font-family: 'FontAwesome', sans-serif;
+		font-size: 1.2em;
+		text-align: center;
+		transition: .2s;
+		transform-origin: 50% 60%;
+	}
+	.boton-card-tienda:before {
+		background: fadeout(#000, 90%);
+	}
+	.boton-card-tienda:hover {
+		background:  rgb(94, 194, 203) ;
+	}
+	.boton-card-tienda:active,
+  .boton-card-tienda:focus {
+		background:  rgb(94, 194, 203);
+		outline: none;
+	}
+
+.boton-card-tienda {
+	min-width: 15em;
+}
+
+.flecha {
+  background: rgb(0, 166, 166);
+}
+	.flecha:hover {
+		background: darken(rgb(0, 166, 166), 10%);
+	}
+	.flecha:active,
+	.flecha:focus {
+		background: darken(rgb(0, 166, 166), 30%);
+	}
+	.flecha:after {
+		content: "\F054";
+	}
+	.flecha:hover:after {
+		-webkit-animation: bounceright .3s alternate ease infinite;
+		animation: bounceright .3s alternate ease infinite;
+    }
+
+ /*Estilo para el boton buscar */  
+.boton-search {
+	display: inline-block;
+	font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	position: relative;
+	padding: .5em .8em;
+	padding-right: 2em;
+	background: rgb(0, 166, 166);
+	border: none;
+	color: white;
+    transition: .2s;
+    }  
+
+.boton-search:before,
+.boton-search:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    width: 2.8em;
+    content: "\00a0";
+    font-family: 'FontAwesome', sans-serif;
+    font-size: 1.2em;
+    text-align: center;
+    transition: .2s;
+    transform-origin: 50% 60%;
+    }
+.boton-search:before {
+    background: fadeout(#000, 90%);
+    }
+.boton-search:hover {
+    background: darken(rgb(94, 194, 203), 10%);
+    }
+.boton-search:active,
+.boton-search:focus {
+    background: darken(rgb(94, 194, 203), 30%);
+    outline: none;
+    }
+    
+.boton-search {
+    min-width: 8em;
+    }
+
+.buscar:after {
+	content:"\f002";
+	}
+.buscar:hover:after {
+	-webkit-animation: none;
+	-webkit-transform: scale(1.4);
+	animation: none;
+	transform: scale(1.4);
+	}
+
+
+
+@-webkit-keyframes bounceright {
+	from { -webkit-transform: translateX(0); }
+	to   { -webkit-transform: translateX(3px); }
+}
+
+@-webkit-keyframes wiggle {
+	from { -webkit-transform: rotate(0deg); }
+	to   { -webkit-transform: rotate(30deg); }
+}
+
+@keyframes bounceright {
+	from { transform: translateX(0); }
+	to   { transform: translateX(3px); }
+}
+
+@keyframes wiggle {
+	from { transform: rotate(0deg); }
+	to   { transform: rotate(30deg); }
+}

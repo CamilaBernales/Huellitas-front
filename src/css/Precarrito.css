@@ -1,0 +1,17 @@
+#preCarrito {
+  width: 55%;
+  min-height: 100vh;
+  display: flex;
+  position: absolute;
+  z-index: 1000000;
+  right: 0;
+  padding: 0;
+  top: 0;
+  margin: 0;
+  overflow: auto;
+}
+@media only screen and (max-width: 600px) {
+  #preCarrito {
+    width: 65%;
+  }
+}
