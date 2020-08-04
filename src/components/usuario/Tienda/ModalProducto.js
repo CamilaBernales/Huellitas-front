@@ -57,10 +57,10 @@ export default function MyVerticallyCenteredModal(props) {
             <img className="img-fluid" alt="alimento" src={producto.imagen} />
           </Col>
           <Col lg={6}>
-            <Row className="text-color">
+            <Row className="text-color px-3">
               <h6>Detalles del producto</h6>
             </Row>
-            <Row className="text-color">
+            <Row className="text-color px-3">
               <p>{producto.descripcion}</p>
             </Row>
             <Row>

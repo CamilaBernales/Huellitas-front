@@ -3,7 +3,7 @@ import axios from "../../../config/axios";
 import { Container, Table, Row, Col, Spinner, Alert } from "react-bootstrap";
 import axiosConfig from "../../../config/axios";
 import Swal from "sweetalert2";
-import "../../../css/ListadoUsuarios.css"
+import "../../../css/ListadoUsuarios.css";
 
 const ListadoUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
@@ -73,6 +73,7 @@ const ListadoUsuarios = () => {
       .then((res) => {
         setUsuarios(res.data.docs);
         setTotalPages(res.data.totalPages);
+        console.log(res.data)
       })
       .catch(() => {
         setError(true);
@@ -107,21 +108,21 @@ const ListadoUsuarios = () => {
       </button>
     );
   useEffect(() => {
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       listarUsuarios();
-        window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
     }, 3000);
     // eslint-disable-next-line
   }, [usuarioEditado, currentPage]);
   return (
     <>
       <Container className="mb-auto">
-      <Row className="d-flex justify-content-center align-items-center">
-        <h3 className="h3-admin">Listado de Usuarios</h3>
-      </Row>
+        <Row className="d-flex justify-content-center align-items-center">
+          <h3 className="h3-admin">Listado de Usuarios</h3>
+        </Row>
         {loading && !error ? (
           <Row className="mt-4 mb-4 d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />
@@ -149,16 +150,30 @@ const ListadoUsuarios = () => {
                           <td>{usuario.nombre}</td>
                           <td>{usuario.email}</td>
                           <td>{usuario.rol}</td>
-                          <td>
-                            <button
-                              type="button"
-                              className="btn boton-permisos"
-                              onClick={() => quitarPermisos(usuario)}
-                            >
-                              {" "}
-                              Hacer usuario general
-                            </button>
-                          </td>
+                          {usuarios.nombre !== "huellitasveterinariasmt@gmail.com" ? (
+                            <td>
+                              <button
+                              disabled
+                                type="button"
+                                className="btn boton-permisos"
+                                onClick={() => quitarPermisos(usuario)}
+                              >
+                                {" "}
+                                Hacer usuario general
+                              </button>
+                            </td>
+                          ) : (
+                            <td>
+                              <button
+                                disabled
+                                type="button"
+                                className="btn boton-permisos"
+                              >
+                                {" "}
+                                Hacer usuario general
+                              </button>
+                            </td>
+                          )}
                         </tr>
                       );
                     } else {

@@ -24,7 +24,7 @@ const PerfilUsuario = () => {
       })
   };
   const editarUsuario = () => {
-    if (usuario.nombre.trim() !== "" && usuario.email.trim() !== "") {
+    if (usuario.nombre.trim() !== "") {
       axiosConfig
         .put(`/api/usuarios/updateusuario/${usuario._id}`, usuario)
         .then((res) => {
@@ -141,20 +141,6 @@ const PerfilUsuario = () => {
                   name="nombre"
                   onChange={onChangeUsuario}
                   defaultValue={usuario.nombre}
-                />
-              </Form.Group>
-
-              <Form.Group className="my-4" controlId="formEmail">
-                <Form.Label className="justify-content-start">
-                  Email:
-                </Form.Label>
-                <Form.Control
-                  className="border border-primary rounded-left"
-                  type="email"
-                  placeholder="Ingrese su email"
-                  name="email"
-                  onChange={onChangeUsuario}
-                  defaultValue={usuario.email}
                 />
               </Form.Group>
               <Form.Group className="my-4" controlId="formTelefono">

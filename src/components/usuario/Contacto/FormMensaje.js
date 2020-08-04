@@ -79,11 +79,12 @@ export default function FormMensaje() {
         ) : null}
         <h3 className="text-center py-3">Contactanos</h3>
         <p className="text-center  text-secondary">
-          <b>Ubicación:</b> San Miguel de Tucumán. Provincia de Tucumán. Argentina
+          <b>Ubicación:</b> San Miguel de Tucumán. Provincia de Tucumán.
+          Argentina
         </p>
-          <p className="text-center text-secondary">
+        <p className="text-center text-secondary">
           <b>Telefonos:</b> +54 9 381094-4312 | +54 984609234
-          </p>
+        </p>
         <Form onSubmit={onSubmitConsulta}>
           <Row className="d-flex justify-content-around align-items-center">
             <Col sm={12} md={6} className="my-2">
@@ -95,6 +96,7 @@ export default function FormMensaje() {
                   name="nombre"
                   value={nombre}
                   onChange={onChangeConsulta}
+                  maxLength="40"
                 />
               </Form.Group>
             </Col>
@@ -108,6 +110,7 @@ export default function FormMensaje() {
                   name="email"
                   value={email}
                   onChange={onChangeConsulta}
+                  maxLength="100"
                 />
               </Form.Group>
             </Col>
@@ -126,14 +129,19 @@ export default function FormMensaje() {
                   name="mensaje"
                   value={mensaje}
                   onChange={onChangeConsulta}
-                  maxLength="250"
+                  maxLength="200"
                 />
               </Form.Group>
             </Col>
           </Row>
           <Row>
             <Col className="my-2 d-flex justify-content-end">
-              <Button size="md" variant="outline-info" className="btn-mensaje" type="submit">
+              <Button
+                size="md"
+                variant="outline-info"
+                className="btn-mensaje"
+                type="submit"
+              >
                 Enviar
               </Button>
             </Col>

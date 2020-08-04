@@ -74,9 +74,9 @@ const ListadoMensajes = () => {
                   {mensajes.map((mensaje) => {
                     return (
                       <tr key={mensaje._id}>
-                        <td>{mensaje.nombre}</td>
-                        <td>{mensaje.email}</td>
-                        <td>{mensaje.mensaje}</td>
+                        <td className="text-truncate">{mensaje.nombre}</td>
+                        <td className="text-truncate">{mensaje.email}</td>
+                        <td className="text-truncate">{mensaje.mensaje}</td>
                         <td>
                           {moment(mensaje.created_at).format("DD-MM-YYYY")}
                         </td>
