@@ -38,12 +38,7 @@ export default function Login() {
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("usuario", JSON.stringify(res.data.usuario));
-        console.log(res.data);
-        if (res.data.usuario.rol !== "admin") {
-          window.location.href = "/";
-        } else {
-          window.location.href = "/";
-        }
+        window.location.href = "/";
       })
       .catch((err) => {
         setError(true);

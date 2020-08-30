@@ -41,7 +41,9 @@ function App() {
         try {
           let res = await axiosConfig.get("/api/auth/uservalidation");
           setRespuesta(res.data);
-        } catch (err) {}
+        } catch (err) {
+          console.log(err)
+        }
       }
       setLoading(false);
     };
