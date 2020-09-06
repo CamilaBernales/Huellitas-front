@@ -89,6 +89,12 @@ const Productosadmin = () => {
     }
   };
   const actualizarProducto = () => {
+    if(productoEditado.precio.length > 4){
+      setError(true);
+      setMsgError("Precio no válido.");
+      window.scrollTo(0, 0);
+      return;
+    }
     if (
       productoEditado.nombre !== "" &&
       productoEditado.tipoproducto !== "" &&
@@ -124,6 +130,12 @@ const Productosadmin = () => {
               }, 2000);
             })
             .catch((err) => {
+              if (err.request.status === 413) {
+                setError(true);
+                setMsgError("Imagen demasiado grande.");
+                window.scrollTo(0, 0);
+                return;
+              }
               setError(true);
               setMsgError(err.response.data.msg);
               window.scrollTo(0, 0);
@@ -265,6 +277,7 @@ const Productosadmin = () => {
                       onChange={onChangeProducto}
                       type="number"
                       min="100"
+                      max="9999"
                     />
                   </Col>
                 </Row>
@@ -361,7 +374,6 @@ const Productosadmin = () => {
                     <th className="th-admin">Producto</th>
                     <th className="th-admin">Editar</th>
                     <th className="th-admin">Eliminar</th>
-
                   </tr>
                 </thead>
                 <tbody>

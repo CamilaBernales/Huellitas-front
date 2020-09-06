@@ -129,7 +129,7 @@ export default function FormMensaje() {
                   name="mensaje"
                   value={mensaje}
                   onChange={onChangeConsulta}
-                  maxLength="200"
+                  maxLength="150"
                 />
               </Form.Group>
             </Col>

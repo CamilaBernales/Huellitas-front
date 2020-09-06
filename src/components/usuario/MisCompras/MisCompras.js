@@ -11,7 +11,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import ModalPedido from "../../administrador/pedidos/ModalPedido";
-import Footer from "../Elementos-Comunes/Footer"
+import Footer from "../Elementos-Comunes/Footer";
 import moment from "moment";
 
 const MisCompras = () => {
@@ -35,7 +35,7 @@ const MisCompras = () => {
         setLoading(false);
         setFetchCompras(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setError(true);
         setErrorMsg("Hubo un error.");
       });
@@ -45,7 +45,6 @@ const MisCompras = () => {
     setModalShow(true);
     setPedido(pedido);
     setCompra(detallesEnvio);
-
   };
   useEffect(() => {
     window.scrollTo(0, 200);
@@ -57,13 +56,13 @@ const MisCompras = () => {
   return (
     <>
       <Container className="my-5 py-3">
-      <Row className="px-5 my-3 d-flex justify-content-center align-items-center ">
-        {error ? (
-          <Alert variant="danger">
-            <h6>{errorMsg}</h6>
-          </Alert>
-        ) : null}
-      </Row>
+        <Row className="px-5 my-3 d-flex justify-content-center align-items-center ">
+          {error ? (
+            <Alert variant="danger">
+              <h6>{errorMsg}</h6>
+            </Alert>
+          ) : null}
+        </Row>
         {loading ? (
           <Row className="mt-4 mb-4 d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />
@@ -72,11 +71,11 @@ const MisCompras = () => {
           </Row>
         ) : (
           <>
-            <Row className="d-flex justify-content-center align-items-center text-start my-3">
-              <Col sm={12} md={8} lg={8}>
+            <Row className="d-flex justify-content-center align-items-center text-start m-4">
+              <Col sm={12} md={8} lg={10}>
                 {misCompras.length !== 0 && !fetchCompras ? (
                   <>
-                    <Table striped bordered hover size="sm">
+                    <Table className="Tabla" striped bordered hover size="md" responsive="sm">
                       <thead>
                         <tr>
                           <th>Fecha</th>
@@ -87,11 +86,20 @@ const MisCompras = () => {
                       </thead>
                       <tbody>
                         {misCompras.map((compra) => (
-                          
                           <tr key={compra._id}>
-                            <td>{moment(compra.fecha ? compra.fecha : compra.detallesEnvio.fecha).format("DD-MM-YYYY HH:mm")  }</td>
-                            <td>{compra.direccion ? compra.direccion : compra.detallesEnvio.direccion}</td>
-                            
+                            <td>
+                              {moment(
+                                compra.fecha
+                                  ? compra.fecha
+                                  : compra.detallesEnvio.fecha
+                              ).format("DD-MM-YYYY HH:mm")}
+                            </td>
+                            <td>
+                              {compra.direccion
+                                ? compra.direccion
+                                : compra.detallesEnvio.direccion}
+                            </td>
+
                             <td>{compra.total}</td>
                             <td>
                               <Button
@@ -99,7 +107,11 @@ const MisCompras = () => {
                                 variant="success"
                                 className="ml-1"
                                 onClick={() =>
-                                  verDetalle(compra.pedido, compra, compra.detallesEnvio)
+                                  verDetalle(
+                                    compra.pedido,
+                                    compra,
+                                    compra.detallesEnvio
+                                  )
                                 }
                               >
                                 Ver detalle
@@ -118,24 +130,27 @@ const MisCompras = () => {
                       misCompras={misCompras}
                     />
                   </>
-                ) : !fetchCompras && misCompras.length===0 && (
-                  <Row className="d-flex justify-content-center align-items-center text-start my-3">
-                    <Alert className="text-center" variant="info">
-                      <h6>
-                        {" "}
-                        Aún no tienes un historial de compras para mostrar{" "}
-                        <span role="img" aria-label="cara triste">
-                          &#128546;
-                        </span>{" "}
-                        <Link to="/tienda">
-                          Mira nuestros productos{" "}
+                ) : (
+                  !fetchCompras &&
+                  misCompras.length === 0 && (
+                    <Row className="d-flex justify-content-center align-items-center text-start my-3">
+                      <Alert className="text-center" variant="info">
+                        <h6>
+                          {" "}
+                          Aún no tienes un historial de compras para mostrar{" "}
                           <span role="img" aria-label="cara triste">
-                            &#128522;
+                            &#128546;
                           </span>{" "}
-                        </Link>{" "}
-                      </h6>
-                    </Alert>
-                  </Row>
+                          <Link to="/tienda">
+                            Mira nuestros productos{" "}
+                            <span role="img" aria-label="cara triste">
+                              &#128522;
+                            </span>{" "}
+                          </Link>{" "}
+                        </h6>
+                      </Alert>
+                    </Row>
+                  )
                 )}
               </Col>
             </Row>

@@ -47,7 +47,8 @@ const Turno = () => {
       nuevoTurno.resumen.trim() !== "" &&
       nuevoTurno.fecha !== "" &&
       nuevoTurno.hora.trim() !== "" &&
-      nuevoTurno.telefono.trim() !== ""
+      nuevoTurno.telefono.trim() !== "" &&
+      nuevoTurno.edad > 0
     ) {
       axiosConfig
         .post("/api/turnos/alta", nuevoTurno)
@@ -71,7 +72,7 @@ const Turno = () => {
         });
     } else {
       setError(true);
-      setMsgError("Los campos deben estar completos.");
+      setMsgError("Los campos deben estar completos y válidos.");
       window.scrollTo(0, 200);
     }
   };
@@ -97,7 +98,7 @@ const Turno = () => {
           <Col sm={12} md={8} xl={6}>
             <h3 className="text-center">Datos de tu mascota</h3>
             <Form onSubmit={submitTurno}>
-              <Row className="my-2">
+              <Row >
                 <Col className="my-2">
                   <Form.Label className="texto-input">
                     Nombre de tu mascota
@@ -112,7 +113,7 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <Row className="my-2">
+              <Row>
                 <Col className="my-2">
                   <Form.Label>Edad de tu mascota</Form.Label>
                   <Form.Control
@@ -121,10 +122,12 @@ const Turno = () => {
                     onChange={handleTurno}
                     type="number"
                     className="formulariosMensaje "
+                    min="0"
+                    max="30"
                   />
                 </Col>
               </Row>
-              <Row className="my-2">
+              <Row>
                 <Col className="my-2">
                   <Form.Label>Raza de tu mascota</Form.Label>
                   <Form.Control
@@ -136,7 +139,7 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <Row className="my-2">
+              <Row>
                 <Col className="my-2">
                   <Form.Label>Alergias y otras particularidades</Form.Label>
                   <Form.Control
@@ -152,7 +155,7 @@ const Turno = () => {
 
             <Form className="mt-5" onSubmit={submitTurno}>
               <h3 className="text-center">Información de tu turno</h3>
-              <Row className="my-2">
+              <Row>
                 <Col className="my-2">
                   <Form.Label>Tu número de teléfono</Form.Label>
                   <Form.Control
@@ -166,7 +169,7 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <Row className="my-2">
+              <Row>
                 <Col className="my-2">
                   <Form.Label>Elige una fecha para tu turno</Form.Label>
                   <Form.Control
@@ -178,7 +181,7 @@ const Turno = () => {
                   />
                 </Col>
               </Row>
-              <Row className="my-2">
+              <Row>
                 <Col className="my-2">
                   <Form.Group controlId="exampleForm.SelectCustom">
                     <Form.Label>Elige un horario para tu turno</Form.Label>
@@ -198,7 +201,7 @@ const Turno = () => {
                   </Form.Group>
                 </Col>
               </Row>
-              <Row className="my-2">
+              <Row>
                 <Col className="my-2">
                   <Form.Label>
                     Escribe un breve resumen de lo que le pasa tu mascota

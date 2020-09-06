@@ -11,7 +11,7 @@ import {
 import Swal from "sweetalert2";
 import axiosConfig from "../../../config/axios";
 import imgDefault from "../../../img/default-producto.gif";
-import "../../../css/ListadoUsuarios.css"
+import "../../../css/ListadoUsuarios.css";
 
 function FormProductos() {
   const [nuevoProducto, setNuevoProducto] = useState({
@@ -33,6 +33,12 @@ function FormProductos() {
     });
   };
   const guardarProducto = () => {
+    if(nuevoProducto.precio.length > 4){
+      setError(true);
+      setMsgError("Precio no válido.");
+      window.scrollTo(0, 0);
+      return;
+    }
     if (
       nuevoProducto.nombre.trim() !== "" &&
       nuevoProducto.descripcion.trim() !== "" &&
@@ -55,15 +61,20 @@ function FormProductos() {
           }, 2000);
         })
         .catch((err) => {
-          // console.log(err.response);
-          window.scrollTo(0, 200);
+          if (err.request.status === 413) {
+            setError(true);
+            setMsgError("Imagen demasiado grande.");
+            window.scrollTo(0, 0);
+            return;
+          }
           setError(true);
           setMsgError(err.response.data.msg);
+          window.scrollTo(0, 0);
         });
     } else {
-      window.scrollTo(0, 200);
+      window.scrollTo(0, 0);
       setError(true);
-      setMsgError("Los campos deben estar completos.");
+      setMsgError("Los campos deben estar completos y ser válidos.");
     }
   };
   const onChangeImagenProducto = async (e) => {
@@ -72,10 +83,6 @@ function FormProductos() {
       if (e.target.files[0].size > 4194304) {
         // 5242880 = 5MB
         // 4194304 = 4MB
-        setError(true);
-        setMsgError("La imágen es demasiado grande.");
-        window.scrollTo(0, 200);
-
         e.target.value = null;
         setNuevoProducto({
           ...nuevoProducto,
@@ -103,9 +110,9 @@ function FormProductos() {
   return (
     <div>
       <Container className="my-5">
-      <Row className="d-flex justify-content-center align-items-center">
-        <h3 className="h3-admin">Carga un nuevo producto</h3>
-      </Row>
+        <Row className="d-flex justify-content-center align-items-center">
+          <h3 className="h3-admin">Carga un nuevo producto</h3>
+        </Row>
         <Row className="d-flex justify-content-center align-items-center">
           <Col sm={12} md={8} xl={6}>
             {error ? (
@@ -153,6 +160,7 @@ function FormProductos() {
                     type="number"
                     onChange={onChangeProducto}
                     min="100"
+                    max="9999"
                     defaultValue={nuevoProducto.precio}
                   />
                 </Col>

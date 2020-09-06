@@ -40,9 +40,9 @@ const ListadoMensajes = () => {
   return (
     <>
       <Container className="mb-auto">
-      <Row className="d-flex justify-content-center align-items-center">
-        <h3 className="h3-admin">Listado de Mensajes</h3>
-      </Row>
+        <Row className="d-flex justify-content-center align-items-center">
+          <h3 className="h3-admin">Listado de Mensajes</h3>
+        </Row>
         {loading ? (
           <Row className="mt-4 mb-4  my-4  d-flex justify-content-center align-items-center">
             <Spinner animation="grow" variant="info" />
@@ -58,9 +58,9 @@ const ListadoMensajes = () => {
           </Row>
         ) : null}
         {!loading && mensajes.length !== 0 ? (
-          <Row className="d-flex justify-content-center align-items-center text-start my-5">
-            <Col sm={12} md={8} lg={8}>
-              <Table striped bordered hover responsive="sm">
+          <Row className="d-flex justify-content-center  align-items-center text-start m-4">
+            <Col className="text-overflow p-3" sm={12} md={8} lg={10}>
+              <Table className="Tabla" size="md" responsive="sm" striped bordered hover>
                 <thead>
                   <tr>
                     <th className="th-admin">Nombre</th>
@@ -74,9 +74,9 @@ const ListadoMensajes = () => {
                   {mensajes.map((mensaje) => {
                     return (
                       <tr key={mensaje._id}>
-                        <td className="text-truncate">{mensaje.nombre}</td>
-                        <td className="text-truncate">{mensaje.email}</td>
-                        <td className="text-truncate">{mensaje.mensaje}</td>
+                        <td>{mensaje.nombre}</td>
+                        <td>{mensaje.email}</td>
+                        <td>{mensaje.mensaje}</td>
                         <td>
                           {moment(mensaje.created_at).format("DD-MM-YYYY")}
                         </td>
@@ -97,7 +97,7 @@ const ListadoMensajes = () => {
               </Table>
             </Col>
           </Row>
-        ) : null }
+        ) : null}
       </Container>
     </>
   );

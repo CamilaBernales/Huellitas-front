@@ -7,3 +7,15 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.Tabla {
+  table-layout: fixed;
+  width: 100%;
+}
+.Tabla td {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.boton-email{
+  background: #806db6;
+  border: solid 1px #806db6;
+}

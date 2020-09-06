@@ -157,9 +157,13 @@ const Carrito = (props) => {
       email === undefined ||
       direccion === undefined ||
       localidad === undefined ||
-      telefono === undefined
+      telefono === undefined 
     ) {
-      alert("Debe completar todos los detalles de envio");
+      alert("Debe completar todos los detalles de envio.");
+      return;
+    }
+    if (suma.length === 0) {
+      alert("Su pago debe ser superior a $0");
       return;
     }
     if (!(medioDePago.efectivoChecked || medioDePago.tarjetaChecked)) {
@@ -254,10 +258,9 @@ const Carrito = (props) => {
           localidad: "",
           telefono: "",
         });
-        // axiosConfig.post("/api/compra/email", detallesEnvio);
         window.location.href = "/miscompras";
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.response));
   };
 
   return (
@@ -389,7 +392,6 @@ const Carrito = (props) => {
                         as="select"
                         name="localidad"
                         type="text"
-                        maxLength="20"
                         defaultValue={localidad}
                         onChange={onChangeDetalle}
                       >

@@ -22,7 +22,7 @@ export default function TablaPedidos({ compras }) {
   return (
     <Fragment className="mb-auto">
       <Col sm={12} md={8} lg={10}>
-      <Table size="sm" striped bordered hover>
+      <Table className="Tabla" size="md" responsive="sm" striped bordered hover>
         <thead>
           <tr>
             <th className="th-admin">Fecha</th>

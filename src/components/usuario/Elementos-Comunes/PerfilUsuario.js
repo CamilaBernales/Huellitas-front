@@ -27,7 +27,7 @@ const PerfilUsuario = () => {
     if (usuario.nombre.trim() !== "") {
       axiosConfig
         .put(`/api/usuarios/updateusuario/${usuario._id}`, usuario)
-        .then((res) => {
+        .then(() => {
           setEdicionExitosa(true);
           window.scrollTo(0, 200);
           setTimeout(() => {
@@ -35,6 +35,12 @@ const PerfilUsuario = () => {
           }, 1000);
         })
         .catch((err) => {
+          if(err.request.status === 413){
+            setError(true)
+            setMsgError('Imagen demasiado grande.')
+            window.scrollTo(0, 200);
+            return;
+          }
           setError(true);
           setMsgError(err.response.data.msg);
           window.scrollTo(0, 200);
@@ -51,11 +57,13 @@ const PerfilUsuario = () => {
       if (e.target.files[0].size > 4194304) {
         // 5242880 = 5MB
         // 4194304 = 4MB
+        
         e.target.value = null;
         setUsuario({
           ...usuario,
           imagen: null,
         });
+        
         return;
       }
       let reader = new FileReader();
@@ -114,7 +122,7 @@ const PerfilUsuario = () => {
               <Col sm={12} xs={6} md={6} lg={4}>
                 <Image
                   fluid
-                  className="imagenPerfilUsuario img-fluid my-4"
+                  className="imagenPerfilUsuario img-fluid my-4 text-overflow"
                   src={usuario.imagen}
                   roundedCircle
                 />
@@ -141,6 +149,7 @@ const PerfilUsuario = () => {
                   name="nombre"
                   onChange={onChangeUsuario}
                   defaultValue={usuario.nombre}
+                  maxLength="40"
                 />
               </Form.Group>
               <Form.Group className="my-4" controlId="formTelefono">
@@ -154,6 +163,8 @@ const PerfilUsuario = () => {
                   name="telefono"
                   onChange={onChangeUsuario}
                   defaultValue={usuario.telefono}
+                  maxLength="14"
+
                 />
               </Form.Group>
             </Form>

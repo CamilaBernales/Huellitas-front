@@ -18,19 +18,16 @@ export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
           Pedido {moment(compra.fecha).format("DD-MM-YYYY")}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="text-truncate p-4">
         <Row>
           <Col xs={12} md={8}>
             <p>
               Nombre:
-              <strong>
-                {" "}
-                {compra.nombre}
-              </strong>
+              <strong> {compra.nombre}</strong>
             </p>
             <p>
               Direccion:
-              <strong> {compra.direccion }</strong>
+              <strong> {compra.direccion} </strong>
             </p>
             <p>
               Telefono:
@@ -70,7 +67,9 @@ export default function ModalPedido({ pedido, compra, modalShow, onHide }) {
         </Table>
       </Modal.Body>
       <Modal.Footer>
-        <Button className="btn boton-permisos" onClick={onHide}>Close</Button>
+        <Button className="btn boton-permisos" onClick={onHide}>
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );

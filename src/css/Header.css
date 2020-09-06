@@ -10,9 +10,13 @@
 
 .buttonIS {
     background:  rgb(94, 194, 203);
-    border: 1px solid rgb(94, 194, 203);
+    border: 1px solid rgb(89, 207, 218);
     font: inherit;
-  }
+}
+.dropdown-usuario{
+    width: 100%;
+    overflow: hidden;
+}
 
 /* .buttonIS:active{
     background-color:rgb(0, 166, 166);

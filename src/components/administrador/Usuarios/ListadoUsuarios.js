@@ -133,7 +133,7 @@ const ListadoUsuarios = () => {
         {!loading && usuarios.length !== 0 ? (
           <Row className="d-flex justify-content-center align-items-center text-start my-5">
             <Col sm={12} md={8} lg={10}>
-              <Table striped bordered hover responsive="sm">
+              <Table className="Tabla" striped bordered hover responsive="sm">
                 <thead>
                   <tr>
                     <th className="th-admin">Nombre</th>

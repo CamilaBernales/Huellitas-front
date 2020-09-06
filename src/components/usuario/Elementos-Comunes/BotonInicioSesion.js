@@ -10,11 +10,9 @@ const Logo = () => {
   const [usuario, setUsuario] = useState({});
 
   const obtenerUsuario = () => {
-    axiosConfig
-      .get(`/api/usuarios/usuarioactual`)
-      .then((res) => {
-        setUsuario(res.data.usuario);
-      })
+    axiosConfig.get(`/api/usuarios/usuarioactual`).then((res) => {
+      setUsuario(res.data.usuario);
+    });
   };
   let loginLogo;
   const [isLogIn, setIsLogIn] = useState(false);
@@ -38,8 +36,8 @@ const Logo = () => {
   };
 
   const inicioSesion = () => {
-    window.location.href = "/login"
-  }
+    window.location.href = "/login";
+  };
 
   if (isLogIn) {
     loginLogo = (
@@ -47,8 +45,8 @@ const Logo = () => {
         <Dropdown>
           <Dropdown.Toggle className="buttonIS mr-3" id="dropdown-custom-1">
             Mi cuenta
-            </Dropdown.Toggle>
-          <Dropdown.Menu>
+          </Dropdown.Toggle>
+          <Dropdown.Menu className="dropdown-usuario">
             <Dropdown.Item disabled>
               <Row className="d-flex justify-content-center align-items-center">
                 <Col
@@ -65,13 +63,17 @@ const Logo = () => {
                     roundedCircle
                   />
                 </Col>
-                <Col className="d-flex justify-content-center align-items-center mb-1">
-                  <em>{usuario.nombre}</em>{" "}
+                <Col className="d-flex justify-content-center align-items-center text-truncate">
+                  <em className="text-truncate">{usuario.nombre}</em>{" "}
                 </Col>
               </Row>
             </Dropdown.Item>
-            <Dropdown.Item className="btn-IS" href="/perfilusuario">Mi perfil</Dropdown.Item>
-            <Dropdown.Item className="btn-IS" onClick={() => salir()}>Cerrar sesión</Dropdown.Item>
+            <Dropdown.Item className="btn-IS" href="/perfilusuario">
+              Mi perfil
+            </Dropdown.Item>
+            <Dropdown.Item className="btn-IS" onClick={() => salir()}>
+              Cerrar sesión
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Row>
@@ -80,9 +82,7 @@ const Logo = () => {
     loginLogo = (
       <div className="img-fluid mr-4 d-flex justify-content-end ">
         <div className="p-3">
-          <Button
-            className="buttonIS"
-            onClick={() => inicioSesion()}>
+          <Button className="buttonIS" onClick={() => inicioSesion()}>
             <span className="p-2">Iniciar Sesión</span>
           </Button>
         </div>

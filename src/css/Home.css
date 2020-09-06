@@ -20,12 +20,10 @@ Table{
 .carousel h3{
   background-color: #4950575e;
   color:hsl(180 99% 38% / 10);
-  font-weight: 700 ;
+  font-weight: 700;
   font-family: "Karla", sans-serif;
   margin: 2rem;
   text-shadow: 1px 1px 1px white;
-
-
 }
 
 h3{
