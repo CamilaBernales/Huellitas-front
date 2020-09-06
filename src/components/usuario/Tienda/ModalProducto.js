@@ -14,6 +14,10 @@ export default function MyVerticallyCenteredModal(props) {
     setCantidad(([e.target.name] = e.target.value));
   };
   const guardarProducto = (id) => {
+    if (productoAgregado.cantidad < 0) {
+      alert('Cantidad no válida.')
+      return
+    }
     const compras = JSON.parse(localStorage.getItem("compras")) || [];
     let buscado = compras.find((prod) => prod._id === id);
     if (buscado) {
