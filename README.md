@@ -1,4 +1,4 @@
-<h1>Proyecto final comisión 3D</h1>
+<h1>Proyecto Fullstack</h1>
 <p>
 La página web de nuestro proyecto, Veterinaria "Huellitas", está diseñada para brindar dos tipos de servicios:​
 <ul>
